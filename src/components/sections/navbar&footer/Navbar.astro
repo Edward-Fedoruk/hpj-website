@@ -1,0 +1,100 @@
+---
+//Import relevant dependencies
+import ThemeIcon from "@components/ThemeIcon.astro";
+import NavLink from "@components/ui/links/NavLink.astro";
+import enStrings from "@utils/navigation.ts";
+import frStrings from "@utils/fr/navigation.ts";
+import BrandLogo from "@components/BrandLogo.astro";
+import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
+import MegaMenuLink from "@/components/ui/links/MegaMenuLink.astro";
+
+
+// Select the correct translation based on the page's lang prop:
+const strings = Astro.currentLocale === "fr" ? frStrings : enStrings;
+const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
+---
+
+<!-- Main header component -->
+<header
+  class="sticky inset-x-0 top-2 z-50 flex w-full flex-wrap text-sm md:flex-nowrap md:justify-start max-w-[1280px] mx-auto"
+>
+  <!-- Navigation container -->
+  <nav
+    class="block w-full rounded-[18px] border px-2 py-3 bg-black/10 backdrop-blur-md border-[#FFFFFF1A] dark:backdrop-blur-md md:flex md:items-center md:justify-between md:px-2 md:py-[11.5px] xl:mx-auto"
+    aria-label="Global"
+  >
+    <div class="flex items-center justify-between w-full md:w-fit min-w-[74px]">
+      <!-- Brand logo -->
+      <a
+        class="flex-none rounded-lg text-xl font-bold outline-hidden ring-zinc-500 focus-visible:ring-3 dark:ring-zinc-200 dark:focus:outline-hidden"
+        href={homeUrl}
+        aria-label="Brand"
+      >
+        <BrandLogo class="h-[32px] w-[36px] md:h-[65px] md:w-[74px] object-contain" />
+      </a>
+      <!-- Collapse toggle for smaller screens -->
+      <div class="ml-auto mr-5 md:hidden">
+        <button
+          type="button"
+          class="hs-collapse-toggle flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-neutral-600 transition duration-300 hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:outline-hidden"
+          data-hs-collapse="#navbar-collapse-with-animation"
+          aria-controls="navbar-collapse-with-animation"
+          aria-label="Toggle navigation"
+        >
+          <svg
+            class="h-[30px] w-[30px] shrink-0 hs-collapse-open:hidden text-white"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="3" x2="21" y1="6" y2="6"></line>
+            <line x1="3" x2="21" y1="12" y2="12"></line>
+            <line x1="3" x2="21" y1="18" y2="18"></line>
+          </svg>
+          <svg
+            class="hidden h-[30px] w-[30px] shrink-0 hs-collapse-open:block text-white"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Contains navigation links -->
+    <div
+      id="navbar-collapse-with-animation"
+      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block"
+    >
+      <!-- Navigation links container -->
+      <div
+        class="mt-5 flex flex-col gap-x-0 gap-y-4 md:mt-0 md:flex-row md:items-center md:justify-center md:gap-x-4 lg:gap-x-7 md:gap-y-0"
+      >
+        <!-- Navigation links -->
+        {strings.navBarLinks.map((link) => {
+            if (link.url.includes('units')) {
+              return <MegaMenuLink url={link.url} name={link.name}/>;
+            } else {
+              return <NavLink url={link.url} name={link.name} />;
+            }
+          })}
+      </div>
+
+    </div>
+    <div class="min-w-fit hidden md:block">
+      <PrimaryCTA title={"Contact Us"} url={"contact"} noArrow className="min-w-[120px] lg:min-w-[174px] h-[56px]"/>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,46 @@
+---
+import Icon from "../icons/Icon.astro";
+import { servicesData } from "@data/mega_link";
+
+const { url, name } = Astro.props;
+
+interface Props {
+  url: string;
+  name: string;
+}
+---
+
+<div
+  class="hs-dropdown py-3 [--adaptive:none] [--strategy:static] md:px-3 md:py-4 md:[--strategy:absolute] md:[--trigger:hover]"
+>
+  <button
+    type="button"
+    class="flex w-full text-base items-center font-medium text-neutral-600 hover:text-neutral-500 dark:text-neutral-400 dark:hover:text-neutral-500"
+  >
+    {name} <Icon name="chevronDown" />
+  </button>
+
+  <div
+    class="hs-dropdown-menu top-full md:top-[70px] z-10 hidden w-fit min-w-60 rounded-2xl bg-neutral-50 py-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:-top-5 before:start-0 before:h-5 before:w-full hs-dropdown-open:opacity-100 dark:divide-neutral-700 dark:bg-neutral-800 md:p-4 md:shadow-2xl md:duration-[150ms]"
+  >
+    <div class="gap-4 md:grid">
+      <div class="mx-1 flex flex-col md:mx-0">
+        {
+          servicesData &&
+            servicesData.map((data) => (
+              <a
+                class="group flex gap-x-5 rounded-lg p-2 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-500/10"
+                href={data.url}
+              >
+                <div class="grow">
+                  <p class="font-medium text-neutral-800 dark:text-neutral-200">
+                    {data.title}
+                  </p>
+                </div>
+              </a>
+            ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
