@@ -575,7 +575,7 @@ export const Icons = {
     class: "ms-2 size-4 shrink-0",
     viewBox: "0 0 24 24",
     fill: "none",
-    strokeWidth: "1.5",
+    strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round",
     stroke: "currentColor",
