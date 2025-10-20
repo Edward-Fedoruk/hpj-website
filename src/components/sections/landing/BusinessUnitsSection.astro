@@ -85,7 +85,7 @@ const sliderItems = [
     )
   }
 
-  <div class="embla mb-[72px] max-h-[323px] has-[a:hover]:max-h-[800px] md:max-h-[420px]">
+  <div class="embla mb-[72px] max-h-[323px] has-[a:hover]:max-h-[800px] md:max-h-[420px]" id="units-slider">
     <div class="embla__container">
       {
         sliderItems.map((item) => (
@@ -176,7 +176,7 @@ const sliderItems = [
   import EmblaCarousel, { type EmblaOptionsType } from "embla-carousel";
   import { addPrevNextBtnsClickHandlers } from "@scripts/emblaSliderButtons";
 
-  const emblaNode = document.querySelector(".embla");
+  const emblaNode = document.querySelector("#units-slider");
   const options: EmblaOptionsType = { loop: false, align: "start", dragFree: true };
   const emblaApi = EmblaCarousel(emblaNode! as HTMLElement, options);
 

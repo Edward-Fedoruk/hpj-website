@@ -1,24 +1,10 @@
 ---
 // Import the necessary dependencies
-import { Image } from "astro:assets";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
-import ReviewComponent from "@components/ui/blocks/ReviewComponent.astro";
 
 // Define props from Astro
-const {
-  title,
-  subTitle,
-  primaryBtn,
-  primaryBtnURL,
-  secondaryBtn,
-  secondaryBtnURL,
-  withReview,
-  avatars,
-  starCount,
-  rating,
-  reviews,
-} = Astro.props;
+const { title, subTitle, primaryBtn, primaryBtnURL, secondaryBtn, secondaryBtnURL } = Astro.props;
 
 // Define TypeScript interface for props
 interface Props {
@@ -28,11 +14,6 @@ interface Props {
   primaryBtnURL?: string;
   secondaryBtn?: string;
   secondaryBtnURL?: string;
-  withReview?: boolean;
-  avatars?: Array<string>;
-  starCount?: number;
-  rating?: string;
-  reviews?: string;
 }
 ---
 

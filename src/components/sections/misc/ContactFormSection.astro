@@ -1,0 +1,50 @@
+---
+import PrimaryCTA from "@/components/ui/buttons/PrimaryCTA.astro";
+
+const { title, subTitle } = Astro.props;
+
+interface Props {
+  title: string;
+  subTitle?: string;
+}
+---
+
+<section
+  class="mx-auto flex flex-col gap-6 bg-[var(--color-dark-purple)] px-4 py-[100px] selection:bg-white! selection:text-[#524CF2]! md:items-center md:gap-8 md:py-[134px] xl:px-10"
+>
+  <h1
+    class="block max-w-[578px] text-center text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+  >
+    <Fragment set:html={title} />
+  </h1>
+  {
+    subTitle && (
+      <p class="mx-auto w-full max-w-[578px] text-center text-lg leading-relaxed text-pretty text-[#FFFFFFB2]">
+        {subTitle}
+      </p>
+    )
+  }
+  <div class="relative flex w-full max-w-[436px] rounded-[10px] border border-[var(--color-primary)] bg-white p-1">
+    <input
+      type="email"
+      name="hs-email-contacts"
+      id="contactEmail"
+      autocomplete="email"
+      placeholder="Email address"
+      class="w-[calc(100%-109px)] border-0 py-0 ring-0 outline-0"
+    />
+
+    <PrimaryCTA title="Send" noArrow className="h-[46px] min-w-[109px] flex-[0_0_109px] border-0 text-lg" />
+  </div>
+</section>
+
+<style>
+  section {
+    background: radial-gradient(43.44% 43.44% at 50% 110%, #524cf2 15.73%, rgba(82, 76, 242, 0) 100%), #0a0d27;
+  }
+  @media screen and (max-width: 768px) {
+    section {
+      background: radial-gradient(70% 40% at 50% 100%, #524cf2 15.73%, rgba(82, 76, 242, 0) 100%), #0a0d27;
+    }
+  }
+</style>

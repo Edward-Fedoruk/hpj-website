@@ -1,6 +1,6 @@
 ---
 // Destructure the properties from Astro.props
-const { title, url, arrow, className, color } = Astro.props;
+const { title, url, arrow, className } = Astro.props;
 
 // Define TypeScript interface for the properties
 interface Props {
@@ -8,7 +8,6 @@ interface Props {
   url?: string;
   arrow?: boolean;
   className?: string;
-  color?: "primary" | "secondary";
 }
 // Define CSS classes for the hyperlink button
 
