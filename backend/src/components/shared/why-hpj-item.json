@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_shared_why_hpj_items",
+  "info": {
+    "displayName": "why_hpj_item",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

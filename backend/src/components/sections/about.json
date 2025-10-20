@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_abouts",
+  "info": {
+    "displayName": "about",
+    "icon": "information"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "button_link": {
+      "type": "string"
+    },
+    "button_label": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
