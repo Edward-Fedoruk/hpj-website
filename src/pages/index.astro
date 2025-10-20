@@ -1,10 +1,96 @@
 ---
 // Import the necessary components
+import HeroSection from "@/components/sections/landing/HeroSection.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
+import AboutSection from "@/components/sections/landing/AboutSection.astro";
+import heroImage from "@images/hero-image.jpg";
+import BusinessUnitsSection from "@/components/sections/landing/BusinessUnitsSection.astro";
+import WhyUsSection from "@/components/sections/landing/WhyUsSection.astro";
 
+import prosIcon1 from "@images/pros/pros1.svg?raw";
+import prosIcon2 from "@images/pros/pros2.svg?raw";
+import prosIcon3 from "@images/pros/pros3.svg?raw";
+import prosIcon4 from "@images/pros/pros4.svg?raw";
+import BoardSection from "@/components/sections/misc/BoardSection.astro";
 ---
 
 <MainLayout>
+  <HeroSection
+    title="Empowering Growth Across Diverse Business Divisions"
+    subTitle="Built on quality, driven by expertise, trusted by clients"
+    primaryBtn="Contact Us"
+    primaryBtnURL="/contacts"
+    secondaryBtn="Explore Busines Units"
+    secondaryBtnURL="/units"
+    src={heroImage}
+    alt="Main banner"
+  />
 
+  <AboutSection
+    title="About HPJ"
+    subTitle="As a multi-division business, we bring together expertise, innovation, and collaboration to deliver excellence across industries and create long-term value."
+    secondaryBtn="About Us"
+    secondaryBtnURL="/contacts"
+  />
 
+  <BusinessUnitsSection
+    title="Our Business Units"
+    subTitle="A Strategic Network of Specialized Divisions"
+    secondaryBtn="About Us"
+    secondaryBtnURL="/contacts"
+  />
+
+  <WhyUsSection
+    title="Why HPJ?"
+    prosList={[
+      {
+        iconStr: prosIcon1,
+        title: "Unmatched Quality",
+        description: "We hold ourselves to the highest standards, ensuring excellence in every division",
+      },
+      {
+        iconStr: prosIcon2,
+        title: "Trusted Expertise",
+        description: "With years of proven experience, our teams deliver results you can rely on.",
+      },
+      {
+        iconStr: prosIcon3,
+        title: "Professionalism at Every Step",
+        description: "From strategy to execution, we bring integrity, efficiency, and commitment.",
+      },
+      {
+        iconStr: prosIcon4,
+        title: "Multi-Division Strength",
+        description:
+          "Our diverse business divisions work together to provide comprehensive solutions tailored to your needs.",
+      },
+    ]}
+  />
+
+  <BoardSection
+    items={[
+      {
+        title: "The Board",
+        description:
+          "We lead with experience, driven by professionalism, and guided by a commitment to lasting success.",
+        img: {
+          src: "/public/boardImg1.png",
+          alt: "img1 alt",
+          width: 500,
+          height: 334,
+        },
+      },
+      // {
+      //   title: "The Board 2",
+      //   description:
+      //     "We lead with experience, driven by professionalism, and guided by a commitment to lasting success.",
+      //   img: {
+      //     src: "/public/boardImg1.png",
+      //     alt: "img1 alt",
+      //     width: 500,
+      //     height: 334,
+      //   },
+      // },
+    ]}
+  />
 </MainLayout>

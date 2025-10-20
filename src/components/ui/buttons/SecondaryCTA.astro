@@ -1,22 +1,25 @@
 ---
 // Destructure the properties from Astro.props
-const { title, url } = Astro.props;
+const { title, url, arrow, className, color } = Astro.props;
 
 // Define TypeScript interface for the properties
 interface Props {
   title?: string;
   url?: string;
+  arrow?: boolean;
+  className?: string;
+  color?: "primary" | "secondary";
 }
 // Define CSS classes for the hyperlink button
+
 const baseClasses =
-  "inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center text-sm font-medium text-neutral-600 shadow-xs outline-hidden ring-zinc-500 focus-visible:ring-3 transition duration-300";
-const borderClasses = "border border-neutral-200";
+  "cursor-pointer inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center text-lg font-medium text-currentColor shadow-xs outline-hidden ring-currentColor focus-visible:ring-3 transition duration-300";
+const borderClasses = "border border-currentColor";
 const bgColorClasses = "bg-transparent";
-const hoverClasses =
-  "hover:bg-neutral-400/50 hover:text-neutral-600 active:text-neutral-700";
+const hoverClasses = "hover:bg-neutral-400/50 hover:text-neutral-600 active:text-neutral-700";
 const disableClasses = "disabled:pointer-events-none disabled:opacity-50";
 const fontSizeClasses = "2xl:text-base";
-const ringClasses = "ring-zinc-500";
+const ringClasses = "ring-currentColor";
 
 const darkClasses =
   "dark:border-neutral-700 dark:text-neutral-300 dark:ring-zinc-200 dark:hover:bg-zinc-600 dark:focus:outline-hidden";
@@ -24,8 +27,24 @@ const darkClasses =
 
 <!-- Styled hyperlink -->
 <a
-  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${darkClasses}`}
+  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${darkClasses} ${className}`}
   href={url}
 >
   {title}
+  {
+    arrow ? (
+      <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M14.1667 13.5L20.5 7.5M20.5 7.5L14.1667 1.5M20.5 7.5H1.5"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-miterlimit="10"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    ) : (
+      ""
+    )
+  }
 </a>

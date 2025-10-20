@@ -1,0 +1,16 @@
+---
+import type { IProsItem } from "../landing/WhyUsSection.astro";
+
+const { iconStr, title, description } = Astro.props;
+
+interface Props extends IProsItem {}
+---
+
+<div class="flex h-[177px] max-w-[280px] flex-1 flex-col items-center gap-4">
+  <div class="min-h-[32px]">
+    <Fragment set:html={iconStr} />
+  </div>
+
+  <p class="text-center text-xl font-bold">{title}</p>
+  <p class="text-center">{description}</p>
+</div>
