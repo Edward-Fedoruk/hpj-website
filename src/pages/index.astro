@@ -12,6 +12,7 @@ import prosIcon2 from "@images/pros/pros2.svg?raw";
 import prosIcon3 from "@images/pros/pros3.svg?raw";
 import prosIcon4 from "@images/pros/pros4.svg?raw";
 import BoardSection from "@/components/sections/misc/BoardSection.astro";
+
 import NewsSection from "@/components/sections/misc/NewsSection.astro";
 import ContactFormSection from "@/components/sections/misc/ContactFormSection.astro";
 
@@ -54,6 +55,61 @@ const newsArray = [
     },
   },
 ];
+
+// helpers
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL || "http://localhost:1337";
+
+function mediaUrl(m: any) {
+  if (!m?.data?.attributes?.url) return "";
+  const url = m.data.attributes.url;
+  return url.startsWith("http") ? url : `${STRAPI_URL}${url}`;
+}
+
+// 1) тягнемо сторінку з секціями (populate для DZ)
+const slug = "empowering-growth-across-diverse-business-divisions"; // підставляй з маршруту
+const res = await fetch(`${STRAPI_URL}/api/pages`);
+const json = await res.json();
+const page = json?.data?.[0];
+const sections = page?.attributes?.sections || [];
+
+// Структура залежить від твоєї схеми в Strapi (назви полів маєш із компонента Sections > Hero)
+function mapHero(b: any) {
+  return {
+    title: b.title,
+    subTitle: b.subtitle,
+    primaryBtn: b.primary_button_label || undefined,
+    primaryBtnURL: b.primary_button_link || undefined,
+    secondaryBtn: b.secondary_button_label || undefined,
+    secondaryBtnURL: b.secondary_button_link || undefined,
+    src: mediaUrl(b.background_image),
+    alt: b.background_image?.data?.attributes?.alternativeText || "Hero image",
+    alignment: b.alignment || "center",
+    // якщо твій HeroSection підтримує ще якісь пропси — докинь тут
+  };
+}
+
+// приклади інших блоків, якщо їх винесеш у Strapi
+function mapAbout(b: any) {
+  return {
+    title: b.title,
+    subTitle: b.subtitle,
+    secondaryBtn: b.cta_label || undefined,
+    secondaryBtnURL: b.cta_link || undefined,
+  };
+}
+
+function mapWhyUs(b: any) {
+  const pros = (b.items || []).map((i: any) => ({
+    iconStr: i.icon_svg_raw || "", // або mediaUrl(i.icon) якщо це медіа
+    title: i.title,
+    description: i.description,
+  }));
+  return {
+    title: b.title,
+    subTitle: b.subtitle,
+    prosList: pros,
+  };
+}
 ---
 
 <MainLayout>
@@ -88,17 +144,20 @@ const newsArray = [
       {
         iconStr: prosIcon1,
         title: "Unmatched Quality",
-        description: "We hold ourselves to the highest standards, ensuring excellence in every division",
+        description:
+          "We hold ourselves to the highest standards, ensuring excellence in every division",
       },
       {
         iconStr: prosIcon2,
         title: "Trusted Expertise",
-        description: "With years of proven experience, our teams deliver results you can rely on.",
+        description:
+          "With years of proven experience, our teams deliver results you can rely on.",
       },
       {
         iconStr: prosIcon3,
         title: "Professionalism at Every Step",
-        description: "From strategy to execution, we bring integrity, efficiency, and commitment.",
+        description:
+          "From strategy to execution, we bring integrity, efficiency, and commitment.",
       },
       {
         iconStr: prosIcon4,
