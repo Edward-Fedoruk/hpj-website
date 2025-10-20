@@ -1,5 +1,4 @@
 ---
-import type { Props } from "@astrojs/starlight/props";
 import StarlightHead from "@astrojs/starlight/components/Head.astro";
 import VtbotStarlight from "astro-vtbot/components/starlight/Base.astro";
 ---
@@ -21,9 +20,7 @@ import VtbotStarlight from "astro-vtbot/components/starlight/Base.astro";
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const siteSearch = document.querySelector(
-      "site-search"
-    ) as HTMLElement | null;
+    const siteSearch = document.querySelector("site-search") as HTMLElement | null;
     if (siteSearch) {
       siteSearch.setAttribute("data-lenis-prevent", "");
     }

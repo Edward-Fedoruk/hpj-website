@@ -34,7 +34,6 @@ const ogDescription = customDescription || OG.description;
 const URL = `${Astro.site}`; // Set the website URL in astro.config.mjs
 const author = SITE.author;
 const canonical = Astro.url.href;
-const basePath = Astro.url.pathname;
 const socialImageRes = await getImage({
   src: OG.image,
   width: 1200,
@@ -47,7 +46,7 @@ const languages: { [key: string]: string } = {
   fr: "fr",
 };
 
-function createHref(lang: string, prefix: string, path: string): string {
+function createHref(prefix: string, path: string): string {
   // Remove any existing language prefix
   const cleanPath = path.replace(/^\/(fr|en)\//, "/");
 
@@ -63,7 +62,7 @@ const fullPath: string = Astro.url.pathname;
 const alternateLanguageLinks: string = Object.entries(languages)
   .map(([lang, prefix]: [string, string]) => {
     const cleanPath = fullPath.replace(/^\/(fr|en)\//, "/");
-    const href: string = createHref(lang, prefix, cleanPath);
+    const href: string = createHref(prefix, cleanPath);
 
     return `<link rel="alternate" hreflang="${lang}" href="${href}" />`;
   })
@@ -83,23 +82,15 @@ const appleTouchIcon = await getImage({
 });
 ---
 
-{/*  Inject structured data into the page if provided. This data is formatted as JSON-LD, a method recommended by Google for structured data pass:
-     https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data */}{
-  structuredData && (
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(structuredData)}
-    />
-  )
-}
+{
+  /*  Inject structured data into the page if provided. This data is formatted as JSON-LD, a method recommended by Google for structured data pass:
+     https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data */
+}{structuredData && <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />}
 {/* Define the character set, description, author, and viewport settings */}
 <meta charset="utf-8" />
 <meta content={description} name="description" />
 <meta name="web_author" content={author} />
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0"
-/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <link rel="canonical" href={canonical} />
 <Fragment set:html={alternateLanguageLinks} />
