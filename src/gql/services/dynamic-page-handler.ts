@@ -63,9 +63,9 @@ export class DynamicPageHandler {
                     title: heroTitle
                     subtitle: heroSubtitle
                     primaryBtnLabel
-                    primaryBtnUrl
+                    primaryBtnURL
                     secondaryBtnLabel
-                    secondaryBtnUrl
+                    secondaryBtnURL
                     bgImgSrc {
                       url
                       alternativeText

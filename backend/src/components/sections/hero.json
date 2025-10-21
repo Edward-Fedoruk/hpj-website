@@ -22,13 +22,13 @@
     "primaryBtnLabel": {
       "type": "string"
     },
-    "primaryBtnUrl": {
+    "primaryBtnURL": {
       "type": "string"
     },
     "secondaryBtnLabel": {
       "type": "string"
     },
-    "secondaryBtnUrl": {
+    "secondaryBtnURL": {
       "type": "string"
     },
     "bgImgSrc": {

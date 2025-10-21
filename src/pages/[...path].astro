@@ -22,7 +22,7 @@ export async function getStaticPaths() {
       documentId,
     }) => {
       return {
-        params: { path: slug === "home" ? "/" : slug },
+        params: { path: slug === "/home" ? "/" : slug },
         props: {
           title,
           seoTitle,
@@ -57,6 +57,9 @@ const blocks = cmsSections.map((s: CMSSection) => {
 
         {
           blocks.map(({ C, props, key }, i) => {
+            Object.keys(props).forEach((k) => {
+              console.log(`  Prop: ${k} = ${props[k]}`);
+            });
             return C ? <C {...props} key={key ?? i} /> : null;
           })
         }

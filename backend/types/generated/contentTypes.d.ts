@@ -452,7 +452,9 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     sections: Schema.Attribute.DynamicZone<["sections.hero", "sections.about"]>;
     seoDescription: Schema.Attribute.String;
     seoTitle: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<"title"> & Schema.Attribute.Required;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
