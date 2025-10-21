@@ -1,0 +1,66 @@
+---
+import { DynamicPageHandler } from "@/gql/services/dynamic-page-handler";
+
+import { sections as components } from "@/components/sections/index.ts";
+
+import MainLayout from "@/layouts/MainLayout.astro";
+
+type CMSSection = Record<string, any>;
+
+export async function getStaticPaths() {
+  const dynamicPageHandler = new DynamicPageHandler();
+  const cmsResponse = await dynamicPageHandler.getDynamicPageData();
+
+  return cmsResponse.pages.map(
+    ({
+      slug,
+      title,
+      seoTitle,
+      seoDescription,
+      sections,
+      isIndexable,
+      documentId,
+    }) => {
+      return {
+        params: { path: slug === "home" ? "/" : slug },
+        props: {
+          title,
+          seoTitle,
+          seoDescription,
+          cmsSections: sections,
+          isIndexable,
+          documentId,
+        },
+      };
+    }
+  );
+}
+
+const { cmsSections = [], seoTitle, seoDescription } = Astro.props;
+
+const blocks = cmsSections.map((s: CMSSection) => {
+  const key = s.componentId;
+  const C = components[key];
+  return { C, props: s, key };
+});
+---
+
+<html>
+  <head>
+    <title>{seoTitle}</title>
+    <meta name="description" content={seoDescription ?? ""} />
+  </head>
+  <body>
+    <main>
+      <MainLayout>
+        {blocks.length === 0 && <h1>Empty page</h1>}
+
+        {
+          blocks.map(({ C, props, key }, i) => {
+            return C ? <C {...props} key={key ?? i} /> : null;
+          })
+        }
+      </MainLayout>
+    </main>
+  </body>
+</html>

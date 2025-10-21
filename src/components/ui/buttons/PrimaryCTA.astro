@@ -1,23 +1,24 @@
 ---
 import Icon from "@components/ui/icons/Icon.astro";
 // Destructure the properties from Astro.props
-const { title, url, noArrow, className } = Astro.props;
+const { title, url, noArrow, className, color } = Astro.props;
 // Define TypeScript interface for the properties
 interface Props {
-  title?: string;
-  url?: string;
-  noArrow?: boolean;
-  className?: string;
+  title?: string | null;
+  url?: string | null;
+  noArrow?: boolean | null;
+  className?: string | null;
+  color?: "primary" | "secondary";
 }
 // Define CSS classes for styling the button
 const baseClasses =
-  "group inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-lg leading-[1.2] font-bold text-neutral-50 ring-zinc-500 transition duration-300 focus-visible:ring-3 outline-hidden";
+  "cursor-pointer group inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-lg leading-[1.2] font-bold text-white ring-[var(--color-primary)] transition duration-300 focus-visible:ring-3 outline-hidden";
 const borderClasses = "border border-transparent";
 const bgColorClasses =
   "bg-[var(--color-primary)] hover:bg-orange-500 active:bg-orange-500 dark:focus:outline-hidden";
 const disableClasses = "disabled:pointer-events-none disabled:opacity-50";
 const fontSizeClasses = "2xl:text-base";
-const ringClasses = "dark:ring-zinc-200";
+const ringClasses = "dark:ring-[var(--color-primary)]";
 ---
 
 <!-- Link styled as a button, with dynamic title, URL, and optional arrow -->

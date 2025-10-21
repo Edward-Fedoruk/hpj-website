@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_abouts",
+  "info": {
+    "displayName": "about",
+    "icon": "information"
+  },
+  "options": {},
+  "attributes": {
+    "about_title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "button_link": {
+      "type": "string"
+    },
+    "button_label": {
+      "type": "string"
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:about",
+      "required": true
+    }
+  },
+  "config": {}
+}

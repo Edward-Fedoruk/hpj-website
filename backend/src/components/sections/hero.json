@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_sections_heroes",
+  "info": {
+    "displayName": "hero",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "heroTitle": {
+      "type": "string",
+      "required": true
+    },
+    "heroSubtitle": {
+      "type": "text"
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:hero",
+      "required": true,
+      "unique": false
+    },
+    "primaryBtnLabel": {
+      "type": "string"
+    },
+    "primaryBtnUrl": {
+      "type": "string"
+    },
+    "secondaryBtnLabel": {
+      "type": "string"
+    },
+    "secondaryBtnUrl": {
+      "type": "string"
+    },
+    "bgImgSrc": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "bgImgAlt": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -7,46 +7,38 @@ import { SITE } from "@data/constants";
 
 const strings = enStrings;
 
-const sectionThreeTitle: string = 'Contact Us';
+const sectionThreeTitle: string = "Contact Us";
 ---
 
 <footer class="w-full bg-[#F7F7F7] dark:bg-neutral-900">
-  <div
-    class="mx-auto w-full max-w-[85rem] px-4 py-[30px] sm:py-10 sm:px-6 lg:px-10 lg:pt-20"
-  >
+  <div class="mx-auto w-full max-w-[85rem] px-4 py-[30px] sm:px-6 sm:py-10 lg:px-10 lg:pt-20">
     <div class="grid grid-cols-2 gap-[30px] md:grid-cols-4 md:lg:grid-cols-4 xl:grid-cols-[355px_1fr_1fr_285px]">
-      <div class="col-span-full lg:col-span-1 md:w-fit xl:w-[355px] flex flex-col sm:block items-center">
-        <BrandLogoFooter class="mix-blend-exclusion object-cover order-1" />
+      <div class="col-span-full flex flex-col items-center sm:block md:w-fit lg:col-span-1 xl:w-[355px]">
+        <BrandLogoFooter class="order-1 object-cover mix-blend-exclusion" />
         <div
-          class="mt-[34px] md:mt-[30px] flex justify-center gap-y-2 gap-x-[20px] sm:flex sm:justify-start sm:items-center sm:gap-y-0 md:gap-[20px] order-2 md:order-1"
+          class="order-2 mt-[34px] flex justify-center gap-x-[20px] gap-y-2 text-[#373B43] sm:flex sm:items-center sm:justify-start sm:gap-y-0 md:order-1 md:mt-[30px] md:gap-[20px]"
         >
-            <FooterSocialLink url={strings.socialLinks.facebook}
-              ><Icon name="instagram" />
-            </FooterSocialLink>
+          <FooterSocialLink url={strings.socialLinks.facebook}><Icon name="instagram" /> </FooterSocialLink>
 
-            <FooterSocialLink url={strings.socialLinks.facebook}
-              ><Icon name="youtube" />
-            </FooterSocialLink>
+          <FooterSocialLink url={strings.socialLinks.facebook}><Icon name="youtube" /> </FooterSocialLink>
 
-            <FooterSocialLink url={strings.socialLinks.facebook}
-              ><Icon name="facebook" />
-            </FooterSocialLink>
+          <FooterSocialLink url={strings.socialLinks.facebook}><Icon name="facebook" /> </FooterSocialLink>
         </div>
-        
-        <p class="text-center sm:text-start mt-[30px] text-[#5B5F68] sm:max-w-[343px] font-bold order-1">We lead with experience, driven by professionalism, and guided by a commitment to lasting success.</p>
+
+        <p class="order-1 mt-[30px] text-center font-bold text-[#5B5F68] sm:max-w-[343px] sm:text-start">
+          We lead with experience, driven by professionalism, and guided by a commitment to lasting success.
+        </p>
       </div>
       {
         strings.footerLinks.map((section) => (
           <div class="col-span-1">
-            <h3 class="font-bold text-neutral-800 dark:text-neutral-200">
-              {section.section}
-            </h3>
-            <ul class="grid space-y-3 mt-4 md:mt-10">
+            <h3 class="font-bold text-[#5B5F68] dark:text-neutral-200">{section.section}</h3>
+            <ul class="mt-4 grid space-y-3 md:mt-10">
               {section.links.map((link, index) => (
                 <li class="mb-[13px] md:mb-4">
                   <a
                     href={link.url}
-                    class="inline-flex gap-x-2 rounded-lg text-[15px] md:text-base text-neutral-600 outline-hidden ring-zinc-500 transition duration-300 hover:text-neutral-500 focus-visible:ring-3 dark:text-neutral-400 dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-hidden"
+                    class="inline-flex gap-x-2 rounded-lg text-[15px] text-[#5B5F68] ring-zinc-500 outline-hidden transition duration-300 hover:text-neutral-500 focus-visible:ring-3 md:text-base dark:text-neutral-400 dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-hidden"
                   >
                     {link.name}
                   </a>
@@ -58,56 +50,68 @@ const sectionThreeTitle: string = 'Contact Us';
       }
 
       <div class="col-span-2 lg:col-span-1">
-        <h3 class="font-bold text-neutral-800 dark:text-neutral-200">
+        <h3 class="font-bold text-[#5B5F68]">
           {sectionThreeTitle}
         </h3>
 
-          <ul class="flex gap-2 flex-col mt-4 md:mt-10 text-[15px] md:text-base">
-            <li class="flex gap-[10px] items-center">
-              <Icon name="email" className="min-w-[20px]"/>
-              <p>info_general@hpj.ae</p>
-            </li>
-            <li class="flex gap-[10px] items-center">
-              <Icon name="phone" className="min-w-[20px]"/>
-              <p>+1 234 5678 987</p>
-            </li>
-            <li class="flex gap-[10px] items-center">
-              <Icon name="locationMarker" className="min-w-[20px]"/>
-              <p>e.g., HPJ Headquarters Dubai, UAE</p>
-            </li>
-          </ul>
+        <ul class="mt-4 flex flex-col gap-2 text-[15px] text-[#5B5F68] md:mt-10 md:text-base">
+          <li class="flex items-center gap-[10px]">
+            <Icon name="email" className="min-w-[20px] text-[#373B43]" />
+            <p>info_general@hpj.ae</p>
+          </li>
+          <li class="flex items-center gap-[10px]">
+            <Icon name="phone" className="min-w-[20px] text-[#373B43]" />
+            <p>+1 234 5678 987</p>
+          </li>
+          <li class="flex items-center gap-[10px]">
+            <Icon name="locationMarker" className="min-w-[20px] text-[#373B43]" />
+            <p>e.g., HPJ Headquarters Dubai, UAE</p>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 
-  <div class="w-full broder-t-[#999999] border-t">
-    <div class="mx-auto w-full max-w-[85rem] px-4 py-4 pb-10 md:py-10 sm:px-6 lg:px-10 text-[#5B5F68] grid gap-2 md:gap-6 grid-cols-1 md:flex md:justify-between">
-        <div class="flex items-center justify-between">
-          <p class="text-base md:text-sm lg:text-base" >
-            Copyright © <span id="current-year">2025</span> HPJ Management Consultancy LLC
-          </p>
-        </div>
+  <div class="w-full border-t-[0.5px] border-t-[#999999]">
+    <div
+      class="mx-auto grid w-full max-w-[85rem] grid-cols-1 gap-2 px-4 py-4 pb-10 text-[#5B5F68] sm:px-6 md:flex md:justify-between md:gap-6 md:py-10 lg:px-10"
+    >
+      <div class="flex items-center justify-between">
+        <p class="text-base md:text-sm lg:text-base">
+          Copyright © <span id="current-year">2025</span> HPJ Management Consultancy LLC
+        </p>
+      </div>
 
-        <ul class="flex gap-x-6 gap-y-2 lg:self-end row-start-2 flex-wrap text-sm lg:text-base justify-between sm:justify-start">
-          {
-            strings.footerBottomLinks.map(link => {
-              if (link.name !== 'Cookie Policy') {
-                return(
-                  <li><a class="w-fit text-nowrap" href={link.url}>{link.name}</a></li>
-                )
-              }
+      <ul
+        class="row-start-2 flex flex-wrap justify-between gap-x-6 gap-y-2 text-sm sm:justify-start lg:self-end lg:text-base"
+      >
+        {
+          strings.footerBottomLinks.map((link) => {
+            if (link.name !== "Cookie Policy") {
               return (
-                <li class="hidden sm:block"><a class="text-nowrap w-0 sm:w-fit" href={link.url}>{link.name}</a></li>
-              )
-            })
-          }
-        </ul>
+                <li>
+                  <a class="w-fit text-nowrap" href={link.url}>
+                    {link.name}
+                  </a>
+                </li>
+              );
+            }
+            return (
+              <li class="hidden sm:block">
+                <a class="w-0 text-nowrap sm:w-fit" href={link.url}>
+                  {link.name}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
 
-        <script>
-          const year = new Date().getFullYear();
-          const element = document.getElementById("current-year");
-          element!.innerText = year.toString();
-        </script>
+      <script>
+        const year = new Date().getFullYear();
+        const element = document.getElementById("current-year");
+        element!.innerText = year.toString();
+      </script>
     </div>
   </div>
 </footer>

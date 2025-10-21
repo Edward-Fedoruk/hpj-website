@@ -15,4 +15,10 @@
   "markdown.copyFiles.destination": {
     "/src/content/**/*": "/src/images/content/${documentBaseName}/"
   },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.requireConfig": true,
+  "prettier.configPath": "./",
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  }
 }

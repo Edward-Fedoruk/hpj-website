@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+// import image from "@astrojs/image";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import compressor from "astro-compressor";
@@ -25,6 +26,7 @@ export default defineConfig({
   // },
   prefetch: true,
   integrations: [
+    // image(),
     sitemap({
       i18n: {
         defaultLocale: "en", // All urls that don't contain language prefix will be treated as default locale
@@ -123,6 +125,12 @@ export default defineConfig({
     }),
     mdx(),
   ],
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/sharp", // or "squoosh" if you don't want native deps
+    },
+    domains: ["localhost:1337"], // WITHOUT protocol; your Strapi host
+  },
   experimental: {
     clientPrerender: true,
   },

@@ -1,123 +1,142 @@
 ---
-// Import necessary components, modules and types
+// Import the necessary components
+import HeroSection from "@/components/sections/landing/HeroSection.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
-import CardBlog from "@components/ui/cards/CardBlog.astro";
-import CardBlogRecent from "@components/ui/cards/CardBlogRecent.astro";
-import CardInsight from "@components/ui/cards/CardInsight.astro";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
-import { SITE } from "@data/constants";
+import AboutSection from "@/components/sections/landing/AboutSection.astro";
+import heroImage from "@images/hero-image.jpg";
+import BusinessUnitsSection from "@/components/sections/landing/BusinessUnitsSection.astro";
+import WhyUsSection from "@/components/sections/landing/WhyUsSection.astro";
 
-// Get all blogs post in English and sort them based on publish date
+import prosIcon1 from "@images/pros/pros1.svg?raw";
+import prosIcon2 from "@images/pros/pros2.svg?raw";
+import prosIcon3 from "@images/pros/pros3.svg?raw";
+import prosIcon4 from "@images/pros/pros4.svg?raw";
+import BoardSection from "@/components/sections/misc/BoardSection.astro";
 
-const englishBlogEntries = await getCollection("blog", ({ id }) => {
-  return id.startsWith("en/");
-});
+import NewsSection from "@/components/sections/misc/NewsSection.astro";
+import ContactFormSection from "@/components/sections/misc/ContactFormSection.astro";
 
-const englishInsightsEntries = await getCollection("insights", ({ id }) => {
-  return id.startsWith("en/");
-});
-
-const blogPosts: CollectionEntry<"blog">[] = englishBlogEntries.sort(
-  (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
-    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
-// Get all insights posts
-const insightPosts: CollectionEntry<"insights">[] = englishInsightsEntries;
-
-// Separate the most recent post from others
-const mostRecentPost: CollectionEntry<"blog"> = blogPosts[0];
-const otherPosts: CollectionEntry<"blog">[] = blogPosts.slice(1);
-
-// Define variables for page content
-const title: string = "Your Gateway to Construction Excellence";
-const subTitle: string =
-  "Explore the latest news, tips, and insights from ScrewFast to enhance your construction projects. From product spotlights to project management strategies, our blog is your go-to resource for all things hardware and construction.";
-const secondTitle: string = "Insights";
-const secondSubTitle: string =
-  "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts. ";
-
-const pageTitle: string = `Blog | ${SITE.title}`;
-const metaDescription =
-  "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts.";
-const ogTitle = "Construction Industry Blog | ScrewFast";
+const newsArray = [
+  {
+    title: "Launches New Training Programs",
+    date: new Date("September 23, 2025 10:30:00"),
+    url: "post1",
+    description:
+      "HPJ Management Consultancy is proud to announce HPJ Management Consultancy is proud to announce HPJ Management Consultancy is proud to announce",
+    img: {
+      src: "/news1.png",
+      alt: "news img 1",
+      width: 100,
+      height: 100,
+    },
+  },
+  {
+    title: "Launches New Training Programs 2",
+    date: new Date("September 23, 2025 10:30:00"),
+    url: "post1",
+    description: "desc2",
+    img: {
+      src: "/news1.png",
+      alt: "news img 1",
+      width: 100,
+      height: 100,
+    },
+  },
+  {
+    title: "Launches New Training Programs 3",
+    date: new Date("September 23, 2025 10:30:00"),
+    url: "post1",
+    description: "desc3",
+    img: {
+      src: "/news1.png",
+      alt: "news img 1",
+      width: 100,
+      height: 100,
+    },
+  },
+];
 ---
 
-<MainLayout
-  title={pageTitle}
-  customDescription={metaDescription}
-  customOgTitle={ogTitle}
-  structuredData={{
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://screwfast.uk/blog",
-    url: "https://screwfast.uk/blog",
-    name: "Blog | ScrewFast",
-    description:
-      "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts.",
-    isPartOf: {
-      "@type": "WebSite",
-      url: "https://screwfast.uk",
-      name: "ScrewFast",
-      description:
-        "ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs.",
-    },
-    inLanguage: "en-US",
-  }}
->
-  <section
-    class="mx-auto max-w-[85rem] space-y-8 px-4 pt-16 sm:px-6 lg:px-8 2xl:max-w-full"
-  >
-    {/* Page header */}
-    <div class="mx-auto max-w-3xl text-left sm:text-center">
-      <h1
-        class="block text-4xl font-bold tracking-tight text-balance text-neutral-800 md:text-5xl lg:text-6xl dark:text-neutral-200"
-      >
-        {title}
-      </h1>
+<MainLayout>
+  <HeroSection
+    title="Empowering Growth Across Diverse Business Divisions"
+    subtitle="Built on quality, driven by expertise, trusted by clients"
+    primaryBtnLabel="Contact Us"
+    primaryBtnURL="/contacts"
+    secondaryBtnLabel="Explore Business Units"
+    secondaryBtnURL="/units"
+    bgImgSrc={heroImage}
+    bgImgAlt="Main banner"
+  />
 
-      <p
-        class="mt-4 text-lg text-pretty text-neutral-600 dark:text-neutral-400"
-      >
-        {subTitle}
-      </p>
-    </div>
-  </section>
+  <AboutSection
+    title="About HPJ"
+    subTitle="As a multi-division business, we bring together expertise, innovation, and collaboration to deliver excellence across industries and create long-term value."
+    secondaryBtn="About Us"
+    secondaryBtnURL="/contacts"
+  />
 
-  <section
-    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
-  >
-    {/* Blog posts grid */}
-    <div class="grid gap-6 lg:grid-cols-2">
-      {otherPosts.map((blogEntry) => <CardBlog blogEntry={blogEntry} />)}
-    </div>
-  </section>
-  {/* Most recent blog post */}
-  <section
-    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
-  >
-    <CardBlogRecent blogEntry={mostRecentPost} />
-  </section>
-  {/* Insights section */}
-  <section
-    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
-  >
-    <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
-      <h2
-        class="text-2xl font-bold text-neutral-800 md:text-4xl md:leading-tight dark:text-neutral-200"
-      >
-        {secondTitle}
-      </h2>
-      <p class="mt-1 text-pretty text-neutral-600 dark:text-neutral-400">
-        {secondSubTitle}
-      </p>
-    </div>
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <BusinessUnitsSection
+    title="Our Business Units"
+    subTitle="A Strategic Network of Specialized Divisions"
+    secondaryBtn="About Us"
+    secondaryBtnURL="/contacts"
+  />
+
+  <WhyUsSection
+    title="Why HPJ?"
+    prosList={[
       {
-        insightPosts.map((insightEntry) => (
-          <CardInsight insightEntry={insightEntry} />
-        ))
-      }
-    </div>
-  </section>
+        iconStr: prosIcon1,
+        title: "Unmatched Quality",
+        description:
+          "We hold ourselves to the highest standards, ensuring excellence in every division",
+      },
+      {
+        iconStr: prosIcon2,
+        title: "Trusted Expertise",
+        description:
+          "With years of proven experience, our teams deliver results you can rely on.",
+      },
+      {
+        iconStr: prosIcon3,
+        title: "Professionalism at Every Step",
+        description:
+          "From strategy to execution, we bring integrity, efficiency, and commitment.",
+      },
+      {
+        iconStr: prosIcon4,
+        title: "Multi-Division Strength",
+        description:
+          "Our diverse business divisions work together to provide comprehensive solutions tailored to your needs.",
+      },
+    ]}
+  />
+
+  <BoardSection
+    items={[
+      {
+        title: "The Board",
+        description:
+          "We lead with experience, driven by professionalism, and guided by a commitment to lasting success.",
+        img: {
+          src: "/boardImg1.png",
+          alt: "img1 alt",
+          width: 500,
+          height: 334,
+        },
+      },
+    ]}
+  />
+
+  <NewsSection
+    title="Inside HPJ"
+    subTitle="Contracts signed, partnerships launched, people promoted. Stay current."
+    newsArray={newsArray}
+  />
+
+  <ContactFormSection
+    title="Join Our Team"
+    subTitle="Looking to grow your career with a forward-thinking organization? Join our dynamic team today"
+  />
 </MainLayout>
