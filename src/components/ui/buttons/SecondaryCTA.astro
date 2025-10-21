@@ -4,10 +4,10 @@ const { title, url, arrow, className } = Astro.props;
 
 // Define TypeScript interface for the properties
 interface Props {
-  title?: string;
-  url?: string;
-  arrow?: boolean;
-  className?: string;
+  title?: string | null;
+  url?: string | null;
+  arrow?: boolean | null;
+  className?: string | null;
 }
 // Define CSS classes for the hyperlink button
 

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-20T11:21:49.391Z"
+    "x-generation-date": "2025-10-21T09:14:20.127Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -2004,7 +2004,8 @@
         "properties": {
           "data": {
             "required": [
-              "title"
+              "title",
+              "slug"
             ],
             "type": "object",
             "properties": {
@@ -2022,9 +2023,6 @@
                       "$ref": "#/components/schemas/SectionsHeroComponent"
                     },
                     {
-                      "$ref": "#/components/schemas/SharedWhyHpjItemComponent"
-                    },
-                    {
                       "$ref": "#/components/schemas/SectionsAboutComponent"
                     }
                   ]
@@ -2033,18 +2031,17 @@
                   "propertyName": "__component",
                   "mapping": {
                     "sections.hero": "#/components/schemas/SectionsHeroComponent",
-                    "shared.why-hpj-item": "#/components/schemas/SharedWhyHpjItemComponent",
                     "sections.about": "#/components/schemas/SectionsAboutComponent"
                   }
                 }
               },
-              "seo_title": {
+              "seoTitle": {
                 "type": "string"
               },
-              "seo_description": {
+              "seoDescription": {
                 "type": "string"
               },
-              "indexable": {
+              "isIndexable": {
                 "type": "boolean"
               },
               "locale": {
@@ -2106,7 +2103,8 @@
       "Page": {
         "type": "object",
         "required": [
-          "title"
+          "title",
+          "slug"
         ],
         "properties": {
           "id": {
@@ -2129,9 +2127,6 @@
                   "$ref": "#/components/schemas/SectionsHeroComponent"
                 },
                 {
-                  "$ref": "#/components/schemas/SharedWhyHpjItemComponent"
-                },
-                {
                   "$ref": "#/components/schemas/SectionsAboutComponent"
                 }
               ]
@@ -2140,18 +2135,17 @@
               "propertyName": "__component",
               "mapping": {
                 "sections.hero": "#/components/schemas/SectionsHeroComponent",
-                "shared.why-hpj-item": "#/components/schemas/SharedWhyHpjItemComponent",
                 "sections.about": "#/components/schemas/SectionsAboutComponent"
               }
             }
           },
-          "seo_title": {
+          "seoTitle": {
             "type": "string"
           },
-          "seo_description": {
+          "seoDescription": {
             "type": "string"
           },
-          "indexable": {
+          "isIndexable": {
             "type": "boolean"
           },
           "createdAt": {
@@ -2216,9 +2210,6 @@
                         "$ref": "#/components/schemas/SectionsHeroComponent"
                       },
                       {
-                        "$ref": "#/components/schemas/SharedWhyHpjItemComponent"
-                      },
-                      {
                         "$ref": "#/components/schemas/SectionsAboutComponent"
                       }
                     ]
@@ -2227,18 +2218,17 @@
                     "propertyName": "__component",
                     "mapping": {
                       "sections.hero": "#/components/schemas/SectionsHeroComponent",
-                      "shared.why-hpj-item": "#/components/schemas/SharedWhyHpjItemComponent",
                       "sections.about": "#/components/schemas/SectionsAboutComponent"
                     }
                   }
                 },
-                "seo_title": {
+                "seoTitle": {
                   "type": "string"
                 },
-                "seo_description": {
+                "seoDescription": {
                   "type": "string"
                 },
-                "indexable": {
+                "isIndexable": {
                   "type": "boolean"
                 },
                 "createdAt": {
@@ -2320,13 +2310,28 @@
               "sections.hero"
             ]
           },
-          "title": {
+          "heroTitle": {
             "type": "string"
           },
-          "subtitle": {
+          "heroSubtitle": {
             "type": "string"
           },
-          "background_image": {
+          "componentId": {
+            "type": "string"
+          },
+          "primaryBtnLabel": {
+            "type": "string"
+          },
+          "primaryBtnUrl": {
+            "type": "string"
+          },
+          "secondaryBtnLabel": {
+            "type": "string"
+          },
+          "secondaryBtnUrl": {
+            "type": "string"
+          },
+          "bgImgSrc": {
             "type": "object",
             "properties": {
               "id": {
@@ -2455,42 +2460,7 @@
               }
             }
           },
-          "primary_button_label": {
-            "type": "string"
-          },
-          "primary_button_link": {
-            "type": "string"
-          },
-          "secondary_button_label": {
-            "type": "string"
-          },
-          "secondary_button_link": {
-            "type": "string"
-          },
-          "show_buttons": {
-            "type": "string"
-          }
-        }
-      },
-      "SharedWhyHpjItemComponent": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "__component": {
-            "type": "string",
-            "enum": [
-              "shared.why-hpj-item"
-            ]
-          },
-          "icon": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "description": {
+          "bgImgAlt": {
             "type": "string"
           }
         }
@@ -2507,7 +2477,7 @@
               "sections.about"
             ]
           },
-          "title": {
+          "about_title": {
             "type": "string"
           },
           "description": {
@@ -2517,6 +2487,9 @@
             "type": "string"
           },
           "button_label": {
+            "type": "string"
+          },
+          "componentId": {
             "type": "string"
           }
         }

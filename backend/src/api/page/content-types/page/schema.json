@@ -18,24 +18,23 @@
     "slug": {
       "type": "uid",
       "targetField": "title",
-      "required": false,
-      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      "required": true,
+      "regex": "^(?!/)(?!.*//)(?!.*\\/$)[a-z0-9]+(?:-[a-z0-9]+)*(?:\\/[a-z0-9]+(?:-[a-z0-9]+)*)*$"
     },
     "sections": {
       "type": "dynamiczone",
       "components": [
         "sections.hero",
-        "shared.why-hpj-item",
         "sections.about"
       ]
     },
-    "seo_title": {
+    "seoTitle": {
       "type": "string"
     },
-    "seo_description": {
+    "seoDescription": {
       "type": "string"
     },
-    "indexable": {
+    "isIndexable": {
       "type": "boolean",
       "default": false
     }

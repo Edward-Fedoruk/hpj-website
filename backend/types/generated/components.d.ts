@@ -7,10 +7,13 @@ export interface SectionsAbout extends Struct.ComponentSchema {
     icon: "information";
   };
   attributes: {
+    about_title: Schema.Attribute.String & Schema.Attribute.Required;
     button_label: Schema.Attribute.String;
     button_link: Schema.Attribute.String;
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:about">;
     description: Schema.Attribute.Text;
-    title: Schema.Attribute.String;
   };
 }
 
@@ -21,16 +24,17 @@ export interface SectionsHero extends Struct.ComponentSchema {
     icon: "apps";
   };
   attributes: {
-    background_image: Schema.Attribute.Media<
-      "images" | "files" | "videos" | "audios"
-    >;
-    primary_button_label: Schema.Attribute.String;
-    primary_button_link: Schema.Attribute.String;
-    secondary_button_label: Schema.Attribute.String;
-    secondary_button_link: Schema.Attribute.String;
-    show_buttons: Schema.Attribute.String;
-    subtitle: Schema.Attribute.Text;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    bgImgAlt: Schema.Attribute.String;
+    bgImgSrc: Schema.Attribute.Media<"images" | "files">;
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:hero">;
+    heroSubtitle: Schema.Attribute.Text;
+    heroTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    primaryBtnLabel: Schema.Attribute.String;
+    primaryBtnUrl: Schema.Attribute.String;
+    secondaryBtnLabel: Schema.Attribute.String;
+    secondaryBtnUrl: Schema.Attribute.String;
   };
 }
 

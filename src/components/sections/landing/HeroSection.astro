@@ -1,42 +1,58 @@
 ---
 // Import the necessary dependencies
 import { Image } from "astro:assets";
+
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
-
-// Define props from Astro
-const { title, subTitle, primaryBtn, primaryBtnURL, secondaryBtn, secondaryBtnURL, src, alt } = Astro.props;
 
 // Define TypeScript interface for props
 interface Props {
   title: string;
-  subTitle?: string;
-  primaryBtn?: string;
-  primaryBtnURL?: string;
-  secondaryBtn?: string;
-  secondaryBtnURL?: string;
-  withReview?: boolean;
-  avatars?: Array<string>;
-  starCount?: number;
-  rating?: string;
-  reviews?: string;
-  src?: any;
-  alt: string | null;
+  subtitle?: string | null;
+  primaryBtnLabel?: string | null;
+  primaryBtnURL?: string | null;
+  secondaryBtnLabel?: string | null;
+  secondaryBtnURL?: string | null;
+  bgImgSrc?: any;
+  bgImgAlt?: string | null;
+  avatars?: Array<string> | null;
+  withReview?: boolean | null;
+  starCount?: number | null;
+  reviews?: string | null;
+  rating?: string | null;
 }
+
+// Define props from Astro
+const {
+  title,
+  subtitle,
+  primaryBtnLabel,
+  primaryBtnURL,
+  secondaryBtnLabel,
+  secondaryBtnURL,
+  bgImgSrc,
+  bgImgAlt,
+} = Astro.props;
+
+import { abs } from "@/gql/services/cmsImage";
+
+const fullBgImgSrc = abs(bgImgSrc?.formats?.large?.url ?? bgImgSrc?.url);
 ---
 
 <section
   class="mx-auto grid min-h-[636px] max-w-[85rem] gap-4 py-14 pt-[86px] sm:px-0 md:min-h-[700px] md:items-center md:gap-8 xl:px-10"
 >
   {
-    src && alt && (
+    bgImgSrc && bgImgAlt && (
       <div
         class="pointer-events-none absolute top-0 left-0 -z-20 h-[636px] w-full overflow-hidden bg-white md:h-[700px]"
         id="main-banner-img"
       >
         <Image
-          src={src}
-          alt={alt}
+          src={fullBgImgSrc ?? "/public/banner-pattern.svg"}
+          width={1440}
+          height={700}
+          alt={bgImgAlt}
           class="h-full w-full scale-110 object-cover object-center"
           draggable={"false"}
           loading={"eager"}
@@ -53,17 +69,31 @@ interface Props {
       <Fragment set:html={title} />
     </h1>
     {
-      subTitle && (
+      subtitle && (
         <p class="mt-3 w-full text-center text-lg leading-relaxed text-pretty text-white dark:text-neutral-400">
-          {subTitle}
+          {subtitle}
         </p>
       )
     }
     <div class="mt-7 grid w-full justify-center gap-3 sm:inline-flex">
-      {primaryBtn && <PrimaryCTA title={primaryBtn} url={primaryBtnURL} noArrow className="w-[300px] h-[56px]" />}
       {
-        secondaryBtn && (
-          <SecondaryCTA title={secondaryBtn} url={secondaryBtnURL} arrow className="w-[300px] h-[56px] text-white" />
+        primaryBtnLabel && (
+          <PrimaryCTA
+            title={primaryBtnLabel}
+            url={primaryBtnURL}
+            noArrow
+            className="w-[300px] h-[56px]"
+          />
+        )
+      }
+      {
+        secondaryBtnLabel && (
+          <SecondaryCTA
+            title={secondaryBtnLabel}
+            url={secondaryBtnURL}
+            arrow
+            className="w-[300px] h-[56px] text-white"
+          />
         )
       }
     </div>

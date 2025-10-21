@@ -6,36 +6,40 @@
   },
   "options": {},
   "attributes": {
-    "title": {
+    "heroTitle": {
       "type": "string",
       "required": true
     },
-    "subtitle": {
+    "heroSubtitle": {
       "type": "text"
     },
-    "background_image": {
+    "componentId": {
+      "type": "string",
+      "default": "page:section:hero",
+      "required": true,
+      "unique": false
+    },
+    "primaryBtnLabel": {
+      "type": "string"
+    },
+    "primaryBtnUrl": {
+      "type": "string"
+    },
+    "secondaryBtnLabel": {
+      "type": "string"
+    },
+    "secondaryBtnUrl": {
+      "type": "string"
+    },
+    "bgImgSrc": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
         "images",
-        "files",
-        "videos",
-        "audios"
+        "files"
       ]
     },
-    "primary_button_label": {
-      "type": "string"
-    },
-    "primary_button_link": {
-      "type": "string"
-    },
-    "secondary_button_label": {
-      "type": "string"
-    },
-    "secondary_button_link": {
-      "type": "string"
-    },
-    "show_buttons": {
+    "bgImgAlt": {
       "type": "string"
     }
   },

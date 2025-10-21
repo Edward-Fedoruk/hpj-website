@@ -6,8 +6,9 @@
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string"
+    "about_title": {
+      "type": "string",
+      "required": true
     },
     "description": {
       "type": "text"
@@ -17,6 +18,11 @@
     },
     "button_label": {
       "type": "string"
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:about",
+      "required": true
     }
   },
   "config": {}
