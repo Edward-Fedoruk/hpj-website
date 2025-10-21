@@ -1,7 +1,5 @@
 ---
-// Import the necessary dependencies
 import { Image } from "astro:assets";
-
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 
@@ -16,29 +14,16 @@ interface Props {
   secondaryBtnURL?: string | null;
   bgImgSrc?: any;
   bgImgAlt?: string | null;
-  avatars?: Array<string> | null;
-  withReview?: boolean | null;
-  starCount?: number | null;
-  reviews?: string | null;
-  rating?: string | null;
 }
 
-const {
-  title,
-  subtitle,
-  primaryBtnLabel,
-  primaryBtnURL,
-  secondaryBtnLabel,
-  secondaryBtnURL,
-  bgImgSrc,
-  bgImgAlt,
-} = Astro.props;
+const { title, subtitle, primaryBtnLabel, primaryBtnURL, secondaryBtnLabel, secondaryBtnURL, bgImgSrc, bgImgAlt } =
+  Astro.props;
 
 const builtBgImg = buildStrapiResponsive(bgImgSrc);
 ---
 
 <section
-  class="mx-auto grid min-h-[636px] max-w-[85rem] gap-4 py-14 pt-[86px] sm:px-0 md:min-h-[700px] md:items-center md:gap-8 xl:px-10"
+  class="mx-auto grid min-h-[636px] max-w-[85rem] gap-4 px-4 py-14 pt-[86px] md:min-h-[700px] md:items-center md:gap-8 xl:px-10"
 >
   {
     bgImgSrc && bgImgAlt && (
@@ -77,22 +62,17 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
     }
     <div class="mt-7 grid w-full justify-center gap-3 sm:inline-flex">
       {
-        primaryBtnLabel && (
-          <PrimaryCTA
-            title={primaryBtnLabel}
-            url={primaryBtnURL}
-            noArrow
-            className="w-[300px] h-[56px]"
-          />
+        primaryBtnLabel && primaryBtnURL && (
+          <PrimaryCTA title={primaryBtnLabel} url={primaryBtnURL} noArrow className="w-full md:w-[300px] h-[56px]" />
         )
       }
       {
-        secondaryBtnLabel && (
+        secondaryBtnLabel && secondaryBtnURL && (
           <SecondaryCTA
             title={secondaryBtnLabel}
             url={secondaryBtnURL}
             arrow
-            className="w-[300px] h-[56px] text-white"
+            className="w-full md:w-[300px] h-[56px] text-white"
           />
         )
       }

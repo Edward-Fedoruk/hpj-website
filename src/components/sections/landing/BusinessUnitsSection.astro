@@ -1,72 +1,21 @@
 ---
-import trainingImg from "@images/training.jpg";
-import securityImg from "@images/security.jpg";
-import complienceImg from "@images/complience.png";
 import { Image } from "astro:assets";
 
-// Define props from Astro
-const { title, subTitle } = Astro.props;
+const { title, subTitle, sliderItems } = Astro.props;
 
-// Define TypeScript interface for props
 interface Props {
   title: string;
   subTitle?: string;
-  primaryBtn?: string;
-  primaryBtnURL?: string;
-  secondaryBtn?: string;
-  secondaryBtnURL?: string;
+  sliderItems?: UnitSliderItem[];
 }
 
-const sliderItems = [
-  {
-    title: "EHS Training",
-    description:
-      "We provide tailored EHS training programs designed to meet the specific needs of diverse industries. Our courses focus on promoting safety, regulatory compliance, and environmental responsibility, ensuring that employees at all levels are equipped to maintain a safe and sustainable workplace.",
-    url: "#",
-    img: trainingImg,
-    imgAlt: "imgAlt",
-  },
-  {
-    title: "Security Hardware & Software ",
-    description:
-      "We provide end-to-end security solutions, delivering peace of mind through advanced technology and expert services. From system design and installation to integration, maintenance, and ongoing support, our team ensures that every security solution is reliable, efficient, and tailored to your needs.",
-    url: "#",
-    img: securityImg,
-    imgAlt: "imgAlt",
-  },
-  {
-    title: "Assurance & Compliance",
-    description:
-      "Our Assurance and Compliance division provides independent, expert oversight across all business disciplines. We help organizations maintain the highest standards of governance, regulatory compliance, and operational excellence, ensuring that every division operates with transparency, accountability, and integrity.",
-    url: "#",
-    img: complienceImg,
-    imgAlt: "imgAlt",
-  },
-  {
-    title: "EHS Training",
-    description:
-      "We provide tailored EHS training programs designed to meet the specific needs of diverse industries. Our courses focus on promoting safety, regulatory compliance, and environmental responsibility, ensuring that employees at all levels are equipped to maintain a safe and sustainable workplace.",
-    url: "#",
-    img: trainingImg,
-    imgAlt: "imgAlt",
-  },
-  {
-    title: "Security Hardware & Software ",
-    description:
-      "We provide end-to-end security solutions, delivering peace of mind through advanced technology and expert services. From system design and installation to integration, maintenance, and ongoing support, our team ensures that every security solution is reliable, efficient, and tailored to your needs.",
-    url: "#",
-    img: securityImg,
-    imgAlt: "imgAlt",
-  },
-  {
-    title: "Assurance & Compliance",
-    description:
-      "Our Assurance and Compliance division provides independent, expert oversight across all business disciplines. We help organizations maintain the highest standards of governance, regulatory compliance, and operational excellence, ensuring that every division operates with transparency, accountability, and integrity.",
-    url: "#",
-    img: complienceImg,
-    imgAlt: "imgAlt",
-  },
-];
+interface UnitSliderItem {
+  title: string;
+  description: string | null;
+  url: string | null;
+  imgSrc: any;
+  imgAlt: string | null;
+}
 ---
 
 <section
@@ -88,50 +37,60 @@ const sliderItems = [
     )
   }
 
-  <div class="embla mb-[72px] max-h-[323px] has-[a:hover]:max-h-[800px] md:max-h-[420px]" id="units-slider">
-    <div class="embla__container">
-      {
-        sliderItems.map((item) => (
-          <a
-            class="embla__slide group h-fit max-h-[323px] max-w-[412px] cursor-pointer overflow-hidden rounded-xl shadow-[0px_8px_16px_0px_#00000014,0px_0px_4px_0px_#0000000A] duration-300 hover:max-h-[800px] md:max-h-[420px]"
-            href={item.url}
-          >
-            <Image src={item.img} alt={item.imgAlt} height={280} class={"h-[154px] object-cover md:h-[280px]"} />
-            <div class="p-4">
-              <p class="mt-2 mb-2 text-2xl font-bold text-[var(--color-primary-text)]">{item.title}</p>
-              <p class="line-clamp-2 max-h-[55px] text-base font-normal text-[var(--color-secondary-text)] duration-300 group-hover:line-clamp-none group-hover:max-h-[1500px]">
-                {item.description}
-              </p>
-            </div>
-          </a>
-        ))
-      }
-    </div>
-    <div class="embla__controls">
-      <div class="embla__buttons mt-6 flex justify-center gap-4">
-        <button class="embla__button embla__button--prev" type="button">
-          <svg class="embla__button__svg" viewBox="0 0 532 532">
-            <path
-              fill="currentColor"
-              d="M355.66 11.354c13.793-13.805 36.208-13.805 50.001 0 13.785 13.804 13.785 36.238 0 50.034L201.22 266l204.442 204.61c13.785 13.805 13.785 36.239 0 50.044-13.793 13.796-36.208 13.796-50.002 0a5994246.277 5994246.277 0 0 0-229.332-229.454 35.065 35.065 0 0 1-10.326-25.126c0-9.2 3.393-18.26 10.326-25.2C172.192 194.973 332.731 34.31 355.66 11.354Z"
-            ></path>
-          </svg>
-        </button>
+  {
+    sliderItems && (
+      <div class="embla mb-[72px] max-h-[323px] has-[a:hover]:max-h-[800px] md:max-h-[420px]" id="units-slider">
+        <div class="embla__container">
+          {sliderItems.map((item) => (
+            <a
+              class="embla__slide group h-fit max-h-[323px] max-w-[412px] cursor-pointer overflow-hidden rounded-xl shadow-[0px_8px_16px_0px_#00000014,0px_0px_4px_0px_#0000000A] duration-300 hover:max-h-[800px] md:max-h-[420px]"
+              href={item.url}
+            >
+              <Image
+                src={item.imgSrc}
+                alt={item.imgAlt}
+                height={280}
+                width={411}
+                class={"h-[154px] object-cover md:h-[280px]"}
+              />
+              <div class="p-4">
+                <p class="mt-2 mb-2 text-2xl font-bold text-[var(--color-primary-text)]">{item.title}</p>
+                <p class="line-clamp-2 max-h-[55px] text-base font-normal text-[var(--color-secondary-text)] duration-300 group-hover:line-clamp-none group-hover:max-h-[1500px]">
+                  {item.description}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="embla__controls">
+          <div class="embla__buttons mt-6 flex justify-center gap-4">
+            <button class="embla__button embla__button--prev" type="button">
+              <svg class="embla__button__svg" viewBox="0 0 532 532">
+                <path
+                  fill="currentColor"
+                  d="M355.66 11.354c13.793-13.805 36.208-13.805 50.001 0 13.785 13.804 13.785 36.238 0 50.034L201.22 266l204.442 204.61c13.785 13.805 13.785 36.239 0 50.044-13.793 13.796-36.208 13.796-50.002 0a5994246.277 5994246.277 0 0 0-229.332-229.454 35.065 35.065 0 0 1-10.326-25.126c0-9.2 3.393-18.26 10.326-25.2C172.192 194.973 332.731 34.31 355.66 11.354Z"
+                />
+              </svg>
+            </button>
 
-        <button class="embla__button embla__button--next" type="button">
-          <svg class="embla__button__svg" viewBox="0 0 532 532">
-            <path
-              fill="currentColor"
-              d="M176.34 520.646c-13.793 13.805-36.208 13.805-50.001 0-13.785-13.804-13.785-36.238 0-50.034L330.78 266 126.34 61.391c-13.785-13.805-13.785-36.239 0-50.044 13.793-13.796 36.208-13.796 50.002 0 22.928 22.947 206.395 206.507 229.332 229.454a35.065 35.065 0 0 1 10.326 25.126c0 9.2-3.393 18.26-10.326 25.2-45.865 45.901-206.404 206.564-229.332 229.52Z"
-            ></path>
-          </svg>
-        </button>
+            <button class="embla__button embla__button--next" type="button">
+              <svg class="embla__button__svg" viewBox="0 0 532 532">
+                <path
+                  fill="currentColor"
+                  d="M176.34 520.646c-13.793 13.805-36.208 13.805-50.001 0-13.785-13.804-13.785-36.238 0-50.034L330.78 266 126.34 61.391c-13.785-13.805-13.785-36.239 0-50.044 13.793-13.796 36.208-13.796 50.002 0 22.928 22.947 206.395 206.507 229.332 229.454a35.065 35.065 0 0 1 10.326 25.126c0 9.2-3.393 18.26-10.326 25.2-45.865 45.901-206.404 206.564-229.332 229.52Z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    )
+  }
 </section>
 
-<!-- Slider styles -->
+{
+  // Slider styles
+}
 
 <style>
   .embla {
@@ -173,7 +132,9 @@ const sliderItems = [
   }
 </style>
 
-<!-- Slider script -->
+{
+  // Slider script
+}
 
 <script>
   import EmblaCarousel, { type EmblaOptionsType } from "embla-carousel";
