@@ -24,7 +24,8 @@
       "type": "dynamiczone",
       "components": [
         "sections.hero",
-        "sections.about"
+        "sections.about",
+        "sections.business-units"
       ]
     },
     "seoTitle": {

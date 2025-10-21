@@ -1,5 +1,6 @@
 import { gql } from "graphql-request";
 import { GqlClient } from "../gql";
+import type { UnitSliderItem } from "@/components/sections/landing/BusinessUnitsSection.astro";
 
 export type SectionType = string;
 
@@ -23,6 +24,14 @@ export type Section =
       description?: string | null;
       button_link?: string | null;
       button_label?: string | null;
+    }
+  | {
+      __typename: "ComponentSectionsBusinessUnits";
+      id: string;
+      componentId: SectionType;
+      title?: string | null;
+      subTitle?: string | null;
+      sliderItems?: UnitSliderItem[];
     };
 
 export interface Page {
@@ -65,6 +74,25 @@ export class DynamicPageHandler {
                 formats
               }
               bgImgAlt
+            }
+            ... on ComponentSectionsBusinessUnits {
+              componentId
+              title: bussinessUnitsTitle
+              subTitle: bussinessUnitsSubtitle
+              sliderItems {
+                title
+                description
+                url
+                img {
+                  url
+                  alternativeText
+                  width
+                  height
+                  mime
+                  size
+                  formats
+                }
+              }
             }
             ... on Error {
               code

@@ -2024,6 +2024,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/SectionsAboutComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SectionsBusinessUnitsComponent"
                     }
                   ]
                 },
@@ -2031,7 +2034,8 @@
                   "propertyName": "__component",
                   "mapping": {
                     "sections.hero": "#/components/schemas/SectionsHeroComponent",
-                    "sections.about": "#/components/schemas/SectionsAboutComponent"
+                    "sections.about": "#/components/schemas/SectionsAboutComponent",
+                    "sections.business-units": "#/components/schemas/SectionsBusinessUnitsComponent"
                   }
                 }
               },
@@ -2128,6 +2132,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SectionsAboutComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsBusinessUnitsComponent"
                 }
               ]
             },
@@ -2135,7 +2142,8 @@
               "propertyName": "__component",
               "mapping": {
                 "sections.hero": "#/components/schemas/SectionsHeroComponent",
-                "sections.about": "#/components/schemas/SectionsAboutComponent"
+                "sections.about": "#/components/schemas/SectionsAboutComponent",
+                "sections.business-units": "#/components/schemas/SectionsBusinessUnitsComponent"
               }
             }
           },
@@ -2211,6 +2219,9 @@
                       },
                       {
                         "$ref": "#/components/schemas/SectionsAboutComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsBusinessUnitsComponent"
                       }
                     ]
                   },
@@ -2218,7 +2229,8 @@
                     "propertyName": "__component",
                     "mapping": {
                       "sections.hero": "#/components/schemas/SectionsHeroComponent",
-                      "sections.about": "#/components/schemas/SectionsAboutComponent"
+                      "sections.about": "#/components/schemas/SectionsAboutComponent",
+                      "sections.business-units": "#/components/schemas/SectionsBusinessUnitsComponent"
                     }
                   }
                 },
@@ -2491,6 +2503,184 @@
           },
           "componentId": {
             "type": "string"
+          }
+        }
+      },
+      "SharedBusinessUnitItemComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "img": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "alternativeText": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {},
+              "hash": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number",
+                "format": "float"
+              },
+              "url": {
+                "type": "string"
+              },
+              "previewUrl": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {},
+              "related": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "folder": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "folderPath": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "publishedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "createdBy": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "updatedBy": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "locale": {
+                "type": "string"
+              },
+              "localizations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "imgAlt": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsBusinessUnitsComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.business-units"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "bussinessUnitsTitle": {
+            "type": "string"
+          },
+          "bussinessUnitsSubtitle": {
+            "type": "string"
+          },
+          "sliderItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedBusinessUnitItemComponent"
+            }
           }
         }
       },

@@ -9,13 +9,23 @@ interface Props {
   sliderItems?: UnitSliderItem[];
 }
 
-interface UnitSliderItem {
+export interface UnitSliderItem {
   title: string;
   description: string | null;
   url: string | null;
-  imgSrc: any;
+  img: {
+    url: string;
+    alternativeText: string;
+    width: number;
+    height: number;
+    mime: any;
+    size: any;
+    formats: any;
+  };
   imgAlt: string | null;
 }
+
+import { abs } from "@/gql/services/cmsImage";
 ---
 
 <section
@@ -41,26 +51,34 @@ interface UnitSliderItem {
     sliderItems && (
       <div class="embla mb-[72px] max-h-[323px] has-[a:hover]:max-h-[800px] md:max-h-[420px]" id="units-slider">
         <div class="embla__container">
-          {sliderItems.map((item) => (
-            <a
-              class="embla__slide group h-fit max-h-[323px] max-w-[412px] cursor-pointer overflow-hidden rounded-xl shadow-[0px_8px_16px_0px_#00000014,0px_0px_4px_0px_#0000000A] duration-300 hover:max-h-[800px] md:max-h-[420px]"
-              href={item.url}
-            >
-              <Image
-                src={item.imgSrc}
-                alt={item.imgAlt}
-                height={280}
-                width={411}
-                class={"h-[154px] object-cover md:h-[280px]"}
-              />
-              <div class="p-4">
-                <p class="mt-2 mb-2 text-2xl font-bold text-[var(--color-primary-text)]">{item.title}</p>
-                <p class="line-clamp-2 max-h-[55px] text-base font-normal text-[var(--color-secondary-text)] duration-300 group-hover:line-clamp-none group-hover:max-h-[1500px]">
-                  {item.description}
-                </p>
-              </div>
-            </a>
-          ))}
+          {sliderItems.map((item) => {
+            const fullImgSrc = abs(item.img?.formats?.large?.url ?? item.img?.url);
+
+            return (
+              <a
+                class="embla__slide group h-fit max-h-[323px] max-w-[412px] cursor-pointer overflow-hidden rounded-xl shadow-[0px_8px_16px_0px_#00000014,0px_0px_4px_0px_#0000000A] duration-300 hover:max-h-[800px] md:max-h-[420px]"
+                href={item.url}
+              >
+                {fullImgSrc ? (
+                  <Image
+                    src={fullImgSrc}
+                    alt={item.imgAlt || item.img.alternativeText}
+                    height={280}
+                    width={411}
+                    class={"h-[154px] object-cover md:h-[280px]"}
+                  />
+                ) : (
+                  <div>Image placeholder</div>
+                )}
+                <div class="p-4">
+                  <p class="mt-2 mb-2 text-2xl font-bold text-[var(--color-primary-text)]">{item.title}</p>
+                  <p class="line-clamp-2 max-h-[55px] text-base font-normal text-[var(--color-secondary-text)] duration-300 group-hover:line-clamp-none group-hover:max-h-[1500px]">
+                    {item.description}
+                  </p>
+                </div>
+              </a>
+            );
+          })}
         </div>
         <div class="embla__controls">
           <div class="embla__buttons mt-6 flex justify-center gap-4">

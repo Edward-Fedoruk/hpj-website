@@ -17,6 +17,21 @@ export interface SectionsAbout extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsBusinessUnits extends Struct.ComponentSchema {
+  collectionName: "components_sections_business_units";
+  info: {
+    displayName: "Business Units";
+  };
+  attributes: {
+    bussinessUnitsSubtitle: Schema.Attribute.Text;
+    bussinessUnitsTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:bussiness_units">;
+    sliderItems: Schema.Attribute.Component<"shared.business-unit-item", true>;
+  };
+}
+
 export interface SectionsHero extends Struct.ComponentSchema {
   collectionName: "components_sections_heroes";
   info: {
@@ -38,6 +53,20 @@ export interface SectionsHero extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedBusinessUnitItem extends Struct.ComponentSchema {
+  collectionName: "components_shared_business_unit_items";
+  info: {
+    displayName: "Business Unit Item";
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedWhyHpjItem extends Struct.ComponentSchema {
   collectionName: "components_shared_why_hpj_items";
   info: {
@@ -55,7 +84,9 @@ declare module "@strapi/strapi" {
   export module Public {
     export interface ComponentSchemas {
       "sections.about": SectionsAbout;
+      "sections.business-units": SectionsBusinessUnits;
       "sections.hero": SectionsHero;
+      "shared.business-unit-item": SharedBusinessUnitItem;
       "shared.why-hpj-item": SharedWhyHpjItem;
     }
   }
