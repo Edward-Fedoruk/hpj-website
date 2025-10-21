@@ -1,6 +1,6 @@
 ---
 import { getImage } from "astro:assets";
-import { OG, SEO, SITE } from "@data/constants";
+import { OG, SITE } from "@data/constants";
 import faviconSvgSrc from "@images/icon.svg";
 import faviconSrc from "@images/icon.png";
 
@@ -9,7 +9,6 @@ import faviconSrc from "@images/icon.png";
 // 'structuredData' defines default structured data in JSON-LD format to enhance search engine understanding of the page (for SEO purposes).
 const defaultProps = {
   meta: SITE.description,
-  structuredData: SEO.structuredData,
   customDescription: null,
   customOgTitle: null,
 };
@@ -19,7 +18,6 @@ const defaultProps = {
 // <MainLayout title="Custom Title" meta="Custom description." />
 const {
   meta = defaultProps.meta,
-  structuredData = defaultProps.structuredData,
   customDescription = defaultProps.customDescription,
   customOgTitle = defaultProps.customOgTitle,
 } = Astro.props;
@@ -83,9 +81,12 @@ const appleTouchIcon = await getImage({
 ---
 
 {
-  /*  Inject structured data into the page if provided. This data is formatted as JSON-LD, a method recommended by Google for structured data pass:
-     https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data */
-}{structuredData && <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />}
+  /*  
+    Inject structured data into the page if provided. This data is formatted as JSON-LD, a method recommended by Google for structured data pass:
+    https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data 
+    {structuredData && <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />}
+  */
+}
 {/* Define the character set, description, author, and viewport settings */}
 <meta charset="utf-8" />
 <meta content={description} name="description" />
