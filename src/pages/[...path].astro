@@ -11,6 +11,8 @@ export async function getStaticPaths() {
   const dynamicPageHandler = new DynamicPageHandler();
   const cmsResponse = await dynamicPageHandler.getDynamicPageData();
 
+  // console.log('hello world');
+
   return cmsResponse.pages.map(
     ({
       slug,
