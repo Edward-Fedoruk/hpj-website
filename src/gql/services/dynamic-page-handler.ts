@@ -35,64 +35,56 @@ export interface Page {
   isIndexable?: boolean | null;
 }
 
-// sections {
-//   ... on ComponentSectionsAbout {
-//     id
-//     about_title
-//     description
-//     button_link
-//     button_label
-//     componentId
-//   }
-
-
 export class DynamicPageHandler {
-    async getDynamicPageData(): Promise<{ pages: Page[] }> {
-        const document = gql`
-            {
-              pages {
-                documentId
-                slug
-                title
-                seoTitle
-                seoDescription
-                isIndexable
-                sections {
-                  ... on ComponentSectionsHero {
-                    componentId
-                    title: heroTitle
-                    subtitle: heroSubtitle
-                    primaryBtnLabel
-                    primaryBtnURL
-                    secondaryBtnLabel
-                    secondaryBtnURL
-                    bgImgSrc {
-                      url
-                      alternativeText
-                      width
-                      height
-                      mime
-                      size
-                      formats
-                    }
-                    bgImgAlt
-                  }
-                  ... on Error {
-                    code
-                    message
-                  }
-                }
-              }  
-            }`;
-
-        try {
-            const data = await GqlClient.instance.request<{ pages: Page[] }>(document);
-
-            return data;
-        } catch (error) {
-            console.error("Error fetching dynamic page data:", error);
-
-            throw error;
+  async getDynamicPageData(): Promise<{ pages: Page[] }> {
+    const document = gql`
+      {
+        pages {
+          documentId
+          slug
+          title
+          seoTitle
+          seoDescription
+          isIndexable
+          sections {
+            ... on ComponentSectionsHero {
+              componentId
+              title: heroTitle
+              subtitle: heroSubtitle
+              primaryBtnLabel
+              primaryBtnURL
+              secondaryBtnLabel
+              secondaryBtnURL
+              bgImgSrc {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
+              bgImgAlt
+            }
+            ... on Error {
+              code
+              message
+            }
+          }
         }
+      }
+    `;
+
+    try {
+      const data = await GqlClient.instance.request<{ pages: Page[] }>(
+        document,
+      );
+
+      return data;
+    } catch (error) {
+      console.error("Error fetching dynamic page data:", error);
+
+      throw error;
     }
+  }
 }
