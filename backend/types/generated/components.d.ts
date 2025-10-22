@@ -32,9 +32,9 @@ export interface SectionsHero extends Struct.ComponentSchema {
     heroSubtitle: Schema.Attribute.Text;
     heroTitle: Schema.Attribute.String & Schema.Attribute.Required;
     primaryBtnLabel: Schema.Attribute.String;
-    primaryBtnUrl: Schema.Attribute.String;
+    primaryBtnURL: Schema.Attribute.String;
     secondaryBtnLabel: Schema.Attribute.String;
-    secondaryBtnUrl: Schema.Attribute.String;
+    secondaryBtnURL: Schema.Attribute.String;
   };
 }
 

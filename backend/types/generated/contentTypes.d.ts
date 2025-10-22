@@ -452,8 +452,189 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     sections: Schema.Attribute.DynamicZone<["sections.hero", "sections.about"]>;
     seoDescription: Schema.Attribute.String;
     seoTitle: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<"title"> & Schema.Attribute.Required;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginApiFormsForm extends Struct.CollectionTypeSchema {
+  collectionName: "forms";
+  info: {
+    displayName: "form";
+    pluralName: "forms";
+    singularName: "form";
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    "content-manager": {
+      visible: true;
+    };
+    "content-type-builder": {
+      visible: true;
+    };
+  };
+  attributes: {
+    active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+    dateFrom: Schema.Attribute.String;
+    dateTill: Schema.Attribute.String;
+    errorMessage: Schema.Attribute.Text & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      "oneToMany",
+      "plugin::api-forms.form"
+    > &
+      Schema.Attribute.Private;
+    notifications: Schema.Attribute.Relation<
+      "oneToMany",
+      "plugin::api-forms.notification"
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    steps: Schema.Attribute.JSON;
+    submissions: Schema.Attribute.Relation<
+      "oneToMany",
+      "plugin::api-forms.submission"
+    >;
+    successMessage: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginApiFormsNotification
+  extends Struct.CollectionTypeSchema {
+  collectionName: "notification";
+  info: {
+    displayName: "Email notifications";
+    pluralName: "notificatons";
+    singularName: "notification";
+  };
+  options: {
+    draftAndPublish: false;
+    privateAttributes: ["createdAt", "updatedAt"];
+  };
+  pluginOptions: {
+    "content-manager": {
+      visible: false;
+    };
+    "content-type-builder": {
+      visible: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+    enabled: Schema.Attribute.Boolean;
+    form: Schema.Attribute.Relation<"manyToOne", "plugin::api-forms.form">;
+    from: Schema.Attribute.String;
+    identifier: Schema.Attribute.Enumeration<["notification", "confirmation"]> &
+      Schema.Attribute.DefaultTo<"notification">;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      "oneToMany",
+      "plugin::api-forms.notification"
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text & Schema.Attribute.DefaultTo<"">;
+    publishedAt: Schema.Attribute.DateTime;
+    service: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<"emailService">;
+    subject: Schema.Attribute.String;
+    to: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginApiFormsSetting extends Struct.SingleTypeSchema {
+  collectionName: "settings";
+  info: {
+    displayName: "Settings";
+    pluralName: "settings";
+    singularName: "setting";
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    "content-manager": {
+      visible: true;
+    };
+    "content-type-builder": {
+      visible: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+    globalEmail: Schema.Attribute.Email;
+    globalErrorMessage: Schema.Attribute.RichText;
+    globalFromEmail: Schema.Attribute.Email;
+    globalFromName: Schema.Attribute.String;
+    globalSuccessMessage: Schema.Attribute.RichText;
+    html: Schema.Attribute.RichText;
+    htmlBgColor: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      "oneToMany",
+      "plugin::api-forms.setting"
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface PluginApiFormsSubmission extends Struct.CollectionTypeSchema {
+  collectionName: "submissions";
+  info: {
+    displayName: "submission";
+    pluralName: "submissions";
+    singularName: "submission";
+  };
+  options: {
+    draftAndPublish: false;
+    privateAttributes: ["createdAt", "updatedAt"];
+  };
+  pluginOptions: {
+    "content-manager": {
+      visible: false;
+    };
+    "content-type-builder": {
+      visible: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+    files: Schema.Attribute.Media<undefined, true>;
+    form: Schema.Attribute.Relation<"manyToOne", "plugin::api-forms.form">;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      "oneToMany",
+      "plugin::api-forms.submission"
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    referer: Schema.Attribute.String;
+    submission: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
       Schema.Attribute.Private;
@@ -971,6 +1152,10 @@ declare module "@strapi/strapi" {
       "admin::transfer-token-permission": AdminTransferTokenPermission;
       "admin::user": AdminUser;
       "api::page.page": ApiPagePage;
+      "plugin::api-forms.form": PluginApiFormsForm;
+      "plugin::api-forms.notification": PluginApiFormsNotification;
+      "plugin::api-forms.setting": PluginApiFormsSetting;
+      "plugin::api-forms.submission": PluginApiFormsSubmission;
       "plugin::content-releases.release": PluginContentReleasesRelease;
       "plugin::content-releases.release-action": PluginContentReleasesReleaseAction;
       "plugin::i18n.locale": PluginI18NLocale;

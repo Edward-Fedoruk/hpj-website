@@ -16,10 +16,9 @@
       "required": true
     },
     "slug": {
-      "type": "uid",
-      "targetField": "title",
+      "type": "string",
       "required": true,
-      "regex": "^(?!/)(?!.*//)(?!.*\\/$)[a-z0-9]+(?:-[a-z0-9]+)*(?:\\/[a-z0-9]+(?:-[a-z0-9]+)*)*$"
+      "unique": true
     },
     "sections": {
       "type": "dynamiczone",
