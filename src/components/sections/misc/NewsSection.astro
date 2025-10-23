@@ -76,7 +76,7 @@ interface Props {
                     </span>
                   </div>
 
-                  <SecondaryCTA title="View details" arrow className="text-[var(--color-primary)] h-10 min-w-fit" />
+                  <SecondaryCTA title="View details" arrow className="text-[var(--color-primary)] h-10 min-w-fit" url={item.url} />
 
                   <span class="text-[#00061680] block md:hidden">
                     {item.date ? new Date(item.date).toLocaleDateString("en-US", {

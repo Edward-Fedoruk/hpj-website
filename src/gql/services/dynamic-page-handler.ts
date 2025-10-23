@@ -123,6 +123,7 @@ export class DynamicPageHandler {
                 description: text
                 date: dateCreatedAt
                 imgAlt
+                url
                 img {
                   url
                   alternativeText

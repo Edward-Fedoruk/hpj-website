@@ -42,7 +42,7 @@ import { abs } from '@/gql/services/cmsImage';
 
   {
     sliderItems && sliderItems.length > 0 && (
-      <div class="embla mb-[72px] max-h-[323px] has-[a:hover]:max-h-[800px] md:max-h-[420px]" id="units-slider">
+      <div class="embla mb-[72px] h-fit max-h-[323px] md:max-h-[420px]" id="units-slider">
         <div class="embla__container">
           {sliderItems.map((item) => {
             const fullImgSrc = abs(item.img?.formats?.large?.url ?? item.img?.url);
@@ -63,9 +63,9 @@ import { abs } from '@/gql/services/cmsImage';
                 ) : (
                   <div>Image placeholder</div>
                 )}
-                <div class="p-4">
-                  <p class="mt-2 mb-2 text-2xl font-bold text-[var(--color-primary-text)]">{item.title}</p>
-                  <p class="line-clamp-2 max-h-[55px] text-base font-normal text-[var(--color-secondary-text)] duration-300 group-hover:line-clamp-none group-hover:max-h-[1500px]">
+                <div class="min-h-[128px] p-4">
+                  <p class="mt-2 mb-2 line-clamp-1 text-2xl font-bold text-[var(--color-primary-text)]">{item.title}</p>
+                  <p class="line-clamp-2 max-h-[55px] text-base font-normal text-[var(--color-secondary-text)] duration-300 group-hover:line-clamp-6 group-hover:max-h-[1500px]">
                     {item.description}
                   </p>
                 </div>
