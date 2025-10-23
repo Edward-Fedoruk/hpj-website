@@ -5,6 +5,8 @@ import { Image } from "astro:assets";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 
+import { getImageData } from "@/utils/strapiImg";
+
 // Define TypeScript interface for props
 interface Props {
   title: string;
@@ -34,9 +36,7 @@ const {
   bgImgAlt,
 } = Astro.props;
 
-import { abs } from "@/gql/services/cmsImage";
-
-const fullBgImgSrc = abs(bgImgSrc?.formats?.large?.url ?? bgImgSrc?.url);
+const imgData = getImageData(bgImgSrc);
 ---
 
 <section
@@ -49,14 +49,14 @@ const fullBgImgSrc = abs(bgImgSrc?.formats?.large?.url ?? bgImgSrc?.url);
         id="main-banner-img"
       >
         <Image
-          src={fullBgImgSrc || "/public/boardImg1.png"}
-          width={1440}
-          height={700}
-          alt={bgImgAlt}
+          src={imgData?.url ?? ""}
+          alt={imgData?.alt ?? bgImgAlt ?? ""}
+          width={imgData?.width ?? 0}
+          height={imgData?.height ?? 0}
+          format={imgData?.mime ?? ""}
           class="h-full w-full scale-110 object-cover object-center"
           draggable={"false"}
           loading={"eager"}
-          format={"jpg"}
         />
         {/* <div class="absolute top-0 left-0 z-0 h-full w-full bg-black/70" /> */}
       </div>
