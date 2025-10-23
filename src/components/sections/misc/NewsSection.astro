@@ -1,26 +1,17 @@
 ---
 import SecondaryCTA from "@/components/ui/buttons/SecondaryCTA.astro";
-import type { ICustomImg } from "../misc/BoardSection.astro";
+import { abs } from '@/gql/services/cmsImage';
 import { Image } from "astro:assets";
+import type { NewsItem } from '@/types/sectionTypes'
 
-const { title, subTitle, newsArray } = Astro.props;
-
-interface INewsItem {
-  title: string;
-  date: Date;
-  url: string;
-  img: ICustomImg;
-  description: string;
-}
+const { title, subTitle, newsList } = Astro.props;
 
 interface Props {
   title: string;
   subTitle?: string;
-  newsArray: INewsItem[];
+  newsList: NewsItem[];
 }
 
-const archiveDates = newsArray.map(item => item.date.getFullYear())
-console.log(archiveDates);
 ---
 
 <section 
@@ -42,7 +33,7 @@ console.log(archiveDates);
     )
   }
   {
-    newsArray.length > 0 && (
+    newsList.length > 0 && (
       <div class="text-center mt-8 md:hidden inline-flex gap-1 w-full justify-center mb-8">
         <span class="text-[var(--color-neutral-gray)]">Archive:</span>
         <span class="text-[var(--color-primary)] font-bold">2025</span>
@@ -54,36 +45,46 @@ console.log(archiveDates);
 
       <div class="embla md:mt-12" id="news-slider">
         <div class="embla__container md:flex md:flex-col md:gap-4 md:items-center">
-        {newsArray.map((item) => (
-          <div class="w-full overflow-hidden rounded-2xl bg-white embla__slide md:max-w-[820px]">
+        {newsList.map((item) => {
+          if (item) {
+            return (
+              <div class="w-full overflow-hidden rounded-2xl bg-white embla__slide md:max-w-[820px]">
 
-            <Image src={item.img.src} alt={item.img.alt} width={item.img.width} height={item.img.height} class={"w-full object-cover max-h-[216px] md:hidden"}/>
-            
-            <div class="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div class="flex flex-col">
-                <a href={item.url} class="line-clamp-2 text-xl font-bold">{item.title}</a>
-                <p class="text-lg line-clamp-3 mt-6 md:hidden">{item.description}</p>
-                <span class="text-[#00061680] hidden md:block">
-                  {item.date.toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </span>
+                <Image 
+                  src={abs(item.img?.formats?.large?.url ?? item.img?.url)}
+                  alt={item.imgAlt || item.img?.alternativeText || null}
+                  width={item.img ? item.img.width : 200} 
+                  height={item.img ? item.img.height : 200} 
+                  class={"w-full object-cover max-h-[216px] md:hidden"}
+                />
+                
+                <div class="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div class="flex flex-col">
+                    <a href={item.url} class="line-clamp-2 text-xl font-bold">{item.title}</a>
+                    <p class="text-lg line-clamp-3 mt-6 md:hidden">{item.description}</p>
+                    <span class="text-[#00061680] hidden md:block">
+                      {item.date ? new Date(item.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      }): null}
+                    </span>
+                  </div>
+
+                  <SecondaryCTA title="View details" arrow className="text-[var(--color-primary)] h-10 min-w-fit" />
+
+                  <span class="text-[#00061680] block md:hidden">
+                    {item.date ? new Date(item.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }): null}
+                  </span>
+                </div>
               </div>
-
-              <SecondaryCTA title="View details" arrow className="text-[var(--color-primary)] h-10 min-w-fit" />
-
-              <span class="text-[#00061680] block md:hidden">
-                {item.date.toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
-            </div>
-          </div>
-        ))}
+            )
+          }
+        })}
         </div>
       </div>
     )
@@ -139,7 +140,6 @@ console.log(archiveDates);
           embla = null;
         }
       }
-      console.log(embla);
     };
 
     handleResize(mediaQuery);

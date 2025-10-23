@@ -6,13 +6,13 @@
   },
   "options": {},
   "attributes": {
-    "icon": {
-      "type": "string"
-    },
     "title": {
       "type": "string"
     },
     "description": {
+      "type": "text"
+    },
+    "icon": {
       "type": "text"
     }
   },

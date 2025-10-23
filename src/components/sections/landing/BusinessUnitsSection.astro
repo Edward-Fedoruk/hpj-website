@@ -1,5 +1,6 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets';
+import type { StrapiImageType } from '@/types/common';
 
 const { title, subTitle, sliderItems } = Astro.props;
 
@@ -13,19 +14,11 @@ export interface UnitSliderItem {
   title: string;
   description: string | null;
   url: string | null;
-  img: {
-    url: string;
-    alternativeText: string;
-    width: number;
-    height: number;
-    mime: any;
-    size: any;
-    formats: any;
-  };
+  img: StrapiImageType;
   imgAlt: string | null;
 }
 
-import { abs } from "@/gql/services/cmsImage";
+import { abs } from '@/gql/services/cmsImage';
 ---
 
 <section
@@ -48,7 +41,7 @@ import { abs } from "@/gql/services/cmsImage";
   }
 
   {
-    sliderItems && (
+    sliderItems && sliderItems.length > 0 && (
       <div class="embla mb-[72px] max-h-[323px] has-[a:hover]:max-h-[800px] md:max-h-[420px]" id="units-slider">
         <div class="embla__container">
           {sliderItems.map((item) => {
@@ -65,7 +58,7 @@ import { abs } from "@/gql/services/cmsImage";
                     alt={item.imgAlt || item.img.alternativeText}
                     height={280}
                     width={411}
-                    class={"h-[154px] object-cover md:h-[280px]"}
+                    class={'h-[154px] object-cover md:h-[280px]'}
                   />
                 ) : (
                   <div>Image placeholder</div>
@@ -155,17 +148,17 @@ import { abs } from "@/gql/services/cmsImage";
 }
 
 <script>
-  import EmblaCarousel, { type EmblaOptionsType } from "embla-carousel";
-  import { addPrevNextBtnsClickHandlers } from "@scripts/emblaSliderButtons";
+  import EmblaCarousel, { type EmblaOptionsType } from 'embla-carousel';
+  import { addPrevNextBtnsClickHandlers } from '@scripts/emblaSliderButtons';
 
-  const emblaNode = document.querySelector("#units-slider");
-  const options: EmblaOptionsType = { loop: false, align: "start", dragFree: true };
+  const emblaNode = document.querySelector('#units-slider');
+  const options: EmblaOptionsType = { loop: false, align: 'start', dragFree: true };
   const emblaApi = EmblaCarousel(emblaNode! as HTMLElement, options);
 
-  const prevBtnNode = emblaNode!.querySelector(".embla__button--prev") as HTMLElement;
-  const nextBtnNode = emblaNode!.querySelector(".embla__button--next") as HTMLElement;
+  const prevBtnNode = emblaNode!.querySelector('.embla__button--prev') as HTMLElement;
+  const nextBtnNode = emblaNode!.querySelector('.embla__button--next') as HTMLElement;
 
   const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtnNode, nextBtnNode);
 
-  emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
+  emblaApi.on('destroy', removePrevNextBtnsClickHandlers);
 </script>

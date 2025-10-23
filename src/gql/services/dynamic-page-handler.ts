@@ -1,38 +1,30 @@
 import { gql } from "graphql-request";
 import { GqlClient } from "../gql";
-import type { UnitSliderItem } from "@/components/sections/landing/BusinessUnitsSection.astro";
+import type {
+  AboutSection,
+  BusinessUnitsSection,
+  HeroSection,
+  QoutesSection,
+  WhyUsSection,
+  NewsSection,
+} from '@/types/sectionTypes';
 
-export type SectionType = string;
+export enum SectionType {
+  Hero = "page:section:hero",
+  About = "page:section:about",
+  BusinessUnits = "page:section:bussiness_units",
+  WhyUs = "page:section:why_us",
+  Quotes = "page:section:quotes",
+  News = "page:section:news",
+}
 
 export type Section =
-  | {
-      __typename: "ComponentSectionsHero";
-      id: string;
-      componentId: SectionType;
-      title: string;
-      subtitle?: string | null;
-      primaryBtnLabel?: string | null;
-      primaryBtnUrl?: string | null;
-      secondaryBtnLabel?: string | null;
-      secondaryBtnUrl?: string | null;
-    }
-  | {
-      __typename: "ComponentSectionsAbout";
-      id: string;
-      componentId: SectionType;
-      title?: string | null;
-      description?: string | null;
-      button_link?: string | null;
-      button_label?: string | null;
-    }
-  | {
-      __typename: "ComponentSectionsBusinessUnits";
-      id: string;
-      componentId: SectionType;
-      title?: string | null;
-      subTitle?: string | null;
-      sliderItems?: UnitSliderItem[];
-    };
+  | HeroSection
+  | AboutSection
+  | BusinessUnitsSection
+  | WhyUsSection
+  | QoutesSection
+  | NewsSection;
 
 export interface Page {
   documentId: string;
@@ -83,6 +75,54 @@ export class DynamicPageHandler {
                 title
                 description
                 url
+                imgAlt
+                img {
+                  url
+                  alternativeText
+                  width
+                  height
+                  mime
+                  size
+                  formats
+                }
+              }
+            }
+            ... on ComponentSectionsWhyUs {
+              componentId
+              title: whyUsTitle
+              subTitle: whyUsSubtitle
+              whyUsItems {
+                iconStr: icon
+                description
+                title
+              }
+            }
+            ... on ComponentSectionsQuotes {
+              componentId
+              quotesList {
+                title
+                description: text
+                imgAlt
+                img {
+                  url
+                  alternativeText
+                  width
+                  height
+                  mime
+                  size
+                  formats
+                }
+              }
+            }
+            ... on ComponentSectionsNews {
+              componentId
+              title: newsTitle
+              subtitle: newsSubtitle
+              newsList {
+                title
+                description: text
+                date: dateCreatedAt
+                imgAlt
                 img {
                   url
                   alternativeText

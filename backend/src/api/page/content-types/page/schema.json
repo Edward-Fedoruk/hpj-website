@@ -25,7 +25,10 @@
       "components": [
         "sections.hero",
         "sections.about",
-        "sections.business-units"
+        "sections.business-units",
+        "sections.why-us",
+        "sections.quotes",
+        "sections.news"
       ]
     },
     "seoTitle": {

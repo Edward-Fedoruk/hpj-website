@@ -1,5 +1,5 @@
 ---
-import { DynamicPageHandler } from '@/gql/services/dynamic-page-handler';
+import { DynamicPageHandler, SectionType } from '@/gql/services/dynamic-page-handler';
 
 import { sections as components } from '@/components/sections/index.ts';
 
@@ -30,7 +30,7 @@ const { cmsSections = [], seoTitle, seoDescription } = Astro.props;
 
 const blocks = cmsSections.map((s: CMSSection) => {
   const key = s.componentId;
-  const C = components[key];
+  const C = components[key as SectionType];
   return { C, props: s, key };
 });
 ---
