@@ -21,7 +21,7 @@ interface Props {
   data-aos-once="true"
 >
   <h1
-    class="block text-center text-2xl font-bold tracking-tight text-balance whitespace-pre-line text-[var(--color-gray-90)] lg:text-[52px] lg:leading-tight"
+    class="font-(family-name:--font-helvetica-bold) block text-center text-2xl font-bold tracking-tight text-balance whitespace-pre-line text-[var(--color-gray-90)] lg:text-[52px] lg:leading-tight"
   >
     <Fragment set:html={title} />
   </h1>
@@ -45,10 +45,15 @@ interface Props {
 
       <div class="embla md:mt-12" id="news-slider">
         <div class="embla__container md:flex md:flex-col md:gap-4 md:items-center">
-        {newsList.map((item) => {
+        {newsList.map((item, i) => {
           if (item) {
             return (
-              <div class="w-full overflow-hidden rounded-2xl bg-white embla__slide md:max-w-[820px]">
+              <div 
+                class="w-full overflow-hidden rounded-2xl bg-white embla__slide md:max-w-[820px]"
+                data-aos="fade-up"
+                data-aos-delay={150 + i * 50}
+                data-aos-once="true"
+              >
 
                 <Image 
                   src={abs(item.img?.formats?.large?.url ?? item.img?.url)}
