@@ -1,9 +1,7 @@
 ---
 // Import the necessary components
-import HeroSection from "@/components/sections/landing/HeroSection.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import AboutSection from "@/components/sections/landing/AboutSection.astro";
-import heroImage from "@images/hero-image.jpg";
 import BusinessUnitsSection from "@/components/sections/landing/BusinessUnitsSection.astro";
 import WhyUsSection from "@/components/sections/landing/WhyUsSection.astro";
 
@@ -58,17 +56,6 @@ const newsArray = [
 ---
 
 <MainLayout>
-  <HeroSection
-    title="Empowering Growth Across Diverse Business Divisions"
-    subtitle="Built on quality, driven by expertise, trusted by clients"
-    primaryBtnLabel="Contact Us"
-    primaryBtnURL="/contacts"
-    secondaryBtnLabel="Explore Business Units"
-    secondaryBtnURL="/units"
-    bgImgSrc={heroImage}
-    bgImgAlt="Main banner"
-  />
-
   <AboutSection
     title="About HPJ"
     subTitle="As a multi-division business, we bring together expertise, innovation, and collaboration to deliver excellence across industries and create long-term value."
