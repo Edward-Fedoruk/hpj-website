@@ -1,5 +1,6 @@
 ---
 import WhyUsItem from '../pros/WhyUsItem.astro';
+import SectionCorner from '../SectionCorner.astro';
 
 const { title, whyUsItems } = Astro.props;
 
@@ -16,8 +17,11 @@ interface Props {
 ---
 
 <section
-  class="mx-auto gap-8 px-4 bg-[var(--color-primary)] py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10 selection:bg-white! selection:text-[#524CF2]!"
+  class="mx-auto gap-8 px-4 bg-[var(--color-primary)] py-[100px] relative md:items-center md:gap-8 md:py-[134px] xl:px-10 selection:bg-white! selection:text-[#524CF2]!"
 >
+  <SectionCorner className='text-[white]' position="top-left" />
+  <SectionCorner className='text-[white]' position="bottom-right" />
+  
   <div class="flex max-w-[85rem] flex-col text-white m-auto"
     data-aos="fade-up"
     data-aos-delay="150"

@@ -1,5 +1,6 @@
 ---
 import PrimaryCTA from '@/components/ui/buttons/PrimaryCTA.astro';
+import SectionCorner from '../SectionCorner.astro';
 
 const { title, subTitle } = Astro.props;
 
@@ -10,8 +11,10 @@ interface Props {
 ---
 
 <section
-  class="mx-auto flex flex-col gap-6 bg-[var(--color-dark-purple)] px-4 py-[100px] selection:bg-white! selection:text-[#524CF2]! md:items-center md:gap-8 md:py-[134px] xl:px-10"
+  class="relative mx-auto flex flex-col gap-6 bg-[var(--color-dark-purple)] px-4 py-[100px] selection:bg-white! selection:text-[#524CF2]! md:items-center md:gap-8 md:py-[134px] xl:px-10"
 >
+  <SectionCorner className="text-[white]" position="top-left" />
+  <SectionCorner className="text-[white]" position="bottom-right" />
   <h1
     class="block max-w-[578px] text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
   >

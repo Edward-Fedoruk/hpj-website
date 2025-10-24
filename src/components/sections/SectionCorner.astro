@@ -1,0 +1,41 @@
+---
+const { className, position } = Astro.props;
+
+interface Props {
+  className?: string;
+  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+}
+
+let positionClass = '';
+
+switch (position) {
+  case 'top-left':
+    positionClass = 'top-0 left-0';
+    break;
+  case 'top-right':
+    positionClass = 'md:top-0 md:right-0 rotate-y-180';
+    break;
+  case 'bottom-left':
+    positionClass = 'bottom-0 left-0 rotate-x-180';
+    break;
+  case 'bottom-right':
+    positionClass = 'bottom-0 right-0 rotate-x-180 rotate-y-180';
+    break;
+
+  default:
+    positionClass = 'top-0 left-0';
+    break;
+}
+---
+
+<svg
+  width="147"
+  height="75"
+  viewBox="0 0 147 75"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class={`absolute ${positionClass} ${className} pointer-events-none`}
+>
+  <path d="M147 0.0136719C128.842 0.318613 111.098 5.56389 95.6797 15.2002L0 75V0H147V0.0136719Z" fill="currentColor"
+  ></path>
+</svg>
