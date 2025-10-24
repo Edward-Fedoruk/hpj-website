@@ -5,9 +5,8 @@ import { Image } from "astro:assets";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 
-import { getImageData } from "@/utils/strapiImg";
+import { buildStrapiResponsive } from "@/utils/strapiImg";
 
-// Define TypeScript interface for props
 interface Props {
   title: string;
   subtitle?: string | null;
@@ -24,7 +23,6 @@ interface Props {
   rating?: string | null;
 }
 
-// Define props from Astro
 const {
   title,
   subtitle,
@@ -36,7 +34,7 @@ const {
   bgImgAlt,
 } = Astro.props;
 
-const imgData = getImageData(bgImgSrc);
+const builtBgImg = buildStrapiResponsive(bgImgSrc);
 ---
 
 <section
@@ -49,16 +47,18 @@ const imgData = getImageData(bgImgSrc);
         id="main-banner-img"
       >
         <Image
-          src={imgData?.url ?? ""}
-          alt={imgData?.alt ?? bgImgAlt ?? ""}
-          width={imgData?.width ?? 0}
-          height={imgData?.height ?? 0}
-          format={imgData?.mime ?? ""}
-          class="h-full w-full scale-110 object-cover object-center"
+          src={builtBgImg.src}
+          width={builtBgImg.width}
+          height={builtBgImg.height}
+          srcset={builtBgImg.srcset}
+          sizes="(max-width: 500px) 500px, 100vw"
+          alt={bgImgSrc.alternativeText ?? bgImgAlt ?? "background image"}
           draggable={"false"}
           loading={"eager"}
+          fetchpriority={"high"}
+          class="h-full w-full scale-110 object-cover object-center"
         />
-        {/* <div class="absolute top-0 left-0 z-0 h-full w-full bg-black/70" /> */}
+        <div class="absolute top-0 left-0 z-0 h-full w-full bg-black/30" />
       </div>
     )
   }
@@ -101,11 +101,11 @@ const imgData = getImageData(bgImgSrc);
 </section>
 
 <style>
-  img {
+  /* img {
     width: 100%;
     clip-path: path(
       "M0 0H1440V615C1440 620.523 1435.52 625 1430 625H1063.3C1044.17 625 1025.44 630.488 1009.33 640.812L941.667 684.188C925.561 694.512 906.831 700 887.7 700H0V0Z"
     );
     filter: brightness(0.3);
-  }
+  } */
 </style>

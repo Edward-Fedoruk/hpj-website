@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-// import image from "@astrojs/image";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import compressor from "astro-compressor";
@@ -129,7 +128,7 @@ export default defineConfig({
     service: {
       entrypoint: "astro/assets/services/sharp", // or "squoosh" if you don't want native deps
     },
-    domains: ["localhost:1337"], // WITHOUT protocol; your Strapi host
+    domains: ["localhost:1337", "authentic-cheese-38040455f0.strapiapp.com"], // WITHOUT protocol; your Strapi host
   },
   experimental: {
     clientPrerender: true,
