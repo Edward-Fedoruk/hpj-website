@@ -1,7 +1,6 @@
 import type { Props } from "astro";
 
 import { SectionType } from '@/types/sectionTypes';
-import HeroSection from "./landing/HeroSection.astro";
 import BusinessUnits from "./landing/BusinessUnitsSection.astro";
 import WhyUsSection from './landing/WhyUsSection.astro';
 import QuotesSection from './misc/QuotesSection.astro';
@@ -15,6 +14,7 @@ import ServiceSection from "./service/ServiceSection.astro";
 import ContactFormSection from './misc/ContactFormSection.astro';
 import CvFormSection from './misc/CVFormSection.astro';
 import GetInTouchFormSection from "./misc/GetInTouchFormSection.astro";
+import HeroSection from "./landing/HeroSection.astro";
 
 export const sections: Record<SectionType,  (_props: Props) => any> = { 
     [SectionType.Hero]: HeroSection as unknown as (_props: Props) => any,

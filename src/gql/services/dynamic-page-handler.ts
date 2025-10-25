@@ -7,6 +7,7 @@ import type {
   QoutesSection,
   WhyUsSection,
   NewsSection,
+  InfoSection,
   ContactFormSection,
   CvFormSection,
   GetInTouchFormSection,
@@ -36,6 +37,7 @@ export type Section =
   | WhyUsSection
   | QoutesSection
   | NewsSection
+  | InfoSection
   | InfoSection
   | RoadMapSection |
   NewsAltSection
@@ -217,6 +219,25 @@ export class DynamicPageHandler {
                   formats
                 }
               }
+            }
+            ... on ComponentSectionsInfo {
+              componentId
+              title: infoTitle
+              subTitle: infoSubtitle
+              primaryBtnLabel
+              primaryBtnURL
+              secondaryBtnLabel
+              secondaryBtnURL
+              img {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
+              imgAlt
             }
             ... on ComponentSectionsInfo {
               componentId
