@@ -3,8 +3,7 @@ import type { Schema, Struct } from "@strapi/strapi";
 export interface SectionsAbout extends Struct.ComponentSchema {
   collectionName: "components_sections_abouts";
   info: {
-    displayName: "about";
-    icon: "information";
+    displayName: "About";
   };
   attributes: {
     button_label: Schema.Attribute.String;
@@ -12,6 +11,8 @@ export interface SectionsAbout extends Struct.ComponentSchema {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"page:section:about">;
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.String;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
@@ -123,6 +124,27 @@ export interface SectionsHero extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsInfo extends Struct.ComponentSchema {
+  collectionName: "components_sections_infos";
+  info: {
+    displayName: "info";
+    icon: "information";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:info">;
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.String;
+    infoSubtitle: Schema.Attribute.Text;
+    infoTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    primaryBtnLabel: Schema.Attribute.String;
+    primaryBtnURL: Schema.Attribute.String;
+    secondaryBtnLabel: Schema.Attribute.String;
+    secondaryBtnURL: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsNews extends Struct.ComponentSchema {
   collectionName: "components_sections_news";
   info: {
@@ -216,6 +238,7 @@ declare module "@strapi/strapi" {
       "sections.cv-form": SectionsCvForm;
       "sections.get-in-touch-form": SectionsGetInTouchForm;
       "sections.hero": SectionsHero;
+      "sections.info": SectionsInfo;
       "sections.news": SectionsNews;
       "sections.quotes": SectionsQuotes;
       "sections.why-us": SectionsWhyUs;

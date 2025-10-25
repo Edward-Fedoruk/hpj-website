@@ -1,0 +1,48 @@
+{
+  "collectionName": "components_sections_infos",
+  "info": {
+    "displayName": "info",
+    "icon": "information"
+  },
+  "options": {},
+  "attributes": {
+    "infoTitle": {
+      "type": "string",
+      "required": true
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:info",
+      "required": true
+    },
+    "infoSubtitle": {
+      "type": "text"
+    },
+    "primaryBtnLabel": {
+      "type": "string"
+    },
+    "primaryBtnURL": {
+      "type": "string"
+    },
+    "secondaryBtnLabel": {
+      "type": "string"
+    },
+    "secondaryBtnURL": {
+      "type": "string"
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "imgAlt": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -10,6 +10,7 @@ import type {
   ContactFormSection,
   CvFormSection,
   GetInTouchFormSection,
+  InfoSection,
 } from '@/types/sectionTypes';
 
 export enum SectionType {
@@ -31,6 +32,7 @@ export type Section =
   | WhyUsSection
   | QoutesSection
   | NewsSection
+  | InfoSection
   | ContactFormSection
   | CvFormSection
   | GetInTouchFormSection;
@@ -86,9 +88,17 @@ export class DynamicPageHandler {
             ... on ComponentSectionsAbout {
               componentId
               title
-              subTitle: subtitle
-              secondaryBtn: button_label
-              secondaryBtnURL: button_link
+              subtitle
+              img {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
+              imgAlt
             }
             ... on ComponentSectionsBusinessUnits {
               componentId
@@ -157,6 +167,25 @@ export class DynamicPageHandler {
                   formats
                 }
               }
+            }
+            ... on ComponentSectionsInfo {
+              componentId
+              title: infoTitle
+              subTitle: infoSubtitle
+              primaryBtnLabel
+              primaryBtnURL
+              secondaryBtnLabel
+              secondaryBtnURL
+              img {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
+              imgAlt
             }
             ... on ComponentSectionsContactForm {
               componentId

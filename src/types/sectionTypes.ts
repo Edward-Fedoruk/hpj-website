@@ -1,11 +1,24 @@
-import type { SectionType } from '@/gql/services/dynamic-page-handler';
-
-import type { StrapiImageType } from './common';
 import type { FormType } from './formTypes';
 
 import type { UnitSliderItem } from '@/components/sections/landing/BusinessUnitsSection.astro';
 import type { IWhyUsItem } from '@/components/sections/landing/WhyUsSection.astro';
 import type { QuotesItem } from '@/components/sections/misc/QuotesSection.astro';
+import type { StrapiImageType } from './common';
+import type { InfoSectionProps } from '@/components/sections/about/InfoSection.astro';
+import type { AboutSectionProps } from '@/components/sections/landing/AboutSection.astro';
+
+export enum SectionType {
+  Hero = "page:section:hero",
+  About = "page:section:about",
+  BusinessUnits = "page:section:bussiness_units",
+  WhyUs = "page:section:why_us",
+  Quotes = "page:section:quotes",
+  News = "page:section:news",
+  Info = "page:section:info",
+  ContactForm = "page:section:contact_form",
+  CvForm = "page:section:cv_form",
+  GetInTouchForm = "page:section:get_in_touch_form",
+}
 
 export type HeroSection = {
     __typename: "ComponentSectionsHero";
@@ -19,14 +32,10 @@ export type HeroSection = {
     secondaryBtnUrl?: string | null;
 };
 
-export type AboutSection = {
+export interface AboutSection extends AboutSectionProps {
     __typename: "ComponentSectionsAbout";
     id: string;
     componentId: SectionType.About;
-    title?: string | null;
-    description?: string | null;
-    button_link?: string | null;
-    button_label?: string | null;
 };
 
 export type BusinessUnitsSection = {
@@ -96,3 +105,9 @@ export type GetInTouchFormSection = {
     submitBtnLabel?: string | null;
     businessUnitsForFormSelect?: Array<{ documentId: string; title: string }>;
 }
+
+export interface InfoSection extends InfoSectionProps {
+    __typename: "ComponentSectionsInfo";
+    componentId: SectionType.Info;
+    id: string;
+};

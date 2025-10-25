@@ -1,8 +1,7 @@
 {
   "collectionName": "components_sections_abouts",
   "info": {
-    "displayName": "about",
-    "icon": "information"
+    "displayName": "About"
   },
   "options": {},
   "attributes": {
@@ -13,10 +12,17 @@
     "subtitle": {
       "type": "text"
     },
-    "button_link": {
-      "type": "string"
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
-    "button_label": {
+    "imgAlt": {
       "type": "string"
     },
     "componentId": {
