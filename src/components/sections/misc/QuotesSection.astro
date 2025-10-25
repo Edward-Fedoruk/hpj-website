@@ -1,7 +1,7 @@
 ---
-import { Image } from 'astro:assets';
-import { abs } from '@/gql/services/cmsImage';
-import type { StrapiImageType } from '@/types/common';
+import { Image } from "astro:assets";
+import { abs } from "@/gql/services/cmsImage";
+import type { StrapiImageType } from "@/types/common";
 
 const { quotesList } = Astro.props;
 
@@ -19,11 +19,8 @@ interface Props {
 
 <section
   class="mx-auto grid min-h-[636px] max-w-[82rem] gap-4 px-5 py-14 pt-[86px] md:min-h-[700px] md:items-center md:gap-8"
-  data-aos="fade-up"
-  data-aos-delay="150"
-  data-aos-once="true"
 >
-  <div class="flex">
+  <div class="flex" data-aos="fade-up" data-aos-delay="150" data-aos-once="true">
     {
       quotesList.map((item) => (
         <div class="flex flex-1 flex-col gap-4 md:flex-row lg:gap-[132px]">

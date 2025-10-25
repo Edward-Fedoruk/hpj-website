@@ -16,18 +16,23 @@ interface Props {
 
 <section 
   class="mx-auto gap-8 bg-[#F7F7F7] px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10 overflow-hidden"
-  data-aos="fade-up"
-  data-aos-delay="150"
-  data-aos-once="true"
 >
   <h1
-    class="font-(family-name:--font-helvetica-bold) block text-center text-2xl font-bold tracking-tight text-balance whitespace-pre-line text-[var(--color-gray-90)] lg:text-[52px] lg:leading-tight"
-  >
+      class="font-(family-name:--font-helvetica-bold) block text-center text-2xl font-bold tracking-tight text-balance whitespace-pre-line text-[var(--color-gray-90)] lg:text-[52px] lg:leading-tight"
+      data-aos="fade-up"
+      data-aos-delay="150"
+      data-aos-once="true"
+    >
     <Fragment set:html={title} />
   </h1>
   {
     subTitle && (
-      <p class="mx-auto mt-8 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty text-[var(--color-neutral-gray)]">
+      <p 
+        class="mx-auto mt-8 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty text-[var(--color-neutral-gray)]"
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-once="true"
+  >
         {subTitle}
       </p>
     )
