@@ -1,6 +1,7 @@
 ---
-import { Image } from 'astro:assets';
-import type { StrapiImageType } from '@/types/common';
+import { Image } from "astro:assets";
+import type { StrapiImageType } from "@/types/common";
+import { buildStrapiResponsive } from "@/utils/strapiImg";
 
 const { title, subTitle, sliderItems } = Astro.props;
 
@@ -17,8 +18,6 @@ export interface UnitSliderItem {
   img: StrapiImageType;
   imgAlt: string | null;
 }
-
-import { abs } from '@/gql/services/cmsImage';
 ---
 
 <section
@@ -45,20 +44,24 @@ import { abs } from '@/gql/services/cmsImage';
       <div class="embla mb-[72px] h-fit max-h-[323px] md:max-h-[420px]" id="units-slider">
         <div class="embla__container">
           {sliderItems.map((item) => {
-            const fullImgSrc = abs(item.img?.formats?.large?.url ?? item.img?.url);
+            const itemImg = buildStrapiResponsive(item.img);
 
             return (
               <a
                 class="embla__slide group h-fit max-h-[323px] max-w-[412px] cursor-pointer overflow-hidden rounded-xl shadow-[0px_8px_16px_0px_#00000014,0px_0px_4px_0px_#0000000A] duration-300 hover:max-h-[800px] md:max-h-[420px]"
                 href={item.url}
               >
-                {fullImgSrc ? (
+                {itemImg ? (
                   <Image
-                    src={fullImgSrc}
+                    src={itemImg.src}
                     alt={item.imgAlt || item.img.alternativeText}
-                    height={280}
-                    width={411}
-                    class={'h-[154px] object-cover md:h-[280px]'}
+                    height={itemImg.height}
+                    width={itemImg.width}
+                    class={"h-[154px] object-cover md:h-[280px]"}
+                    sizes="(max-width: 500px) 500px, 100vw"
+                    draggable={"false"}
+                    loading={"eager"}
+                    fetchpriority={"high"}
                   />
                 ) : (
                   <div>Image placeholder</div>
@@ -148,17 +151,17 @@ import { abs } from '@/gql/services/cmsImage';
 }
 
 <script>
-  import EmblaCarousel, { type EmblaOptionsType } from 'embla-carousel';
-  import { addPrevNextBtnsClickHandlers } from '@scripts/emblaSliderButtons';
+  import EmblaCarousel, { type EmblaOptionsType } from "embla-carousel";
+  import { addPrevNextBtnsClickHandlers } from "@scripts/emblaSliderButtons";
 
-  const emblaNode = document.querySelector('#units-slider');
-  const options: EmblaOptionsType = { loop: false, align: 'start', dragFree: true };
+  const emblaNode = document.querySelector("#units-slider");
+  const options: EmblaOptionsType = { loop: false, align: "start", dragFree: true };
   const emblaApi = EmblaCarousel(emblaNode! as HTMLElement, options);
 
-  const prevBtnNode = emblaNode!.querySelector('.embla__button--prev') as HTMLElement;
-  const nextBtnNode = emblaNode!.querySelector('.embla__button--next') as HTMLElement;
+  const prevBtnNode = emblaNode!.querySelector(".embla__button--prev") as HTMLElement;
+  const nextBtnNode = emblaNode!.querySelector(".embla__button--next") as HTMLElement;
 
   const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtnNode, nextBtnNode);
 
-  emblaApi.on('destroy', removePrevNextBtnsClickHandlers);
+  emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
 </script>

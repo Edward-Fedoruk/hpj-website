@@ -1,8 +1,8 @@
 ---
 import SecondaryCTA from "@/components/ui/buttons/SecondaryCTA.astro";
-import { abs } from '@/gql/services/cmsImage';
 import { Image } from "astro:assets";
 import type { NewsItem } from '@/types/sectionTypes'
+import { buildStrapiResponsive } from "@/utils/strapiImg";
 
 const { title, subTitle, newsList } = Astro.props;
 
@@ -52,6 +52,8 @@ interface Props {
         <div class="embla__container md:flex md:flex-col md:gap-4 md:items-center">
         {newsList.map((item, i) => {
           if (item) {
+            const itemImg = buildStrapiResponsive(item.img);
+
             return (
               <div 
                 class="w-full overflow-hidden rounded-2xl bg-white embla__slide md:max-w-[820px]"
@@ -60,13 +62,22 @@ interface Props {
                 data-aos-once="true"
               >
 
-                <Image 
-                  src={abs(item.img?.formats?.large?.url ?? item.img?.url)}
-                  alt={item.imgAlt || item.img?.alternativeText || null}
-                  width={item.img ? item.img.width : 200} 
-                  height={item.img ? item.img.height : 200} 
-                  class={"w-full object-cover max-h-[216px] md:hidden"}
-                />
+                {itemImg ? (
+                  <Image
+                    src={itemImg.src}
+                    alt={item.imgAlt || item.img.alternativeText}
+                    height={itemImg.height}
+                    width={itemImg.width}
+                    class={"w-full object-cover max-h-[216px] md:hidden"}
+                    sizes="(max-width: 500px) 500px, 100vw"
+                    draggable={"false"}
+                    loading={"eager"}
+                    fetchpriority={"high"}
+                  />
+                ) : (
+                  <div>Image placeholder</div>
+                )}
+
                 
                 <div class="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div class="flex flex-col">

@@ -56,7 +56,7 @@ export type NewsItem = {
     date?: string;
     url?: string;
     imgAlt?: string;
-    img?: StrapiImageType;
+    img: StrapiImageType;
 }
 
 export type NewsSection = {
