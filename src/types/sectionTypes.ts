@@ -1,8 +1,11 @@
+import type { SectionType } from '@/gql/services/dynamic-page-handler';
+
+import type { StrapiImageType } from './common';
+import type { FormType } from './formTypes';
+
 import type { UnitSliderItem } from '@/components/sections/landing/BusinessUnitsSection.astro';
 import type { IWhyUsItem } from '@/components/sections/landing/WhyUsSection.astro';
 import type { QuotesItem } from '@/components/sections/misc/QuotesSection.astro';
-import type { SectionType } from '@/gql/services/dynamic-page-handler';
-import type { StrapiImageType } from './common';
 
 export type HeroSection = {
     __typename: "ComponentSectionsHero";
@@ -65,4 +68,12 @@ export type NewsSection = {
     title: string;
     subtitle?: string;
     newsList: NewsItem[];
+}
+
+export type ContactFormSection = {
+    __typename: "ComponentSectionsContactForm";
+    componentId: string;
+    title?: string | null;
+    subTitle?: string | null;
+    form?: FormType | null;
 }

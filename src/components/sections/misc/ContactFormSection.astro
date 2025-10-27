@@ -1,13 +1,20 @@
 ---
-import PrimaryCTA from "@/components/ui/buttons/PrimaryCTA.astro";
-import SectionCorner from "../SectionCorner.astro";
+import type { FormType } from "@/types/formTypes";
 
-const { title, subTitle } = Astro.props;
+import PrimaryCTA from "@/components/ui/buttons/PrimaryCTA.astro";
+
+import SectionCorner from "../SectionCorner.astro";
 
 interface Props {
   title: string;
   subTitle?: string;
+  form?: FormType | null;
 }
+
+const { title, subTitle, form } = Astro.props;
+
+const ENDPOINT = "http://localhost:1337/api/api-forms/submission/post";
+const FORM_ID = form?.documentId ?? "";
 ---
 
 <section
@@ -27,27 +34,123 @@ interface Props {
       </p>
     )
   }
-  <div class="relative flex w-full max-w-[436px] rounded-[10px] border border-[var(--color-primary)] bg-white p-1">
-    <input
-      type="email"
-      name="hs-email-contacts"
-      id="contactEmail"
-      autocomplete="email"
-      placeholder="Email address"
-      class="w-[calc(100%-109px)] border-0 py-0 ring-0 outline-0"
-    />
+  {
+    form ? (
+      <form
+        class="flex w-full max-w-[436px] flex-col items-center gap-4"
+        data-endpoint={ENDPOINT}
+        data-form-id={FORM_ID}
+        onsubmit="return handleSubmit(event, this)"
+      >
+        <!-- honeypot -->
+        <input type="text" name="honeypot_field" class="hidden" tabindex="-1" autocomplete="off" />
 
-    <PrimaryCTA title="Send" noArrow className="h-[46px] min-w-[109px] flex-[0_0_109px] border-0 text-lg" />
-  </div>
+        <label for="emailaddress" class="sr-only">Email</label>
+        <input
+          id="emailaddress"
+          name="emailaddress"
+          type="email"
+          placeholder="Email address"
+          required
+          class="w-full rounded-[10px] border border-gray-200 px-3 py-3 outline-none"
+        />
+
+        <button
+          type="submit"
+          class="flex h-[46px] w-full items-center justify-center rounded-[10px] bg-[var(--color-primary)] text-lg font-semibold text-white"
+        >
+          Submit
+        </button>
+
+        <p id="status" class="h-5 text-sm text-[#FFFFFFCC]" aria-live="polite"></p>
+      </form>
+    ) : (
+      <div class="relative flex w-full max-w-[436px] rounded-[10px] border border-[var(--color-primary)] bg-white p-1">
+        <input
+          type="email"
+          name="hs-email-contacts"
+          id="contactEmail"
+          autocomplete="email"
+          placeholder="Email address"
+          class="w-[calc(100%-109px)] border-0 py-0 ring-0 outline-0"
+        />
+        <PrimaryCTA
+          title="Send"
+          noArrow
+          className="h-[46px] min-w-[109px] flex-[0_0_109px] border-0 text-lg"
+        />
+      </div>
+    )
+  }
 </section>
+
+<script is:inline>
+  async function handleSubmit(ev, form) {
+    ev.preventDefault();
+
+    const honey = (
+      form.querySelector('[name="honeypot_field"]')?.value || ""
+    ).trim();
+    if (honey) return false;
+
+    const endpoint = form.dataset.endpoint;
+    const formId = form.dataset.formId;
+    const emailEl = form.querySelector("#emailaddress");
+    const btn = form.querySelector('button[type="submit"]');
+    const statusEl = form.querySelector("#status");
+
+    const email = (emailEl?.value || "").trim();
+    if (!email) {
+      statusEl.textContent = "Enter email";
+      return false;
+    }
+
+    btn.disabled = true;
+    statusEl.textContent = "Sending...";
+
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form: formId,
+          submission: { emailaddress: email },
+        }),
+      });
+
+      if (!res.ok) throw new Error(await res.text());
+
+      form.reset();
+      statusEl.textContent = "Sent. Check your inbox.";
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = "Failed. Try again.";
+    } finally {
+      btn.disabled = false;
+    }
+    return false;
+  }
+</script>
 
 <style>
   section {
-    background: radial-gradient(43.44% 43.44% at 50% 110%, #524cf2 15.73%, rgba(82, 76, 242, 0) 100%), #0a0d27;
+    background:
+      radial-gradient(
+        43.44% 43.44% at 50% 110%,
+        #524cf2 15.73%,
+        rgba(82, 76, 242, 0) 100%
+      ),
+      #0a0d27;
   }
   @media screen and (max-width: 768px) {
     section {
-      background: radial-gradient(70% 40% at 50% 100%, #524cf2 15.73%, rgba(82, 76, 242, 0) 100%), #0a0d27;
+      background:
+        radial-gradient(
+          70% 40% at 50% 100%,
+          #524cf2 15.73%,
+          rgba(82, 76, 242, 0) 100%
+        ),
+        #0a0d27;
     }
   }
 </style>

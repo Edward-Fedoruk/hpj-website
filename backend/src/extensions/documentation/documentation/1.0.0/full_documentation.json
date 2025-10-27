@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-27T11:27:08.342Z"
+    "x-generation-date": "2025-10-28T09:09:47.989Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -2036,6 +2036,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/SectionsNewsComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SectionsContactFormComponent"
                     }
                   ]
                 },
@@ -2047,7 +2050,8 @@
                     "sections.business-units": "#/components/schemas/SectionsBusinessUnitsComponent",
                     "sections.why-us": "#/components/schemas/SectionsWhyUsComponent",
                     "sections.quotes": "#/components/schemas/SectionsQuotesComponent",
-                    "sections.news": "#/components/schemas/SectionsNewsComponent"
+                    "sections.news": "#/components/schemas/SectionsNewsComponent",
+                    "sections.contact-form": "#/components/schemas/SectionsContactFormComponent"
                   }
                 }
               },
@@ -2156,6 +2160,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SectionsNewsComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsContactFormComponent"
                 }
               ]
             },
@@ -2167,7 +2174,8 @@
                 "sections.business-units": "#/components/schemas/SectionsBusinessUnitsComponent",
                 "sections.why-us": "#/components/schemas/SectionsWhyUsComponent",
                 "sections.quotes": "#/components/schemas/SectionsQuotesComponent",
-                "sections.news": "#/components/schemas/SectionsNewsComponent"
+                "sections.news": "#/components/schemas/SectionsNewsComponent",
+                "sections.contact-form": "#/components/schemas/SectionsContactFormComponent"
               }
             }
           },
@@ -2255,6 +2263,9 @@
                       },
                       {
                         "$ref": "#/components/schemas/SectionsNewsComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsContactFormComponent"
                       }
                     ]
                   },
@@ -2266,7 +2277,8 @@
                       "sections.business-units": "#/components/schemas/SectionsBusinessUnitsComponent",
                       "sections.why-us": "#/components/schemas/SectionsWhyUsComponent",
                       "sections.quotes": "#/components/schemas/SectionsQuotesComponent",
-                      "sections.news": "#/components/schemas/SectionsNewsComponent"
+                      "sections.news": "#/components/schemas/SectionsNewsComponent",
+                      "sections.contact-form": "#/components/schemas/SectionsContactFormComponent"
                     }
                   }
                 },
@@ -3113,6 +3125,40 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SharedNewsItemComponent"
+            }
+          }
+        }
+      },
+      "SectionsContactFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.contact-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
             }
           }
         }
