@@ -7,6 +7,8 @@ import type { StrapiImageType } from './common';
 import type { InfoSectionProps } from '@/components/sections/about/InfoSection.astro';
 import type { AboutSectionProps } from '@/components/sections/landing/AboutSection.astro';
 import type { RoadMapSectionProps } from '@/components/sections/about/RoadMap/RoadMapSection.astro';
+import type { NewsSectionProps } from '@/components/sections/news/NewsSection.astro';
+import type { NewsAltSectionProps } from '@/components/sections/news/NewsAltSection.astro';
 
 export enum SectionType {
   Hero = "page:section:hero",
@@ -15,6 +17,7 @@ export enum SectionType {
   WhyUs = "page:section:why_us",
   Quotes = "page:section:quotes",
   News = "page:section:news",
+  NewsAlt = "page:section:news_alt",
   Info = "page:section:info",
   RoadMap = "page:section:road_map",
   ContactForm = "page:section:contact_form",
@@ -73,12 +76,14 @@ export type NewsItem = {
     img: StrapiImageType;
 }
 
-export type NewsSection = {
+export interface NewsSection extends NewsSectionProps {
     __typename: "ComponentSectionsNews";
-    componentId: string;
-    title: string;
-    subtitle?: string;
-    newsList: NewsItem[];
+    componentId: SectionType.News;
+}
+
+export interface NewsAltSection extends NewsAltSectionProps {
+    __typename: "ComponentSectionsNewsAlt";
+    componentId: SectionType.NewsAlt;
 }
 
 export type ContactFormSection = {

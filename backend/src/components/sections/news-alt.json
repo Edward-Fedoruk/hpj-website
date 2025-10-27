@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_news_alts",
+  "info": {
+    "displayName": "News Alt"
+  },
+  "options": {},
+  "attributes": {
+    "newsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "newsSubtitle": {
+      "type": "text"
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:news_alt",
+      "required": true
+    },
+    "newsList": {
+      "type": "component",
+      "component": "shared.news-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

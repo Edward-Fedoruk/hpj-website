@@ -165,6 +165,21 @@ export interface SectionsNews extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsNewsAlt extends Struct.ComponentSchema {
+  collectionName: "components_sections_news_alts";
+  info: {
+    displayName: "News Alt";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:news_alt">;
+    newsList: Schema.Attribute.Component<"shared.news-item", true>;
+    newsSubtitle: Schema.Attribute.Text;
+    newsTitle: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsQuotes extends Struct.ComponentSchema {
   collectionName: "components_sections_quotes";
   info: {
@@ -271,6 +286,7 @@ declare module "@strapi/strapi" {
       "sections.hero": SectionsHero;
       "sections.info": SectionsInfo;
       "sections.news": SectionsNews;
+      "sections.news-alt": SectionsNewsAlt;
       "sections.quotes": SectionsQuotes;
       "sections.road-map": SectionsRoadMap;
       "sections.why-us": SectionsWhyUs;

@@ -6,11 +6,13 @@ import { buildStrapiResponsive } from "@/utils/strapiImg";
 
 const { title, subTitle, newsList } = Astro.props;
 
-interface Props {
+export interface NewsSectionProps {
   title: string;
   subTitle?: string;
   newsList: NewsItem[];
 }
+
+interface Props extends NewsSectionProps {}
 
 ---
 
