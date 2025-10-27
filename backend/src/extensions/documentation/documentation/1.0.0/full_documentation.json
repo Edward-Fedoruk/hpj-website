@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-25T18:09:10.348Z"
+    "x-generation-date": "2025-10-30T09:43:09.292Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -3537,12 +3537,6 @@
                     },
                     {
                       "$ref": "#/components/schemas/SectionsGetInTouchFormComponent"
-                    },
-                    {
-                      "$ref": "#/components/schemas/SectionsInfoComponent"
-                    },
-                    {
-                      "$ref": "#/components/schemas/SectionsAboutComponent"
                     }
                   ]
                 },
@@ -3556,6 +3550,7 @@
                     "sections.news": "#/components/schemas/SectionsNewsComponent",
                     "sections.info": "#/components/schemas/SectionsInfoComponent",
                     "sections.about": "#/components/schemas/SectionsAboutComponent",
+<<<<<<< HEAD
                     "sections.road-map": "#/components/schemas/SectionsRoadMapComponent",
                     "sections.news-alt": "#/components/schemas/SectionsNewsAltComponent",
                     "sections.about-alt": "#/components/schemas/SectionsAboutAltComponent",
@@ -3565,7 +3560,14 @@
                     "sections.get-in-touch-form": "#/components/schemas/SectionsGetInTouchFormComponent"
                     "sections.news": "#/components/schemas/SectionsNewsComponent",
                     "sections.info": "#/components/schemas/SectionsInfoComponent",
-                    "sections.about": "#/components/schemas/SectionsAboutComponent"
+                    "sections.about": "#/components/schemas/SectionsAboutComponent",
+                    "sections.road-map": "#/components/schemas/SectionsRoadMapComponent",
+                    "sections.news-alt": "#/components/schemas/SectionsNewsAltComponent",
+                    "sections.about-alt": "#/components/schemas/SectionsAboutAltComponent",
+                    "sections.service-block": "#/components/schemas/SectionsServiceBlockComponent",
+                    "sections.contact-form": "#/components/schemas/SectionsContactFormComponent",
+                    "sections.cv-form": "#/components/schemas/SectionsCvFormComponent",
+                    "sections.get-in-touch-form": "#/components/schemas/SectionsGetInTouchFormComponent"
                   }
                 }
               },
@@ -3698,12 +3700,6 @@
                 },
                 {
                   "$ref": "#/components/schemas/SectionsGetInTouchFormComponent"
-                },
-                {
-                  "$ref": "#/components/schemas/SectionsInfoComponent"
-                },
-                {
-                  "$ref": "#/components/schemas/SectionsAboutComponent"
                 }
               ]
             },
@@ -3717,6 +3713,7 @@
                 "sections.news": "#/components/schemas/SectionsNewsComponent",
                 "sections.info": "#/components/schemas/SectionsInfoComponent",
                 "sections.about": "#/components/schemas/SectionsAboutComponent",
+<<<<<<< HEAD
                 "sections.road-map": "#/components/schemas/SectionsRoadMapComponent",
                 "sections.news-alt": "#/components/schemas/SectionsNewsAltComponent",
                 "sections.about-alt": "#/components/schemas/SectionsAboutAltComponent",
@@ -3726,7 +3723,14 @@
                 "sections.get-in-touch-form": "#/components/schemas/SectionsGetInTouchFormComponent"
                 "sections.news": "#/components/schemas/SectionsNewsComponent",
                 "sections.info": "#/components/schemas/SectionsInfoComponent",
-                "sections.about": "#/components/schemas/SectionsAboutComponent"
+                "sections.about": "#/components/schemas/SectionsAboutComponent",
+                "sections.road-map": "#/components/schemas/SectionsRoadMapComponent",
+                "sections.news-alt": "#/components/schemas/SectionsNewsAltComponent",
+                "sections.about-alt": "#/components/schemas/SectionsAboutAltComponent",
+                "sections.service-block": "#/components/schemas/SectionsServiceBlockComponent",
+                "sections.contact-form": "#/components/schemas/SectionsContactFormComponent",
+                "sections.cv-form": "#/components/schemas/SectionsCvFormComponent",
+                "sections.get-in-touch-form": "#/components/schemas/SectionsGetInTouchFormComponent"
               }
             }
           },
@@ -3838,12 +3842,6 @@
                       },
                       {
                         "$ref": "#/components/schemas/SectionsGetInTouchFormComponent"
-                      },
-                      {
-                        "$ref": "#/components/schemas/SectionsInfoComponent"
-                      },
-                      {
-                        "$ref": "#/components/schemas/SectionsAboutComponent"
                       }
                     ]
                   },
@@ -3857,6 +3855,7 @@
                       "sections.news": "#/components/schemas/SectionsNewsComponent",
                       "sections.info": "#/components/schemas/SectionsInfoComponent",
                       "sections.about": "#/components/schemas/SectionsAboutComponent",
+<<<<<<< HEAD
                       "sections.road-map": "#/components/schemas/SectionsRoadMapComponent",
                       "sections.news-alt": "#/components/schemas/SectionsNewsAltComponent",
                       "sections.about-alt": "#/components/schemas/SectionsAboutAltComponent",
@@ -3866,7 +3865,14 @@
                       "sections.get-in-touch-form": "#/components/schemas/SectionsGetInTouchFormComponent"
                       "sections.news": "#/components/schemas/SectionsNewsComponent",
                       "sections.info": "#/components/schemas/SectionsInfoComponent",
-                      "sections.about": "#/components/schemas/SectionsAboutComponent"
+                      "sections.about": "#/components/schemas/SectionsAboutComponent",
+                      "sections.road-map": "#/components/schemas/SectionsRoadMapComponent",
+                      "sections.news-alt": "#/components/schemas/SectionsNewsAltComponent",
+                      "sections.about-alt": "#/components/schemas/SectionsAboutAltComponent",
+                      "sections.service-block": "#/components/schemas/SectionsServiceBlockComponent",
+                      "sections.contact-form": "#/components/schemas/SectionsContactFormComponent",
+                      "sections.cv-form": "#/components/schemas/SectionsCvFormComponent",
+                      "sections.get-in-touch-form": "#/components/schemas/SectionsGetInTouchFormComponent"
                     }
                   }
                 },
@@ -4151,7 +4157,6 @@
         }
       },
       "SharedWhyHpjItemComponent": {
-      "SharedBusinessUnitItemComponent": {
         "type": "object",
         "properties": {
           "id": {
@@ -4712,6 +4717,24 @@
           },
           "imgAlt": {
             "type": "string"
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "customWrapperStyle": {
+            "type": "string"
+          },
+          "primaryBtnLabel": {
+            "type": "string"
+          },
+          "primaryBtnURL": {
+            "type": "string"
+          },
+          "secondaryBtnLabel": {
+            "type": "string"
+          },
+          "secondaryBtnURL": {
+            "type": "string"
           }
         }
       },
@@ -4725,6 +4748,41 @@
             "type": "string",
             "enum": [
               "sections.about"
+            ]
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.news-alt"
+            ]
+          },
+          "newsTitle": {
+            "type": "string"
+          },
+          "newsSubtitle": {
+            "type": "string"
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "newsList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedNewsItemComponent"
+            }
+          }
+        }
+      },
+      "SectionsAboutAltComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.about-alt"
             ]
           },
           "title": {
@@ -4941,20 +4999,116 @@
               "sections.news-alt"
             ]
           },
-          "newsTitle": {
+          "componentId": {
             "type": "string"
           },
-          "newsSubtitle": {
+          "title": {
             "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsCvFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.cv-form"
+            ]
           },
           "componentId": {
             "type": "string"
           },
-          "newsList": {
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsGetInTouchFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.get-in-touch-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "formTitle": {
+            "type": "string"
+          },
+          "formSubTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "businessUnitsForFormSelect": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SharedNewsItemComponent"
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
             }
+          },
+          "formSubmitBtnLabel": {
+            "type": "string"
           }
         }
       },
@@ -5292,6 +5446,8 @@
           },
           "componentId": {
             "type": "string"
+=======
+>>>>>>> 904f5e9 (add roadmap block)
           }
         }
       },
@@ -5416,328 +5572,6 @@
             }
           },
           "formSubmitBtnLabel": {
-            "type": "string"
-          }
-        }
-      },
-      "SectionsInfoComponent": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "__component": {
-            "type": "string",
-            "enum": [
-              "sections.info"
-            ]
-          },
-          "infoTitle": {
-            "type": "string"
-          },
-          "componentId": {
-            "type": "string"
-          },
-          "infoSubtitle": {
-            "type": "string"
-          },
-          "primaryBtnLabel": {
-            "type": "string"
-          },
-          "primaryBtnURL": {
-            "type": "string"
-          },
-          "secondaryBtnLabel": {
-            "type": "string"
-          },
-          "secondaryBtnURL": {
-            "type": "string"
-          },
-          "img": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number"
-              },
-              "documentId": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "alternativeText": {
-                "type": "string"
-              },
-              "caption": {
-                "type": "string"
-              },
-              "width": {
-                "type": "integer"
-              },
-              "height": {
-                "type": "integer"
-              },
-              "formats": {},
-              "hash": {
-                "type": "string"
-              },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number",
-                "format": "float"
-              },
-              "url": {
-                "type": "string"
-              },
-              "previewUrl": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "provider_metadata": {},
-              "related": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "folder": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "documentId": {
-                    "type": "string"
-                  }
-                }
-              },
-              "folderPath": {
-                "type": "string"
-              },
-              "createdAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "updatedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "publishedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "createdBy": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "documentId": {
-                    "type": "string"
-                  }
-                }
-              },
-              "updatedBy": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "documentId": {
-                    "type": "string"
-                  }
-                }
-              },
-              "locale": {
-                "type": "string"
-              },
-              "localizations": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "imgAlt": {
-            "type": "string"
-          }
-        }
-      },
-      "SectionsAboutComponent": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "__component": {
-            "type": "string",
-            "enum": [
-              "sections.about"
-            ]
-          },
-          "title": {
-            "type": "string"
-          },
-          "subtitle": {
-            "type": "string"
-          },
-          "img": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number"
-              },
-              "documentId": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "alternativeText": {
-                "type": "string"
-              },
-              "caption": {
-                "type": "string"
-              },
-              "width": {
-                "type": "integer"
-              },
-              "height": {
-                "type": "integer"
-              },
-              "formats": {},
-              "hash": {
-                "type": "string"
-              },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number",
-                "format": "float"
-              },
-              "url": {
-                "type": "string"
-              },
-              "previewUrl": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "provider_metadata": {},
-              "related": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "folder": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "documentId": {
-                    "type": "string"
-                  }
-                }
-              },
-              "folderPath": {
-                "type": "string"
-              },
-              "createdAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "updatedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "publishedAt": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "createdBy": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "documentId": {
-                    "type": "string"
-                  }
-                }
-              },
-              "updatedBy": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "documentId": {
-                    "type": "string"
-                  }
-                }
-              },
-              "locale": {
-                "type": "string"
-              },
-              "localizations": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "documentId": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "imgAlt": {
-            "type": "string"
-          },
-          "componentId": {
             "type": "string"
           }
         }

@@ -239,25 +239,6 @@ export class DynamicPageHandler {
               }
               imgAlt
             }
-            ... on ComponentSectionsInfo {
-              componentId
-              title: infoTitle
-              subTitle: infoSubtitle
-              primaryBtnLabel
-              primaryBtnURL
-              secondaryBtnLabel
-              secondaryBtnURL
-              img {
-                url
-                alternativeText
-                width
-                height
-                mime
-                size
-                formats
-              }
-              imgAlt
-            }
             ... on ComponentSectionsRoadMap {
               componentId
               id
