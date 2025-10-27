@@ -491,6 +491,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         "sections.news",
         "sections.info",
         "sections.about",
+        "sections.road-map",
         "sections.contact-form",
         "sections.cv-form",
         "sections.get-in-touch-form",

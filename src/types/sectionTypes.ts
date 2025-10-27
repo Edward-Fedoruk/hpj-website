@@ -6,6 +6,7 @@ import type { QuotesItem } from '@/components/sections/misc/QuotesSection.astro'
 import type { StrapiImageType } from './common';
 import type { InfoSectionProps } from '@/components/sections/about/InfoSection.astro';
 import type { AboutSectionProps } from '@/components/sections/landing/AboutSection.astro';
+import type { RoadMapSectionProps } from '@/components/sections/about/RoadMap/RoadMapSection.astro';
 
 export enum SectionType {
   Hero = "page:section:hero",
@@ -15,6 +16,7 @@ export enum SectionType {
   Quotes = "page:section:quotes",
   News = "page:section:news",
   Info = "page:section:info",
+  RoadMap = "page:section:road_map",
   ContactForm = "page:section:contact_form",
   CvForm = "page:section:cv_form",
   GetInTouchForm = "page:section:get_in_touch_form",
@@ -109,5 +111,11 @@ export type GetInTouchFormSection = {
 export interface InfoSection extends InfoSectionProps {
     __typename: "ComponentSectionsInfo";
     componentId: SectionType.Info;
+    id: string;
+};
+
+export interface RoadMapSection extends RoadMapSectionProps {
+    __typename: "ComponentSectionsRoadMap";
+    componentId: SectionType.RoadMap;
     id: string;
 };

@@ -2558,6 +2558,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/SectionsAboutComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SectionsRoadMapComponent"
                     }
                   ]
                 },
@@ -2570,7 +2573,8 @@
                     "sections.quotes": "#/components/schemas/SectionsQuotesComponent",
                     "sections.news": "#/components/schemas/SectionsNewsComponent",
                     "sections.info": "#/components/schemas/SectionsInfoComponent",
-                    "sections.about": "#/components/schemas/SectionsAboutComponent"
+                    "sections.about": "#/components/schemas/SectionsAboutComponent",
+                    "sections.road-map": "#/components/schemas/SectionsRoadMapComponent"
                   }
                 }
               },
@@ -4846,6 +4850,249 @@
             "type": "string"
           },
           "componentId": {
+            "type": "string"
+          },
+          "customWrapperStyle": {
+            "type": "string"
+          },
+          "primaryBtnLabel": {
+            "type": "string"
+          },
+          "primaryBtnURL": {
+            "type": "string"
+          },
+          "secondaryBtnLabel": {
+            "type": "string"
+          },
+          "secondaryBtnURL": {
+            "type": "string"
+          }
+        }
+      },
+      "SharedRoadMapItemComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsRoadMapComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.road-map"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "roadMapItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedRoadMapItemComponent"
+            }
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "customWrapperStyle": {
+            "type": "string"
+          },
+          "primaryBtnLabel": {
+            "type": "string"
+          },
+          "primaryBtnURL": {
+            "type": "string"
+          },
+          "secondaryBtnLabel": {
+            "type": "string"
+          },
+          "secondaryBtnURL": {
+            "type": "string"
+          }
+        }
+      },
+      "SharedRoadMapItemComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsRoadMapComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.road-map"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "roadMapItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedRoadMapItemComponent"
+            }
+          },
+          "componentId": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsContactFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.contact-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsCvFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.cv-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsGetInTouchFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.get-in-touch-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "formTitle": {
+            "type": "string"
+          },
+          "formSubTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "businessUnitsForFormSelect": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "formSubmitBtnLabel": {
             "type": "string"
           }
         }

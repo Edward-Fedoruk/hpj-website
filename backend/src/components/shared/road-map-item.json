@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_road_map_items",
+  "info": {
+    "displayName": "Road Map Item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

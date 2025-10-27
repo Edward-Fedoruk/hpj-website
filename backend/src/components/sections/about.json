@@ -29,6 +29,21 @@
       "type": "string",
       "default": "page:section:about",
       "required": true
+    },
+    "customWrapperStyle": {
+      "type": "text"
+    },
+    "primaryBtnLabel": {
+      "type": "string"
+    },
+    "primaryBtnURL": {
+      "type": "string"
+    },
+    "secondaryBtnLabel": {
+      "type": "string"
+    },
+    "secondaryBtnURL": {
+      "type": "string"
     }
   },
   "config": {}

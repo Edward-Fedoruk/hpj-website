@@ -11,8 +11,13 @@ export interface SectionsAbout extends Struct.ComponentSchema {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"page:section:about">;
+    customWrapperStyle: Schema.Attribute.Text;
     img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
     imgAlt: Schema.Attribute.String;
+    primaryBtnLabel: Schema.Attribute.String;
+    primaryBtnURL: Schema.Attribute.String;
+    secondaryBtnLabel: Schema.Attribute.String;
+    secondaryBtnURL: Schema.Attribute.String;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
@@ -173,6 +178,20 @@ export interface SectionsQuotes extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsRoadMap extends Struct.ComponentSchema {
+  collectionName: "components_sections_road_maps";
+  info: {
+    displayName: "Road Map";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:road_map">;
+    roadMapItems: Schema.Attribute.Component<"shared.road-map-item", true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsWhyUs extends Struct.ComponentSchema {
   collectionName: "components_sections_why_uses";
   info: {
@@ -216,6 +235,18 @@ export interface SharedQuotesItem extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedRoadMapItem extends Struct.ComponentSchema {
+  collectionName: "components_shared_road_map_items";
+  info: {
+    displayName: "Road Map Item";
+  };
+  attributes: {
+    date: Schema.Attribute.Date & Schema.Attribute.Required;
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedWhyHpjItem extends Struct.ComponentSchema {
   collectionName: "components_shared_why_hpj_items";
   info: {
@@ -241,9 +272,11 @@ declare module "@strapi/strapi" {
       "sections.info": SectionsInfo;
       "sections.news": SectionsNews;
       "sections.quotes": SectionsQuotes;
+      "sections.road-map": SectionsRoadMap;
       "sections.why-us": SectionsWhyUs;
       "shared.news-item": SharedNewsItem;
       "shared.quotes-item": SharedQuotesItem;
+      "shared.road-map-item": SharedRoadMapItem;
       "shared.why-hpj-item": SharedWhyHpjItem;
     }
   }

@@ -5,7 +5,8 @@ import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 import { Image } from "astro:assets";
 
-const { title, subtitle, primaryBtn, primaryBtnURL, secondaryBtn, secondaryBtnURL, img, imgAlt } = Astro.props;
+const { title, subtitle, primaryBtn, primaryBtnURL, secondaryBtn, secondaryBtnURL, img, imgAlt, customWrapperStyle } =
+  Astro.props;
 
 export interface AboutSectionProps {
   title: string;
@@ -16,6 +17,7 @@ export interface AboutSectionProps {
   secondaryBtnURL?: string;
   img?: StrapiImageType;
   imgAlt?: string | null;
+  customWrapperStyle?: string;
 }
 
 interface Props extends AboutSectionProps {}
@@ -25,57 +27,58 @@ let builtImg = null;
 if (img) {
   builtImg = buildStrapiResponsive(img);
 }
-console.log(builtImg);
+
+const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 ---
 
 <section
-  class="max-x-7xl mx-auto flex flex-col gap-6 bg-white px-4 py-[100px] md:items-center md:gap-8 xl:px-10"
-  data-aos="fade-in"
-  data-aos-delay="150"
-  data-aos-once="true"
+  class="max-x-7xl xl:px-10} mx-auto flex flex-col gap-6 bg-white px-4 py-[100px] md:items-center md:gap-8"
+  style={customWrapperStyleStr}
 >
-  <h1
-    class="block text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-[var(--color-gray-90)] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
-  >
-    <Fragment set:html={title} />
-  </h1>
-  {
-    subtitle && (
-      <p class="mx-auto w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty text-[var(--color-neutral-gray)]">
-        {subtitle}
-      </p>
-    )
-  }
-  {
-    (primaryBtn || secondaryBtn) && (
-      <div class="mt-6 grid w-full justify-center gap-3 sm:inline-flex">
-        {primaryBtn && <PrimaryCTA title={primaryBtn} url={primaryBtnURL} noArrow className="w-[300px] h-[46px]" />}
-        {secondaryBtn && (
-          <SecondaryCTA
-            title={secondaryBtn}
-            url={secondaryBtnURL}
-            className="w-[192px] h-[46px] text-[var(--color-primary)]"
-            arrow
-          />
-        )}
-      </div>
-    )
-  }
+  <div data-aos="fade-in" data-aos-delay="150" data-aos-once="true" class="w-full">
+    <h1
+      class="block text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-[var(--color-gray-90)] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+    >
+      <Fragment set:html={title} />
+    </h1>
+    {
+      subtitle && (
+        <p class="mx-auto w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty text-[var(--color-neutral-gray)]">
+          {subtitle}
+        </p>
+      )
+    }
+    {
+      (primaryBtn || secondaryBtn) && (
+        <div class="mt-6 grid w-full justify-center gap-3 sm:inline-flex">
+          {primaryBtn && <PrimaryCTA title={primaryBtn} url={primaryBtnURL} noArrow className="w-[300px] h-[46px]" />}
+          {secondaryBtn && (
+            <SecondaryCTA
+              title={secondaryBtn}
+              url={secondaryBtnURL}
+              className="w-[192px] h-[46px] text-[var(--color-primary)]"
+              arrow
+            />
+          )}
+        </div>
+      )
+    }
 
-  {
-    builtImg && (
-      <Image
-        src={builtImg.src}
-        width={builtImg.width}
-        height={builtImg.height}
-        srcset={builtImg.srcset}
-        sizes="(max-width: 500px) 500px, 100vw"
-        alt={builtImg.alt ?? imgAlt ?? "background image"}
-        draggable={"false"}
-        loading={"eager"}
-        fetchpriority={"high"}
-        class="m-auto mt-[46px] h-full max-h-[570px] w-full max-w-7xl overflow-hidden rounded-2xl object-cover object-center"
-      />
-    )
-  }
+    {
+      builtImg && (
+        <Image
+          src={builtImg.src}
+          width={builtImg.width}
+          height={builtImg.height}
+          srcset={builtImg.srcset}
+          sizes="(max-width: 500px) 500px, 100vw"
+          alt={builtImg.alt ?? imgAlt ?? "background image"}
+          draggable={"false"}
+          loading={"eager"}
+          fetchpriority={"high"}
+          class="m-auto mt-[46px] h-full max-h-[570px] w-full max-w-7xl overflow-hidden rounded-2xl object-cover object-center"
+        />
+      )
+    }
+  </div>
 </section>

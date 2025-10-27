@@ -11,6 +11,7 @@ import type {
   CvFormSection,
   GetInTouchFormSection,
   InfoSection,
+  RoadMapSection,
 } from '@/types/sectionTypes';
 
 export enum SectionType {
@@ -33,6 +34,7 @@ export type Section =
   | QoutesSection
   | NewsSection
   | InfoSection
+  | RoadMapSection
   | ContactFormSection
   | CvFormSection
   | GetInTouchFormSection;
@@ -89,6 +91,12 @@ export class DynamicPageHandler {
               componentId
               title
               subtitle
+              customWrapperStyle
+              primaryBtnLabel
+              primaryBtnURL
+              secondaryBtnLabel
+              secondaryBtnURL
+              imgAlt
               img {
                 url
                 alternativeText
@@ -98,7 +106,6 @@ export class DynamicPageHandler {
                 size
                 formats
               }
-              imgAlt
             }
             ... on ComponentSectionsBusinessUnits {
               componentId
@@ -186,6 +193,17 @@ export class DynamicPageHandler {
                 formats
               }
               imgAlt
+            }
+            ... on ComponentSectionsRoadMap {
+              componentId
+              id
+              title
+              roadMapItems {
+                date
+                description
+                id
+                title
+              }
             }
             ... on ComponentSectionsContactForm {
               componentId
