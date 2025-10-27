@@ -7,13 +7,13 @@ export interface SectionsAbout extends Struct.ComponentSchema {
     icon: "information";
   };
   attributes: {
-    about_title: Schema.Attribute.String & Schema.Attribute.Required;
     button_label: Schema.Attribute.String;
     button_link: Schema.Attribute.String;
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"page:section:about">;
-    description: Schema.Attribute.Text;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 

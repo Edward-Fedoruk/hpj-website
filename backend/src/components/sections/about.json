@@ -6,11 +6,11 @@
   },
   "options": {},
   "attributes": {
-    "about_title": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "description": {
+    "subtitle": {
       "type": "text"
     },
     "button_link": {

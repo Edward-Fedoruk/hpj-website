@@ -67,6 +67,13 @@ export class DynamicPageHandler {
               }
               bgImgAlt
             }
+            ... on ComponentSectionsAbout {
+              componentId
+              title
+              subTitle: subtitle
+              secondaryBtn: button_label
+              secondaryBtnURL: button_link
+            }
             ... on ComponentSectionsBusinessUnits {
               componentId
               title: bussinessUnitsTitle
