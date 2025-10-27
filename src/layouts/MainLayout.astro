@@ -1,17 +1,18 @@
 ---
 // Importing necessary components
-import Meta from "@components/Meta.astro";
-import Navbar from "@components/sections/navbar&footer/Navbar.astro";
-import FooterSection from "@components/sections/navbar&footer/FooterSection.astro";
-import { SITE } from "@data/constants";
-import "@styles/global.css";
+import Meta from '@components/Meta.astro';
+import Navbar from '@components/sections/navbar&footer/Navbar.astro';
+import FooterSection from '@components/sections/navbar&footer/FooterSection.astro';
+import { SITE } from '@data/constants';
+import '@styles/global.css';
+import ContactFormSection from '@components/sections/misc/ContactFormSection.astro';
 
 // Setting expected props
 const {
   title = SITE.title,
   meta,
   structuredData,
-  lang = "en",
+  lang = 'en',
   customDescription = null,
   customOgTitle = null,
 } = Astro.props;
@@ -38,25 +39,28 @@ interface Props {
     />
     {/* Define the title of the page */}
     <title>{title}</title>
-    <script>
-      import "@scripts/lenisSmoothScroll.js";
-    </script>
   </head>
-  <body class="flex min-h-screen flex-col bg-white selection:bg-[#524CF2] selection:text-white dark:bg-neutral-800">
+  <body
+    class="font-helvetica flex min-h-screen flex-col bg-white selection:bg-[#524CF2] selection:text-white dark:bg-neutral-800"
+  >
     <Navbar />
 
     <div class="mx-auto w-full flex-grow">
       <main>
         <slot />
       </main>
+      <ContactFormSection
+        title="Join Our Team"
+        subTitle="Looking to grow your career with a forward-thinking organization? Join our dynamic team today"
+      />
     </div>
     <FooterSection />
     <script>
       // https://preline.co
-      import "preline/preline.js";
+      import 'preline/preline.js';
     </script>
+    <script src="../utils/aos.js"></script>
     <style>
-      /* CSS rules for the page scrollbar */
       .scrollbar-hide::-webkit-scrollbar {
         display: none;
       }

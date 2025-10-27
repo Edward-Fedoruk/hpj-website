@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_business_units",
+  "info": {
+    "displayName": "Business Units"
+  },
+  "options": {},
+  "attributes": {
+    "bussinessUnitsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "bussinessUnitsSubtitle": {
+      "type": "text"
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:bussiness_units",
+      "required": true
+    },
+    "sliderItems": {
+      "type": "component",
+      "component": "shared.business-unit-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

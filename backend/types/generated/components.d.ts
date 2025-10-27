@@ -17,6 +17,21 @@ export interface SectionsAbout extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsBusinessUnits extends Struct.ComponentSchema {
+  collectionName: "components_sections_business_units";
+  info: {
+    displayName: "Business Units";
+  };
+  attributes: {
+    bussinessUnitsSubtitle: Schema.Attribute.Text;
+    bussinessUnitsTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:bussiness_units">;
+    sliderItems: Schema.Attribute.Component<"shared.business-unit-item", true>;
+  };
+}
+
 export interface SectionsHero extends Struct.ComponentSchema {
   collectionName: "components_sections_heroes";
   info: {
@@ -38,6 +53,91 @@ export interface SectionsHero extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsNews extends Struct.ComponentSchema {
+  collectionName: "components_sections_news";
+  info: {
+    displayName: "News";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:news">;
+    newsList: Schema.Attribute.Component<"shared.news-item", true>;
+    newsSubtitle: Schema.Attribute.Text;
+    newsTitle: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsQuotes extends Struct.ComponentSchema {
+  collectionName: "components_sections_quotes";
+  info: {
+    displayName: "Quotes";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:quotes">;
+    quotesList: Schema.Attribute.Component<"shared.quotes-item", true>;
+  };
+}
+
+export interface SectionsWhyUs extends Struct.ComponentSchema {
+  collectionName: "components_sections_why_uses";
+  info: {
+    displayName: "Why Us";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:why_us">;
+    whyUsItems: Schema.Attribute.Component<"shared.why-hpj-item", true>;
+    whyUsSubtitle: Schema.Attribute.Text;
+    whyUsTitle: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedBusinessUnitItem extends Struct.ComponentSchema {
+  collectionName: "components_shared_business_unit_items";
+  info: {
+    displayName: "Business Unit Item";
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedNewsItem extends Struct.ComponentSchema {
+  collectionName: "components_shared_news_items";
+  info: {
+    displayName: "News Item";
+  };
+  attributes: {
+    dateCreatedAt: Schema.Attribute.DateTime;
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.Text;
+    text: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedQuotesItem extends Struct.ComponentSchema {
+  collectionName: "components_shared_quotes_items";
+  info: {
+    displayName: "Quotes Item";
+  };
+  attributes: {
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.Text;
+    text: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedWhyHpjItem extends Struct.ComponentSchema {
   collectionName: "components_shared_why_hpj_items";
   info: {
@@ -46,7 +146,7 @@ export interface SharedWhyHpjItem extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
-    icon: Schema.Attribute.String;
+    icon: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
 }
@@ -55,7 +155,14 @@ declare module "@strapi/strapi" {
   export module Public {
     export interface ComponentSchemas {
       "sections.about": SectionsAbout;
+      "sections.business-units": SectionsBusinessUnits;
       "sections.hero": SectionsHero;
+      "sections.news": SectionsNews;
+      "sections.quotes": SectionsQuotes;
+      "sections.why-us": SectionsWhyUs;
+      "shared.business-unit-item": SharedBusinessUnitItem;
+      "shared.news-item": SharedNewsItem;
+      "shared.quotes-item": SharedQuotesItem;
       "shared.why-hpj-item": SharedWhyHpjItem;
     }
   }

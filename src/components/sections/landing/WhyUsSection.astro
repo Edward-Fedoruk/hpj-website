@@ -1,9 +1,10 @@
 ---
-import ProsItem from '../pros/ProsItem.astro';
+import WhyUsItem from '../pros/WhyUsItem.astro';
+import SectionCorner from '../SectionCorner.astro';
 
-const { title, prosList } = Astro.props;
+const { title, whyUsItems } = Astro.props;
 
-export interface IProsItem {
+export interface IWhyUsItem {
   iconStr: string;
   title: string;
   description: string;
@@ -11,32 +12,39 @@ export interface IProsItem {
 
 interface Props {
   title: string;
-  prosList?: IProsItem[];
+  whyUsItems?: IWhyUsItem[];
 }
 ---
 
 <section
-  class="mx-auto gap-8 px-4 bg-[var(--color-primary)] py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10 selection:bg-white! selection:text-[#524CF2]!"
+  class="mx-auto gap-8 px-4 bg-[var(--color-primary)] py-[100px] relative md:items-center md:gap-8 md:py-[134px] xl:px-10 selection:bg-white! selection:text-[#524CF2]!"
 >
-  <div class="flex max-w-[85rem] flex-col text-white m-auto">
+  <SectionCorner className='text-[var(--color-gray-10)]' position="top-left" />
+  <SectionCorner className='text-[white]' position="bottom-right" />
+  
+  <div class="flex max-w-[85rem] flex-col text-white m-auto"
+    data-aos="fade-up"
+    data-aos-delay="150"
+    data-aos-once="true"
+  >
     <h1
-      class="block text-center text-[32px] md:text-[52px] font-bold tracking-tight text-balance whitespace-pre-line sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+      class="font-(family-name:--font-helvetica-bold) block text-center text-[32px] md:text-[52px] font-bold tracking-tight text-balance whitespace-pre-line sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
     >
       <Fragment set:html={title} />
     </h1>
 
     {
-      prosList && (
+      whyUsItems && (
         <div class="flex flex-col w-full items-center gap-6 mt-[90px] sm:flex-row justify-center">
-          {prosList.map((item, index) => {
-            if (index < prosList.length && index !== prosList.length - 1) {
+          {whyUsItems.map((item, index) => {
+            if (index < whyUsItems.length && index !== whyUsItems.length - 1) {
               return (
-                <ProsItem {...item} />
+                <WhyUsItem {...item} />
                 <div class="bg-white w-[1px] h-[100px] opacity-50 mt-6 hidden sm:block"></div>
               )
             }
             return (
-              <ProsItem {...item} />
+              <WhyUsItem {...item} />
             )
           })}
         </div>

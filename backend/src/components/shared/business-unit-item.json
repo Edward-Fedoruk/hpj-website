@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_shared_business_unit_items",
+  "info": {
+    "displayName": "Business Unit Item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "imgAlt": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

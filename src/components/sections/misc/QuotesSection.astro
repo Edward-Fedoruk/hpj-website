@@ -1,0 +1,99 @@
+---
+import { Image } from "astro:assets";
+import type { StrapiImageType } from "@/types/common";
+import { buildStrapiResponsive } from "@/utils/strapiImg";
+
+const { quotesList } = Astro.props;
+
+export interface QuotesItem {
+  title: string;
+  description: string;
+  img: StrapiImageType;
+  imgAlt: string;
+}
+
+interface Props {
+  quotesList: QuotesItem[];
+}
+---
+
+<section
+  class="mx-auto grid min-h-[636px] max-w-[82rem] gap-4 px-5 py-14 pt-[86px] md:min-h-[700px] md:items-center md:gap-8"
+>
+  <div class="flex" data-aos="fade-up" data-aos-delay="150" data-aos-once="true">
+    {
+      quotesList.map((item) => {
+        const itemImg = buildStrapiResponsive(item.img);
+
+        return (
+          <div class="flex flex-1 flex-col gap-4 md:flex-row lg:gap-[132px]">
+            <div class="mb-8 w-full flex-1 overflow-hidden rounded-2xl md:mb-0 lg:w-[500px] lg:min-w-[500px]">
+              {itemImg ? (
+                <Image
+                  src={itemImg.src}
+                  alt={item.imgAlt || item.img.alternativeText}
+                  height={itemImg.height}
+                  width={itemImg.width}
+                  class={"h-[154px] object-cover md:h-[280px]"}
+                  sizes="(max-width: 500px) 500px, 100vw"
+                  draggable={"false"}
+                  loading={"eager"}
+                  fetchpriority={"high"}
+                />
+              ) : (
+                <div>Image placeholder</div>
+              )}
+            </div>
+
+            <div class="flex flex-1 flex-col justify-center gap-4 md:gap-8">
+              <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M17.5 52.5C14.8478 52.5 12.3043 51.4464 10.4289 49.5711C8.55357 47.6957 7.5 45.1522 7.5 42.5C7.5 38.8167 10.8333 27.15 17.5 7.5H22.5L17.5 32.5C20.1522 32.5 22.6957 33.5536 24.5711 35.4289C26.4464 37.3043 27.5 39.8478 27.5 42.5C27.5 45.1522 26.4464 47.6957 24.5711 49.5711C22.6957 51.4464 20.1522 52.5 17.5 52.5ZM42.5 52.5C39.8478 52.5 37.3043 51.4464 35.4289 49.5711C33.5536 47.6957 32.5 45.1522 32.5 42.5C32.5 38.8167 35.8333 27.15 42.5 7.5H47.5L42.5 32.5C45.1522 32.5 47.6957 33.5536 49.5711 35.4289C51.4464 37.3043 52.5 39.8478 52.5 42.5C52.5 45.1522 51.4464 47.6957 49.5711 49.5711C47.6957 51.4464 45.1522 52.5 42.5 52.5Z"
+                  fill="#E7E7E7"
+                />
+              </svg>
+              {item.description && (
+                <p class="text-2xl leading-relaxed text-pretty text-[var(--color-gray-90)] md:max-w-[544px]">
+                  {item.description}
+                </p>
+              )}
+
+              <div class="h-[1px] bg-[#E7E7E7]" />
+
+              <div class="relative flex h-[48px] items-center">
+                <p class="block text-xl font-bold tracking-tight text-balance text-[#373B43] text-neutral-800 lg:leading-tight dark:text-neutral-200">
+                  <Fragment set:html={item.title} />
+                </p>
+                {quotesList && quotesList.length > 1 && (
+                  <div class="embla__controls absolute right-0 bottom-0 text-[#373B43]">
+                    <div class="embla__buttons flex justify-center gap-4">
+                      <button class="embla__button embla__button--prev" type="button">
+                        <svg class="embla__button__svg" viewBox="0 0 532 532">
+                          <path
+                            fill="currentColor"
+                            d="M355.66 11.354c13.793-13.805 36.208-13.805 50.001 0 13.785 13.804 13.785 36.238 0 50.034L201.22 266l204.442 204.61c13.785 13.805 13.785 36.239 0 50.044-13.793 13.796-36.208 13.796-50.002 0a5994246.277 5994246.277 0 0 0-229.332-229.454 35.065 35.065 0 0 1-10.326-25.126c0-9.2 3.393-18.26 10.326-25.2C172.192 194.973 332.731 34.31 355.66 11.354Z"
+                          />
+                        </svg>
+                      </button>
+
+                      <button class="embla__button embla__button--next" type="button">
+                        <svg class="embla__button__svg" viewBox="0 0 532 532">
+                          <path
+                            fill="currentColor"
+                            d="M176.34 520.646c-13.793 13.805-36.208 13.805-50.001 0-13.785-13.804-13.785-36.238 0-50.034L330.78 266 126.34 61.391c-13.785-13.805-13.785-36.239 0-50.044 13.793-13.796 36.208-13.796 50.002 0 22.928 22.947 206.395 206.507 229.332 229.454a35.065 35.065 0 0 1 10.326 25.126c0 9.2-3.393 18.26-10.326 25.2-45.865 45.901-206.404 206.564-229.332 229.52Z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>

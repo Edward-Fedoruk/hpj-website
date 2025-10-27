@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_sections_why_uses",
+  "info": {
+    "displayName": "Why Us"
+  },
+  "options": {},
+  "attributes": {
+    "whyUsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "whyUsSubtitle": {
+      "type": "text"
+    },
+    "whyUsItems": {
+      "type": "component",
+      "component": "shared.why-hpj-item",
+      "repeatable": true
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:why_us",
+      "required": true
+    }
+  },
+  "config": {}
+}
