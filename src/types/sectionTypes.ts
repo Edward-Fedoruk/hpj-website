@@ -140,8 +140,3 @@ export interface ServiceSection extends ServiceSectionProps {
     componentId: SectionType.Service;
     id: string;
 };
-export interface InfoSection extends InfoSectionProps {
-    __typename: "ComponentSectionsInfo";
-    componentId: SectionType.Info;
-    id: string;
-};

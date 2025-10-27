@@ -5573,6 +5573,12 @@
           },
           "formSubmitBtnLabel": {
             "type": "string"
+          },
+          "newsList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedNewsItemComponent"
+            }
           }
         }
       },
