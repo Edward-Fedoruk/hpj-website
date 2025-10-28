@@ -34,52 +34,52 @@ const FORM_ID = form?.documentId ?? "";
       </p>
     )
   }
+
   {
-    form ? (
+    form && (
       <form
-        class="flex w-full max-w-[436px] flex-col items-center gap-4"
+        class="flex w-full flex-col items-center"
         data-endpoint={ENDPOINT}
         data-form-id={FORM_ID}
         onsubmit="return handleSubmit(event, this)"
       >
-        <!-- honeypot -->
-        <input type="text" name="honeypot_field" class="hidden" tabindex="-1" autocomplete="off" />
+        <div class="relative flex w-full max-w-[436px] rounded-[10px] border border-[var(--color-primary)] bg-white p-1">
+          <input
+            type="text"
+            name="honeypot_field"
+            class="hidden"
+            tabindex="-1"
+            autocomplete="off"
+          />
 
-        <label for="emailaddress" class="sr-only">Email</label>
-        <input
-          id="emailaddress"
-          name="emailaddress"
-          type="email"
-          placeholder="Email address"
-          required
-          class="w-full rounded-[10px] border border-gray-200 px-3 py-3 outline-none"
-        />
+          <label for="emailaddress" class="sr-only">
+            {" "}
+            Email{" "}
+          </label>
+          <input
+            id="emailaddress"
+            type="email"
+            autocomplete="email"
+            name="emailaddress"
+            placeholder="Email address"
+            required
+            class="w-[calc(100%-109px)] border-0 py-0 ring-0 outline-0"
+          />
 
-        <button
-          type="submit"
-          class="flex h-[46px] w-full items-center justify-center rounded-[10px] bg-[var(--color-primary)] text-lg font-semibold text-white"
-        >
-          Submit
-        </button>
+          <button
+            type="submit"
+            class="flex h-[48px] w-full max-w-[109px] items-center justify-center rounded-[10px] bg-[var(--color-primary)] text-lg font-semibold text-white"
+          >
+            Send
+          </button>
+        </div>
 
-        <p id="status" class="h-5 text-sm text-[#FFFFFFCC]" aria-live="polite"></p>
+        <p
+          id="status"
+          class="h-5 pt-[10px] text-sm text-[#FFFFFFCC]"
+          aria-live="polite"
+        ></p>
       </form>
-    ) : (
-      <div class="relative flex w-full max-w-[436px] rounded-[10px] border border-[var(--color-primary)] bg-white p-1">
-        <input
-          type="email"
-          name="hs-email-contacts"
-          id="contactEmail"
-          autocomplete="email"
-          placeholder="Email address"
-          class="w-[calc(100%-109px)] border-0 py-0 ring-0 outline-0"
-        />
-        <PrimaryCTA
-          title="Send"
-          noArrow
-          className="h-[46px] min-w-[109px] flex-[0_0_109px] border-0 text-lg"
-        />
-      </div>
     )
   }
 </section>
