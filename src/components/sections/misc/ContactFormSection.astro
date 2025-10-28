@@ -1,8 +1,6 @@
 ---
 import type { FormType } from "@/types/formTypes";
 
-import PrimaryCTA from "@/components/ui/buttons/PrimaryCTA.astro";
-
 import SectionCorner from "../SectionCorner.astro";
 
 interface Props {
@@ -13,7 +11,8 @@ interface Props {
 
 const { title, subTitle, form } = Astro.props;
 
-const ENDPOINT = "http://localhost:1337/api/api-forms/submission/post";
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL || "http://localhost:1337";
+const ENDPOINT = `${STRAPI_URL}/api/api-forms/submission/post`;
 const FORM_ID = form?.documentId ?? "";
 ---
 
@@ -78,7 +77,7 @@ const FORM_ID = form?.documentId ?? "";
           id="status"
           class="h-5 pt-[10px] text-sm text-[#FFFFFFCC]"
           aria-live="polite"
-        ></p>
+        />
       </form>
     )
   }

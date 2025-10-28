@@ -51,6 +51,21 @@ export interface SectionsContactForm extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsCvForm extends Struct.ComponentSchema {
+  collectionName: "components_sections_cv_forms";
+  info: {
+    displayName: "CV Form";
+  };
+  attributes: {
+    form: Schema.Attribute.Relation<"oneToOne", "plugin::api-forms.form">;
+    subTitle: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<"\u201CDidn\u2019t find a position that fits? We\u2019d still love to hear from you.\u201D">;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"Submit Your CV">;
+  };
+}
+
 export interface SectionsHero extends Struct.ComponentSchema {
   collectionName: "components_sections_heroes";
   info: {
@@ -176,6 +191,7 @@ declare module "@strapi/strapi" {
       "sections.about": SectionsAbout;
       "sections.business-units": SectionsBusinessUnits;
       "sections.contact-form": SectionsContactForm;
+      "sections.cv-form": SectionsCvForm;
       "sections.hero": SectionsHero;
       "sections.news": SectionsNews;
       "sections.quotes": SectionsQuotes;
