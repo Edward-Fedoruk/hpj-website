@@ -457,6 +457,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         "sections.why-us",
         "sections.quotes",
         "sections.news",
+        "sections.contact-form",
       ]
     >;
     seoDescription: Schema.Attribute.String;

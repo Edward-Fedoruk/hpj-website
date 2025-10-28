@@ -7,6 +7,7 @@ import type {
   QoutesSection,
   WhyUsSection,
   NewsSection,
+  ContactFormSection
 } from '@/types/sectionTypes';
 
 export enum SectionType {
@@ -16,6 +17,7 @@ export enum SectionType {
   WhyUs = "page:section:why_us",
   Quotes = "page:section:quotes",
   News = "page:section:news",
+  ContactForm = "page:section:contact_form",
 }
 
 export type Section =
@@ -24,7 +26,8 @@ export type Section =
   | BusinessUnitsSection
   | WhyUsSection
   | QoutesSection
-  | NewsSection;
+  | NewsSection
+  | ContactFormSection;
 
 export interface Page {
   documentId: string;
@@ -36,8 +39,15 @@ export interface Page {
   isIndexable?: boolean | null;
 }
 
+export interface Form {
+  documentId: string;
+  title: string;
+  successMessage?: string | null;
+  errorMessage?: string | null;
+}
+
 export class DynamicPageHandler {
-  async getDynamicPageData(): Promise<{ pages: Page[] }> {
+  async getDynamicPageData(): Promise<{ pages: Page[], apiFormsForms: Form[] }> {
     const document = gql`
       {
         pages {
@@ -142,6 +152,18 @@ export class DynamicPageHandler {
                 }
               }
             }
+            ... on ComponentSectionsContactForm {
+              componentId
+              title
+              subTitle
+              form {
+                documentId
+                title
+                errorMessage
+                successMessage
+                steps
+              }
+            }
             ... on Error {
               code
               message
@@ -152,7 +174,7 @@ export class DynamicPageHandler {
     `;
 
     try {
-      const data = await GqlClient.instance.request<{ pages: Page[] }>(
+      const data = await GqlClient.instance.request<{ pages: Page[], apiFormsForms: Form[] }>(
         document,
       );
 

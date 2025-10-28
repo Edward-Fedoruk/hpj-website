@@ -32,6 +32,25 @@ export interface SectionsBusinessUnits extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsContactForm extends Struct.ComponentSchema {
+  collectionName: "components_sections_contact_forms";
+  info: {
+    displayName: "Contact Form";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.DefaultTo<"page:section:contact_form">;
+    form: Schema.Attribute.Relation<"oneToOne", "plugin::api-forms.form">;
+    subTitle: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<"Looking to grow your career with a forward-thinking organization? Join our dynamic team today">;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"Join Our Team ">;
+  };
+}
+
 export interface SectionsHero extends Struct.ComponentSchema {
   collectionName: "components_sections_heroes";
   info: {
@@ -156,6 +175,7 @@ declare module "@strapi/strapi" {
     export interface ComponentSchemas {
       "sections.about": SectionsAbout;
       "sections.business-units": SectionsBusinessUnits;
+      "sections.contact-form": SectionsContactForm;
       "sections.hero": SectionsHero;
       "sections.news": SectionsNews;
       "sections.quotes": SectionsQuotes;

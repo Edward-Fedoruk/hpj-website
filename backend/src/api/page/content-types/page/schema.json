@@ -28,7 +28,8 @@
         "sections.business-units",
         "sections.why-us",
         "sections.quotes",
-        "sections.news"
+        "sections.news",
+        "sections.contact-form"
       ]
     },
     "seoTitle": {

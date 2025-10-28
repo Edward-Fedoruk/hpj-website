@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_sections_contact_forms",
+  "info": {
+    "displayName": "Contact Form"
+  },
+  "options": {},
+  "attributes": {
+    "componentId": {
+      "type": "string",
+      "default": "page:section:contact_form",
+      "required": true,
+      "unique": true
+    },
+    "title": {
+      "type": "string",
+      "default": "Join Our Team ",
+      "required": true
+    },
+    "subTitle": {
+      "type": "text",
+      "default": "Looking to grow your career with a forward-thinking organization? Join our dynamic team today"
+    },
+    "form": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::api-forms.form"
+    }
+  },
+  "config": {}
+}

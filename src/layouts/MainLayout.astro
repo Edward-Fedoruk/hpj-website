@@ -1,18 +1,19 @@
 ---
 // Importing necessary components
-import Meta from '@components/Meta.astro';
-import Navbar from '@components/sections/navbar&footer/Navbar.astro';
-import FooterSection from '@components/sections/navbar&footer/FooterSection.astro';
-import { SITE } from '@data/constants';
-import '@styles/global.css';
-import ContactFormSection from '@components/sections/misc/ContactFormSection.astro';
+import Meta from "@components/Meta.astro";
+import { SITE } from "@data/constants";
+
+import Navbar from "@components/sections/navbar&footer/Navbar.astro";
+import FooterSection from "@components/sections/navbar&footer/FooterSection.astro";
+
+import "@styles/global.css";
 
 // Setting expected props
 const {
   title = SITE.title,
   meta,
   structuredData,
-  lang = 'en',
+  lang = "en",
   customDescription = null,
   customOgTitle = null,
 } = Astro.props;
@@ -49,15 +50,13 @@ interface Props {
       <main>
         <slot />
       </main>
-      <ContactFormSection
-        title="Join Our Team"
-        subTitle="Looking to grow your career with a forward-thinking organization? Join our dynamic team today"
-      />
     </div>
+
     <FooterSection />
+
     <script>
       // https://preline.co
-      import 'preline/preline.js';
+      import "preline/preline.js";
     </script>
     <script src="../utils/aos.js"></script>
     <style>
