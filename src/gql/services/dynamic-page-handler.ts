@@ -161,19 +161,19 @@ export class DynamicPageHandler {
             }
             ... on ComponentSectionsQuotes {
               componentId
+              imgAlt
+              img {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
               quotesList {
                 title
-                description: text
-                imgAlt
-                img {
-                  url
-                  alternativeText
-                  width
-                  height
-                  mime
-                  size
-                  formats
-                }
+                text
               }
             }
             ... on ComponentSectionsNews {

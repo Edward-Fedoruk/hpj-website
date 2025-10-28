@@ -209,6 +209,8 @@ export interface SectionsQuotes extends Struct.ComponentSchema {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"page:section:quotes">;
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.String;
     quotesList: Schema.Attribute.Component<"shared.quotes-item", true>;
   };
 }
@@ -284,8 +286,6 @@ export interface SharedQuotesItem extends Struct.ComponentSchema {
     displayName: "Quotes Item";
   };
   attributes: {
-    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
-    imgAlt: Schema.Attribute.Text;
     text: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
