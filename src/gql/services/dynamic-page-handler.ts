@@ -11,10 +11,8 @@ import type {
   ContactFormSection,
   CvFormSection,
   GetInTouchFormSection,
-  InfoSection,
   RoadMapSection,
   NewsAltSection,
-  AboutAltSection,
 } from '@/types/sectionTypes';
 
 export enum SectionType {
