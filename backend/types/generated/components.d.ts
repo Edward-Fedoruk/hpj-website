@@ -23,6 +23,28 @@ export interface SectionsAbout extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsAboutAlt extends Struct.ComponentSchema {
+  collectionName: "components_sections_about_alts";
+  info: {
+    displayName: "About Alt";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:about_alt">;
+    primaryBtnLabel: Schema.Attribute.String;
+    primaryBtnURL: Schema.Attribute.String;
+    profilePictures: Schema.Attribute.Media<
+      "images" | "files" | "videos" | "audios",
+      true
+    >;
+    secondaryBtnLabel: Schema.Attribute.String;
+    secondaryBtnURL: Schema.Attribute.String;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsBusinessUnits extends Struct.ComponentSchema {
   collectionName: "components_sections_business_units";
   info: {
@@ -207,6 +229,27 @@ export interface SectionsRoadMap extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsServiceBlock extends Struct.ComponentSchema {
+  collectionName: "components_sections_service_blocks";
+  info: {
+    displayName: "Service Block";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:service">;
+    customWrapperStyle: Schema.Attribute.Text;
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.String;
+    primaryBtnLabel: Schema.Attribute.String;
+    primaryBtnURL: Schema.Attribute.String;
+    secondaryBtnLabel: Schema.Attribute.String;
+    secondaryBtnURL: Schema.Attribute.String;
+    text: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsWhyUs extends Struct.ComponentSchema {
   collectionName: "components_sections_why_uses";
   info: {
@@ -279,6 +322,7 @@ declare module "@strapi/strapi" {
   export module Public {
     export interface ComponentSchemas {
       "sections.about": SectionsAbout;
+      "sections.about-alt": SectionsAboutAlt;
       "sections.business-units": SectionsBusinessUnits;
       "sections.contact-form": SectionsContactForm;
       "sections.cv-form": SectionsCvForm;
@@ -289,6 +333,7 @@ declare module "@strapi/strapi" {
       "sections.news-alt": SectionsNewsAlt;
       "sections.quotes": SectionsQuotes;
       "sections.road-map": SectionsRoadMap;
+      "sections.service-block": SectionsServiceBlock;
       "sections.why-us": SectionsWhyUs;
       "shared.news-item": SharedNewsItem;
       "shared.quotes-item": SharedQuotesItem;

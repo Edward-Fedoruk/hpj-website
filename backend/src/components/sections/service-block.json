@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_sections_service_blocks",
+  "info": {
+    "displayName": "Service Block"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text"
+    },
+    "primaryBtnLabel": {
+      "type": "string"
+    },
+    "primaryBtnURL": {
+      "type": "string"
+    },
+    "secondaryBtnLabel": {
+      "type": "string"
+    },
+    "secondaryBtnURL": {
+      "type": "string"
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "imgAlt": {
+      "type": "string"
+    },
+    "customWrapperStyle": {
+      "type": "text"
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:service",
+      "required": true
+    }
+  },
+  "config": {}
+}

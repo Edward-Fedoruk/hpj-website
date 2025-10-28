@@ -13,6 +13,7 @@ import type {
   InfoSection,
   RoadMapSection,
   NewsAltSection,
+  AboutAltSection,
 } from '@/types/sectionTypes';
 
 export enum SectionType {
@@ -30,6 +31,7 @@ export enum SectionType {
 export type Section =
   | HeroSection
   | AboutSection
+  | AboutAltSection
   | BusinessUnitsSection
   | WhyUsSection
   | QoutesSection
@@ -100,6 +102,24 @@ export class DynamicPageHandler {
               secondaryBtnURL
               imgAlt
               img {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
+            }
+            ... on ComponentSectionsAboutAlt {
+              componentId
+              title
+              subtitle
+              primaryBtnLabel
+              primaryBtnURL
+              secondaryBtnLabel
+              secondaryBtnURL
+              profilePictures {
                 url
                 alternativeText
                 width
@@ -227,6 +247,25 @@ export class DynamicPageHandler {
                 id
                 title
               }
+            }
+            ... on ComponentSectionsServiceBlock {
+              componentId
+              title
+              text
+              primaryBtnLabel
+              primaryBtnURL
+              secondaryBtnLabel
+              secondaryBtnURL
+              img {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
+              imgAlt
             }
             ... on ComponentSectionsContactForm {
               componentId

@@ -5,15 +5,24 @@ import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 import { Image } from "astro:assets";
 
-const { title, subtitle, primaryBtn, primaryBtnURL, secondaryBtn, secondaryBtnURL, img, imgAlt, customWrapperStyle } =
-  Astro.props;
+const {
+  title,
+  subtitle,
+  primaryBtnLabel,
+  primaryBtnURL,
+  secondaryBtnLabel,
+  secondaryBtnURL,
+  img,
+  imgAlt,
+  customWrapperStyle,
+} = Astro.props;
 
 export interface AboutSectionProps {
   title: string;
   subtitle?: string;
-  primaryBtn?: string;
+  primaryBtnLabel?: string;
   primaryBtnURL?: string;
-  secondaryBtn?: string;
+  secondaryBtnLabel?: string;
   secondaryBtnURL?: string;
   img?: StrapiImageType;
   imgAlt?: string | null;
@@ -32,29 +41,31 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 ---
 
 <section
-  class="max-x-7xl xl:px-10} mx-auto flex flex-col gap-6 bg-white px-4 py-[100px] md:items-center md:gap-8"
+  class="mx-auto flex flex-col gap-6 bg-white px-4 py-[100px] md:items-center md:gap-8"
   style={customWrapperStyleStr}
 >
   <div data-aos="fade-in" data-aos-delay="150" data-aos-once="true" class="w-full">
     <h1
-      class="block text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-[var(--color-gray-90)] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+      class="block text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-[#040404] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
     >
       <Fragment set:html={title} />
     </h1>
     {
       subtitle && (
-        <p class="mx-auto w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty text-[var(--color-neutral-gray)]">
+        <p class="mx-auto w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty text-[#040404E5]">
           {subtitle}
         </p>
       )
     }
     {
-      (primaryBtn || secondaryBtn) && (
+      (primaryBtnLabel || secondaryBtnLabel) && (
         <div class="mt-6 grid w-full justify-center gap-3 sm:inline-flex">
-          {primaryBtn && <PrimaryCTA title={primaryBtn} url={primaryBtnURL} noArrow className="w-[300px] h-[46px]" />}
-          {secondaryBtn && (
+          {primaryBtnLabel && (
+            <PrimaryCTA title={primaryBtnLabel} url={primaryBtnURL} noArrow className="w-[300px] h-[46px]" />
+          )}
+          {secondaryBtnLabel && (
             <SecondaryCTA
-              title={secondaryBtn}
+              title={secondaryBtnLabel}
               url={secondaryBtnURL}
               className="w-[192px] h-[46px] text-[var(--color-primary)]"
               arrow

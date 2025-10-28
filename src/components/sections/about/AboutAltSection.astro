@@ -1,0 +1,74 @@
+---
+import type { StrapiImageType } from "@/types/common";
+import { buildStrapiResponsive } from "@/utils/strapiImg";
+import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
+import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
+import { Image } from "astro:assets";
+
+const { title, subtitle, primaryBtn, primaryBtnURL, secondaryBtn, secondaryBtnURL, profilePictures } = Astro.props;
+
+export interface AboutAltSectionProps {
+  profilePictures?: StrapiImageType[];
+  title: string;
+  subtitle?: string;
+  primaryBtn?: string;
+  primaryBtnURL?: string;
+  secondaryBtn?: string;
+  secondaryBtnURL?: string;
+}
+
+interface Props extends AboutAltSectionProps {}
+---
+
+<section class="mx-auto flex flex-col gap-6 bg-white px-4 py-[100px] md:items-center md:gap-8">
+  <div data-aos="fade-in" data-aos-delay="150" data-aos-once="true" class="w-full">
+    {
+      profilePictures && (
+        <div class="relative mb-8 flex justify-center">
+          <div class="relative flex w-fit -space-x-2.5">
+            {profilePictures.map((imgItem, index) => {
+              const builtImg = buildStrapiResponsive(imgItem);
+              const imgElClass = `h-20 w-20 rounded-full relative top-0 left-[calc(100%-80px*${index}-5px*-${profilePictures.length - index})]`;
+
+              return (
+                <Image
+                  src={builtImg.src}
+                  width={82}
+                  height={82}
+                  alt={builtImg.alt || "profile image"}
+                  draggable={"false"}
+                  loading={"eager"}
+                  fetchpriority={"high"}
+                  class={imgElClass}
+                />
+              );
+            })}
+          </div>
+        </div>
+      )
+    }
+
+    <h1
+      class="font-helvetica-bold mb-6 block text-center text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-[#040404] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+    >
+      <Fragment set:html={title} />
+    </h1>
+    {
+      subtitle && (
+        <p class="mx-auto mb-6 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty text-[#040404E5]">
+          {subtitle}
+        </p>
+      )
+    }
+    {
+      (primaryBtn || secondaryBtn) && (
+        <div class="mt-6 grid w-full justify-center gap-3 sm:inline-flex">
+          {primaryBtn && <PrimaryCTA title={primaryBtn} url={primaryBtnURL} noArrow className="w-[300px] h-[46px]" />}
+          {secondaryBtn && (
+            <SecondaryCTA title={secondaryBtn} url={secondaryBtnURL} className="w-48 h-[46px] text-primary" arrow />
+          )}
+        </div>
+      )
+    }
+  </div>
+</section>

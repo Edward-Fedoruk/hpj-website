@@ -3,27 +3,27 @@ const { className, position } = Astro.props;
 
 interface Props {
   className?: string;
-  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
 }
 
-let positionClass = '';
+let positionClass = "";
 
 switch (position) {
-  case 'top-left':
-    positionClass = 'top-0 left-0';
+  case "top-left":
+    positionClass = "top-0 left-0";
     break;
-  case 'top-right':
-    positionClass = 'md:top-0 md:right-0 rotate-y-180';
+  case "top-right":
+    positionClass = "top-0 right-0 md:top-0 md:right-0 rotate-y-180";
     break;
-  case 'bottom-left':
-    positionClass = 'bottom-0 left-0 rotate-x-180';
+  case "bottom-left":
+    positionClass = "bottom-0 left-0 rotate-x-180";
     break;
-  case 'bottom-right':
-    positionClass = 'bottom-0 right-0 rotate-x-180 rotate-y-180';
+  case "bottom-right":
+    positionClass = "bottom-0 right-0 rotate-x-180 rotate-y-180";
     break;
 
   default:
-    positionClass = 'top-0 left-0';
+    positionClass = "top-0 left-0";
     break;
 }
 ---

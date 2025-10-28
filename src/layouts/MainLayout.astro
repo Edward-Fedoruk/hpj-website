@@ -6,7 +6,6 @@ import FooterSection from "@components/sections/navbar&footer/FooterSection.astr
 import { SITE } from "@data/constants";
 import "@styles/global.css";
 import ContactFormSection from "@components/sections/misc/ContactFormSection.astro";
-import RoadMapSection from "@/components/sections/about/RoadMap/RoadMapSection.astro";
 
 // Setting expected props
 const {
@@ -46,7 +45,7 @@ interface Props {
   >
     <Navbar />
 
-    <div class="mx-auto w-full flex-grow">
+    <div class="mx-auto w-full grow">
       <main>
         <slot />
       </main>

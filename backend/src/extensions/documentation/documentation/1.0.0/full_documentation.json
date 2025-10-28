@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-27T05:15:06.135Z"
+    "x-generation-date": "2025-10-28T11:32:05.538Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -2564,6 +2564,12 @@
                     },
                     {
                       "$ref": "#/components/schemas/SectionsNewsAltComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SectionsAboutAltComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SectionsServiceBlockComponent"
                     }
                   ]
                 },
@@ -2578,7 +2584,9 @@
                     "sections.info": "#/components/schemas/SectionsInfoComponent",
                     "sections.about": "#/components/schemas/SectionsAboutComponent",
                     "sections.road-map": "#/components/schemas/SectionsRoadMapComponent",
-                    "sections.news-alt": "#/components/schemas/SectionsNewsAltComponent"
+                    "sections.news-alt": "#/components/schemas/SectionsNewsAltComponent",
+                    "sections.about-alt": "#/components/schemas/SectionsAboutAltComponent",
+                    "sections.service-block": "#/components/schemas/SectionsServiceBlockComponent"
                   }
                 }
               },
@@ -3265,6 +3273,264 @@
             "type": "string"
           },
           "createdAt": {
+          "sections": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/SectionsHeroComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsBusinessUnitsComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsWhyUsComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsQuotesComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsNewsComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsInfoComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsAboutComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsRoadMapComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsNewsAltComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsAboutAltComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsServiceBlockComponent"
+                }
+              ]
+            },
+            "discriminator": {
+              "propertyName": "__component",
+              "mapping": {
+                "sections.hero": "#/components/schemas/SectionsHeroComponent",
+                "sections.business-units": "#/components/schemas/SectionsBusinessUnitsComponent",
+                "sections.why-us": "#/components/schemas/SectionsWhyUsComponent",
+                "sections.quotes": "#/components/schemas/SectionsQuotesComponent",
+                "sections.news": "#/components/schemas/SectionsNewsComponent",
+                "sections.info": "#/components/schemas/SectionsInfoComponent",
+                "sections.about": "#/components/schemas/SectionsAboutComponent",
+                "sections.road-map": "#/components/schemas/SectionsRoadMapComponent",
+                "sections.news-alt": "#/components/schemas/SectionsNewsAltComponent",
+                "sections.about-alt": "#/components/schemas/SectionsAboutAltComponent",
+                "sections.service-block": "#/components/schemas/SectionsServiceBlockComponent"
+              }
+            }
+          },
+          "seoTitle": {
+            "type": "string"
+          },
+          "seoDescription": {
+            "type": "string"
+          },
+          "isIndexable": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "updatedBy": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "locale": {
+            "type": "string"
+          },
+          "localizations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "sections": {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/SectionsHeroComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsBusinessUnitsComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsWhyUsComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsQuotesComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsNewsComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsInfoComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsAboutComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsRoadMapComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsNewsAltComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsAboutAltComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsServiceBlockComponent"
+                      }
+                    ]
+                  },
+                  "discriminator": {
+                    "propertyName": "__component",
+                    "mapping": {
+                      "sections.hero": "#/components/schemas/SectionsHeroComponent",
+                      "sections.business-units": "#/components/schemas/SectionsBusinessUnitsComponent",
+                      "sections.why-us": "#/components/schemas/SectionsWhyUsComponent",
+                      "sections.quotes": "#/components/schemas/SectionsQuotesComponent",
+                      "sections.news": "#/components/schemas/SectionsNewsComponent",
+                      "sections.info": "#/components/schemas/SectionsInfoComponent",
+                      "sections.about": "#/components/schemas/SectionsAboutComponent",
+                      "sections.road-map": "#/components/schemas/SectionsRoadMapComponent",
+                      "sections.news-alt": "#/components/schemas/SectionsNewsAltComponent",
+                      "sections.about-alt": "#/components/schemas/SectionsAboutAltComponent",
+                      "sections.service-block": "#/components/schemas/SectionsServiceBlockComponent"
+                    }
+                  }
+                },
+                "seoTitle": {
+                  "type": "string"
+                },
+                "seoDescription": {
+                  "type": "string"
+                },
+                "isIndexable": {
+                  "type": "boolean"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "publishedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "createdBy": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "updatedBy": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "locale": {
+                  "type": "string"
+                },
+                "localizations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "documentId": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "PageResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Page"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      },
+      "SectionsHeroComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
             "type": "string",
             "format": "date-time"
           },
@@ -5532,6 +5798,624 @@
           },
           "formSubmitBtnLabel": {
             "type": "string"
+          },
+          "customWrapperStyle": {
+            "type": "string"
+          },
+          "primaryBtnLabel": {
+            "type": "string"
+          },
+          "primaryBtnURL": {
+            "type": "string"
+          },
+          "secondaryBtnLabel": {
+            "type": "string"
+          },
+          "secondaryBtnURL": {
+            "type": "string"
+          }
+        }
+      },
+      "SharedRoadMapItemComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsRoadMapComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.road-map"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "roadMapItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedRoadMapItemComponent"
+            }
+          },
+          "componentId": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsContactFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.contact-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsCvFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.cv-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsGetInTouchFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.get-in-touch-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "formTitle": {
+            "type": "string"
+          },
+          "formSubTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "businessUnitsForFormSelect": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "formSubmitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsContactFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.contact-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsCvFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.cv-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsGetInTouchFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.get-in-touch-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "formTitle": {
+            "type": "string"
+          },
+          "formSubTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "businessUnitsForFormSelect": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "formSubmitBtnLabel": {
+            "type": "string"
+          },
+          "customWrapperStyle": {
+            "type": "string"
+          },
+          "primaryBtnLabel": {
+            "type": "string"
+          },
+          "primaryBtnURL": {
+            "type": "string"
+          },
+          "secondaryBtnLabel": {
+            "type": "string"
+          },
+          "secondaryBtnURL": {
+            "type": "string"
+          }
+        }
+      },
+      "SharedRoadMapItemComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsRoadMapComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.road-map"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "roadMapItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedRoadMapItemComponent"
+            }
+          },
+          "componentId": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsContactFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.contact-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsCvFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.cv-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsGetInTouchFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.get-in-touch-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "formTitle": {
+            "type": "string"
+          },
+          "formSubTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "businessUnitsForFormSelect": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "formSubmitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsContactFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.contact-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsCvFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.cv-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsGetInTouchFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.get-in-touch-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "formTitle": {
+            "type": "string"
+          },
+          "formSubTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "businessUnitsForFormSelect": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "formSubmitBtnLabel": {
+            "type": "string"
           }
         }
       },
@@ -5590,6 +6474,343 @@
             "items": {
               "$ref": "#/components/schemas/SharedNewsItemComponent"
             }
+          }
+        }
+      },
+      "SectionsAboutAltComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.about-alt"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "subtitle": {
+            "type": "string"
+          },
+          "primaryBtnLabel": {
+            "type": "string"
+          },
+          "primaryBtnURL": {
+            "type": "string"
+          },
+          "secondaryBtnLabel": {
+            "type": "string"
+          },
+          "secondaryBtnURL": {
+            "type": "string"
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "profilePictures": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "alternativeText": {
+                  "type": "string"
+                },
+                "caption": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "integer"
+                },
+                "height": {
+                  "type": "integer"
+                },
+                "formats": {},
+                "hash": {
+                  "type": "string"
+                },
+                "ext": {
+                  "type": "string"
+                },
+                "mime": {
+                  "type": "string"
+                },
+                "size": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "previewUrl": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "provider_metadata": {},
+                "related": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "documentId": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "folder": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "folderPath": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "publishedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "createdBy": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "updatedBy": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "locale": {
+                  "type": "string"
+                },
+                "localizations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "documentId": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "SectionsServiceBlockComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.service-block"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "primaryBtnLabel": {
+            "type": "string"
+          },
+          "primaryBtnURL": {
+            "type": "string"
+          },
+          "secondaryBtnLabel": {
+            "type": "string"
+          },
+          "secondaryBtnURL": {
+            "type": "string"
+          },
+          "img": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "alternativeText": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {},
+              "hash": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number",
+                "format": "float"
+              },
+              "url": {
+                "type": "string"
+              },
+              "previewUrl": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {},
+              "related": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "folder": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "folderPath": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "publishedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "createdBy": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "updatedBy": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "documentId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "locale": {
+                "type": "string"
+              },
+              "localizations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "documentId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "imgAlt": {
+            "type": "string"
+          },
+          "customWrapperStyle": {
+            "type": "string"
+          },
+          "componentId": {
+            "type": "string"
           }
         }
       },
