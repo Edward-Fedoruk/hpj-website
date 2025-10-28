@@ -29,7 +29,8 @@
         "sections.why-us",
         "sections.quotes",
         "sections.news",
-        "sections.contact-form"
+        "sections.contact-form",
+        "sections.cv-form"
       ]
     },
     "seoTitle": {

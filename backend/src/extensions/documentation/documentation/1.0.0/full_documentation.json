@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-28T10:27:39.342Z"
+    "x-generation-date": "2025-10-28T13:47:50.950Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -2039,6 +2039,9 @@
                     },
                     {
                       "$ref": "#/components/schemas/SectionsContactFormComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SectionsCvFormComponent"
                     }
                   ]
                 },
@@ -2051,7 +2054,8 @@
                     "sections.why-us": "#/components/schemas/SectionsWhyUsComponent",
                     "sections.quotes": "#/components/schemas/SectionsQuotesComponent",
                     "sections.news": "#/components/schemas/SectionsNewsComponent",
-                    "sections.contact-form": "#/components/schemas/SectionsContactFormComponent"
+                    "sections.contact-form": "#/components/schemas/SectionsContactFormComponent",
+                    "sections.cv-form": "#/components/schemas/SectionsCvFormComponent"
                   }
                 }
               },
@@ -2163,6 +2167,9 @@
                 },
                 {
                   "$ref": "#/components/schemas/SectionsContactFormComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsCvFormComponent"
                 }
               ]
             },
@@ -2175,7 +2182,8 @@
                 "sections.why-us": "#/components/schemas/SectionsWhyUsComponent",
                 "sections.quotes": "#/components/schemas/SectionsQuotesComponent",
                 "sections.news": "#/components/schemas/SectionsNewsComponent",
-                "sections.contact-form": "#/components/schemas/SectionsContactFormComponent"
+                "sections.contact-form": "#/components/schemas/SectionsContactFormComponent",
+                "sections.cv-form": "#/components/schemas/SectionsCvFormComponent"
               }
             }
           },
@@ -2266,6 +2274,9 @@
                       },
                       {
                         "$ref": "#/components/schemas/SectionsContactFormComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsCvFormComponent"
                       }
                     ]
                   },
@@ -2278,7 +2289,8 @@
                       "sections.why-us": "#/components/schemas/SectionsWhyUsComponent",
                       "sections.quotes": "#/components/schemas/SectionsQuotesComponent",
                       "sections.news": "#/components/schemas/SectionsNewsComponent",
-                      "sections.contact-form": "#/components/schemas/SectionsContactFormComponent"
+                      "sections.contact-form": "#/components/schemas/SectionsContactFormComponent",
+                      "sections.cv-form": "#/components/schemas/SectionsCvFormComponent"
                     }
                   }
                 },
@@ -3143,6 +3155,37 @@
           },
           "componentId": {
             "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "SectionsCvFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.cv-form"
+            ]
           },
           "title": {
             "type": "string"

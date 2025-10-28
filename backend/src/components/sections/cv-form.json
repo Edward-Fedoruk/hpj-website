@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_cv_forms",
+  "info": {
+    "displayName": "CV Form"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Submit Your CV",
+      "required": true
+    },
+    "subTitle": {
+      "type": "text",
+      "default": "“Didn’t find a position that fits? We’d still love to hear from you.”"
+    },
+    "form": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::api-forms.form"
+    }
+  },
+  "config": {}
+}
