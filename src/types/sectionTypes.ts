@@ -86,3 +86,13 @@ export type CvFormSection = {
     form?: FormType | null;
     submitBtnLabel?: string | null;
 }
+
+export type GetInTouchFormSection = {
+    __typename: "ComponentSectionsGetInTouchForm";
+    componentId: string;
+    title: string;
+    subTitle?: string | null;
+    form?: FormType | null;
+    submitBtnLabel?: string | null;
+    businessUnitsForFormSelect?: Array<{ documentId: string; title: string }>;
+}

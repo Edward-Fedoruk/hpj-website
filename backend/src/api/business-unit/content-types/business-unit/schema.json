@@ -1,9 +1,15 @@
 {
-  "collectionName": "components_shared_business_unit_items",
+  "kind": "collectionType",
+  "collectionName": "business_units",
   "info": {
-    "displayName": "Business Unit Item"
+    "singularName": "business-unit",
+    "pluralName": "business-units",
+    "displayName": "Business unit"
   },
-  "options": {},
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
@@ -14,7 +20,8 @@
     },
     "url": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": false
     },
     "img": {
       "type": "media",
@@ -29,6 +36,5 @@
     "imgAlt": {
       "type": "string"
     }
-  },
-  "config": {}
+  }
 }

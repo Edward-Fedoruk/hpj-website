@@ -28,7 +28,10 @@ export interface SectionsBusinessUnits extends Struct.ComponentSchema {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"page:section:bussiness_units">;
-    sliderItems: Schema.Attribute.Component<"shared.business-unit-item", true>;
+    sliderItems: Schema.Attribute.Relation<
+      "oneToMany",
+      "api::business-unit.business-unit"
+    >;
   };
 }
 
@@ -43,6 +46,8 @@ export interface SectionsContactForm extends Struct.ComponentSchema {
       Schema.Attribute.Unique &
       Schema.Attribute.DefaultTo<"page:section:contact_form">;
     form: Schema.Attribute.Relation<"oneToOne", "plugin::api-forms.form">;
+    submitBtnLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<"Send">;
     subTitle: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<"Looking to grow your career with a forward-thinking organization? Join our dynamic team today">;
     title: Schema.Attribute.String &
@@ -69,6 +74,31 @@ export interface SectionsCvForm extends Struct.ComponentSchema {
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"Submit Your CV">;
+  };
+}
+
+export interface SectionsGetInTouchForm extends Struct.ComponentSchema {
+  collectionName: "components_sections_get_in_touch_forms";
+  info: {
+    displayName: "Get In Touch Form";
+  };
+  attributes: {
+    businessUnitsForFormSelect: Schema.Attribute.Relation<
+      "oneToMany",
+      "api::business-unit.business-unit"
+    >;
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.DefaultTo<"page:section:get_in_touch_form">;
+    form: Schema.Attribute.Relation<"oneToOne", "plugin::api-forms.form">;
+    formSubmitBtnLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<"Send Message">;
+    formSubTitle: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<"You  can reach us anytime.">;
+    formTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"Get In Touch">;
   };
 }
 
@@ -136,20 +166,6 @@ export interface SectionsWhyUs extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedBusinessUnitItem extends Struct.ComponentSchema {
-  collectionName: "components_shared_business_unit_items";
-  info: {
-    displayName: "Business Unit Item";
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
-    imgAlt: Schema.Attribute.String;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-    url: Schema.Attribute.String & Schema.Attribute.Required;
-  };
-}
-
 export interface SharedNewsItem extends Struct.ComponentSchema {
   collectionName: "components_shared_news_items";
   info: {
@@ -198,11 +214,11 @@ declare module "@strapi/strapi" {
       "sections.business-units": SectionsBusinessUnits;
       "sections.contact-form": SectionsContactForm;
       "sections.cv-form": SectionsCvForm;
+      "sections.get-in-touch-form": SectionsGetInTouchForm;
       "sections.hero": SectionsHero;
       "sections.news": SectionsNews;
       "sections.quotes": SectionsQuotes;
       "sections.why-us": SectionsWhyUs;
-      "shared.business-unit-item": SharedBusinessUnitItem;
       "shared.news-item": SharedNewsItem;
       "shared.quotes-item": SharedQuotesItem;
       "shared.why-hpj-item": SharedWhyHpjItem;

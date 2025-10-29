@@ -430,6 +430,39 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBusinessUnitBusinessUnit
+  extends Struct.CollectionTypeSchema {
+  collectionName: "business_units";
+  info: {
+    displayName: "Business unit";
+    pluralName: "business-units";
+    singularName: "business-unit";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      "oneToMany",
+      "api::business-unit.business-unit"
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiPagePage extends Struct.CollectionTypeSchema {
   collectionName: "pages";
   info: {
@@ -459,6 +492,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         "sections.news",
         "sections.contact-form",
         "sections.cv-form",
+        "sections.get-in-touch-form",
       ]
     >;
     seoDescription: Schema.Attribute.String;
@@ -1162,6 +1196,7 @@ declare module "@strapi/strapi" {
       "admin::transfer-token": AdminTransferToken;
       "admin::transfer-token-permission": AdminTransferTokenPermission;
       "admin::user": AdminUser;
+      "api::business-unit.business-unit": ApiBusinessUnitBusinessUnit;
       "api::page.page": ApiPagePage;
       "plugin::api-forms.form": PluginApiFormsForm;
       "plugin::api-forms.notification": PluginApiFormsNotification;

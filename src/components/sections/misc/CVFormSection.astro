@@ -31,8 +31,6 @@ const order = layouts?.lg?.length
     ? layouts.md
     : (layouts?.sm ?? []);
 
-const hasFile = order.some((it: FormLayoutType) => it.field.type === "file");
-
 function pos(id: string) {
   const lg = lgMap.get(id) ?? mdMap.get(id) ?? smMap.get(id);
   const md = mdMap.get(id) ?? smMap.get(id) ?? lgMap.get(id);
@@ -71,7 +69,13 @@ function pos(id: string) {
         class="flex w-full flex-col items-center"
         data-endpoint={ENDPOINT}
         data-form-id={FORM_ID}
-        data-has-file={hasFile ? "true" : "false"}
+        data-success-message={
+          form?.successMessage || "Your CV has been sent successfully."
+        }
+        data-error-message={
+          form?.errorMessage ||
+          "There was an error submitting the form. Please try again."
+        }
         onsubmit="return CVFormhandleSubmit(event, this)"
       >
         <div class="flex w-full flex-col items-center">
@@ -232,28 +236,32 @@ function pos(id: string) {
   .fileinput {
     color: white;
     font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    outline: none;
+    background: color-mix(in oklab, white 5%, transparent);
   }
 </style>
 
 <script is:inline>
-  async function CVFormhandleSubmit(ev, form) {
+  async function CVFormhandleSubmit(ev, formElement) {
+    console.log(formElement.dataset);
     ev.preventDefault();
-    const statusEl = form.querySelector("#status");
+    const statusEl = formElement.querySelector("#status");
     const setStatus = (m) => (statusEl.textContent = m || "");
 
     const honey = (
-      form.querySelector('[name="honeypot_field"]')?.value || ""
+      formElement.querySelector('[name="honeypot_field"]')?.value || ""
     ).trim();
     if (honey) return false;
 
-    const endpoint = form.dataset.endpoint;
-    const formId = form.dataset.formId;
+    const endpoint = formElement.dataset.endpoint;
+    const formId = formElement.dataset.formId;
     if (!formId) return setStatus("Form ID is missing");
 
-    const emailEl = form.querySelector(
+    const emailEl = formElement.querySelector(
       'input[type="email"], input[name*="email" i]'
     );
-    const nameEl = form.querySelector('input[name*="name" i]');
+    const nameEl = formElement.querySelector('input[name*="name" i]');
     if (!emailEl || !emailEl.value.trim()) {
       setStatus("Enter email");
       emailEl?.focus();
@@ -265,8 +273,8 @@ function pos(id: string) {
       return false;
     }
 
-    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
-    const checkedBoxes = form.querySelectorAll(
+    const checkboxes = formElement.querySelectorAll('input[type="checkbox"]');
+    const checkedBoxes = formElement.querySelectorAll(
       'input[type="checkbox"]:checked'
     );
     if (checkboxes.length > 0 && checkedBoxes.length === 0) {
@@ -275,7 +283,7 @@ function pos(id: string) {
       return false;
     }
 
-    const fileInputs = form.querySelectorAll('input[type="file"]');
+    const fileInputs = formElement.querySelectorAll('input[type="file"]');
     const hasFileInputs = fileInputs.length > 0;
     const hasSelectedFile = [...fileInputs].some((i) => i.files?.length > 0);
     if (hasFileInputs && !hasSelectedFile) {
@@ -287,7 +295,7 @@ function pos(id: string) {
     const fd = new FormData();
     fd.append("form", formId);
 
-    const inputs = form.querySelectorAll(
+    const inputs = formElement.querySelectorAll(
       'input[type="text"], input[type="email"], textarea'
     );
     for (const el of inputs) {
@@ -311,18 +319,18 @@ function pos(id: string) {
       }
     }
 
-    const btn = form.querySelector('button[type="submit"]');
+    const btn = formElement.querySelector('button[type="submit"]');
     btn?.setAttribute("disabled", "true");
     setStatus("Sending...");
 
     try {
       const res = await fetch(endpoint, { method: "POST", body: fd });
       if (!res.ok) throw new Error(await res.text());
-      form.reset();
-      setStatus("Sent. Check your inbox.");
+      formElement.reset();
+      setStatus(formElement.dataset.successMessage);
     } catch (err) {
       console.error(err);
-      setStatus("Failed. Try again.");
+      setStatus(formElement.dataset.errorMessage);
     } finally {
       btn?.removeAttribute("disabled");
     }

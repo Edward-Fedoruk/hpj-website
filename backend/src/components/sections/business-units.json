@@ -18,9 +18,9 @@
       "required": true
     },
     "sliderItems": {
-      "type": "component",
-      "component": "shared.business-unit-item",
-      "repeatable": true
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::business-unit.business-unit"
     }
   },
   "config": {}

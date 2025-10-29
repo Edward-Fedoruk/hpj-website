@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_sections_get_in_touch_forms",
+  "info": {
+    "displayName": "Get In Touch Form"
+  },
+  "options": {},
+  "attributes": {
+    "componentId": {
+      "type": "string",
+      "default": "page:section:get_in_touch_form",
+      "required": true,
+      "unique": true
+    },
+    "formTitle": {
+      "type": "string",
+      "default": "Get In Touch",
+      "required": true
+    },
+    "formSubTitle": {
+      "type": "string",
+      "default": "You  can reach us anytime."
+    },
+    "form": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::api-forms.form"
+    },
+    "businessUnitsForFormSelect": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::business-unit.business-unit"
+    },
+    "formSubmitBtnLabel": {
+      "type": "string",
+      "default": "Send Message"
+    }
+  },
+  "config": {}
+}

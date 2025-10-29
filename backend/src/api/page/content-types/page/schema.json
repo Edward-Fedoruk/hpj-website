@@ -30,7 +30,8 @@
         "sections.quotes",
         "sections.news",
         "sections.contact-form",
-        "sections.cv-form"
+        "sections.cv-form",
+        "sections.get-in-touch-form"
       ]
     },
     "seoTitle": {

@@ -9,6 +9,7 @@ import type {
   NewsSection,
   ContactFormSection,
   CvFormSection,
+  GetInTouchFormSection,
 } from '@/types/sectionTypes';
 
 export enum SectionType {
@@ -20,6 +21,7 @@ export enum SectionType {
   News = "page:section:news",
   ContactForm = "page:section:contact_form",
   CvForm = "page:section:cv_form",
+  GetInTouchForm = "page:section:get_in_touch_form",
 }
 
 export type Section =
@@ -30,7 +32,8 @@ export type Section =
   | QoutesSection
   | NewsSection
   | ContactFormSection
-  | CvFormSection;
+  | CvFormSection
+  | GetInTouchFormSection;
 
 export interface Page {
   documentId: string;
@@ -159,6 +162,7 @@ export class DynamicPageHandler {
               componentId
               title
               subTitle
+              submitBtnLabel
               form {
                 documentId
                 title
@@ -178,6 +182,23 @@ export class DynamicPageHandler {
                 successMessage
                 errorMessage
                 steps
+              }
+            }
+            ... on ComponentSectionsGetInTouchForm {
+              componentId
+              formTitle
+              formSubTitle
+              form {
+                documentId
+                title
+                successMessage
+                errorMessage
+                steps
+              }
+              formSubmitBtnLabel
+              businessUnitsForFormSelect {
+                documentId
+                title
               }
             }
             ... on Error {
