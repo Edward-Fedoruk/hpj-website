@@ -241,7 +241,6 @@ function pos(id: string) {
     const statusEl = form.querySelector("#status");
     const setStatus = (m) => (statusEl.textContent = m || "");
 
-    // honeypot
     const honey = (
       form.querySelector('[name="honeypot_field"]')?.value || ""
     ).trim();
@@ -251,7 +250,6 @@ function pos(id: string) {
     const formId = form.dataset.formId;
     if (!formId) return setStatus("Form ID is missing");
 
-    // === базова перевірка полів ===
     const emailEl = form.querySelector(
       'input[type="email"], input[name*="email" i]'
     );
@@ -267,7 +265,6 @@ function pos(id: string) {
       return false;
     }
 
-    // === перевірка чекбоксів ===
     const checkboxes = form.querySelectorAll('input[type="checkbox"]');
     const checkedBoxes = form.querySelectorAll(
       'input[type="checkbox"]:checked'
@@ -278,7 +275,6 @@ function pos(id: string) {
       return false;
     }
 
-    // === перевірка файлів ===
     const fileInputs = form.querySelectorAll('input[type="file"]');
     const hasFileInputs = fileInputs.length > 0;
     const hasSelectedFile = [...fileInputs].some((i) => i.files?.length > 0);
@@ -288,11 +284,9 @@ function pos(id: string) {
       return false;
     }
 
-    // === збір даних у FormData ===
     const fd = new FormData();
     fd.append("form", formId);
 
-    // текстові, email і textarea
     const inputs = form.querySelectorAll(
       'input[type="text"], input[type="email"], textarea'
     );
@@ -303,14 +297,12 @@ function pos(id: string) {
       if (val) fd.append(`submission[${name}]`, val);
     }
 
-    // чекбокси
     for (const cb of checkboxes) {
       const name = cb.name?.replace("[]", "").trim();
       if (!name) continue;
       if (cb.checked) fd.append(`submission[${name}][]`, cb.value ?? "on");
     }
 
-    // файли (якщо є)
     for (const inp of fileInputs) {
       const name = inp.name?.trim();
       if (!name || !inp.files) continue;
@@ -319,7 +311,6 @@ function pos(id: string) {
       }
     }
 
-    // === відправка ===
     const btn = form.querySelector('button[type="submit"]');
     btn?.setAttribute("disabled", "true");
     setStatus("Sending...");

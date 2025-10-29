@@ -86,6 +86,9 @@ const FORM_ID = form?.documentId ?? "";
   async function handleSubmit(ev, form) {
     ev.preventDefault();
 
+    const statusEl = form.querySelector("#status");
+    const setStatus = (m) => (statusEl.textContent = m || "");
+
     const honey = (
       form.querySelector('[name="honeypot_field"]')?.value || ""
     ).trim();
@@ -95,34 +98,34 @@ const FORM_ID = form?.documentId ?? "";
     const formId = form.dataset.formId;
     const emailEl = form.querySelector("#emailaddress");
     const btn = form.querySelector('button[type="submit"]');
-    const statusEl = form.querySelector("#status");
 
     const email = (emailEl?.value || "").trim();
     if (!email) {
-      statusEl.textContent = "Enter email";
+      setStatus("Enter email");
+      emailEl?.focus();
       return false;
     }
 
+    const fd = new FormData();
+    fd.append("form", formId);
+    fd.append("submission", JSON.stringify({ emailaddress: email }));
+
     btn.disabled = true;
-    statusEl.textContent = "Sending...";
+    setStatus("Sending...");
 
     try {
       const res = await fetch(endpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          form: formId,
-          submission: { emailaddress: email },
-        }),
+        body: fd,
       });
 
       if (!res.ok) throw new Error(await res.text());
 
       form.reset();
-      statusEl.textContent = "Sent. Check your inbox.";
+      setStatus("Sent. Check your inbox.");
     } catch (err) {
       console.error(err);
-      statusEl.textContent = "Failed. Try again.";
+      setStatus("Failed. Try again.");
     } finally {
       btn.disabled = false;
     }
