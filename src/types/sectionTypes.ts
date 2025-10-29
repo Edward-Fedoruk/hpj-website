@@ -77,3 +77,12 @@ export type ContactFormSection = {
     subTitle?: string | null;
     form?: FormType | null;
 }
+
+export type CvFormSection = {
+    __typename: "ComponentSectionsCvForm";
+    componentId: string;
+    title: string;
+    subTitle?: string | null;
+    form?: FormType | null;
+    submitBtnLabel?: string | null;
+}

@@ -7,7 +7,8 @@ import type {
   QoutesSection,
   WhyUsSection,
   NewsSection,
-  ContactFormSection
+  ContactFormSection,
+  CvFormSection,
 } from '@/types/sectionTypes';
 
 export enum SectionType {
@@ -18,6 +19,7 @@ export enum SectionType {
   Quotes = "page:section:quotes",
   News = "page:section:news",
   ContactForm = "page:section:contact_form",
+  CvForm = "page:section:cv_form",
 }
 
 export type Section =
@@ -27,7 +29,8 @@ export type Section =
   | WhyUsSection
   | QoutesSection
   | NewsSection
-  | ContactFormSection;
+  | ContactFormSection
+  | CvFormSection;
 
 export interface Page {
   documentId: string;
@@ -161,6 +164,19 @@ export class DynamicPageHandler {
                 title
                 errorMessage
                 successMessage
+                steps
+              }
+            }
+            ... on ComponentSectionsCvForm {
+              componentId
+              title
+              subTitle
+              submitBtnLabel
+              form {
+                documentId
+                title
+                successMessage
+                errorMessage
                 steps
               }
             }

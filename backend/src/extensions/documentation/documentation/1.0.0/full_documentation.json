@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-28T15:44:25.035Z"
+    "x-generation-date": "2025-10-29T12:19:12.821Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -3187,6 +3187,9 @@
               "sections.cv-form"
             ]
           },
+          "componentId": {
+            "type": "string"
+          },
           "title": {
             "type": "string"
           },
@@ -3203,6 +3206,9 @@
                 "type": "string"
               }
             }
+          },
+          "submitBtnLabel": {
+            "type": "string"
           }
         }
       },

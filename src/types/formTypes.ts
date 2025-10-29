@@ -33,7 +33,10 @@ export type FormFieldType = {
     name: string;
     type: string;
     config: {
-        required: boolean;
+        required?: boolean;
+        validations?: Array<{
+            allowedTypes?: string;
+        }>;
     };
     options: Array<{
         label: string;

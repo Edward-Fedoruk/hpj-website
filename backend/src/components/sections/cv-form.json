@@ -5,6 +5,12 @@
   },
   "options": {},
   "attributes": {
+    "componentId": {
+      "type": "string",
+      "default": "page:section:cv_form",
+      "required": true,
+      "unique": true
+    },
     "title": {
       "type": "string",
       "default": "Submit Your CV",
@@ -12,12 +18,17 @@
     },
     "subTitle": {
       "type": "text",
-      "default": "“Didn’t find a position that fits? We’d still love to hear from you.”"
+      "default": "\"Didn't find a position that fits? We'd still love to hear from you.\""
     },
     "form": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::api-forms.form"
+    },
+    "submitBtnLabel": {
+      "type": "string",
+      "default": "Submit Application",
+      "required": false
     }
   },
   "config": {}

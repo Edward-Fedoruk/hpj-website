@@ -1,48 +1,341 @@
 ---
-import type { FormType } from "@/types/formTypes";
+import type { FormType, FormLayoutType } from "@/types/formTypes";
 
 interface Props {
   title: string;
   subTitle?: string;
   form?: FormType | null;
+  submitBtnLabel?: string | null;
 }
 
-const { title, subTitle, form } = Astro.props;
+const { title, subTitle, form, submitBtnLabel } = Astro.props;
 
 const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL || "http://localhost:1337";
 const ENDPOINT = `${STRAPI_URL}/api/api-forms/submission/post`;
 const FORM_ID = form?.documentId ?? "";
+
+const layouts = (form as any)?.steps?.[0]?.layouts ?? null;
+
+function byIdMap(arr: FormLayoutType[] | undefined) {
+  const m = new Map<string, FormLayoutType>();
+  (arr ?? []).forEach((it) => m.set(it.i, it));
+  return m;
+}
+const lgMap = byIdMap(layouts?.lg);
+const mdMap = byIdMap(layouts?.md);
+const smMap = byIdMap(layouts?.sm);
+
+const order = layouts?.lg?.length
+  ? layouts.lg
+  : layouts?.md?.length
+    ? layouts.md
+    : (layouts?.sm ?? []);
+
+const hasFile = order.some((it: FormLayoutType) => it.field.type === "file");
+
+function pos(id: string) {
+  const lg = lgMap.get(id) ?? mdMap.get(id) ?? smMap.get(id);
+  const md = mdMap.get(id) ?? smMap.get(id) ?? lgMap.get(id);
+  const sm = smMap.get(id) ?? mdMap.get(id) ?? lgMap.get(id);
+  return {
+    lgx: lg?.x ?? 0,
+    lgw: lg?.w ?? 12,
+    mdx: md?.x ?? 0,
+    mdw: md?.w ?? 12,
+    smx: sm?.x ?? 0,
+    smw: sm?.w ?? 12,
+  };
+}
 ---
 
 <section
-  class="relative mx-auto flex flex-col gap-6 bg-[var(--color-dark-purple)] px-4 py-[100px] selection:bg-white! selection:text-[#524CF2]! md:items-center md:gap-8 md:py-[134px] xl:px-10"
+  class="relative mx-auto flex flex-col gap-6 bg-[var(--color-dark-purple)] px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10"
 >
-  {
-    title && (
-      <h1 class="block max-w-[578px] text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200">
-        <Fragment set:html={title} />
-      </h1>
-    )
-  }
+  <h1
+    class="block max-w-[578px] text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight"
+  >
+    <Fragment set:html={title} />
+  </h1>
+
   {
     subTitle && (
-      <p class="mx-auto w-full max-w-[578px] text-center text-lg leading-relaxed text-pretty text-[#FFFFFFB2]">
+      <p class="mx-auto w-full max-w-[578px] text-center text-lg leading-relaxed text-[#FFFFFFB2]">
         {subTitle}
       </p>
     )
   }
+
   {
-    form && (
+    layouts && (
       <form
         class="flex w-full flex-col items-center"
         data-endpoint={ENDPOINT}
         data-form-id={FORM_ID}
-        onsubmit="return handleSubmit(event, this)"
-    >
-        <!-- Form fields go here -->
-    </form>
+        data-has-file={hasFile ? "true" : "false"}
+        onsubmit="return CVFormhandleSubmit(event, this)"
+      >
+        <div class="flex w-full flex-col items-center">
+          <input
+            type="text"
+            name="honeypot_field"
+            class="hidden"
+            tabindex="-1"
+            autocomplete="off"
+          />
+
+          <div class="grid12 w-full max-w-[920px] gap-4">
+            {order.map((it: FormLayoutType) => {
+              const p = pos(it.i);
+              const f = it.field;
+              const required = f.config?.required ? true : undefined;
+
+              return (
+                <div
+                  class="cell flex flex-col"
+                  style={
+                    {
+                      "--x-sm": p.smx,
+                      "--w-sm": p.smw,
+                      "--x-md": p.mdx,
+                      "--w-md": p.mdw,
+                      "--x-lg": p.lgx,
+                      "--w-lg": p.lgw,
+                    } as any
+                  }
+                >
+                  {f.type === "text" || f.type === "email" ? (
+                    <label class="flex flex-col gap-1">
+                      <span class="label">
+                        {f.label}
+                        {required && <sup class="req">*</sup>}
+                      </span>
+                      <input
+                        id={f.name}
+                        type={f.type}
+                        name={f.name}
+                        placeholder={f.placeholder || ""}
+                        required={required}
+                        class="input"
+                      />
+                    </label>
+                  ) : f.type === "textarea" ? (
+                    <label class="flex flex-col gap-1">
+                      <span class="label">
+                        {f.label}
+                        {required && <sup class="req">*</sup>}
+                      </span>
+                      <textarea
+                        name={f.name}
+                        placeholder={f.placeholder || ""}
+                        required={required}
+                        class="input min-h-[120px]"
+                      />
+                    </label>
+                  ) : f.type === "file" ? (
+                    <label class="flex flex-col gap-1">
+                      <span class="label">
+                        {f.label}
+                        {required && <sup class="req">*</sup>}
+                      </span>
+                      <input
+                        type="file"
+                        name={f.name}
+                        required={required}
+                        class="fileinput"
+                      />
+                    </label>
+                  ) : f.type === "checkboxgroup" ? (
+                    <fieldset class="flex flex-col gap-2">
+                      <legend class="label">
+                        {f.label}
+                        {required && <sup class="req">*</sup>}
+                      </legend>
+                      <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
+                        {(f.options ?? []).map((opt) => (
+                          <label class="inline-flex items-center gap-2 text-white">
+                            <input
+                              type="checkbox"
+                              name={`${f.name}[]`}
+                              value={opt.value}
+                              class="h-4 w-4"
+                            />
+                            <span>{opt.label}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </fieldset>
+                  ) : (
+                    <div class="text-sm text-amber-300">
+                      Unsupported field: <code>{f.type}</code>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <button
+            type="submit"
+            class="mt-4 flex h-[56px] w-full max-w-[300px] items-center justify-center rounded-[10px] bg-[var(--color-primary)] text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {submitBtnLabel ?? "Submit"}
+          </button>
+
+          <p
+            id="status"
+            class="h-5 pt-[10px] text-sm text-[#FFFFFFCC]"
+            aria-live="polite"
+          />
+        </div>
+      </form>
     )
   }
 </section>
 
----
+<style>
+  .grid12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .cell {
+    --x: var(--x-sm);
+    --w: var(--w-sm);
+    grid-column: calc(var(--x) + 1) / span var(--w);
+  }
+  @media (min-width: 768px) {
+    .cell {
+      --x: var(--x-md);
+      --w: var(--w-md);
+    }
+  }
+  @media (min-width: 1024px) {
+    .cell {
+      --x: var(--x-lg);
+      --w: var(--w-lg);
+    }
+  }
+
+  .label {
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  .req {
+    color: #f87171;
+  }
+  .input {
+    color: white;
+    background: color-mix(in oklab, white 5%, transparent);
+    padding: 0.5rem 0.75rem;
+    outline: none;
+  }
+  .fileinput {
+    color: white;
+    font-size: 0.875rem;
+  }
+</style>
+
+<script is:inline>
+  async function CVFormhandleSubmit(ev, form) {
+    ev.preventDefault();
+    const statusEl = form.querySelector("#status");
+    const setStatus = (m) => (statusEl.textContent = m || "");
+
+    // honeypot
+    const honey = (
+      form.querySelector('[name="honeypot_field"]')?.value || ""
+    ).trim();
+    if (honey) return false;
+
+    const endpoint = form.dataset.endpoint;
+    const formId = form.dataset.formId;
+    if (!formId) return setStatus("Form ID is missing");
+
+    // === базова перевірка полів ===
+    const emailEl = form.querySelector(
+      'input[type="email"], input[name*="email" i]'
+    );
+    const nameEl = form.querySelector('input[name*="name" i]');
+    if (!emailEl || !emailEl.value.trim()) {
+      setStatus("Enter email");
+      emailEl?.focus();
+      return false;
+    }
+    if (!nameEl || !nameEl.value.trim()) {
+      setStatus("Enter your name");
+      nameEl?.focus();
+      return false;
+    }
+
+    // === перевірка чекбоксів ===
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    const checkedBoxes = form.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    );
+    if (checkboxes.length > 0 && checkedBoxes.length === 0) {
+      setStatus("Please select at least one option");
+      checkboxes[0]?.focus();
+      return false;
+    }
+
+    // === перевірка файлів ===
+    const fileInputs = form.querySelectorAll('input[type="file"]');
+    const hasFileInputs = fileInputs.length > 0;
+    const hasSelectedFile = [...fileInputs].some((i) => i.files?.length > 0);
+    if (hasFileInputs && !hasSelectedFile) {
+      setStatus("Please upload a file before submitting");
+      fileInputs[0]?.focus();
+      return false;
+    }
+
+    // === збір даних у FormData ===
+    const fd = new FormData();
+    fd.append("form", formId);
+
+    // текстові, email і textarea
+    const inputs = form.querySelectorAll(
+      'input[type="text"], input[type="email"], textarea'
+    );
+    for (const el of inputs) {
+      const name = el.name?.trim();
+      if (!name) continue;
+      const val = el.value?.trim();
+      if (val) fd.append(`submission[${name}]`, val);
+    }
+
+    // чекбокси
+    for (const cb of checkboxes) {
+      const name = cb.name?.replace("[]", "").trim();
+      if (!name) continue;
+      if (cb.checked) fd.append(`submission[${name}][]`, cb.value ?? "on");
+    }
+
+    // файли (якщо є)
+    for (const inp of fileInputs) {
+      const name = inp.name?.trim();
+      if (!name || !inp.files) continue;
+      for (const f of inp.files) {
+        fd.append(`files[${name}]`, f, f.name);
+      }
+    }
+
+    // === відправка ===
+    const btn = form.querySelector('button[type="submit"]');
+    btn?.setAttribute("disabled", "true");
+    setStatus("Sending...");
+
+    try {
+      const res = await fetch(endpoint, { method: "POST", body: fd });
+      if (!res.ok) throw new Error(await res.text());
+      form.reset();
+      setStatus("Sent. Check your inbox.");
+    } catch (err) {
+      console.error(err);
+      setStatus("Failed. Try again.");
+    } finally {
+      btn?.removeAttribute("disabled");
+    }
+
+    return false;
+  }
+</script>

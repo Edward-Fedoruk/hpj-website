@@ -57,9 +57,15 @@ export interface SectionsCvForm extends Struct.ComponentSchema {
     displayName: "CV Form";
   };
   attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.DefaultTo<"page:section:cv_form">;
     form: Schema.Attribute.Relation<"oneToOne", "plugin::api-forms.form">;
+    submitBtnLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<"Submit Application">;
     subTitle: Schema.Attribute.Text &
-      Schema.Attribute.DefaultTo<"\u201CDidn\u2019t find a position that fits? We\u2019d still love to hear from you.\u201D">;
+      Schema.Attribute.DefaultTo<"\"Didn't find a position that fits? We'd still love to hear from you.\"">;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"Submit Your CV">;
