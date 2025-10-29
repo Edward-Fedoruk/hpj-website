@@ -1,9 +1,9 @@
 ---
-import { Image } from 'astro:assets';
-import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro';
-import SecondaryCTA from '@components/ui/buttons/SecondaryCTA.astro';
+import { Image } from "astro:assets";
+import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
+import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 
-import { buildStrapiResponsive } from '@/utils/strapiImg';
+import { buildStrapiResponsive } from "@/utils/strapiImg";
 
 interface Props {
   title: string;
@@ -37,18 +37,18 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
           height={builtBgImg.height}
           srcset={builtBgImg.srcset}
           sizes="(max-width: 500px) 500px, 100vw"
-          alt={bgImgSrc.alternativeText ?? bgImgAlt ?? 'background image'}
-          draggable={'false'}
-          loading={'eager'}
-          fetchpriority={'high'}
+          alt={bgImgSrc.alternativeText ?? bgImgAlt ?? "background image"}
+          draggable={"false"}
+          loading={"eager"}
+          fetchpriority={"high"}
           class="h-full w-full scale-110 object-cover object-center"
         />
       </div>
     )
   }
-  <div data-aos="fade-in" data-aos-delay="500" data-aos-once="true">
+  <div data-aos="fade-in" data-aos-delay="500" data-aos-once="true" class="flex flex-col items-center justify-center">
     <h1
-      class="block text-center font-(family-name:--font-helvetica-bold) text-3xl font-black tracking-tight text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+      class="font-helvetica-bold block text-center text-[40px] font-black tracking-tight text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
     >
       <Fragment set:html={title} />
     </h1>
@@ -59,7 +59,7 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
         </p>
       )
     }
-    <div class="mt-7 grid w-full justify-center gap-3 sm:inline-flex">
+    <div class="mt-7 grid w-full gap-3 sm:inline-flex sm:justify-center">
       {
         primaryBtnLabel && primaryBtnURL && (
           <PrimaryCTA title={primaryBtnLabel} url={primaryBtnURL} noArrow className="w-full md:w-[300px] h-[56px]" />

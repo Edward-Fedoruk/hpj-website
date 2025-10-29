@@ -71,13 +71,13 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 
     <div class="flex-[0_1_50%]">
       <h1
-        class="block text-start font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-[#040404] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+        class="text-text-text-main block text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line sm:text-4xl md:text-start lg:text-6xl lg:leading-tight dark:text-neutral-200"
       >
         <Fragment set:html={title} />
       </h1>
       {
         text && (
-          <p class="mx-auto mt-5 w-full max-w-[846px] text-start text-lg leading-relaxed text-pretty text-[#040404E5]">
+          <p class="text-text-text-secondary mx-auto mt-5 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty md:text-start">
             {text}
           </p>
         )

@@ -1,6 +1,7 @@
 ---
 import SectionCorner from "../../SectionCorner.astro";
 import RoadMapItem from "./RoadMapItem.astro";
+import RoadMapMobileItem from "./RoadMapMobileItem.astro";
 import type { IRoadMapItem } from "./RoadMapItem.astro";
 
 const { title, roadMapItems } = Astro.props;
@@ -20,20 +21,49 @@ interface Props extends RoadMapSectionProps {}
   <SectionCorner className="text-[#F7F7F7]" position="bottom-right" />
 
   <div
-    class="m-auto flex max-w-[85rem] flex-col text-white"
+    class="m-auto flex max-w-[85rem] flex-col text-white overflow-hidden"
     data-aos="fade-up"
     data-aos-delay="150"
     data-aos-once="true"
   >
     <h1
-      class="block text-center font-(family-name:--font-helvetica-bold) text-[32px] font-bold tracking-tight text-balance whitespace-pre-line sm:text-4xl md:text-[52px] lg:text-6xl lg:leading-tight dark:text-neutral-200"
+      class="mb-20 block text-center font-(family-name:--font-helvetica-bold) text-[32px] font-bold tracking-tight text-balance whitespace-pre-line sm:text-4xl md:text-[52px] lg:text-6xl lg:leading-tight"
     >
       <Fragment set:html={title} />
     </h1>
 
+
     {
       roadMapItems && (
-        <div class="mt-[90px] flex w-full flex-col items-center justify-center sm:flex-row" id="road-map-titles">
+        <div class="embla block h-fit lg:hidden" id="mobile-road-map">
+          <div class="embla__container flex w-full flex-row flex-nowrap gap-4 relative">
+
+            {roadMapItems.map((item, index) => {
+              if (index < roadMapItems.length && index !== roadMapItems.length - 1) {
+                return (
+                  <div class="embla__slide relative flex w-fit flex-[0_0_100%] flex-col items-center">
+                    <RoadMapMobileItem {...item} index={index} />
+                    <div class="absolute top-[82px] right-[-20%] -z-10 h-[1px] w-[calc(35%)] bg-white opacity-50 sm:block"></div>
+                  </div>
+                );
+              }
+              return (
+                <div class="embla__slide relative flex w-fit flex-[0_0_100%] flex-col items-center">
+                  <RoadMapMobileItem {...item} index={index} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )
+    }
+
+    {
+      roadMapItems && (
+        <div
+          class="mt-[90px] hidden w-full flex-col items-center justify-center sm:flex-row lg:flex"
+          id="road-map-titles"
+        >
           {roadMapItems.map((item, index) => {
             if (index < roadMapItems.length && index === roadMapItems.length - 1) {
               return (
@@ -41,6 +71,14 @@ interface Props extends RoadMapSectionProps {}
                   <RoadMapItem {...item} index={index} />
                   <div class="absolute top-[3px] left-0 -z-10 mt-6 hidden h-[110px] w-[1px] rotate-90 bg-white opacity-50 sm:block" />
                   <div class="absolute top-[3px] right-0 -z-10 mt-6 hidden h-[110px] w-[1px] rotate-90 bg-white opacity-50 sm:block" />
+                  <h4 class="mt-auto text-2xl font-bold">
+                    {item.date
+                      ? new Date(item.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "2-digit",
+                        })
+                      : null}
+                  </h4>
                 </div>
               );
             }
@@ -49,10 +87,30 @@ interface Props extends RoadMapSectionProps {}
                 <div class="relative flex h-[280px] flex-1 flex-col items-center gap-4">
                   <RoadMapItem {...item} index={index} />
                   <div class="absolute top-[3px] left-0 -z-10 mt-6 hidden h-[110px] w-[1px] rotate-90 bg-white opacity-50 sm:block" />
+                  <h4 class="mt-auto text-2xl font-bold">
+                    {item.date
+                      ? new Date(item.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "2-digit",
+                        })
+                      : null}
+                  </h4>
                 </div>
               );
             }
-            return <RoadMapItem {...item} index={index} />;
+            return (
+              <RoadMapItem {...item} index={index} />
+                <h4 class="mt-auto text-2xl font-bold">
+                  {
+                    item.date
+                      ? new Date(item.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "2-digit",
+                        })
+                      : null
+                  }
+                </h4>
+            );
           })}
         </div>
       )
@@ -60,7 +118,7 @@ interface Props extends RoadMapSectionProps {}
     {
       roadMapItems && (
         <div
-          class="mx-auto mt-10 flex w-full max-w-[910px] flex-col items-center justify-center text-center"
+          class="mx-auto mt-10 hidden md:flex w-full max-w-[910px] flex-col items-center justify-center text-center"
           id="road-map-descriptions"
         >
           {roadMapItems.map((item) => {
@@ -78,6 +136,32 @@ interface Props extends RoadMapSectionProps {}
   }
   #road-map-titles .selected .square {
     background-color: #ffffff40;
+  }
+</style>
+
+<style>
+  @media screen and (max-width: 768px) {
+    .embla {
+      width: 100%;
+      max-width: 1280px;
+      --slide-height: 334px;
+      --slide-spacing: 0;
+      --slide-size: 100%;
+    }
+    .embla__viewport {
+      overflow: hidden;
+    }
+    .embla__container {
+      display: flex;
+      touch-action: pan-y pinch-zoom;
+      margin-left: calc(var(--slide-spacing) * -1);
+    }
+    .embla__slide {
+      transform: translate3d(0, 0, 0);
+      flex: 0 0 var(--slide-size);
+      min-width: 0;
+      margin-left: var(--slide-spacing);
+    }
   }
 </style>
 
@@ -124,4 +208,20 @@ interface Props extends RoadMapSectionProps {}
   }
 
   selectItem(0);
+</script>
+
+<script>
+  import EmblaCarousel, { type EmblaOptionsType } from "embla-carousel";
+  import { addPrevNextBtnsClickHandlers } from "@scripts/emblaSliderButtons";
+
+  const emblaNode = document.querySelector("#mobile-road-map");
+  const options: EmblaOptionsType = { loop: false, align: "start", dragFree: false };
+  const emblaApi = EmblaCarousel(emblaNode! as HTMLElement, options);
+
+  const prevBtnNode = emblaNode!.querySelector(".embla__button--prev") as HTMLElement;
+  const nextBtnNode = emblaNode!.querySelector(".embla__button--next") as HTMLElement;
+
+  const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtnNode, nextBtnNode);
+
+  emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
 </script>

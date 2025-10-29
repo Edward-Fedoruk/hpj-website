@@ -37,7 +37,8 @@ export function buildStrapiResponsive(
     preferredBase = 1920,
     includeOriginal = false,
   }: BuildOptions = {}
-): Built {
+): Built | null {
+  if (!image) return null;
   const raw: Array<{ w: number; h: number; url: string }> = [];
   for (const v of Object.values(image.formats ?? {})) {
     if (!v?.url || !v?.width) continue;

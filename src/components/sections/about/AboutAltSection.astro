@@ -5,15 +5,16 @@ import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 import { Image } from "astro:assets";
 
-const { title, subtitle, primaryBtn, primaryBtnURL, secondaryBtn, secondaryBtnURL, profilePictures } = Astro.props;
+const { title, subtitle, primaryBtnLabel, primaryBtnURL, secondaryBtnLabel, secondaryBtnURL, profilePictures } =
+  Astro.props;
 
 export interface AboutAltSectionProps {
   profilePictures?: StrapiImageType[];
   title: string;
   subtitle?: string;
-  primaryBtn?: string;
+  primaryBtnLabel?: string;
   primaryBtnURL?: string;
-  secondaryBtn?: string;
+  secondaryBtnLabel?: string;
   secondaryBtnURL?: string;
 }
 
@@ -49,23 +50,30 @@ interface Props extends AboutAltSectionProps {}
     }
 
     <h1
-      class="font-helvetica-bold mb-6 block text-center text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-[#040404] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+      class="font-helvetica-bold text-text-text-main mb-6 block text-center text-3xl font-bold tracking-tight text-balance whitespace-pre-line sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
     >
       <Fragment set:html={title} />
     </h1>
     {
       subtitle && (
-        <p class="mx-auto mb-6 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty text-[#040404E5]">
+        <p class="text-text-text-secondary mx-auto mt-6 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty">
           {subtitle}
         </p>
       )
     }
     {
-      (primaryBtn || secondaryBtn) && (
-        <div class="mt-6 grid w-full justify-center gap-3 sm:inline-flex">
-          {primaryBtn && <PrimaryCTA title={primaryBtn} url={primaryBtnURL} noArrow className="w-[300px] h-[46px]" />}
-          {secondaryBtn && (
-            <SecondaryCTA title={secondaryBtn} url={secondaryBtnURL} className="w-48 h-[46px] text-primary" arrow />
+      (primaryBtnLabel || secondaryBtnLabel) && (
+        <div class="mt-8 grid w-full justify-center gap-3 sm:inline-flex">
+          {primaryBtnLabel && (
+            <PrimaryCTA title={primaryBtnLabel} url={primaryBtnURL} noArrow className="w-fit h-[46px]" />
+          )}
+          {secondaryBtnLabel && (
+            <SecondaryCTA
+              title={secondaryBtnLabel}
+              url={secondaryBtnURL}
+              className="w-fit h-[46px] text-primary"
+              arrow
+            />
           )}
         </div>
       )

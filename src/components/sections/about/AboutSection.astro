@@ -41,18 +41,18 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 ---
 
 <section
-  class="mx-auto flex flex-col gap-6 bg-white px-4 py-[100px] md:items-center md:gap-8"
+  class="mx-auto flex flex-col gap-6 bg-[#F5F5F5] px-4 py-[100px] md:items-center md:gap-8 md:py-[150px]"
   style={customWrapperStyleStr}
 >
-  <div data-aos="fade-in" data-aos-delay="150" data-aos-once="true" class="w-full">
+  <div data-aos="fade-up" data-aos-delay="150" data-aos-once="true" class="w-full">
     <h1
-      class="block text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-[#040404] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+      class="text-text-text-main block text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
     >
       <Fragment set:html={title} />
     </h1>
     {
       subtitle && (
-        <p class="mx-auto w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty text-[#040404E5]">
+        <p class="text-text-text-secondary mx-auto mt-6 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty">
           {subtitle}
         </p>
       )

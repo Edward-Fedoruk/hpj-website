@@ -1,9 +1,9 @@
 ---
-import type { StrapiImageType } from '@/types/common';
-import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro';
-import SecondaryCTA from '@components/ui/buttons/SecondaryCTA.astro';
-import { Image } from 'astro:assets';
-import { buildStrapiResponsive } from '@/utils/strapiImg';
+import type { StrapiImageType } from "@/types/common";
+import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
+import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
+import { Image } from "astro:assets";
+import { buildStrapiResponsive } from "@/utils/strapiImg";
 
 const { title, subTitle, primaryBtn, primaryBtnURL, secondaryBtn, secondaryBtnURL, img, imgAlt } = Astro.props;
 
@@ -33,22 +33,22 @@ if (img) {
   data-aos-delay="150"
   data-aos-once="true"
 >
-  <div class="flex flex-1 flex-col items-start">
+  <div class="flex flex-1 flex-col items-center md:items-start">
     <h1
-      class="font-helvetica-bold text-gray-90 block text-3xl font-black tracking-tight text-balance whitespace-pre-line sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+      class="font-helvetica-bold text-text-main order-1 block text-center text-[32px] font-black tracking-tight text-balance whitespace-pre-line sm:text-4xl md:text-start lg:text-6xl lg:leading-tight"
     >
       <Fragment set:html={title} />
     </h1>
     {
       subTitle && (
-        <p class="text-neutral-gray mx-auto mt-6 w-full max-w-[846px] text-lg leading-relaxed text-pretty">
+        <p class="text-text-secondary order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty md:text-start">
           {subTitle}
         </p>
       )
     }
     {
       (primaryBtn || secondaryBtn) && (
-        <div class="mt-6 grid w-full justify-center gap-3 sm:inline-flex">
+        <div class="order-1 mt-6 grid w-full justify-center gap-3 sm:inline-flex">
           {primaryBtn && <PrimaryCTA title={primaryBtn} url={primaryBtnURL} noArrow className="w-[300px] h-[46px]" />}
           {secondaryBtn && (
             <SecondaryCTA
@@ -61,7 +61,7 @@ if (img) {
         </div>
       )
     }
-    <ul class="mt-10 flex flex-row flex-wrap gap-x-6 gap-y-10">
+    <ul class="order-2 mt-10 flex-row flex-wrap gap-x-6 gap-y-10 hidden lg:flex">
       <li class="flex-[1_0_200px]">
         <p class="font-helvetica-bold fond-bold text-primary text-3xl md:text-[38px]">98%</p>
         <p class="text-gray-90 text-lg">Client Retention</p>
@@ -80,7 +80,7 @@ if (img) {
       </li>
     </ul>
   </div>
-  <div class="flex-1 overflow-hidden rounded-2xl">
+  <div class="order-1 flex-1 overflow-hidden rounded-2xl">
     {
       builtImg && (
         <Image
@@ -89,12 +89,30 @@ if (img) {
           height={builtImg.height}
           srcset={builtImg.srcset}
           sizes="(max-width: 500px) 500px, 100vw"
-          alt={img?.alternativeText ?? imgAlt ?? 'background image'}
-          draggable={'false'}
-          loading={'eager'}
-          fetchpriority={'high'}
+          alt={img?.alternativeText ?? imgAlt ?? "background image"}
+          draggable={"false"}
+          loading={"eager"}
+          fetchpriority={"high"}
           class="h-full w-full scale-110 object-cover object-center"
         />
+        <ul class="order-2 mt-10 flex flex-row flex-wrap gap-x-6 gap-y-10 lg:hidden text-center">
+          <li class="flex-[1_1_45%]">
+            <p class="font-helvetica-bold fond-bold text-primary text-3xl md:text-[38px]">98%</p>
+            <p class="text-gray-90 text-lg">Client Retention</p>
+          </li>
+          <li class="flex-[1_1_45%]">
+            <p class="font-helvetica-bold fond-bold text-primary text-3xl md:text-[38px]">650+</p>
+            <p class="text-gray-90 text-lg">Projects Delivered</p>
+          </li>
+          <li class="flex-[1_1_45%]">
+            <p class="font-helvetica-bold fond-bold text-primary text-3xl md:text-[38px]">4+</p>
+            <p class="text-gray-90 text-lg">Business Divisions</p>
+          </li>
+          <li class="flex-[1_1_45%]">
+            <p class="font-helvetica-bold fond-bold text-primary text-3xl md:text-[38px]">100%</p>
+            <p class="text-gray-90 text-lg">Audit Pass Rate</p>
+          </li>
+        </ul>
       )
     }
   </div>
