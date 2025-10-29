@@ -53,7 +53,7 @@ const mainImg = buildStrapiResponsive(img);
       }
     </div>
 
-    <div class="embla relative overflow-hidden pb-4 md:flex-1" id="news-slider">
+    <div class="embla relative overflow-hidden pb-4 md:flex-1" id="quotes-slider">
       <div class="embla__container mt-[80px] md:mt-[80px]">
         {
           quotesList.map((item) => {
@@ -162,7 +162,7 @@ const mainImg = buildStrapiResponsive(img);
   import EmblaCarousel, { type EmblaOptionsType } from "embla-carousel";
   import { addPrevNextBtnsClickHandlers } from "@scripts/emblaSliderButtons";
 
-  const emblaNode = document.querySelector("#news-slider");
+  const emblaNode = document.querySelector("#quotes-slider");
   const options: EmblaOptionsType = { loop: false, align: "start", dragFree: false };
   const emblaApi = EmblaCarousel(emblaNode! as HTMLElement, options);
 
