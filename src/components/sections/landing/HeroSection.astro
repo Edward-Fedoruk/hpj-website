@@ -4,6 +4,7 @@ import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 
 import { buildStrapiResponsive } from "@/utils/strapiImg";
+import SectionCorner from "../SectionCorner.astro";
 
 interface Props {
   title: string;
@@ -23,14 +24,11 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
 ---
 
 <section
-  class="mx-auto grid min-h-[636px] max-w-[85rem] gap-4 px-4 py-14 pt-[86px] md:min-h-[700px] md:items-center md:gap-8 xl:px-10"
+  class="header-text-white mx-auto grid min-h-[636px] max-w-[85rem] gap-4 px-4 py-14 pt-[86px] md:min-h-[700px] md:items-center md:gap-8 xl:px-10"
 >
   {
     builtBgImg && bgImgAlt && (
-      <div
-        class="pointer-events-none absolute top-0 left-0 -z-20 h-[636px] w-full overflow-hidden bg-white md:h-[700px]"
-        id="main-banner-img"
-      >
+      <div class="hero-img pointer-events-none absolute top-0 left-0 -z-20 h-[636px] w-full overflow-hidden bg-white md:h-[700px]">
         <Image
           src={builtBgImg.src}
           width={builtBgImg.width}
@@ -43,6 +41,7 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
           fetchpriority={"high"}
           class="h-full w-full scale-110 object-cover object-center"
         />
+        <SectionCorner position="bottom-right" className="text-[#f7f7f7]" />
       </div>
     )
   }
@@ -78,3 +77,29 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
     </div>
   </div>
 </section>
+
+<script>
+  const setCornerColor = () => {
+    const heroSection = document.querySelector("section:has(.hero-img)");
+    if (!heroSection) return;
+
+    const sectionAfterHero = heroSection?.nextElementSibling?.nextElementSibling;
+    if (!sectionAfterHero) return;
+
+    sectionAfterHero.classList.forEach((classStr, i) => {
+      if (classStr.includes("bg-")) {
+        const cornerElement = heroSection.querySelector(".hero-img > svg");
+        const bgColor = classStr.split("bg-")[1].replace("[", "").replace("]", "");
+        cornerElement?.classList.add(`text-[${bgColor}]`);
+      }
+    });
+  };
+
+  setCornerColor();
+</script>
+
+<style>
+  img {
+    filter: brightness(0.3);
+  }
+</style>

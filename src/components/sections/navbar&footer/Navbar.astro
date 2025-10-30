@@ -33,13 +33,13 @@ const homeUrl = "/";
       <div class="ml-auto md:hidden">
         <button
           type="button"
-          class="hs-collapse-toggle flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-white transition duration-300 hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-50 md:text-neutral-600 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:outline-hidden"
+          class="hs-collapse-toggle flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold transition duration-300 hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-50 md:text-neutral-600 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:outline-hidden"
           data-hs-collapse="#navbar-collapse-with-animation"
           aria-controls="navbar-collapse-with-animation"
           aria-label="Toggle navigation"
         >
           <svg
-            class="hs-collapse-open:hidden h-[30px] w-[30px] shrink-0 text-white"
+            class="hs-collapse-open:hidden h-[30px] w-[30px] shrink-0"
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -54,7 +54,7 @@ const homeUrl = "/";
             <line x1="3" x2="21" y1="18" y2="18"></line>
           </svg>
           <svg
-            class="hs-collapse-open:block hidden h-[30px] w-[30px] shrink-0 text-white"
+            class="hs-collapse-open:block hidden h-[30px] w-[30px] shrink-0"
             width="30"
             height="30"
             viewBox="0 0 24 24"
@@ -99,3 +99,29 @@ const homeUrl = "/";
     </div>
   </nav>
 </header>
+
+<script>
+  const dynamicNavbarTextColorInit = () => {
+    const header = document.querySelector("header");
+    const sections = document.querySelectorAll("section");
+
+    if (!header) return;
+    if (!sections) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const isDark = entry.target.classList.contains("header-text-dark");
+            header.style.color = !isDark ? "white" : "black";
+          }
+        });
+      },
+      { threshold: 0.95 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  };
+
+  dynamicNavbarTextColorInit();
+</script>

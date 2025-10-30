@@ -22,7 +22,7 @@ const mainImg = buildStrapiResponsive(img);
 ---
 
 <section
-  class="mx-auto grid min-h-[636px] max-w-[82rem] gap-4 overflow-hidden px-5 py-14 pt-[86px] md:min-h-[700px] md:items-center md:gap-8"
+  class="header-text-dark mx-auto grid min-h-[636px] max-w-[82rem] gap-4 overflow-hidden px-5 py-14 pt-[86px] md:min-h-[700px] md:items-center md:gap-8"
   id="quotes-section"
 >
   <div
@@ -165,8 +165,6 @@ const mainImg = buildStrapiResponsive(img);
   const emblaNode = document.querySelector("#quotes-slider");
   const options: EmblaOptionsType = { loop: false, align: "start", dragFree: false };
   const emblaApi = EmblaCarousel(emblaNode! as HTMLElement, options);
-
-  console.log(emblaApi);
 
   const quotesSection = document.querySelector("#quotes-section");
 

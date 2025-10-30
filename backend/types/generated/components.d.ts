@@ -6,9 +6,7 @@ export interface SectionsAbout extends Struct.ComponentSchema {
     displayName: "About";
   };
   attributes: {
-    componentId: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:about">;
+    componentId: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"page:section:about">;
     customWrapperStyle: Schema.Attribute.Text;
     img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
     imgAlt: Schema.Attribute.String;
@@ -32,10 +30,7 @@ export interface SectionsAboutAlt extends Struct.ComponentSchema {
       Schema.Attribute.DefaultTo<"page:section:about_alt">;
     primaryBtnLabel: Schema.Attribute.String;
     primaryBtnURL: Schema.Attribute.String;
-    profilePictures: Schema.Attribute.Media<
-      "images" | "files" | "videos" | "audios",
-      true
-    >;
+    profilePictures: Schema.Attribute.Media<"images" | "files" | "videos" | "audios", true>;
     secondaryBtnLabel: Schema.Attribute.String;
     secondaryBtnURL: Schema.Attribute.String;
     subtitle: Schema.Attribute.Text;
@@ -137,9 +132,7 @@ export interface SectionsHero extends Struct.ComponentSchema {
   attributes: {
     bgImgAlt: Schema.Attribute.String;
     bgImgSrc: Schema.Attribute.Media<"images" | "files">;
-    componentId: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:hero">;
+    componentId: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"page:section:hero">;
     heroSubtitle: Schema.Attribute.Text;
     heroTitle: Schema.Attribute.String & Schema.Attribute.Required;
     primaryBtnLabel: Schema.Attribute.String;
@@ -156,9 +149,7 @@ export interface SectionsInfo extends Struct.ComponentSchema {
     icon: "information";
   };
   attributes: {
-    componentId: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:info">;
+    componentId: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"page:section:info">;
     img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
     imgAlt: Schema.Attribute.String;
     infoSubtitle: Schema.Attribute.Text;
@@ -176,9 +167,7 @@ export interface SectionsNews extends Struct.ComponentSchema {
     displayName: "News";
   };
   attributes: {
-    componentId: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:news">;
+    componentId: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"page:section:news">;
     newsList: Schema.Attribute.Component<"shared.news-item", true>;
     newsSubtitle: Schema.Attribute.Text;
     newsTitle: Schema.Attribute.String & Schema.Attribute.Required;

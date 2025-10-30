@@ -14,9 +14,9 @@ interface Props {
   id={url === "/" ? "home" : url.replace("/", "")}
   href={url}
   data-astro-prefetch
-  class={"text-nowrap md:text-center min-h-[77px] md:min-h-fit flex items-center justify-center rounded-lg text-2xl font-normal outline-hidden ring-zinc-500 focus-visible:ring-3 dark:text-neutral-400 dark:ring-zinc-200 dark:hover:text-neutral-500 dark:focus:outline-hidden md:py-3 md:text-lg text-[#FFFFFFCC]"}
+  class={"text-nowrap md:text-center min-h-[77px] md:min-h-fit flex items-center justify-center rounded-lg text-2xl font-normal outline-hidden ring-zinc-500 focus-visible:ring-3 dark:text-neutral-400 dark:ring-zinc-200 dark:hover:text-neutral-500 dark:focus:outline-hidden md:py-3 md:text-lg text-current"}
   style={`min-width: ${width}px;`}
-  >
+>
   {name}
 </a>
 
@@ -41,10 +41,7 @@ interface Props {
         "font-normal",
         "dark:hover:text-neutral-500"
       );
-      nav.classList.add(
-        "text-white",
-        "font-bold",
-      );
+      nav.classList.add("text-current", "font-bold");
       nav.setAttribute("aria-current", "page");
     }
   });

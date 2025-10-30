@@ -17,7 +17,7 @@ interface Props extends NewsSectionProps {}
 ---
 
 <section 
-  class="mx-auto gap-8 bg-[#F7F7F7] px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10 overflow-hidden"
+  class="mx-auto gap-8 bg-[#F7F7F7] header-text-dark px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10 overflow-hidden"
 >
   <h1
       class="font-(family-name:--font-helvetica-bold) block text-center text-2xl font-bold tracking-tight text-balance whitespace-pre-line text-[var(--color-gray-90)] lg:text-[52px] lg:leading-tight"
@@ -64,7 +64,7 @@ interface Props extends NewsSectionProps {}
               <div 
                 class="w-full overflow-hidden rounded-2xl bg-white embla__slide md:max-w-[820px]"
                 data-aos="fade-up"
-                data-aos-delay={150 + i * 50}
+                data-aos-delay={150 + i * 100}
                 data-aos-once="true"
               >
 
@@ -167,7 +167,6 @@ interface Props extends NewsSectionProps {}
           embla = null;
         }
       }
-      console.log(embla?.rootNode());
     };
 
     handleResize(mediaQuery);

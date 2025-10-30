@@ -20,5 +20,8 @@
   "prettier.configPath": "./",
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
-  }
+  },
+  "prettier.proseWrap": "preserve",
+  "html.format.wrapAttributesIndentSize": null,
+  "html.format.wrapAttributes": "auto"
 }
