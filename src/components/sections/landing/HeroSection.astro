@@ -35,7 +35,6 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
           src={builtBgImg.src}
           width={builtBgImg.width}
           height={builtBgImg.height}
-          alt={bgImgAlt || builtBgImg}
           srcset={builtBgImg.srcset}
           sizes="(max-width: 500px) 500px, 100vw"
           alt={bgImgSrc.alternativeText ?? bgImgAlt ?? "background image"}
