@@ -1,36 +1,21 @@
 {
-  "collectionName": "components_sections_abouts",
+  "collectionName": "components_sections_infos",
   "info": {
-    "displayName": "About"
+    "displayName": "info",
+    "icon": "information"
   },
   "options": {},
   "attributes": {
-    "title": {
+    "infoTitle": {
       "type": "string",
       "required": true
-    },
-    "subtitle": {
-      "type": "text"
-    },
-    "img": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "imgAlt": {
-      "type": "string"
     },
     "componentId": {
       "type": "string",
-      "default": "page:section:about",
+      "default": "page:section:info",
       "required": true
     },
-    "customWrapperStyle": {
+    "infoSubtitle": {
       "type": "text"
     },
     "primaryBtnLabel": {
@@ -43,6 +28,19 @@
       "type": "string"
     },
     "secondaryBtnURL": {
+      "type": "string"
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "imgAlt": {
       "type": "string"
     }
   },

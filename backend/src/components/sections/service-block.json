@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_sections_abouts",
+  "collectionName": "components_sections_service_blocks",
   "info": {
-    "displayName": "About"
+    "displayName": "Service Block"
   },
   "options": {},
   "attributes": {
@@ -9,8 +9,20 @@
       "type": "string",
       "required": true
     },
-    "subtitle": {
+    "text": {
       "type": "text"
+    },
+    "primaryBtnLabel": {
+      "type": "string"
+    },
+    "primaryBtnURL": {
+      "type": "string"
+    },
+    "secondaryBtnLabel": {
+      "type": "string"
+    },
+    "secondaryBtnURL": {
+      "type": "string"
     },
     "img": {
       "type": "media",
@@ -25,25 +37,13 @@
     "imgAlt": {
       "type": "string"
     },
-    "componentId": {
-      "type": "string",
-      "default": "page:section:about",
-      "required": true
-    },
     "customWrapperStyle": {
       "type": "text"
     },
-    "primaryBtnLabel": {
-      "type": "string"
-    },
-    "primaryBtnURL": {
-      "type": "string"
-    },
-    "secondaryBtnLabel": {
-      "type": "string"
-    },
-    "secondaryBtnURL": {
-      "type": "string"
+    "componentId": {
+      "type": "string",
+      "default": "page:section:service",
+      "required": true
     }
   },
   "config": {}

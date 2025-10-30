@@ -10,6 +10,10 @@ import type {
   ContactFormSection,
   CvFormSection,
   GetInTouchFormSection,
+  InfoSection,
+  RoadMapSection,
+  NewsAltSection,
+  AboutAltSection,
 } from '@/types/sectionTypes';
 
 export enum SectionType {
@@ -27,10 +31,14 @@ export enum SectionType {
 export type Section =
   | HeroSection
   | AboutSection
+  | AboutAltSection
   | BusinessUnitsSection
   | WhyUsSection
   | QoutesSection
   | NewsSection
+  | InfoSection
+  | RoadMapSection |
+  NewsAltSection
   | ContactFormSection
   | CvFormSection
   | GetInTouchFormSection;
@@ -86,9 +94,40 @@ export class DynamicPageHandler {
             ... on ComponentSectionsAbout {
               componentId
               title
-              subTitle: subtitle
-              secondaryBtn: button_label
-              secondaryBtnURL: button_link
+              subtitle
+              customWrapperStyle
+              primaryBtnLabel
+              primaryBtnURL
+              secondaryBtnLabel
+              secondaryBtnURL
+              imgAlt
+              img {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
+            }
+            ... on ComponentSectionsAboutAlt {
+              componentId
+              title
+              subtitle
+              primaryBtnLabel
+              primaryBtnURL
+              secondaryBtnLabel
+              secondaryBtnURL
+              profilePictures {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
             }
             ... on ComponentSectionsBusinessUnits {
               componentId
@@ -140,7 +179,7 @@ export class DynamicPageHandler {
             ... on ComponentSectionsNews {
               componentId
               title: newsTitle
-              subtitle: newsSubtitle
+              subTitle: newsSubtitle
               newsList {
                 title
                 description: text
@@ -157,6 +196,76 @@ export class DynamicPageHandler {
                   formats
                 }
               }
+            }
+            ... on ComponentSectionsNewsAlt {
+              componentId
+              title: newsTitle
+              subTitle: newsSubtitle
+              newsList {
+                title
+                description: text
+                date: dateCreatedAt
+                imgAlt
+                url
+                img {
+                  url
+                  alternativeText
+                  width
+                  height
+                  mime
+                  size
+                  formats
+                }
+              }
+            }
+            ... on ComponentSectionsInfo {
+              componentId
+              title: infoTitle
+              subTitle: infoSubtitle
+              primaryBtnLabel
+              primaryBtnURL
+              secondaryBtnLabel
+              secondaryBtnURL
+              img {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
+              imgAlt
+            }
+            ... on ComponentSectionsRoadMap {
+              componentId
+              id
+              title
+              roadMapItems {
+                date
+                description
+                id
+                title
+              }
+            }
+            ... on ComponentSectionsServiceBlock {
+              componentId
+              title
+              text
+              primaryBtnLabel
+              primaryBtnURL
+              secondaryBtnLabel
+              secondaryBtnURL
+              img {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
+              imgAlt
             }
             ... on ComponentSectionsContactForm {
               componentId

@@ -1,0 +1,190 @@
+---
+import SecondaryCTA from "@/components/ui/buttons/SecondaryCTA.astro";
+import { Image } from "astro:assets";
+import type { NewsItem } from '@/types/sectionTypes'
+import { buildStrapiResponsive } from "@/utils/strapiImg";
+
+const { title, subTitle, newsList } = Astro.props;
+
+export interface NewsAltSectionProps {
+  title: string;
+  subTitle?: string;
+  newsList: NewsItem[];
+}
+
+interface Props extends NewsAltSectionProps {}
+
+---
+
+<section 
+  class="mx-auto gap-8 bg-[#F7F7F7] px-4 py-[100px] md:gap-8 md:py-[134px] xl:px-10 overflow-hidden"
+>
+  <div class="flex flex-col md:flex-row max-w-[80rem] m-auto">
+    {
+      newsList.length > 0 && (
+        <div class="flex flex-col w-full md:min-w-[375px] md:w-[375px] bg-[#F7F7F7] h-full z-10 md:min-h-[457px] alt-news-text">
+          <h1
+              class="md:text-start text-center font-(family-name:--font-helvetica-bold) block text-2xl font-bold tracking-tight text-balance whitespace-pre-line text-[var(--color-gray-90)] lg:text-[52px] lg:leading-tight"
+              data-aos="fade-up"
+              data-aos-delay="150"
+              data-aos-once="true"
+            >
+            <Fragment set:html={title} />
+          </h1>
+          {
+            subTitle && (
+              <p 
+                class="mx-auto md:text-start text-center mt-8 w-full max-w-[846px] text-lg leading-relaxed text-pretty text-[var(--color-neutral-gray)]"
+                data-aos="fade-up"
+                data-aos-delay="150"
+                data-aos-once="true"
+          >
+                {subTitle}
+              </p>
+            )
+          }
+          <div class="mt-8 md:mt-auto inline-flex gap-1 w-full justify-center md:justify-start mb-8"             
+            data-aos="fade-up"
+            data-aos-delay="150"
+            data-aos-once="true"
+          >
+            <span class="text-[var(--color-neutral-gray)]">Archive:</span>
+            <span class="text-[var(--color-primary)] font-bold">2025</span>
+            <div class="w-[1px] h-[16px] mt-1 bg-[var(--color-neutral-gray)]"></div>
+            <span class="text-[var(--color-primary)]">2026</span>
+          </div>
+        </div>
+
+        <div class="embla" id="news-slider">
+          <div class="embla__container">
+          {newsList.map((item, i) => {
+            if (item) {
+              const itemImg = buildStrapiResponsive(item.img);
+
+              return (
+                <div 
+                  class="w-full overflow-hidden rounded-2xl bg-white embla__slide md:max-w-[820px]"
+                  data-aos="fade-up"
+                  data-aos-delay={150 + i * 50}
+                  data-aos-once="true"
+                >
+
+                  {itemImg ? (
+                    <Image
+                      src={itemImg.src}
+                      alt={item.imgAlt || item.img.alternativeText}
+                      height={itemImg.height}
+                      width={itemImg.width}
+                      class={"w-full md:w-[375px] object-cover max-h-[216px]"}
+                      sizes="(max-width: 500px) 500px, 100vw"
+                      draggable={"false"}
+                      loading={"eager"}
+                      fetchpriority={"high"}
+                    />
+                  ) : (
+                    <div>Image placeholder</div>
+                  )}
+
+                  
+                  <div class="p-4 flex flex-col md:items-center justify-between gap-4">
+                    <div class="flex flex-col">
+                      <a href={item.url} class="line-clamp-2 text-xl font-bold">{item.title}</a>
+                      <p class="text-lg line-clamp-3 mt-6">{item.description}</p>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row w-full md:justify-between md:items-center md:mb-4">
+                      <SecondaryCTA title="View details" arrow className="text-[var(--color-primary)] h-10 min-w-fit w-full md:w-fit font-bold!" url={item.url} />
+
+                      <span class="text-[#00061680] block mt-4 md:mt-0">
+                        {item.date ? new Date(item.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }): null}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+          })}
+          </div>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .embla {
+    width: 100%;
+    max-width: 1280px;
+    --slide-height: 323px;
+    --slide-spacing: 2rem;
+    --slide-size: 375px;
+  }
+  .embla__viewport {
+    overflow: hidden;
+  }
+  .embla__container {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+    margin-left: calc(var(--slide-spacing) * -1);
+  }
+  .embla__slide {
+    transform: translate3d(0, 0, 0);
+    flex: 0 0 var(--slide-size);
+    min-width: 0;
+    margin-left: var(--slide-spacing);
+  }
+  .alt-news-text::before {
+    content: "";
+    display: block;
+    pointer-events: none;
+    width: 100dvw;
+    position: absolute;
+    transform: translateX(calc(-100%));
+    height: 457px;
+    background-color: #F7F7F7;
+  }
+  @media screen and (max-width: 768px) {
+    .embla {
+      width: 100%;
+      max-width: 1280px;
+      --slide-height: 323px;
+      --slide-spacing: 2rem;
+      --slide-size: 70%;
+    }
+    .embla__viewport {
+      overflow: hidden;
+    }
+    .embla__container {
+      display: flex;
+      touch-action: pan-y pinch-zoom;
+      margin-left: calc(var(--slide-spacing) * -1);
+    }
+    .embla__slide {
+      transform: translate3d(0, 0, 0);
+      flex: 0 0 var(--slide-size);
+      min-width: 0;
+      margin-left: var(--slide-spacing);
+    }
+  }
+</style>
+
+<script>
+  import EmblaCarousel, { type EmblaCarouselType, type EmblaOptionsType } from 'embla-carousel';
+
+  let embla: EmblaCarouselType | null = null;
+
+  function setupEmbla() {
+    if (typeof window === 'undefined') return;
+
+    const emblaNode = document.querySelector('#news-slider') as HTMLElement | null;
+
+    const options: EmblaOptionsType = { loop: false, align: "start", dragFree: true };
+    embla = EmblaCarousel(emblaNode as HTMLElement, options)
+  }
+
+  setupEmbla();
+</script>

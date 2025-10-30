@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_road_maps",
+  "info": {
+    "displayName": "Road Map"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "roadMapItems": {
+      "type": "component",
+      "component": "shared.road-map-item",
+      "repeatable": true
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:road_map",
+      "required": true
+    }
+  },
+  "config": {}
+}

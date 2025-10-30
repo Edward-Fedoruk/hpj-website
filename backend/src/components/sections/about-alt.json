@@ -1,0 +1,44 @@
+{
+  "collectionName": "components_sections_about_alts",
+  "info": {
+    "displayName": "About Alt"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "primaryBtnLabel": {
+      "type": "string"
+    },
+    "primaryBtnURL": {
+      "type": "string"
+    },
+    "secondaryBtnLabel": {
+      "type": "string"
+    },
+    "secondaryBtnURL": {
+      "type": "string"
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:about_alt",
+      "required": true
+    },
+    "profilePictures": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

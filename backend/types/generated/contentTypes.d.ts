@@ -485,11 +485,16 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     sections: Schema.Attribute.DynamicZone<
       [
         "sections.hero",
-        "sections.about",
         "sections.business-units",
         "sections.why-us",
         "sections.quotes",
         "sections.news",
+        "sections.info",
+        "sections.about",
+        "sections.road-map",
+        "sections.news-alt",
+        "sections.about-alt",
+        "sections.service-block",
         "sections.contact-form",
         "sections.cv-form",
         "sections.get-in-touch-form",

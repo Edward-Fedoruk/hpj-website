@@ -1,11 +1,33 @@
-import type { SectionType } from '@/gql/services/dynamic-page-handler';
-
-import type { StrapiImageType } from './common';
 import type { FormType } from './formTypes';
 
 import type { UnitSliderItem } from '@/components/sections/landing/BusinessUnitsSection.astro';
 import type { IWhyUsItem } from '@/components/sections/landing/WhyUsSection.astro';
 import type { QuotesItem } from '@/components/sections/misc/QuotesSection.astro';
+import type { StrapiImageType } from './common';
+import type { NewsSectionProps } from '@/components/sections/news/NewsSection.astro';
+import type { NewsAltSectionProps } from '@/components/sections/news/NewsAltSection.astro';
+import type { AboutSectionProps } from '@/components/sections/about/AboutSection.astro';
+import type { InfoSectionProps } from '@/components/sections/aboutPage/InfoSection.astro';
+import type { RoadMapSectionProps } from '@/components/sections/aboutPage/RoadMap/RoadMapSection.astro';
+import type { AboutAltSectionProps } from '@/components/sections/about/AboutAltSection.astro';
+import type { ServiceSectionProps } from '@/components/sections/service/ServiceSection.astro';
+
+export enum SectionType {
+  Hero = "page:section:hero",
+  About = "page:section:about",
+  AboutAlt = "page:section:about_alt",
+  BusinessUnits = "page:section:bussiness_units",
+  WhyUs = "page:section:why_us",
+  Quotes = "page:section:quotes",
+  News = "page:section:news",
+  NewsAlt = "page:section:news_alt",
+  Info = "page:section:info",
+  RoadMap = "page:section:road_map",
+  Service = "page:section:service",
+  ContactForm = "page:section:contact_form",
+  CvForm = "page:section:cv_form",
+  GetInTouchForm = "page:section:get_in_touch_form",
+}
 
 export type HeroSection = {
     __typename: "ComponentSectionsHero";
@@ -19,14 +41,10 @@ export type HeroSection = {
     secondaryBtnUrl?: string | null;
 };
 
-export type AboutSection = {
+export interface AboutSection extends AboutSectionProps {
     __typename: "ComponentSectionsAbout";
     id: string;
     componentId: SectionType.About;
-    title?: string | null;
-    description?: string | null;
-    button_link?: string | null;
-    button_label?: string | null;
 };
 
 export type BusinessUnitsSection = {
@@ -62,12 +80,14 @@ export type NewsItem = {
     img: StrapiImageType;
 }
 
-export type NewsSection = {
+export interface NewsSection extends NewsSectionProps {
     __typename: "ComponentSectionsNews";
-    componentId: string;
-    title: string;
-    subtitle?: string;
-    newsList: NewsItem[];
+    componentId: SectionType.News;
+}
+
+export interface NewsAltSection extends NewsAltSectionProps {
+    __typename: "ComponentSectionsNewsAlt";
+    componentId: SectionType.NewsAlt;
 }
 
 export type ContactFormSection = {
@@ -96,3 +116,27 @@ export type GetInTouchFormSection = {
     submitBtnLabel?: string | null;
     businessUnitsForFormSelect?: Array<{ documentId: string; title: string }>;
 }
+
+export interface InfoSection extends InfoSectionProps {
+    __typename: "ComponentSectionsInfo";
+    componentId: SectionType.Info;
+    id: string;
+};
+
+export interface RoadMapSection extends RoadMapSectionProps {
+    __typename: "ComponentSectionsRoadMap";
+    componentId: SectionType.RoadMap;
+    id: string;
+};
+
+export interface AboutAltSection extends AboutAltSectionProps {
+    __typename: "ComponentSectionsAboutAlt";
+    componentId: SectionType.RoadMap;
+    id: string;
+};
+
+export interface ServiceSection extends ServiceSectionProps {
+    __typename: "ComponentSectionsServiceBlock";
+    componentId: SectionType.Service;
+    id: string;
+};

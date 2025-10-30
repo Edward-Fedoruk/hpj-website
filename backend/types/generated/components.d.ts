@@ -3,15 +3,41 @@ import type { Schema, Struct } from "@strapi/strapi";
 export interface SectionsAbout extends Struct.ComponentSchema {
   collectionName: "components_sections_abouts";
   info: {
-    displayName: "about";
-    icon: "information";
+    displayName: "About";
   };
   attributes: {
-    button_label: Schema.Attribute.String;
-    button_link: Schema.Attribute.String;
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"page:section:about">;
+    customWrapperStyle: Schema.Attribute.Text;
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.String;
+    primaryBtnLabel: Schema.Attribute.String;
+    primaryBtnURL: Schema.Attribute.String;
+    secondaryBtnLabel: Schema.Attribute.String;
+    secondaryBtnURL: Schema.Attribute.String;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsAboutAlt extends Struct.ComponentSchema {
+  collectionName: "components_sections_about_alts";
+  info: {
+    displayName: "About Alt";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:about_alt">;
+    primaryBtnLabel: Schema.Attribute.String;
+    primaryBtnURL: Schema.Attribute.String;
+    profilePictures: Schema.Attribute.Media<
+      "images" | "files" | "videos" | "audios",
+      true
+    >;
+    secondaryBtnLabel: Schema.Attribute.String;
+    secondaryBtnURL: Schema.Attribute.String;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
@@ -123,6 +149,27 @@ export interface SectionsHero extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsInfo extends Struct.ComponentSchema {
+  collectionName: "components_sections_infos";
+  info: {
+    displayName: "info";
+    icon: "information";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:info">;
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.String;
+    infoSubtitle: Schema.Attribute.Text;
+    infoTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    primaryBtnLabel: Schema.Attribute.String;
+    primaryBtnURL: Schema.Attribute.String;
+    secondaryBtnLabel: Schema.Attribute.String;
+    secondaryBtnURL: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsNews extends Struct.ComponentSchema {
   collectionName: "components_sections_news";
   info: {
@@ -132,6 +179,21 @@ export interface SectionsNews extends Struct.ComponentSchema {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"page:section:news">;
+    newsList: Schema.Attribute.Component<"shared.news-item", true>;
+    newsSubtitle: Schema.Attribute.Text;
+    newsTitle: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsNewsAlt extends Struct.ComponentSchema {
+  collectionName: "components_sections_news_alts";
+  info: {
+    displayName: "News Alt";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:news_alt">;
     newsList: Schema.Attribute.Component<"shared.news-item", true>;
     newsSubtitle: Schema.Attribute.Text;
     newsTitle: Schema.Attribute.String & Schema.Attribute.Required;
@@ -148,6 +210,41 @@ export interface SectionsQuotes extends Struct.ComponentSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"page:section:quotes">;
     quotesList: Schema.Attribute.Component<"shared.quotes-item", true>;
+  };
+}
+
+export interface SectionsRoadMap extends Struct.ComponentSchema {
+  collectionName: "components_sections_road_maps";
+  info: {
+    displayName: "Road Map";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:road_map">;
+    roadMapItems: Schema.Attribute.Component<"shared.road-map-item", true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsServiceBlock extends Struct.ComponentSchema {
+  collectionName: "components_sections_service_blocks";
+  info: {
+    displayName: "Service Block";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:service">;
+    customWrapperStyle: Schema.Attribute.Text;
+    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    imgAlt: Schema.Attribute.String;
+    primaryBtnLabel: Schema.Attribute.String;
+    primaryBtnURL: Schema.Attribute.String;
+    secondaryBtnLabel: Schema.Attribute.String;
+    secondaryBtnURL: Schema.Attribute.String;
+    text: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -194,6 +291,18 @@ export interface SharedQuotesItem extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedRoadMapItem extends Struct.ComponentSchema {
+  collectionName: "components_shared_road_map_items";
+  info: {
+    displayName: "Road Map Item";
+  };
+  attributes: {
+    date: Schema.Attribute.Date & Schema.Attribute.Required;
+    description: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedWhyHpjItem extends Struct.ComponentSchema {
   collectionName: "components_shared_why_hpj_items";
   info: {
@@ -211,16 +320,22 @@ declare module "@strapi/strapi" {
   export module Public {
     export interface ComponentSchemas {
       "sections.about": SectionsAbout;
+      "sections.about-alt": SectionsAboutAlt;
       "sections.business-units": SectionsBusinessUnits;
       "sections.contact-form": SectionsContactForm;
       "sections.cv-form": SectionsCvForm;
       "sections.get-in-touch-form": SectionsGetInTouchForm;
       "sections.hero": SectionsHero;
+      "sections.info": SectionsInfo;
       "sections.news": SectionsNews;
+      "sections.news-alt": SectionsNewsAlt;
       "sections.quotes": SectionsQuotes;
+      "sections.road-map": SectionsRoadMap;
+      "sections.service-block": SectionsServiceBlock;
       "sections.why-us": SectionsWhyUs;
       "shared.news-item": SharedNewsItem;
       "shared.quotes-item": SharedQuotesItem;
+      "shared.road-map-item": SharedRoadMapItem;
       "shared.why-hpj-item": SharedWhyHpjItem;
     }
   }
