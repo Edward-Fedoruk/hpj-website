@@ -13,6 +13,7 @@ import type {
   GetInTouchFormSection,
   RoadMapSection,
   NewsAltSection,
+  AboutAltSection,
 } from '@/types/sectionTypes';
 
 export enum SectionType {

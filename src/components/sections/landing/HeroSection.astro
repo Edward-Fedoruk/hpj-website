@@ -86,7 +86,7 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
     const sectionAfterHero = heroSection?.nextElementSibling?.nextElementSibling;
     if (!sectionAfterHero) return;
 
-    sectionAfterHero.classList.forEach((classStr, i) => {
+    sectionAfterHero.classList.forEach((classStr) => {
       if (classStr.includes("bg-")) {
         const cornerElement = heroSection.querySelector(".hero-img > svg");
         const bgColor = classStr.split("bg-")[1].replace("[", "").replace("]", "");
