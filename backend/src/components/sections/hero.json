@@ -6,18 +6,18 @@
   },
   "options": {},
   "attributes": {
+    "componentId": {
+      "type": "string",
+      "default": "page:section:hero",
+      "required": true,
+      "unique": false
+    },
     "heroTitle": {
       "type": "string",
       "required": true
     },
     "heroSubtitle": {
       "type": "text"
-    },
-    "componentId": {
-      "type": "string",
-      "default": "page:section:hero",
-      "required": true,
-      "unique": false
     },
     "primaryBtnLabel": {
       "type": "string"

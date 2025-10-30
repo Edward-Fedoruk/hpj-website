@@ -7,9 +7,10 @@ interface Props {
   title: string;
   subTitle?: string;
   form?: FormType | null;
+  submitBtnLabel?: string;
 }
 
-const { title, subTitle, form } = Astro.props;
+const { title, subTitle, form, submitBtnLabel } = Astro.props;
 
 const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL || "http://localhost:1337";
 const ENDPOINT = `${STRAPI_URL}/api/api-forms/submission/post`;
@@ -41,6 +42,13 @@ const FORM_ID = form?.documentId ?? "";
         data-endpoint={ENDPOINT}
         data-form-id={FORM_ID}
         onsubmit="return handleSubmit(event, this)"
+        data-success-message={
+          form?.successMessage || "Your CV has been sent successfully."
+        }
+        data-error-message={
+          form?.errorMessage ||
+          "There was an error submitting the form. Please try again."
+        }
       >
         <div class="relative flex w-full max-w-[436px] rounded-[10px] border border-[var(--color-primary)] bg-white p-1">
           <input
@@ -52,8 +60,7 @@ const FORM_ID = form?.documentId ?? "";
           />
 
           <label for="emailaddress" class="sr-only">
-            {" "}
-            Email{" "}
+            Email
           </label>
           <input
             id="emailaddress"
@@ -69,7 +76,7 @@ const FORM_ID = form?.documentId ?? "";
             type="submit"
             class="flex h-[48px] w-full max-w-[109px] items-center justify-center rounded-[10px] bg-[var(--color-primary)] text-lg font-semibold text-white"
           >
-            Send
+            {submitBtnLabel || "Send"}
           </button>
         </div>
 
@@ -87,6 +94,9 @@ const FORM_ID = form?.documentId ?? "";
   async function handleSubmit(ev, form) {
     ev.preventDefault();
 
+    const statusEl = form.querySelector("#status");
+    const setStatus = (m) => (statusEl.textContent = m || "");
+
     const honey = (
       form.querySelector('[name="honeypot_field"]')?.value || ""
     ).trim();
@@ -96,34 +106,34 @@ const FORM_ID = form?.documentId ?? "";
     const formId = form.dataset.formId;
     const emailEl = form.querySelector("#emailaddress");
     const btn = form.querySelector('button[type="submit"]');
-    const statusEl = form.querySelector("#status");
 
     const email = (emailEl?.value || "").trim();
     if (!email) {
-      statusEl.textContent = "Enter email";
+      setStatus("Enter email");
+      emailEl?.focus();
       return false;
     }
 
+    const fd = new FormData();
+    fd.append("form", formId);
+    fd.append("submission", JSON.stringify({ emailaddress: email }));
+
     btn.disabled = true;
-    statusEl.textContent = "Sending...";
+    setStatus("Sending...");
 
     try {
       const res = await fetch(endpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          form: formId,
-          submission: { emailaddress: email },
-        }),
+        body: fd,
       });
 
       if (!res.ok) throw new Error(await res.text());
 
       form.reset();
-      statusEl.textContent = "Sent. Check your inbox.";
+      setStatus(form.dataset.successMessage);
     } catch (err) {
       console.error(err);
-      statusEl.textContent = "Failed. Try again.";
+      setStatus(form.dataset.errorMessage);
     } finally {
       btn.disabled = false;
     }

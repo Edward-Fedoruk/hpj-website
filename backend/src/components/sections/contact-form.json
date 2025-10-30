@@ -24,6 +24,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::api-forms.form"
+    },
+    "submitBtnLabel": {
+      "type": "string",
+      "default": "Send"
     }
   },
   "config": {}
