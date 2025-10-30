@@ -6,8 +6,6 @@ export interface SectionsAbout extends Struct.ComponentSchema {
     displayName: "About";
   };
   attributes: {
-    button_label: Schema.Attribute.String;
-    button_link: Schema.Attribute.String;
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"page:section:about">;

@@ -31,18 +31,19 @@ interface Props extends AboutAltSectionProps {}
               const builtImg = buildStrapiResponsive(imgItem);
               const imgElClass = `h-20 w-20 rounded-full relative top-0 left-[calc(100%-80px*${index}-5px*-${profilePictures.length - index})]`;
 
-              return (
-                <Image
-                  src={builtImg.src}
-                  width={82}
-                  height={82}
-                  alt={builtImg.alt || "profile image"}
-                  draggable={"false"}
-                  loading={"eager"}
-                  fetchpriority={"high"}
-                  class={imgElClass}
-                />
-              );
+              if (builtImg)
+                return (
+                  <Image
+                    src={builtImg.src}
+                    width={82}
+                    height={82}
+                    alt={builtImg.alt || "profile image"}
+                    draggable={"false"}
+                    loading={"eager"}
+                    fetchpriority={"high"}
+                    class={imgElClass}
+                  />
+                );
             })}
           </div>
         </div>

@@ -26,7 +26,7 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
   class="mx-auto grid min-h-[636px] max-w-[85rem] gap-4 px-4 py-14 pt-[86px] md:min-h-[700px] md:items-center md:gap-8 xl:px-10"
 >
   {
-    bgImgSrc && bgImgAlt && (
+    builtBgImg && bgImgAlt && (
       <div
         class="pointer-events-none absolute top-0 left-0 -z-20 h-[636px] w-full overflow-hidden bg-white md:h-[700px]"
         id="main-banner-img"
@@ -35,6 +35,7 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
           src={builtBgImg.src}
           width={builtBgImg.width}
           height={builtBgImg.height}
+          alt={bgImgAlt || builtBgImg}
           srcset={builtBgImg.srcset}
           sizes="(max-width: 500px) 500px, 100vw"
           alt={bgImgSrc.alternativeText ?? bgImgAlt ?? "background image"}
