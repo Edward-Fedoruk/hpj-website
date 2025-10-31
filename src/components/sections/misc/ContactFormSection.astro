@@ -18,12 +18,12 @@ const FORM_ID = form?.documentId ?? "";
 ---
 
 <section
-  class="relative mx-auto flex flex-col gap-6 bg-[var(--color-dark-purple)] px-4 py-[100px] selection:bg-white! selection:text-[#524CF2]! md:items-center md:gap-8 md:py-[134px] xl:px-10"
+  class="relative mx-auto flex flex-col items-center gap-6 bg-[var(--color-dark-purple)] px-4 py-[100px] selection:bg-white! selection:text-[#524CF2]! md:gap-8 md:py-[134px] xl:px-10"
 >
   <SectionCorner className="text-[var(--color-gray-10)]" position="top-right" />
   <SectionCorner className="text-[#F7F7F7]" position="bottom-left" />
   <h1
-    class="block max-w-[578px] text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+    class="block max-w-[578px] text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
   >
     <Fragment set:html={title} />
   </h1>
@@ -42,22 +42,11 @@ const FORM_ID = form?.documentId ?? "";
         data-endpoint={ENDPOINT}
         data-form-id={FORM_ID}
         onsubmit="return handleSubmit(event, this)"
-        data-success-message={
-          form?.successMessage || "Your CV has been sent successfully."
-        }
-        data-error-message={
-          form?.errorMessage ||
-          "There was an error submitting the form. Please try again."
-        }
+        data-success-message={form?.successMessage || "Your CV has been sent successfully."}
+        data-error-message={form?.errorMessage || "There was an error submitting the form. Please try again."}
       >
         <div class="relative flex w-full max-w-[436px] rounded-[10px] border border-[var(--color-primary)] bg-white p-1">
-          <input
-            type="text"
-            name="honeypot_field"
-            class="hidden"
-            tabindex="-1"
-            autocomplete="off"
-          />
+          <input type="text" name="honeypot_field" class="hidden" tabindex="-1" autocomplete="off" />
 
           <label for="emailaddress" class="sr-only">
             Email
@@ -80,11 +69,7 @@ const FORM_ID = form?.documentId ?? "";
           </button>
         </div>
 
-        <p
-          id="status"
-          class="h-5 pt-[10px] text-sm text-[#FFFFFFCC]"
-          aria-live="polite"
-        />
+        <p id="status" class="h-5 pt-[10px] text-sm text-[#FFFFFFCC]" aria-live="polite" />
       </form>
     )
   }
@@ -97,9 +82,7 @@ const FORM_ID = form?.documentId ?? "";
     const statusEl = form.querySelector("#status");
     const setStatus = (m) => (statusEl.textContent = m || "");
 
-    const honey = (
-      form.querySelector('[name="honeypot_field"]')?.value || ""
-    ).trim();
+    const honey = (form.querySelector('[name="honeypot_field"]')?.value || "").trim();
     if (honey) return false;
 
     const endpoint = form.dataset.endpoint;
@@ -143,23 +126,11 @@ const FORM_ID = form?.documentId ?? "";
 
 <style>
   section {
-    background:
-      radial-gradient(
-        43.44% 43.44% at 50% 110%,
-        #524cf2 15.73%,
-        rgba(82, 76, 242, 0) 100%
-      ),
-      #0a0d27;
+    background: radial-gradient(43.44% 43.44% at 50% 110%, #524cf2 15.73%, rgba(82, 76, 242, 0) 100%), #0a0d27;
   }
   @media screen and (max-width: 768px) {
     section {
-      background:
-        radial-gradient(
-          70% 40% at 50% 100%,
-          #524cf2 15.73%,
-          rgba(82, 76, 242, 0) 100%
-        ),
-        #0a0d27;
+      background: radial-gradient(70% 40% at 50% 100%, #524cf2 15.73%, rgba(82, 76, 242, 0) 100%), #0a0d27;
     }
   }
 </style>

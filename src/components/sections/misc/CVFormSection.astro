@@ -25,11 +25,7 @@ const lgMap = byIdMap(layouts?.lg);
 const mdMap = byIdMap(layouts?.md);
 const smMap = byIdMap(layouts?.sm);
 
-const order = layouts?.lg?.length
-  ? layouts.lg
-  : layouts?.md?.length
-    ? layouts.md
-    : (layouts?.sm ?? []);
+const order = layouts?.lg?.length ? layouts.lg : layouts?.md?.length ? layouts.md : (layouts?.sm ?? []);
 
 function pos(id: string) {
   const lg = lgMap.get(id) ?? mdMap.get(id) ?? smMap.get(id);
@@ -50,16 +46,14 @@ function pos(id: string) {
   class="relative mx-auto flex flex-col gap-6 bg-[var(--color-dark-purple)] px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10"
 >
   <h1
-    class="block max-w-[578px] text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight"
+    class="block max-w-[578px] text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight"
   >
     <Fragment set:html={title} />
   </h1>
 
   {
     subTitle && (
-      <p class="mx-auto w-full max-w-[578px] text-center text-lg leading-relaxed text-[#FFFFFFB2]">
-        {subTitle}
-      </p>
+      <p class="mx-auto w-full max-w-[578px] text-center text-lg leading-relaxed text-[#FFFFFFB2]">{subTitle}</p>
     )
   }
 
@@ -69,23 +63,12 @@ function pos(id: string) {
         class="flex w-full flex-col items-center"
         data-endpoint={ENDPOINT}
         data-form-id={FORM_ID}
-        data-success-message={
-          form?.successMessage || "Your CV has been sent successfully."
-        }
-        data-error-message={
-          form?.errorMessage ||
-          "There was an error submitting the form. Please try again."
-        }
+        data-success-message={form?.successMessage || "Your CV has been sent successfully."}
+        data-error-message={form?.errorMessage || "There was an error submitting the form. Please try again."}
         onsubmit="return CVFormhandleSubmit(event, this)"
       >
         <div class="flex w-full flex-col items-center">
-          <input
-            type="text"
-            name="honeypot_field"
-            class="hidden"
-            tabindex="-1"
-            autocomplete="off"
-          />
+          <input type="text" name="honeypot_field" class="hidden" tabindex="-1" autocomplete="off" />
 
           <div class="grid12 w-full max-w-[920px] gap-4">
             {order.map((it: FormLayoutType) => {
@@ -141,12 +124,7 @@ function pos(id: string) {
                         {f.label}
                         {required && <sup class="req">*</sup>}
                       </span>
-                      <input
-                        type="file"
-                        name={f.name}
-                        required={required}
-                        class="fileinput"
-                      />
+                      <input type="file" name={f.name} required={required} class="fileinput" />
                     </label>
                   ) : f.type === "checkboxgroup" ? (
                     <fieldset class="flex flex-col gap-2">
@@ -157,12 +135,7 @@ function pos(id: string) {
                       <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
                         {(f.options ?? []).map((opt) => (
                           <label class="inline-flex items-center gap-2 text-white">
-                            <input
-                              type="checkbox"
-                              name={`${f.name}[]`}
-                              value={opt.value}
-                              class="h-4 w-4"
-                            />
+                            <input type="checkbox" name={`${f.name}[]`} value={opt.value} class="h-4 w-4" />
                             <span>{opt.label}</span>
                           </label>
                         ))}
@@ -185,11 +158,7 @@ function pos(id: string) {
             {submitBtnLabel ?? "Submit"}
           </button>
 
-          <p
-            id="status"
-            class="h-5 pt-[10px] text-sm text-[#FFFFFFCC]"
-            aria-live="polite"
-          />
+          <p id="status" class="h-5 pt-[10px] text-sm text-[#FFFFFFCC]" aria-live="polite" />
         </div>
       </form>
     )
@@ -249,18 +218,14 @@ function pos(id: string) {
     const statusEl = formElement.querySelector("#status");
     const setStatus = (m) => (statusEl.textContent = m || "");
 
-    const honey = (
-      formElement.querySelector('[name="honeypot_field"]')?.value || ""
-    ).trim();
+    const honey = (formElement.querySelector('[name="honeypot_field"]')?.value || "").trim();
     if (honey) return false;
 
     const endpoint = formElement.dataset.endpoint;
     const formId = formElement.dataset.formId;
     if (!formId) return setStatus("Form ID is missing");
 
-    const emailEl = formElement.querySelector(
-      'input[type="email"], input[name*="email" i]'
-    );
+    const emailEl = formElement.querySelector('input[type="email"], input[name*="email" i]');
     const nameEl = formElement.querySelector('input[name*="name" i]');
     if (!emailEl || !emailEl.value.trim()) {
       setStatus("Enter email");
@@ -274,9 +239,7 @@ function pos(id: string) {
     }
 
     const checkboxes = formElement.querySelectorAll('input[type="checkbox"]');
-    const checkedBoxes = formElement.querySelectorAll(
-      'input[type="checkbox"]:checked'
-    );
+    const checkedBoxes = formElement.querySelectorAll('input[type="checkbox"]:checked');
     if (checkboxes.length > 0 && checkedBoxes.length === 0) {
       setStatus("Please select at least one option");
       checkboxes[0]?.focus();
@@ -295,9 +258,7 @@ function pos(id: string) {
     const fd = new FormData();
     fd.append("form", formId);
 
-    const inputs = formElement.querySelectorAll(
-      'input[type="text"], input[type="email"], textarea'
-    );
+    const inputs = formElement.querySelectorAll('input[type="text"], input[type="email"], textarea');
     for (const el of inputs) {
       const name = el.name?.trim();
       if (!name) continue;

@@ -15,6 +15,7 @@
   --color-white: #fff;
 
   --color-primary: #524cf2;
+  --color-primary-hover: #635DF3;
   --color-primary-text: #191919;
   --color-secondary-text: #4A4A4A;
 
@@ -26,8 +27,11 @@
   --color-neutral-gray: #6C717F;
   --color-dark-purple: #0A0D27;
 
+  --font-helvetica-light: 'Helvetica Now Light';
   --font-helvetica: 'Helvetica Now';
+  --font-helvetica-medium: 'Helvetica Now Medium';
   --font-helvetica-bold: 'Helvetica Now Bold';
+  --font-helvetica-black: 'Helvetica Now Black';
 }
 
 /*

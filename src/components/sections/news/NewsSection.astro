@@ -17,10 +17,10 @@ interface Props extends NewsSectionProps {}
 ---
 
 <section 
-  class="mx-auto gap-8 bg-[#F7F7F7] px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10 overflow-hidden"
+  class="mx-auto gap-8 bg-[#F7F7F7] header-text-dark px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10 overflow-hidden"
 >
   <h1
-      class="font-(family-name:--font-helvetica-bold) block text-center text-2xl font-bold tracking-tight text-balance whitespace-pre-line text-[var(--color-gray-90)] lg:text-[52px] lg:leading-tight"
+      class="font-helvetica-black block text-center text-2xl text-balance whitespace-pre-line text-[var(--color-gray-90)] lg:text-[52px] lg:leading-tight"
       data-aos="fade-up"
       data-aos-delay="150"
       data-aos-once="true"
@@ -41,9 +41,13 @@ interface Props extends NewsSectionProps {}
   }
   {
     newsList.length > 0 && (
-      <div class="text-center mt-8 md:hidden inline-flex gap-1 w-full justify-center mb-8">
+      <div class="text-center mt-8 md:hidden inline-flex gap-1 w-full justify-center mb-8"     
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-once="true"
+      >
         <span class="text-[var(--color-neutral-gray)]">Archive:</span>
-        <span class="text-[var(--color-primary)] font-bold">2025</span>
+        <span class="text-[var(--color-primary)] font-helvetica-bold">2025</span>
         <div class="w-[1px] h-[16px] mt-1 bg-[var(--color-neutral-gray)]"></div>
         <span class="text-[var(--color-primary)]">2024</span>
         <div class="w-[1px] h-[16px] mt-1 bg-[var(--color-neutral-gray)]"></div>
@@ -60,7 +64,7 @@ interface Props extends NewsSectionProps {}
               <div 
                 class="w-full overflow-hidden rounded-2xl bg-white embla__slide md:max-w-[820px]"
                 data-aos="fade-up"
-                data-aos-delay={150 + i * 50}
+                data-aos-delay={150 + i * 100}
                 data-aos-once="true"
               >
 
@@ -83,9 +87,9 @@ interface Props extends NewsSectionProps {}
                 
                 <div class="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div class="flex flex-col">
-                    <a href={item.url} class="line-clamp-2 text-xl font-bold">{item.title}</a>
+                    <a href={item.url} class="line-clamp-2 text-xl font-helvetica-bold">{item.title}</a>
                     <p class="text-lg line-clamp-3 mt-6 md:hidden">{item.description}</p>
-                    <span class="text-[#00061680] hidden md:block">
+                    <span class="text-[#00061680] hidden md:block text-sm">
                       {item.date ? new Date(item.date).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "long",
@@ -96,7 +100,7 @@ interface Props extends NewsSectionProps {}
 
                   <SecondaryCTA title="View details" arrow className="text-[var(--color-primary)] h-10 min-w-fit" url={item.url} />
 
-                  <span class="text-[#00061680] block md:hidden">
+                  <span class="text-[#00061680] block md:hidden text-sm">
                     {item.date ? new Date(item.date).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
@@ -163,7 +167,6 @@ interface Props extends NewsSectionProps {}
           embla = null;
         }
       }
-      console.log(embla?.rootNode());
     };
 
     handleResize(mediaQuery);

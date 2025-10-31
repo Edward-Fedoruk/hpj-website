@@ -2,7 +2,7 @@ import type { FormType } from './formTypes';
 
 import type { UnitSliderItem } from '@/components/sections/landing/BusinessUnitsSection.astro';
 import type { IWhyUsItem } from '@/components/sections/landing/WhyUsSection.astro';
-import type { QuotesItem } from '@/components/sections/misc/QuotesSection.astro';
+import type { QuotesSectionProps } from '@/components/sections/misc/QuotesSection.astro';
 import type { StrapiImageType } from './common';
 import type { NewsSectionProps } from '@/components/sections/news/NewsSection.astro';
 import type { NewsAltSectionProps } from '@/components/sections/news/NewsAltSection.astro';
@@ -65,11 +65,10 @@ export type WhyUsSection = {
     whyUsItems?: IWhyUsItem[];
 };
 
-export type QoutesSection = {
+export interface QoutesSection extends QuotesSectionProps {
     __typename: "ComponentSectionsQuotes";
     componentId: SectionType.Quotes;
-    quotesList: QuotesItem[];
-};
+}
 
 export type NewsItem = {
     title: string;
