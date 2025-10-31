@@ -27,7 +27,7 @@ interface Props extends RoadMapSectionProps {}
     data-aos-once="true"
   >
     <h1
-      class="mb-20 block text-center font-(family-name:--font-helvetica-bold) text-[32px] font-bold tracking-tight text-balance whitespace-pre-line sm:text-4xl md:text-[52px] lg:text-6xl lg:leading-tight"
+      class="block text-center font-helvetica-black text-[32px] text-balance whitespace-pre-line sm:text-4xl md:text-[52px] lg:text-6xl lg:leading-tight"
     >
       <Fragment set:html={title} />
     </h1>
@@ -35,7 +35,7 @@ interface Props extends RoadMapSectionProps {}
 
     {
       roadMapItems && (
-        <div class="embla block h-fit lg:hidden" id="mobile-road-map">
+        <div class="mt-[90px] embla block h-fit lg:hidden" id="mobile-road-map">
           <div class="embla__container flex w-full flex-row flex-nowrap gap-4 relative">
 
             {roadMapItems.map((item, index) => {
@@ -221,7 +221,11 @@ interface Props extends RoadMapSectionProps {}
   const prevBtnNode = emblaNode!.querySelector(".embla__button--prev") as HTMLElement;
   const nextBtnNode = emblaNode!.querySelector(".embla__button--next") as HTMLElement;
 
-  const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtnNode, nextBtnNode);
+  if (prevBtnNode && nextBtnNode) {
+    const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtnNode, nextBtnNode);
 
-  emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
+    emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
+  }
+
+
 </script>

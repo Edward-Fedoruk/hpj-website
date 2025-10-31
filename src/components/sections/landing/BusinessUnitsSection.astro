@@ -28,7 +28,7 @@ export interface UnitSliderItem {
   data-aos-once="true"
 >
   <h1
-    class="block text-center font-(family-name:--font-helvetica-bold) text-[32px] font-black tracking-tight text-balance whitespace-pre-line text-[var(--color-primary-text)] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+    class="font-helvetica-black block text-center text-[32px] font-black text-balance whitespace-pre-line text-[var(--color-primary-text)] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
   >
     <Fragment set:html={title} />
   </h1>
@@ -51,10 +51,7 @@ export interface UnitSliderItem {
             const itemImg = buildStrapiResponsive(item.img);
 
             return (
-              <a
-                class="embla__slide group z-20 h-fit max-h-[323px] max-w-[412px] cursor-pointer overflow-hidden rounded-xl shadow-[0px_8px_16px_0px_#00000014,0px_0px_4px_0px_#0000000A] md:max-h-[420px]"
-                href={item.url}
-              >
+              <div class="embla__slide group z-20 h-fit max-h-[323px] max-w-[412px] overflow-hidden rounded-xl shadow-[0px_8px_16px_0px_#00000014,0px_0px_4px_0px_#0000000A] md:max-h-[415px]">
                 {itemImg ? (
                   <Image
                     src={itemImg.src}
@@ -71,16 +68,29 @@ export interface UnitSliderItem {
                   <div>Image placeholder</div>
                 )}
                 <div class="flex min-h-[128px] flex-col bg-white p-4">
-                  <p class="mt-2 mb-2 line-clamp-1 text-2xl font-bold text-[var(--color-primary-text)]">{item.title}</p>
-                  <p class="line-clamp-2 max-h-[55px] text-base font-normal text-[var(--color-secondary-text)] duration-300 group-hover:line-clamp-6 group-hover:max-h-[1500px]">
+                  <a
+                    class="font-helvetica-bold mt-2 mb-2 line-clamp-1 text-2xl font-bold text-[var(--color-primary-text)]"
+                    href={item.url}
+                  >
+                    {item.title}
+                  </a>
+                  <p class="line-clamp-2 max-h-[55px] text-lg font-normal text-[var(--color-secondary-text)] duration-300 group-hover:line-clamp-4 group-hover:max-h-[1500px]">
                     {item.description}
                   </p>
+                  <SecondaryCTA
+                    title={"Learn more"}
+                    url={item.url}
+                    className={
+                      "text-primary box-border max-h-0! w-fit overflow-hidden! border-0! p-0! duration-300 group-hover:mt-2 group-hover:h-fit group-hover:max-h-[56px]! group-hover:border-1! group-hover:p-[10px_16px]!"
+                    }
+                    arrow
+                  />
                 </div>
-              </a>
+              </div>
             );
           })}
         </div>
-        <div class="embla__controls absolute top-[440px] left-1/2 -z-10">
+        <div class="embla__controls absolute top-[440px] left-[calc(50%-56px)] -z-10">
           <div class="embla__buttons flex justify-center gap-4">
             <button class="embla__button embla__button--prev" type="button">
               <svg class="embla__button__svg" viewBox="0 0 532 532">
@@ -152,7 +162,7 @@ export interface UnitSliderItem {
   }
   .embla__slide:hover {
     transform: scale(1.1);
-    max-height: 500px;
+    max-height: 550px;
   }
 </style>
 
@@ -167,7 +177,9 @@ export interface UnitSliderItem {
   const prevBtnNode = emblaNode!.querySelector(".embla__button--prev") as HTMLElement;
   const nextBtnNode = emblaNode!.querySelector(".embla__button--next") as HTMLElement;
 
-  const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtnNode, nextBtnNode);
+  if (prevBtnNode && nextBtnNode) {
+    const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtnNode, nextBtnNode);
 
-  emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
+    emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
+  }
 </script>

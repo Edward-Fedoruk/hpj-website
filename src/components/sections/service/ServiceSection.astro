@@ -71,7 +71,7 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 
     <div class="flex-[0_1_50%]">
       <h1
-        class="text-text-text-main block text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold tracking-tight text-balance whitespace-pre-line sm:text-4xl md:text-start lg:text-6xl lg:leading-tight dark:text-neutral-200"
+        class="text-text-text-main font-helvetica-black block text-center text-2xl text-balance sm:text-4xl md:text-start lg:text-[52px] lg:leading-tight"
       >
         <Fragment set:html={title} />
       </h1>
@@ -89,12 +89,7 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
               <PrimaryCTA title={primaryBtnLabel} url={primaryBtnURL} noArrow className="w-[300px] h-[46px]" />
             )}
             {secondaryBtnLabel && (
-              <SecondaryCTA
-                title={secondaryBtnLabel}
-                url={secondaryBtnURL}
-                className="w-[192px] h-[46px] text-[var(--color-primary)]"
-                arrow
-              />
+              <SecondaryCTA title={secondaryBtnLabel} url={secondaryBtnURL} className=" h-[46px] text-primary" arrow />
             )}
           </div>
         )

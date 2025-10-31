@@ -34,14 +34,8 @@ interface Props {
     let nav = document.getElementById(navId);
 
     if (nav) {
-      nav.classList.remove(
-        "text-neutral-600",
-        "dark:text-neutral-400",
-        "hover:text-neutral-500",
-        "font-normal",
-        "dark:hover:text-neutral-500"
-      );
-      nav.classList.add("text-current", "font-bold");
+      nav.classList.remove("text-neutral-600", "dark:text-neutral-400", "hover:text-neutral-500", "font-normal");
+      nav.classList.add("text-current", "font-helvetica-bold");
       nav.setAttribute("aria-current", "page");
     }
   });

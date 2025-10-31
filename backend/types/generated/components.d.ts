@@ -49,10 +49,7 @@ export interface SectionsBusinessUnits extends Struct.ComponentSchema {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"page:section:bussiness_units">;
-    sliderItems: Schema.Attribute.Relation<
-      "oneToMany",
-      "api::business-unit.business-unit"
-    >;
+    sliderItems: Schema.Attribute.Relation<"oneToMany", "api::business-unit.business-unit">;
   };
 }
 
@@ -67,13 +64,10 @@ export interface SectionsContactForm extends Struct.ComponentSchema {
       Schema.Attribute.Unique &
       Schema.Attribute.DefaultTo<"page:section:contact_form">;
     form: Schema.Attribute.Relation<"oneToOne", "plugin::api-forms.form">;
-    submitBtnLabel: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<"Send">;
+    submitBtnLabel: Schema.Attribute.String & Schema.Attribute.DefaultTo<"Send">;
     subTitle: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<"Looking to grow your career with a forward-thinking organization? Join our dynamic team today">;
-    title: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"Join Our Team ">;
+    title: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"Join Our Team ">;
   };
 }
 
@@ -88,13 +82,10 @@ export interface SectionsCvForm extends Struct.ComponentSchema {
       Schema.Attribute.Unique &
       Schema.Attribute.DefaultTo<"page:section:cv_form">;
     form: Schema.Attribute.Relation<"oneToOne", "plugin::api-forms.form">;
-    submitBtnLabel: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<"Submit Application">;
+    submitBtnLabel: Schema.Attribute.String & Schema.Attribute.DefaultTo<"Submit Application">;
     subTitle: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<"\"Didn't find a position that fits? We'd still love to hear from you.\"">;
-    title: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"Submit Your CV">;
+    title: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"Submit Your CV">;
   };
 }
 
@@ -104,22 +95,15 @@ export interface SectionsGetInTouchForm extends Struct.ComponentSchema {
     displayName: "Get In Touch Form";
   };
   attributes: {
-    businessUnitsForFormSelect: Schema.Attribute.Relation<
-      "oneToMany",
-      "api::business-unit.business-unit"
-    >;
+    businessUnitsForFormSelect: Schema.Attribute.Relation<"oneToMany", "api::business-unit.business-unit">;
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
       Schema.Attribute.DefaultTo<"page:section:get_in_touch_form">;
     form: Schema.Attribute.Relation<"oneToOne", "plugin::api-forms.form">;
-    formSubmitBtnLabel: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<"Send Message">;
-    formSubTitle: Schema.Attribute.String &
-      Schema.Attribute.DefaultTo<"You  can reach us anytime.">;
-    formTitle: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"Get In Touch">;
+    formSubmitBtnLabel: Schema.Attribute.String & Schema.Attribute.DefaultTo<"Send Message">;
+    formSubTitle: Schema.Attribute.String & Schema.Attribute.DefaultTo<"You  can reach us anytime.">;
+    formTitle: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"Get In Touch">;
   };
 }
 

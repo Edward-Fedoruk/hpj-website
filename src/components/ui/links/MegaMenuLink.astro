@@ -28,14 +28,14 @@ const linkWidth = width !== undefined ? "w-[" + width + "px]" : "w-fit";
     id={url === "/" ? "home" : url.replace("/", "")}
     href={url}
     data-astro-prefetch
-    class={"text-nowrap md:hidden md:text-center min-h-[77px] md:min-h-fit flex items-center rounded-lg text-2xl font-normal outline-hidden ring-zinc-500 focus-visible:ring-3 dark:text-neutral-400 dark:ring-zinc-200 dark:hover:text-neutral-500 dark:focus:outline-hidden md:py-3 md:text-lg text-current"}
+    class={"text-nowrap text md:hidden md:text-center min-h-[77px] md:min-h-fit flex items-center rounded-lg text-2xl font-normal outline-hidden ring-zinc-500 focus-visible:ring-3 dark:text-neutral-400 dark:ring-zinc-200 dark:hover:text-neutral-500 dark:focus:outline-hidden md:py-3 md:text-lg text-current"}
     style={`min-width: ${width}px;`}
   >
     {name}
   </a>
 
   <div
-    class="hs-dropdown-menu hs-dropdown-open:opacity-100 top-full z-10 hidden w-fit min-w-60 rounded-2xl bg-white py-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:start-0 before:-top-5 before:h-5 before:w-full md:top-[70px] md:p-4 md:shadow-2xl md:duration-[150ms] dark:divide-neutral-700 dark:bg-neutral-800"
+    class="hs-dropdown-menu hs-dropdown-open:opacity-100 text-text-main top-full z-10 hidden w-fit min-w-60 rounded-2xl bg-white py-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:start-0 before:-top-5 before:h-5 before:w-full md:top-[70px] md:p-4 md:shadow-2xl md:duration-[150ms] dark:divide-neutral-700 dark:bg-neutral-800"
   >
     <div class="gap-4 md:grid">
       <div class="mx-1 flex flex-col md:mx-0">

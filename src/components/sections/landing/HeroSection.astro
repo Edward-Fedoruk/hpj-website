@@ -24,56 +24,59 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
 ---
 
 <section
-  class="header-text-white mx-auto grid min-h-[636px] max-w-[85rem] gap-4 px-4 py-14 pt-[86px] md:min-h-[700px] md:items-center md:gap-8 xl:px-10"
+  class="relative flex min-h-[636px] items-center gap-4 px-4 py-14 pt-[104px] pb-40 md:min-h-[700px] md:items-center md:gap-8 md:pt-[100px] md:pb-16 xl:px-10"
 >
-  {
-    builtBgImg && bgImgAlt && (
-      <div class="hero-img pointer-events-none absolute top-0 left-0 -z-20 h-[636px] w-full overflow-hidden bg-white md:h-[700px]">
-        <Image
-          src={builtBgImg.src}
-          width={builtBgImg.width}
-          height={builtBgImg.height}
-          srcset={builtBgImg.srcset}
-          sizes="(max-width: 500px) 500px, 100vw"
-          alt={bgImgSrc.alternativeText ?? bgImgAlt ?? "background image"}
-          draggable={"false"}
-          loading={"eager"}
-          fetchpriority={"high"}
-          class="h-full w-full scale-110 object-cover object-center"
-        />
-        <SectionCorner position="bottom-right" className="text-[#f7f7f7]" />
-      </div>
-    )
-  }
-  <div data-aos="fade-in" data-aos-delay="500" data-aos-once="true" class="flex flex-col items-center justify-center">
-    <h1
-      class="font-helvetica-bold block text-center text-[40px] font-black tracking-tight text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
-    >
-      <Fragment set:html={title} />
-    </h1>
+  <div class="mx-auto h-fit max-w-7xl">
     {
-      subtitle && (
-        <p class="mx-auto mt-3 w-full text-center text-lg leading-relaxed text-pretty text-white md:max-w-[742px]">
-          {subtitle}
-        </p>
+      builtBgImg && bgImgAlt && (
+        <div class="hero-img pointer-events-none absolute top-0 left-0 -z-20 h-full w-full overflow-hidden bg-white md:h-[700px]">
+          <Image
+            src={builtBgImg.src}
+            width={builtBgImg.width}
+            height={builtBgImg.height}
+            alt={bgImgAlt || builtBgImg}
+            srcset={builtBgImg.srcset}
+            sizes="(max-width: 500px) 500px, 100vw"
+            alt={bgImgSrc.alternativeText ?? bgImgAlt ?? "background image"}
+            draggable={"false"}
+            loading={"eager"}
+            fetchpriority={"high"}
+            class="h-full w-full scale-110 object-cover object-center"
+          />
+          <SectionCorner position="bottom-right" className="text-[#f7f7f7]" />
+        </div>
       )
     }
-    <div class="mt-7 grid w-full gap-3 sm:inline-flex sm:justify-center">
+    <div data-aos="fade-in" data-aos-delay="500" data-aos-once="true" class="flex flex-col items-center justify-center">
+      <h1
+        class="font-helvetica-black block text-center text-[40px] font-black text-wrap text-white sm:text-4xl lg:text-6xl dark:text-neutral-200"
+      >
+        <Fragment set:html={title} />
+      </h1>
       {
-        primaryBtnLabel && primaryBtnURL && (
-          <PrimaryCTA title={primaryBtnLabel} url={primaryBtnURL} noArrow className="w-full md:w-[300px] h-[56px]" />
+        subtitle && (
+          <p class="mx-auto mt-3 w-full text-center text-lg leading-relaxed text-pretty text-white md:max-w-[742px]">
+            {subtitle}
+          </p>
         )
       }
-      {
-        secondaryBtnLabel && secondaryBtnURL && (
-          <SecondaryCTA
-            title={secondaryBtnLabel}
-            url={secondaryBtnURL}
-            arrow
-            className="w-full md:w-[300px] h-[56px] text-white"
-          />
-        )
-      }
+      <div class="mt-7 grid w-full gap-3 sm:inline-flex sm:justify-center">
+        {
+          primaryBtnLabel && primaryBtnURL && (
+            <PrimaryCTA title={primaryBtnLabel} url={primaryBtnURL} noArrow className="w-full md:w-[300px] h-[56px]" />
+          )
+        }
+        {
+          secondaryBtnLabel && secondaryBtnURL && (
+            <SecondaryCTA
+              title={secondaryBtnLabel}
+              url={secondaryBtnURL}
+              arrow
+              className="w-full md:w-[300px] h-[56px] text-white"
+            />
+          )
+        }
+      </div>
     </div>
   </div>
 </section>

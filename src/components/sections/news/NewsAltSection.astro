@@ -22,9 +22,9 @@ interface Props extends NewsAltSectionProps {}
   <div class="flex flex-col md:flex-row max-w-[80rem] m-auto">
     {
       newsList.length > 0 && (
-        <div class="flex flex-col w-full md:min-w-[375px] md:w-[375px] bg-[#F7F7F7] h-full z-10 md:min-h-[457px] alt-news-text">
+        <div class="flex flex-col w-full md:min-w-[391px] md:w-[391px] bg-[#F7F7F7] h-full z-10 md:min-h-[457px] alt-news-text pr-4">
           <h1
-              class="md:text-start text-center font-(family-name:--font-helvetica-bold) block text-2xl font-bold tracking-tight text-balance whitespace-pre-line text-[var(--color-gray-90)] lg:text-[52px] lg:leading-tight"
+              class="md:text-start text-center font-helvetica-black block text-[32px] text-balance whitespace-pre-line text-gray-90 lg:text-[52px] lg:leading-tight"
               data-aos="fade-up"
               data-aos-delay="150"
               data-aos-once="true"
@@ -34,7 +34,7 @@ interface Props extends NewsAltSectionProps {}
           {
             subTitle && (
               <p 
-                class="mx-auto md:text-start text-center mt-8 w-full max-w-[846px] text-lg leading-relaxed text-pretty text-[var(--color-neutral-gray)]"
+                class="mx-auto md:text-start tracking-wide text-center mt-8 w-full max-w-[846px] text-lg leading-relaxed text-neutral-gray"
                 data-aos="fade-up"
                 data-aos-delay="150"
                 data-aos-once="true"
@@ -88,12 +88,12 @@ interface Props extends NewsAltSectionProps {}
                   
                   <div class="p-4 flex flex-col md:items-center justify-between gap-4">
                     <div class="flex flex-col">
-                      <a href={item.url} class="line-clamp-2 text-xl font-bold">{item.title}</a>
+                      <a href={item.url} class="line-clamp-2 text-xl font-helvetica-bold font-bold">{item.title}</a>
                       <p class="text-lg line-clamp-3 mt-6">{item.description}</p>
                     </div>
 
                     <div class="flex flex-col md:flex-row w-full md:justify-between md:items-center md:mb-4">
-                      <SecondaryCTA title="View details" arrow className="text-[var(--color-primary)] h-10 min-w-fit w-full md:w-fit font-bold!" url={item.url} />
+                      <SecondaryCTA title="View details" arrow className="text-[var(--color-primary)] h-10 min-w-fit w-full md:w-fit" url={item.url} />
 
                       <span class="text-[#00061680] block mt-4 md:mt-0">
                         {item.date ? new Date(item.date).toLocaleDateString("en-US", {
@@ -153,7 +153,7 @@ interface Props extends NewsAltSectionProps {}
       max-width: 1280px;
       --slide-height: 323px;
       --slide-spacing: 2rem;
-      --slide-size: 70%;
+      --slide-size: 75%;
     }
     .embla__viewport {
       overflow: hidden;

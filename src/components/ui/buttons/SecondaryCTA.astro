@@ -12,10 +12,10 @@ interface Props {
 // Define CSS classes for the hyperlink button
 
 const baseClasses =
-  "cursor-pointer inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center text-lg font-medium text-currentColor shadow-xs outline-hidden ring-currentColor focus-visible:ring-3 transition duration-300";
+  "cursor-pointer inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center text-lg font-bold text-currentColor shadow-xs outline-hidden ring-currentColor focus-visible:ring-3 transition duration-300";
 const borderClasses = "border border-currentColor";
 const bgColorClasses = "bg-transparent";
-const hoverClasses = "hover:bg-neutral-400/50 hover:text-neutral-600 active:text-neutral-700";
+const hoverClasses = "hover:bg-white/10 active:text-neutral-700";
 const disableClasses = "disabled:pointer-events-none disabled:opacity-50";
 const fontSizeClasses = "2xl:text-base";
 const ringClasses = "ring-currentColor";
@@ -26,13 +26,20 @@ const darkClasses =
 
 <!-- Styled hyperlink -->
 <a
-  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${darkClasses} ${className}`}
+  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${darkClasses} ${className} group/button`}
   href={url}
 >
   {title}
   {
     arrow ? (
-      <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        width="22"
+        height="15"
+        viewBox="0 0 22 15"
+        fill="none"
+        class="duration-300 ease-in-out group-hover/button:translate-x-[6px]"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M14.1667 13.5L20.5 7.5M20.5 7.5L14.1667 1.5M20.5 7.5H1.5"
           stroke="currentColor"

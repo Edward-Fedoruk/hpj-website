@@ -375,8 +375,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiBusinessUnitBusinessUnit
-  extends Struct.CollectionTypeSchema {
+export interface ApiBusinessUnitBusinessUnit extends Struct.CollectionTypeSchema {
   collectionName: "business_units";
   info: {
     displayName: "Business unit";
@@ -388,22 +387,17 @@ export interface ApiBusinessUnitBusinessUnit
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
-      Schema.Attribute.Private;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
     description: Schema.Attribute.Text;
     img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
     imgAlt: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      "oneToMany",
-      "api::business-unit.business-unit"
-    > &
+    localizations: Schema.Attribute.Relation<"oneToMany", "api::business-unit.business-unit"> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
-      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
     url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }

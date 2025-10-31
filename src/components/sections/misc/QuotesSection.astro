@@ -67,7 +67,7 @@ const mainImg = buildStrapiResponsive(img);
                   )}
 
                   <div class="relative flex h-[48px] items-center">
-                    <p class="block text-xl font-bold tracking-tight text-balance text-[#373B43] text-neutral-800 lg:leading-tight dark:text-neutral-200">
+                    <p class="font-helvetica-bold block text-xl text-balance text-[#373B43] text-neutral-800 lg:leading-tight dark:text-neutral-200">
                       <Fragment set:html={item.title} />
                     </p>
                   </div>
@@ -171,7 +171,9 @@ const mainImg = buildStrapiResponsive(img);
   const prevBtnNode = quotesSection!.querySelector(".embla__button--prev") as HTMLElement;
   const nextBtnNode = quotesSection!.querySelector(".embla__button--next") as HTMLElement;
 
-  const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtnNode, nextBtnNode);
+  if (prevBtnNode && nextBtnNode) {
+    const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtnNode, nextBtnNode);
 
-  emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
+    emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
+  }
 </script>
