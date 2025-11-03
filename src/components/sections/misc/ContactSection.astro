@@ -7,6 +7,7 @@ import EmailContactInput from "@components/ui/forms/input/EmailContactInput.astr
 import PhoneInput from "@components/ui/forms/input/PhoneInput.astro";
 import TextAreaInput from "@components/ui/forms/input/TextAreaInput.astro";
 import Icon from "@components/ui/icons/Icon.astro";
+import SecondaryCTA from "@/components/ui/buttons/SecondaryCTA.astro";
 
 // Define the variables that will be used in this component
 const title: string = "Contact us";
@@ -17,7 +18,7 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
 ---
 
 <!-- Contact Us -->
-<section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+<section class="mx-auto mt-[96px] max-w-[85rem] px-4 py-10 sm:px-6 md:mt-[100px] lg:px-8 lg:py-14">
   <div class="mx-auto max-w-2xl lg:max-w-5xl">
     <div class="text-center">
       <h1
@@ -49,7 +50,7 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
           </div>
 
           <div class="mt-4 grid">
-            <AuthBtn title="Send Message" />
+            <SecondaryCTA title="Send Message" />
           </div>
 
           <div class="mt-3 text-center">
@@ -84,9 +85,9 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
 
         <ContactIconBlock
           heading="Visit our office"
-          content="UK ScrewFast"
+          content="HPJ"
           isAddressVisible={true}
-          addressContent="72 Union Terrace, E10 4PE London"
+          addressContent="Dubai International Financial Centre Authority Level 14, The Gate Building"
           ><Icon name="mapPin" />
         </ContactIconBlock>
 
@@ -94,7 +95,7 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
           heading="Contact us by email"
           content="Prefer the written word? Drop us an email at"
           isLinkVisible={true}
-          linkTitle="support@screwfast.uk"
+          linkTitle="info_general@HPJ.AE"
           linkURL="#"
           ><Icon name="envelopeOpen" />
         </ContactIconBlock>
