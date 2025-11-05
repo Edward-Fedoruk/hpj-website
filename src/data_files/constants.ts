@@ -3,17 +3,15 @@ import ogImageSrc from "@images/social.png";
 export const SITE = {
   title: "HPJ",
   tagline: "Built on quality, driven by expertise, trusted by clients",
-  description: "ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs. Start exploring and contact our sales team for superior quality and reliability.",
-  description_short: "ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs.",
-  url: "https://screwfast.uk",
-  author: "Emil Gulamov",
+  description: "As a multi-division business, we bring together expertise, innovation, and collaboration to deliver excellence across industries and create long-term value.",
+  description_short: "We bring together expertise, innovation, and collaboration to deliver excellence across industries and create long-term value.",
+  author: "Morphios.io",
 };
 
 export const OG = {
   locale: "en_US",
   type: "website",
-  url: SITE.url,
-  title: `${SITE.title}: : Hardware Tools & Construction Services`,
-  description: "Equip your projects with ScrewFast's top-quality hardware tools and expert construction services. Trusted by industry leaders, ScrewFast offers simplicity, affordability, and reliability. Experience the difference with user-centric design and cutting-edge tools. Start exploring now!",
+  title: `${SITE.title}`,
+  description: "As a multi-division business, we bring together expertise, innovation, and collaboration to deliver excellence across industries and create long-term value.",
   image: ogImageSrc,
 };

@@ -16,18 +16,6 @@ import type {
   AboutAltSection,
 } from '@/types/sectionTypes';
 
-export enum SectionType {
-  Hero = "page:section:hero",
-  About = "page:section:about",
-  BusinessUnits = "page:section:bussiness_units",
-  WhyUs = "page:section:why_us",
-  Quotes = "page:section:quotes",
-  News = "page:section:news",
-  ContactForm = "page:section:contact_form",
-  CvForm = "page:section:cv_form",
-  GetInTouchForm = "page:section:get_in_touch_form",
-}
-
 export type Section =
   | HeroSection
   | AboutSection

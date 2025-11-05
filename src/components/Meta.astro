@@ -34,8 +34,8 @@ const author = SITE.author;
 const canonical = Astro.url.href;
 const socialImageRes = await getImage({
   src: OG.image,
-  width: 1200,
-  height: 600,
+  width: 512,
+  height: 512,
 });
 const socialImage = Astro.url.origin + socialImageRes.src; // Get the full URL of the image (https://stackoverflow.com/a/9858694)
 
