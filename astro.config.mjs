@@ -7,9 +7,9 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   // https://docs.astro.build/en/guides/images/#authorizing-remote-images
-  site: "https://screwfast.uk",
+  site: "https://hpj-website.vercel.app",
   image: {
-    domains: ["images.unsplash.com"],
+    remotePatterns: [{ protocol: "https" }],
   },
   prefetch: true,
   integrations: [
