@@ -61,8 +61,8 @@ export interface UnitSliderItem {
                     class={"h-[154px] object-cover md:h-[280px]"}
                     sizes="(max-width: 500px) 500px, 100vw"
                     draggable={"false"}
-                    loading={"eager"}
-                    fetchpriority={"high"}
+                    loading={"lazy"}
+                    fetchpriority={"auto"}
                   />
                 ) : (
                   <div>Image placeholder</div>
