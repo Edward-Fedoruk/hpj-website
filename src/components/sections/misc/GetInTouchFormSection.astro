@@ -61,16 +61,12 @@ const BU_OPTIONS = (businessUnitsForFormSelect ?? []).map((u) => ({
 
   <div class="z-10 flex w-full flex-col gap-6 md:items-center">
     <h1
-      class="block max-w-[578px] text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight"
+      class="block max-w-[578px] text-center font-(family-name:--font-helvetica-bold) text-3xl leading-[120%] font-bold text-balance whitespace-pre-line text-white lg:text-[52px]"
     >
       <Fragment set:html={title} />
     </h1>
 
-    {
-      subTitle && (
-        <p class="mx-auto w-full max-w-[578px] text-center text-lg leading-relaxed text-[#FFFFFFB2]">{subTitle}</p>
-      )
-    }
+    {subTitle && <p class="mx-auto w-full max-w-[578px] text-center text-lg text-[#FFFFFFB2]">{subTitle}</p>}
 
     {
       layouts && (

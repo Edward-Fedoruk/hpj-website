@@ -19,12 +19,12 @@ interface Props extends NewsAltSectionProps {}
 <section 
   class="mx-auto gap-8 bg-[#F7F7F7] header-text-dark px-4 py-[100px] md:gap-8 md:py-[134px] xl:px-10 overflow-hidden"
 >
-  <div class="flex flex-col md:flex-row max-w-[80rem] m-auto">
+  <div class="flex flex-col md:flex-row max-w-7xl m-auto">
     {
       newsList.length > 0 && (
         <div class="flex flex-col w-full md:min-w-[391px] md:w-[391px] bg-[#F7F7F7] h-full z-10 md:min-h-[457px] alt-news-text pr-4">
           <h1
-              class="md:text-start text-center font-helvetica-black block text-[32px] text-balance whitespace-pre-line text-gray-90 lg:text-[52px] lg:leading-tight"
+              class="md:text-start text-center font-helvetica-black block text-[32px] text-balance whitespace-pre-line text-gray-90 lg:text-[52px]"
               data-aos="fade-up"
               data-aos-delay="150"
               data-aos-once="true"
@@ -34,7 +34,7 @@ interface Props extends NewsAltSectionProps {}
           {
             subTitle && (
               <p 
-                class="mx-auto md:text-start tracking-wide text-center mt-8 w-full max-w-[846px] text-lg leading-relaxed text-neutral-gray"
+                class="mx-auto md:text-start tracking-wide text-center mt-8 w-full max-w-[846px] text-lg text-neutral-gray"
                 data-aos="fade-up"
                 data-aos-delay="150"
                 data-aos-once="true"

@@ -35,13 +35,13 @@ if (img) {
 >
   <div class="flex flex-1 flex-col items-center md:items-start">
     <h1
-      class="font-helvetica-black text-text-main order-1 block text-center text-[32px] text-balance whitespace-pre-line sm:text-4xl md:text-start lg:text-6xl lg:leading-tight"
+      class="font-helvetica-black text-text-main order-1 block text-center text-[32px] text-balance whitespace-pre-line  md:text-start lg:text-[52px] leading-[120%]"
     >
       <Fragment set:html={title} />
     </h1>
     {
       subTitle && (
-        <p class="text-text-secondary order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty md:text-start">
+        <p class="text-text-secondary order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
           {subTitle}
         </p>
       )
@@ -80,21 +80,23 @@ if (img) {
       </li>
     </ul>
   </div>
-  <div class="order-1 flex-1 overflow-hidden rounded-2xl">
+  <div class="order-1 flex-1">
     {
       builtImg && (
-        <Image
-          src={builtImg.src}
-          width={builtImg.width}
-          height={builtImg.height}
-          srcset={builtImg.srcset}
-          sizes="(max-width: 500px) 500px, 100vw"
-          alt={img?.alternativeText ?? imgAlt ?? "background image"}
-          draggable={"false"}
-          loading={"eager"}
-          fetchpriority={"high"}
-          class="h-full w-full scale-110 object-cover object-center"
-        />
+        <div class="overflow-hidden rounded-2xl">
+          <Image
+            src={builtImg.src}
+            width={builtImg.width}
+            height={builtImg.height}
+            srcset={builtImg.srcset}
+            sizes="(max-width: 500px) 500px, 100vw"
+            alt={img?.alternativeText ?? imgAlt ?? "background image"}
+            draggable={"false"}
+            loading={"eager"}
+            fetchpriority={"high"}
+            class="h-full w-full scale-110 object-cover object-center"
+          />
+        </div>
         <ul class="order-2 mt-10 flex flex-row flex-wrap gap-x-6 gap-y-10 lg:hidden text-center">
           <li class="flex-[1_1_45%]">
             <p class="font-helvetica-bold fond-bold text-primary text-3xl md:text-[38px]">98%</p>

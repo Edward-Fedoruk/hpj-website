@@ -18,22 +18,16 @@ const FORM_ID = form?.documentId ?? "";
 ---
 
 <section
-  class="relative mx-auto flex flex-col items-center gap-6 bg-[var(--color-dark-purple)] px-4 py-[100px] selection:bg-white! selection:text-[#524CF2]! md:gap-8 md:py-[134px] xl:px-10"
+  class="bg-dark-purple relative mx-auto flex flex-col items-center gap-6 px-4 py-[100px] selection:bg-white! selection:text-[#524CF2]! md:gap-8 md:py-[134px] xl:px-10"
 >
   <SectionCorner className="text-[var(--color-gray-10)]" position="top-right" />
   <SectionCorner className="text-[#F7F7F7]" position="bottom-left" />
   <h1
-    class="block max-w-[578px] text-center font-(family-name:--font-helvetica-bold) text-3xl font-bold text-balance whitespace-pre-line text-white sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+    class="font-helvetica-bold block max-w-[578px] text-center text-3xl leading-[120%] font-bold text-balance whitespace-pre-line text-white lg:text-[52px] dark:text-neutral-200"
   >
     <Fragment set:html={title} />
   </h1>
-  {
-    subTitle && (
-      <p class="mx-auto w-full max-w-[578px] text-center text-lg leading-relaxed text-pretty text-[#FFFFFFB2]">
-        {subTitle}
-      </p>
-    )
-  }
+  {subTitle && <p class="mx-auto w-full max-w-[578px] text-center text-lg text-pretty text-[#FFFFFFB2]">{subTitle}</p>}
 
   {
     form && (

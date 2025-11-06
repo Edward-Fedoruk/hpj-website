@@ -22,21 +22,19 @@ export interface UnitSliderItem {
 ---
 
 <section
-  class="header-text-dark mx-auto flex flex-col overflow-hidden bg-[var(--color-gray-10)] px-4 py-[100px] sm:px-6 md:items-center md:py-[120px] lg:px-8 xl:px-10"
+  class="header-text-dark bg-gray-10 mx-auto flex flex-col overflow-hidden px-4 py-[100px] sm:px-6 md:items-center md:py-[120px] lg:px-8 xl:px-10"
   data-aos="fade-up"
   data-aos-delay="150"
   data-aos-once="true"
 >
   <h1
-    class="font-helvetica-black block text-center text-[32px] font-black text-balance whitespace-pre-line text-[var(--color-primary-text)] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+    class="font-helvetica-black text-primary-text block text-center text-[32px] leading-[120%] font-black text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
   >
     <Fragment set:html={title} />
   </h1>
   {
     subTitle && (
-      <p class="mx-auto mt-4 w-full max-w-[846px] text-center text-lg leading-relaxed text-[var(--color-secondary-text)] md:mt-6">
-        {subTitle}
-      </p>
+      <p class="text-secondary-text mx-auto mt-4 w-full max-w-[846px] text-center text-lg md:mt-6">{subTitle}</p>
     )
   }
 
