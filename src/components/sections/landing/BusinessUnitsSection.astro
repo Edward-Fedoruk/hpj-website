@@ -23,18 +23,25 @@ export interface UnitSliderItem {
 
 <section
   class="header-text-dark bg-gray-10 mx-auto flex flex-col overflow-hidden px-4 py-[100px] sm:px-6 md:items-center md:py-[120px] lg:px-8 xl:px-10"
-  data-aos="fade-up"
-  data-aos-delay="150"
-  data-aos-once="true"
 >
   <h1
     class="font-helvetica-black text-primary-text block text-center text-[32px] leading-[120%] font-black text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
+    data-aos="fade-up"
+    data-aos-delay="150"
+    data-aos-once="true"
   >
     <Fragment set:html={title} />
   </h1>
   {
     subTitle && (
-      <p class="text-secondary-text mx-auto mt-4 w-full max-w-[846px] text-center text-lg md:mt-6">{subTitle}</p>
+      <p
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-once="true"
+        class="text-secondary-text mx-auto mt-4 w-full max-w-[846px] text-center text-lg md:mt-6"
+      >
+        {subTitle}
+      </p>
     )
   }
 
@@ -42,10 +49,13 @@ export interface UnitSliderItem {
     sliderItems && sliderItems.length > 0 && (
       <div
         class="embla relative mt-[50px] h-fit max-h-[323px] md:mt-[60px] md:mb-[72px] md:max-h-[408px]"
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-once="true"
         id="units-slider"
       >
         <div class="embla__container">
-          {sliderItems.map((item) => {
+          {sliderItems.map((item, i) => {
             const itemImg = buildStrapiResponsive(item.img);
 
             return (
@@ -65,7 +75,7 @@ export interface UnitSliderItem {
                 ) : (
                   <div>Image placeholder</div>
                 )}
-                <div class="flex min-h-[128px] flex-col bg-white p-4">
+                <div class="flex min-h-32 flex-col bg-white p-4">
                   <a
                     class="font-helvetica-bold mt-2 mb-2 line-clamp-1 text-2xl font-bold text-[var(--color-primary-text)]"
                     href={item.url}

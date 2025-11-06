@@ -21,8 +21,10 @@ export interface AboutAltSectionProps {
 interface Props extends AboutAltSectionProps {}
 ---
 
-<section class="header-text-dark mx-auto flex flex-col gap-6 bg-white px-4 py-[100px] md:items-center md:gap-8">
-  <div data-aos="fade-in" data-aos-delay="150" data-aos-once="true" class="w-full">
+<section
+  class="header-text-dark mx-auto flex flex-col gap-6 bg-white px-4 py-[100px] md:items-center md:gap-8 md:px-10"
+>
+  <div data-aos="fade-up" data-aos-delay="150" data-aos-once="true" class="w-full">
     {
       profilePictures && (
         <div class="relative mb-8 flex justify-center">

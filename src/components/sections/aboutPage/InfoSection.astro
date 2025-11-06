@@ -28,12 +28,14 @@ if (img) {
 ---
 
 <section
-  class="header-text-dark mx-auto flex max-w-[85rem] flex-col gap-8 bg-white px-4 py-[100px] pb-[70px] md:items-center md:gap-8 md:px-10 md:py-[150px] lg:flex-row xl:px-10"
-  data-aos="fade-up"
-  data-aos-delay="150"
-  data-aos-once="true"
+  class="header-text-dark mx-auto flex max-w-[85rem] flex-col gap-8 bg-white px-4 py-[100px] pb-[70px] md:items-center md:gap-8 md:px-10 md:py-[150px] md:flex-row xl:px-10"
 >
-  <div class="flex flex-1 flex-col items-center md:items-start">
+  <div 
+    class="flex flex-1 flex-col items-center md:items-start" 
+    data-aos="fade-up"
+    data-aos-delay="150"
+    data-aos-once="true"
+  >
     <h1
       class="font-helvetica-black text-text-main order-1 block text-center text-[32px] text-balance whitespace-pre-line  md:text-start lg:text-[52px] leading-[120%]"
     >
@@ -61,26 +63,53 @@ if (img) {
         </div>
       )
     }
-    <ul class="order-2 mt-10 flex-row flex-wrap gap-x-6 gap-y-10 hidden lg:flex">
-      <li class="flex-[1_0_200px]">
+    <ul 
+      class="order-2 mt-10 flex-row flex-wrap gap-x-6 gap-y-10 hidden md:flex"
+    >
+      <li 
+        class="flex-[0_0_45%]"
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-once="true"
+      >
         <p class="font-helvetica-bold text-primary text-3xl md:text-[38px]">98%</p>
         <p class="text-gray-90 text-lg">Client Retention</p>
       </li>
-      <li class="flex-[1_0_200px]">
+      <li 
+        class="flex-[0_0_45%]"
+        data-aos="fade-up"
+        data-aos-delay="250"
+        data-aos-once="true"
+      >
         <p class="font-helvetica-bold text-primary text-3xl md:text-[38px]">650+</p>
         <p class="text-gray-90 text-lg">Projects Delivered</p>
       </li>
-      <li class="flex-[1_0_200px]">
+      <li 
+        class="flex-[0_0_45%]"
+        data-aos="fade-up"
+        data-aos-delay="350"
+        data-aos-once="true"
+      >
         <p class="font-helvetica-bold text-primary text-3xl md:text-[38px]">4+</p>
         <p class="text-gray-90 text-lg">Business Divisions</p>
       </li>
-      <li class="flex-[1_0_200px]">
+      <li 
+        class="flex-[0_0_45%]"
+        data-aos="fade-up"
+        data-aos-delay="450"
+        data-aos-once="true"
+      >
         <p class="font-helvetica-bold text-primary text-3xl md:text-[38px]">100%</p>
         <p class="text-gray-90 text-lg">Audit Pass Rate</p>
       </li>
     </ul>
   </div>
-  <div class="order-1 flex-1">
+  <div 
+    class="order-1 flex-1"     
+    data-aos="fade-up"
+    data-aos-delay="150"
+    data-aos-once="true"
+  >
     {
       builtImg && (
         <div class="overflow-hidden rounded-2xl">
@@ -97,7 +126,12 @@ if (img) {
             class="h-full w-full scale-110 object-cover object-center"
           />
         </div>
-        <ul class="order-2 mt-10 flex flex-row flex-wrap gap-x-6 gap-y-10 lg:hidden text-center">
+        <ul 
+          class="order-2 mt-10 flex flex-row flex-wrap gap-x-6 gap-y-10 md:hidden text-center"     
+          data-aos="fade-up"
+          data-aos-delay="150"
+          data-aos-once="true"
+        >
           <li class="flex-[1_1_45%]">
             <p class="font-helvetica-bold fond-bold text-primary text-3xl md:text-[38px]">98%</p>
             <p class="text-gray-90 text-lg">Client Retention</p>
