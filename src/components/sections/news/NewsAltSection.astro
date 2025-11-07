@@ -48,10 +48,10 @@ interface Props extends NewsAltSectionProps {}
             data-aos-delay="150"
             data-aos-once="true"
           >
-            <span class="text-[var(--color-neutral-gray)]">Archive:</span>
-            <span class="text-[var(--color-primary)] font-bold">2025</span>
-            <div class="w-[1px] h-[16px] mt-1 bg-[var(--color-neutral-gray)]"></div>
-            <span class="text-[var(--color-primary)]">2026</span>
+            <span class="text-text-secondary">Archive:</span>
+            <span class="text-primary font-bold">2025</span>
+            <div class="w-px h-4 mt-1 bg-text-secondary"></div>
+            <span class="text-primary">2026</span>
           </div>
         </div>
 
@@ -88,14 +88,14 @@ interface Props extends NewsAltSectionProps {}
                   
                   <div class="p-4 flex flex-col md:items-center justify-between gap-4">
                     <div class="flex flex-col">
-                      <a href={item.url} class="line-clamp-2 text-xl font-helvetica-bold font-bold">{item.title}</a>
-                      <p class="text-lg line-clamp-3 mt-6">{item.description}</p>
+                      <a href={item.url} class="line-clamp-2 text-xl font-helvetica-bold font-bold text-text-main">{item.title}</a>
+                      <p class="text-lg line-clamp-3 mt-6 text-text-secondary">{item.description}</p>
                     </div>
 
                     <div class="flex flex-col md:flex-row w-full md:justify-between md:items-center md:mb-4">
-                      <SecondaryCTA title="View details" arrow className="text-[var(--color-primary)] h-10 min-w-fit w-full md:w-fit" url={item.url} />
+                      <SecondaryCTA title="View details" arrow className="text-primary h-10 min-w-fit w-full md:w-fit" url={item.url} />
 
-                      <span class="text-[#00061680] block mt-4 md:mt-0">
+                      <span class="text-text-secondary block mt-4 md:mt-0">
                         {item.date ? new Date(item.date).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "long",

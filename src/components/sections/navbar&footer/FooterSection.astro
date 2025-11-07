@@ -15,7 +15,7 @@ const sectionThreeTitle: string = "Contact Us";
       <div class="col-span-full flex flex-col items-center sm:block md:w-fit lg:col-span-1 xl:w-[355px]">
         <BrandLogoFooter class="order-1 object-cover mix-blend-exclusion" />
         <div
-          class="text-gray-90 order-2 mt-[34px] flex justify-center gap-x-5 gap-y-2 sm:flex sm:items-center sm:justify-start sm:gap-y-0 md:order-1 md:mt-[30px] md:gap-[20px]"
+          class="text-gray-90 order-2 mt-[34px] flex justify-center gap-x-5 gap-y-2 sm:flex sm:items-center sm:justify-start sm:gap-y-0 md:order-1 md:mt-[30px] md:gap-5"
         >
           <FooterSocialLink url={strings.socialLinks.facebook}><Icon name="instagram" /> </FooterSocialLink>
 
@@ -24,14 +24,14 @@ const sectionThreeTitle: string = "Contact Us";
           <FooterSocialLink url={strings.socialLinks.facebook}><Icon name="facebook" /> </FooterSocialLink>
         </div>
 
-        <p class="text-primary-text order-1 mt-[30px] text-center font-bold sm:max-w-[343px] sm:text-start">
+        <p class="text-text-main order-1 mt-[30px] text-center font-bold sm:max-w-[343px] sm:text-start">
           We lead with experience, driven by professionalism, and guided by a commitment to lasting success.
         </p>
       </div>
       {
         strings.footerLinks.map((section) => (
           <div class="col-span-1">
-            <h3 class="text-primary-text font-bold dark:text-neutral-200">{section.section}</h3>
+            <h3 class="text-text-main font-bold dark:text-neutral-200">{section.section}</h3>
             <ul class="mt-4 grid space-y-3 md:mt-10">
               {section.links.map((link) => (
                 <li class="mb-[13px] md:mb-4">
@@ -49,21 +49,21 @@ const sectionThreeTitle: string = "Contact Us";
       }
 
       <div class="col-span-2 lg:col-span-1">
-        <h3 class="text-primary-text font-bold">
+        <h3 class="text-text-main font-bold">
           {sectionThreeTitle}
         </h3>
 
-        <ul class="mt-4 flex flex-col gap-2 text-[15px] text-[#5B5F68] md:mt-10 md:text-base">
-          <li class="flex items-center gap-[10px]">
-            <Icon name="email" className="min-w-[20px] text-[#373B43]" />
+        <ul class="text-text-secondary mt-4 flex flex-col gap-4 text-[15px] md:mt-10 md:text-base">
+          <li class="flex items-center gap-2.5">
+            <Icon name="email" className="text-gray-90 min-w-5" />
             <a href="mailto:info_general@hpj.ae">info_general@HPJ.AE</a>
           </li>
-          <li class="flex items-center gap-[10px]">
-            <Icon name="phone" className="min-w-[20px] text-[#373B43]" />
+          <li class="flex items-center gap-2.5">
+            <Icon name="phone" className="text-gray-90 mb-0.5 min-w-5" />
             <a href="tel:+97143622222">+971 4 362 2222</a>
           </li>
-          <li class="flex items-center gap-[10px]">
-            <Icon name="locationMarker" className="min-w-[20px] text-[#373B43]" />
+          <li class="flex items-start gap-2.5">
+            <Icon name="locationMarker" className="text-gray-90 mt-0.5 min-w-5" />
             <p>Dubai International Financial Centre Authority Level 14, The Gate Building</p>
           </li>
         </ul>
@@ -73,7 +73,7 @@ const sectionThreeTitle: string = "Contact Us";
 
   <div class="w-full">
     <div
-      class="mx-auto flex w-full max-w-[85rem] grid-cols-1 flex-col gap-3 px-4 py-4 pt-0 pb-10 text-[#5B5F68] sm:px-6 md:flex md:justify-between md:gap-6 md:py-10 lg:px-10"
+      class="mx-auto flex w-full max-w-340 grid-cols-1 flex-col gap-3 px-4 py-4 pt-0 pb-10 text-[#5B5F68] sm:px-6 md:flex md:justify-between md:gap-6 md:py-10 lg:px-10"
     >
       <div class="order-1 mb-1 border-t-[0.5px] border-t-[#999999]"></div>
       <div class="order-1 flex items-center justify-between">

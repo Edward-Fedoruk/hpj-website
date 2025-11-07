@@ -67,5 +67,12 @@ interface Props {
         scrollbar-width: none;
       }
     </style>
+
+    <style is:global>
+      button[disabled="disabled"] {
+        opacity: 0.5;
+        transition-duration: 400ms;
+      }
+    </style>
   </body>
 </html>

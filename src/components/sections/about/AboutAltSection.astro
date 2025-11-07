@@ -53,15 +53,13 @@ interface Props extends AboutAltSectionProps {}
     }
 
     <h1
-      class="font-helvetica-black text-text-text-main mb-6 block text-center text-3xl leading-[120%] font-bold text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
+      class="font-helvetica-black text-text-main mb-6 block text-center text-3xl leading-[120%] font-bold text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
     >
       <Fragment set:html={title} />
     </h1>
     {
       subtitle && (
-        <p class="text-text-text-secondary mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty">
-          {subtitle}
-        </p>
+        <p class="text-text-secondary mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty">{subtitle}</p>
       )
     }
     {

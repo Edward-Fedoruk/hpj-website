@@ -25,7 +25,7 @@ export interface UnitSliderItem {
   class="header-text-dark bg-gray-10 mx-auto flex flex-col overflow-hidden px-4 py-[100px] sm:px-6 md:items-center md:py-[120px] lg:px-8 xl:px-10"
 >
   <h1
-    class="font-helvetica-black text-primary-text block text-center text-[32px] leading-[120%] font-black text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
+    class="font-helvetica-black text-text-main block text-center text-[32px] leading-[120%] font-black text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
     data-aos="fade-up"
     data-aos-delay="150"
     data-aos-once="true"
@@ -38,7 +38,7 @@ export interface UnitSliderItem {
         data-aos="fade-up"
         data-aos-delay="150"
         data-aos-once="true"
-        class="text-secondary-text mx-auto mt-4 w-full max-w-[846px] text-center text-lg md:mt-6"
+        class="text-text-secondary mx-auto mt-4 w-full max-w-[846px] text-center text-lg md:mt-6"
       >
         {subTitle}
       </p>
@@ -77,19 +77,19 @@ export interface UnitSliderItem {
                 )}
                 <div class="flex min-h-32 flex-col bg-white p-4">
                   <a
-                    class="font-helvetica-bold mt-2 mb-2 line-clamp-1 text-2xl font-bold text-[var(--color-primary-text)]"
+                    class="font-helvetica-bold text-text-main mt-2 mb-2 line-clamp-1 text-2xl font-bold"
                     href={item.url}
                   >
                     {item.title}
                   </a>
-                  <p class="line-clamp-2 max-h-[55px] text-lg font-normal text-[var(--color-secondary-text)] duration-300 group-hover:line-clamp-4 group-hover:max-h-[1500px]">
+                  <p class="text-text-secondary line-clamp-2 max-h-[55px] text-lg font-normal duration-300 group-hover:line-clamp-4 group-hover:max-h-[1500px]">
                     {item.description}
                   </p>
                   <SecondaryCTA
                     title={"Learn more"}
                     url={item.url}
                     className={
-                      "text-primary box-border max-h-0! w-fit overflow-hidden! border-0! p-0! duration-300 group-hover:mt-2 group-hover:h-fit group-hover:max-h-[56px]! group-hover:border-1! group-hover:p-[10px_16px]!"
+                      "text-primary box-border max-h-0! w-fit overflow-hidden! border-0! p-0! duration-300 group-hover:mt-2 group-hover:h-fit group-hover:max-h-14! group-hover:border! group-hover:p-[10px_16px]!"
                     }
                     arrow
                   />

@@ -29,7 +29,7 @@ interface Props extends NewsSectionProps {}
   {
     subTitle && (
       <p
-        class="text-neutral-gray mx-auto mt-8 w-full max-w-[846px] text-center text-lg text-pretty"
+        class="text-text-secondary mx-auto mt-8 w-full max-w-[846px] text-center text-lg text-pretty"
         data-aos="fade-up"
         data-aos-delay="150"
         data-aos-once="true"
@@ -58,7 +58,7 @@ interface Props extends NewsSectionProps {}
                       <a href={item.url} class="font-helvetica-bold line-clamp-2 text-xl">
                         {item.title}
                       </a>
-                      <span class="mt-2 block text-sm text-[#00061680]">
+                      <span class="text-text-secondary mt-2 block text-sm">
                         {item.date
                           ? new Date(item.date).toLocaleDateString("en-US", {
                               year: "numeric",
@@ -69,12 +69,7 @@ interface Props extends NewsSectionProps {}
                       </span>
                     </div>
 
-                    <SecondaryCTA
-                      title="View details"
-                      arrow
-                      className="text-[var(--color-primary)] h-10 min-w-fit"
-                      url={item.url}
-                    />
+                    <SecondaryCTA title="View details" arrow className="text-primary h-10 min-w-fit" url={item.url} />
                   </div>
                 </div>
               );

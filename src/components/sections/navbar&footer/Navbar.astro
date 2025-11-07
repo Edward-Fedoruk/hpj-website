@@ -74,7 +74,7 @@ const homeUrl = "/";
     <!-- Contains navigation links -->
     <div
       id="navbar-collapse-with-animation"
-      class="hs-collapse hidden grow basis-full overflow-hidden text-white! transition-all duration-300 md:block"
+      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block"
     >
       <!-- Navigation links container -->
       <div
@@ -113,7 +113,7 @@ const homeUrl = "/";
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const isDark = entry.target.classList.contains("header-text-dark");
-            header.style.color = isDark ? "black" : "white";
+            header.style.color = isDark ? "var(--color-text-main)" : "white";
           }
         });
       },
