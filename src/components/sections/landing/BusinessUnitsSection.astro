@@ -22,19 +22,24 @@ export interface UnitSliderItem {
 ---
 
 <section
-  class="header-text-dark mx-auto flex flex-col overflow-hidden bg-[var(--color-gray-10)] px-4 py-[100px] sm:px-6 md:items-center md:py-[120px] lg:px-8 xl:px-10"
-  data-aos="fade-up"
-  data-aos-delay="150"
-  data-aos-once="true"
+  class="header-text-dark bg-gray-10 mx-auto flex flex-col overflow-hidden px-4 py-[100px] sm:px-6 md:items-center md:py-[120px] lg:px-8 xl:px-10"
 >
   <h1
-    class="font-helvetica-black block text-center text-[32px] font-black text-balance whitespace-pre-line text-[var(--color-primary-text)] sm:text-4xl lg:text-6xl lg:leading-tight dark:text-neutral-200"
+    class="font-helvetica-black text-text-main block text-center text-[32px] leading-[120%] font-black text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
+    data-aos="fade-up"
+    data-aos-delay="150"
+    data-aos-once="true"
   >
     <Fragment set:html={title} />
   </h1>
   {
     subTitle && (
-      <p class="mx-auto mt-4 w-full max-w-[846px] text-center text-lg leading-relaxed text-[var(--color-secondary-text)] md:mt-6">
+      <p
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-once="true"
+        class="text-text-secondary mx-auto mt-4 w-full max-w-[846px] text-center text-lg md:mt-6"
+      >
         {subTitle}
       </p>
     )
@@ -44,10 +49,13 @@ export interface UnitSliderItem {
     sliderItems && sliderItems.length > 0 && (
       <div
         class="embla relative mt-[50px] h-fit max-h-[323px] md:mt-[60px] md:mb-[72px] md:max-h-[408px]"
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-once="true"
         id="units-slider"
       >
         <div class="embla__container">
-          {sliderItems.map((item) => {
+          {sliderItems.map((item, i) => {
             const itemImg = buildStrapiResponsive(item.img);
 
             return (
@@ -61,27 +69,27 @@ export interface UnitSliderItem {
                     class={"h-[154px] object-cover md:h-[280px]"}
                     sizes="(max-width: 500px) 500px, 100vw"
                     draggable={"false"}
-                    loading={"eager"}
-                    fetchpriority={"high"}
+                    loading={"lazy"}
+                    fetchpriority={"auto"}
                   />
                 ) : (
                   <div>Image placeholder</div>
                 )}
-                <div class="flex min-h-[128px] flex-col bg-white p-4">
+                <div class="flex min-h-32 flex-col bg-white p-4">
                   <a
-                    class="font-helvetica-bold mt-2 mb-2 line-clamp-1 text-2xl font-bold text-[var(--color-primary-text)]"
+                    class="font-helvetica-bold text-text-main mt-2 mb-2 line-clamp-1 text-2xl font-bold"
                     href={item.url}
                   >
                     {item.title}
                   </a>
-                  <p class="line-clamp-2 max-h-[55px] text-lg font-normal text-[var(--color-secondary-text)] duration-300 group-hover:line-clamp-4 group-hover:max-h-[1500px]">
+                  <p class="text-text-secondary line-clamp-2 max-h-[55px] text-lg font-normal duration-300 group-hover:line-clamp-4 group-hover:max-h-[1500px]">
                     {item.description}
                   </p>
                   <SecondaryCTA
                     title={"Learn more"}
                     url={item.url}
                     className={
-                      "text-primary box-border max-h-0! w-fit overflow-hidden! border-0! p-0! duration-300 group-hover:mt-2 group-hover:h-fit group-hover:max-h-[56px]! group-hover:border-1! group-hover:p-[10px_16px]!"
+                      "text-primary box-border max-h-0! w-fit overflow-hidden! border-0! p-0! duration-300 group-hover:mt-2 group-hover:h-fit group-hover:max-h-14! group-hover:border! group-hover:p-[10px_16px]!"
                     }
                     arrow
                   />

@@ -24,11 +24,11 @@ const homeUrl = "/";
     <div class="flex w-full min-w-[74px] items-center justify-between md:w-fit">
       <!-- Brand logo -->
       <a
-        class="flex-none rounded-lg text-xl font-bold ring-zinc-500 outline-hidden focus-visible:ring-3 md:absolute md:top-4 md:left-3 dark:ring-zinc-200 dark:focus:outline-hidden"
+        class="flex-none rounded-lg text-xl font-bold ring-zinc-500 outline-hidden focus-visible:ring-3 md:absolute md:top-4 md:left-4 dark:ring-zinc-200 dark:focus:outline-hidden"
         href={homeUrl}
         aria-label="Brand"
       >
-        <BrandLogo class="h-[32px] w-[36px] object-contain md:h-[60px] md:w-[74px]" />
+        <BrandLogo class="h-8 w-9 object-contain md:h-[60px] md:w-[74px]" />
       </a>
       <!-- Collapse toggle for smaller screens -->
       <div class="ml-auto text-white md:hidden">
@@ -113,7 +113,7 @@ const homeUrl = "/";
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const isDark = entry.target.classList.contains("header-text-dark");
-            header.style.color = isDark ? "black" : "white";
+            header.style.color = isDark ? "var(--color-text-main)" : "white";
           }
         });
       },

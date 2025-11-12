@@ -41,7 +41,7 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 ---
 
 <section
-  class="header-text-dark mx-auto flex flex-col gap-6 bg-[#F5F5F5] px-4 py-[100px] md:items-center md:gap-8 xl:px-10"
+  class="header-text-dark mx-auto flex flex-col gap-6 bg-[#F5F5F5] px-4 py-[100px] md:items-center md:gap-8 md:px-10"
   style={customWrapperStyleStr}
 >
   <div
@@ -71,13 +71,13 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 
     <div class="flex-[0_1_50%]">
       <h1
-        class="text-text-text-main font-helvetica-black block text-center text-2xl text-balance sm:text-4xl md:text-start lg:text-[52px] lg:leading-tight"
+        class="text-text-main font-helvetica-black block text-center text-2xl text-balance md:text-start lg:text-[52px]"
       >
         <Fragment set:html={title} />
       </h1>
       {
         text && (
-          <p class="text-text-text-secondary mx-auto mt-5 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty md:text-start">
+          <p class="text-text-secondary mx-auto mt-5 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
             {text}
           </p>
         )

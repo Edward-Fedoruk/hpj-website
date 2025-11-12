@@ -1,7 +1,7 @@
 ---
 import SecondaryCTA from "@/components/ui/buttons/SecondaryCTA.astro";
 import { Image } from "astro:assets";
-import type { NewsItem } from '@/types/sectionTypes'
+import type { NewsItem } from "@/types/sectionTypes";
 import { buildStrapiResponsive } from "@/utils/strapiImg";
 
 const { title, subTitle, newsList } = Astro.props;
@@ -13,165 +13,70 @@ export interface NewsSectionProps {
 }
 
 interface Props extends NewsSectionProps {}
-
 ---
 
-<section 
-  class="mx-auto gap-8 bg-[#F7F7F7] header-text-dark px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10 overflow-hidden"
+<section
+  class="header-text-dark mx-auto gap-8 overflow-hidden bg-[#F7F7F7] px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10"
 >
   <h1
-      class="font-helvetica-black block text-center text-2xl text-balance whitespace-pre-line text-[var(--color-gray-90)] lg:text-[52px] lg:leading-tight"
-      data-aos="fade-up"
-      data-aos-delay="150"
-      data-aos-once="true"
-    >
+    class="font-helvetica-black text-gray-90 block text-center text-2xl text-balance whitespace-pre-line lg:text-[52px]"
+    data-aos="fade-up"
+    data-aos-delay="150"
+    data-aos-once="true"
+  >
     <Fragment set:html={title} />
   </h1>
   {
     subTitle && (
-      <p 
-        class="mx-auto mt-8 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty text-[var(--color-neutral-gray)]"
+      <p
+        class="text-text-secondary mx-auto mt-8 w-full max-w-[846px] text-center text-lg text-pretty"
         data-aos="fade-up"
         data-aos-delay="150"
         data-aos-once="true"
-  >
+      >
         {subTitle}
       </p>
     )
   }
   {
     newsList.length > 0 && (
-      <div class="text-center mt-8 md:hidden inline-flex gap-1 w-full justify-center mb-8"     
-        data-aos="fade-up"
-        data-aos-delay="150"
-        data-aos-once="true"
-      >
-        <span class="text-[var(--color-neutral-gray)]">Archive:</span>
-        <span class="text-[var(--color-primary)] font-helvetica-bold">2025</span>
-        <div class="w-[1px] h-[16px] mt-1 bg-[var(--color-neutral-gray)]"></div>
-        <span class="text-[var(--color-primary)]">2024</span>
-        <div class="w-[1px] h-[16px] mt-1 bg-[var(--color-neutral-gray)]"></div>
-        <span class="text-[var(--color-primary)]">2023</span>
-      </div>
+      <div class="mt-12">
+        <div class="flex flex-col items-center gap-4">
+          {newsList.map((item, i) => {
+            if (item) {
+              const itemImg = buildStrapiResponsive(item.img);
 
-      <div class="embla md:mt-12" id="news-slider">
-        <div class="embla__container md:flex md:flex-col md:gap-4 md:items-center">
-        {newsList.map((item, i) => {
-          if (item) {
-            const itemImg = buildStrapiResponsive(item.img);
+              return (
+                <div
+                  class="embla__slide w-full overflow-hidden rounded-2xl bg-white md:max-w-[820px]"
+                  data-aos="fade-up"
+                  data-aos-delay={300 + i * 200}
+                  data-aos-once="true"
+                >
+                  <div class="flex flex-col justify-between gap-4 p-4 md:flex-row md:items-center">
+                    <div class="flex flex-col">
+                      <a href={item.url} class="font-helvetica-bold line-clamp-2 text-xl">
+                        {item.title}
+                      </a>
+                      <span class="text-text-secondary mt-2 block text-sm">
+                        {item.date
+                          ? new Date(item.date).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })
+                          : null}
+                      </span>
+                    </div>
 
-            return (
-              <div 
-                class="w-full overflow-hidden rounded-2xl bg-white embla__slide md:max-w-[820px]"
-                data-aos="fade-up"
-                data-aos-delay={150 + i * 100}
-                data-aos-once="true"
-              >
-
-                {itemImg ? (
-                  <Image
-                    src={itemImg.src}
-                    alt={item.imgAlt || item.img.alternativeText}
-                    height={itemImg.height}
-                    width={itemImg.width}
-                    class={"w-full object-cover max-h-[216px] md:hidden"}
-                    sizes="(max-width: 500px) 500px, 100vw"
-                    draggable={"false"}
-                    loading={"eager"}
-                    fetchpriority={"high"}
-                  />
-                ) : (
-                  <div>Image placeholder</div>
-                )}
-
-                
-                <div class="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div class="flex flex-col">
-                    <a href={item.url} class="line-clamp-2 text-xl font-helvetica-bold">{item.title}</a>
-                    <p class="text-lg line-clamp-3 mt-6 md:hidden">{item.description}</p>
-                    <span class="text-[#00061680] hidden md:block text-sm">
-                      {item.date ? new Date(item.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      }): null}
-                    </span>
+                    <SecondaryCTA title="View details" arrow className="text-primary h-10 min-w-fit" url={item.url} />
                   </div>
-
-                  <SecondaryCTA title="View details" arrow className="text-[var(--color-primary)] h-10 min-w-fit" url={item.url} />
-
-                  <span class="text-[#00061680] block md:hidden text-sm">
-                    {item.date ? new Date(item.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    }): null}
-                  </span>
                 </div>
-              </div>
-            )
-          }
-        })}
+              );
+            }
+          })}
         </div>
       </div>
     )
   }
 </section>
-
-<style>
-  @media screen and (max-width: 768px) {
-    .embla {
-      width: 100%;
-      max-width: 1280px;
-      --slide-height: 323px;
-      --slide-spacing: 2rem;
-      --slide-size: 70%;
-    }
-    .embla__viewport {
-      overflow: hidden;
-    }
-    .embla__container {
-      display: flex;
-      touch-action: pan-y pinch-zoom;
-      margin-left: calc(var(--slide-spacing) * -1);
-    }
-    .embla__slide {
-      transform: translate3d(0, 0, 0);
-      flex: 0 0 var(--slide-size);
-      min-width: 0;
-      margin-left: var(--slide-spacing);
-    }
-  }
-</style>
-
-<script>
-  import EmblaCarousel, { type EmblaCarouselType, type EmblaOptionsType } from 'embla-carousel';
-
-  let embla: EmblaCarouselType | null = null;
-
-  function setupEmbla() {
-    if (typeof window === 'undefined') return;
-
-    const mediaQuery = window.matchMedia('(max-width: 767px)');
-    const emblaNode = document.querySelector('#news-slider') as HTMLElement | null;
-
-    const handleResize = (e: MediaQueryListEvent | MediaQueryList) => {
-      if (e.matches) {
-        if (!embla) {
-          const options: EmblaOptionsType = { loop: false, align: "start", dragFree: true };
-          embla = EmblaCarousel(emblaNode as HTMLElement, options)
-        }
-      } else {
-        if (embla) {
-          embla.destroy();
-          embla = null;
-        }
-      }
-    };
-
-    handleResize(mediaQuery);
-    mediaQuery.addEventListener('change', handleResize);
-  }
-
-  setupEmbla();
-</script>

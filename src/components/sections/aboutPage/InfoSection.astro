@@ -28,20 +28,22 @@ if (img) {
 ---
 
 <section
-  class="header-text-dark mx-auto flex max-w-[85rem] flex-col gap-8 bg-white px-4 py-[100px] pb-[70px] md:items-center md:gap-8 md:px-10 md:py-[150px] lg:flex-row xl:px-10"
-  data-aos="fade-up"
-  data-aos-delay="150"
-  data-aos-once="true"
+  class="header-text-dark mx-auto flex max-w-340 flex-col gap-8 bg-white px-4 py-[100px] pb-[70px] md:items-center md:gap-8 md:px-10 md:py-[150px] md:flex-row xl:px-10"
 >
-  <div class="flex flex-1 flex-col items-center md:items-start">
+  <div 
+    class="flex flex-1 flex-col items-center md:items-start" 
+    data-aos="fade-up"
+    data-aos-delay="150"
+    data-aos-once="true"
+  >
     <h1
-      class="font-helvetica-black text-text-main order-1 block text-center text-[32px] text-balance whitespace-pre-line sm:text-4xl md:text-start lg:text-6xl lg:leading-tight"
+      class="font-helvetica-black text-text-main order-1 block text-center text-[32px] text-balance whitespace-pre-line  md:text-start lg:text-[52px] leading-[120%]"
     >
       <Fragment set:html={title} />
     </h1>
     {
       subTitle && (
-        <p class="text-text-secondary order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg leading-relaxed text-pretty md:text-start">
+        <p class="text-text-secondary order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
           {subTitle}
         </p>
       )
@@ -54,61 +56,115 @@ if (img) {
             <SecondaryCTA
               title={secondaryBtn}
               url={secondaryBtnURL}
-              className="w-[192px] h-[46px] text-primary"
+              className="w-48 h-[46px] text-primary"
               arrow
             />
           )}
         </div>
       )
     }
-    <ul class="order-2 mt-10 flex-row flex-wrap gap-x-6 gap-y-10 hidden lg:flex">
-      <li class="flex-[1_0_200px]">
+    <ul 
+      class="order-2 mt-10 flex-row flex-wrap gap-x-6 gap-y-10 hidden md:flex"
+    >
+      <li 
+        class="flex-[0_0_45%]"
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-once="true"
+      >
         <p class="font-helvetica-bold text-primary text-3xl md:text-[38px]">98%</p>
         <p class="text-gray-90 text-lg">Client Retention</p>
       </li>
-      <li class="flex-[1_0_200px]">
+      <li 
+        class="flex-[0_0_45%]"
+        data-aos="fade-up"
+        data-aos-delay="250"
+        data-aos-once="true"
+      >
         <p class="font-helvetica-bold text-primary text-3xl md:text-[38px]">650+</p>
         <p class="text-gray-90 text-lg">Projects Delivered</p>
       </li>
-      <li class="flex-[1_0_200px]">
+      <li 
+        class="flex-[0_0_45%]"
+        data-aos="fade-up"
+        data-aos-delay="350"
+        data-aos-once="true"
+      >
         <p class="font-helvetica-bold text-primary text-3xl md:text-[38px]">4+</p>
-        <p class="text-gray-90 text-lg">Business Divisions</p>
+        <p class="text-gray-90 text-lg">Business Organisations</p>
       </li>
-      <li class="flex-[1_0_200px]">
+      <li 
+        class="flex-[0_0_45%]"
+        data-aos="fade-up"
+        data-aos-delay="450"
+        data-aos-once="true"
+      >
         <p class="font-helvetica-bold text-primary text-3xl md:text-[38px]">100%</p>
         <p class="text-gray-90 text-lg">Audit Pass Rate</p>
       </li>
     </ul>
   </div>
-  <div class="order-1 flex-1 overflow-hidden rounded-2xl">
+  <div 
+    class="order-1 flex-1"     
+    data-aos="fade-up"
+    data-aos-delay="150"
+    data-aos-once="true"
+  >
     {
       builtImg && (
-        <Image
-          src={builtImg.src}
-          width={builtImg.width}
-          height={builtImg.height}
-          srcset={builtImg.srcset}
-          sizes="(max-width: 500px) 500px, 100vw"
-          alt={img?.alternativeText ?? imgAlt ?? "background image"}
-          draggable={"false"}
-          loading={"eager"}
-          fetchpriority={"high"}
-          class="h-full w-full scale-110 object-cover object-center"
-        />
-        <ul class="order-2 mt-10 flex flex-row flex-wrap gap-x-6 gap-y-10 lg:hidden text-center">
-          <li class="flex-[1_1_45%]">
+        <div class="overflow-hidden rounded-2xl">
+          <Image
+            src={builtImg.src}
+            width={builtImg.width}
+            height={builtImg.height}
+            srcset={builtImg.srcset}
+            sizes="(max-width: 500px) 500px, 100vw"
+            alt={img?.alternativeText ?? imgAlt ?? "background image"}
+            draggable={"false"}
+            loading={"eager"}
+            fetchpriority={"high"}
+            class="h-full w-full scale-110 object-cover object-center"
+          />
+        </div>
+        <ul 
+          class="order-2 mt-10 flex flex-row flex-wrap gap-x-6 gap-y-10 md:hidden text-center"     
+          data-aos="fade-up"
+          data-aos-delay="150"
+          data-aos-once="true"
+        >
+          <li 
+            class="flex-[1_1_45%]"
+            data-aos="fade-up"
+            data-aos-delay="150"
+            data-aos-once="true"
+          >
             <p class="font-helvetica-bold fond-bold text-primary text-3xl md:text-[38px]">98%</p>
             <p class="text-gray-90 text-lg">Client Retention</p>
           </li>
-          <li class="flex-[1_1_45%]">
+          <li 
+            class="flex-[1_1_45%]"
+            data-aos="fade-up"
+            data-aos-delay="250"
+            data-aos-once="true"
+          >
             <p class="font-helvetica-bold fond-bold text-primary text-3xl md:text-[38px]">650+</p>
             <p class="text-gray-90 text-lg">Projects Delivered</p>
           </li>
-          <li class="flex-[1_1_45%]">
+          <li 
+            class="flex-[1_1_45%]"
+            data-aos="fade-up"
+            data-aos-delay="350"
+            data-aos-once="true"
+          >
             <p class="font-helvetica-bold fond-bold text-primary text-3xl md:text-[38px]">4+</p>
-            <p class="text-gray-90 text-lg">Business Divisions</p>
+            <p class="text-gray-90 text-lg">Business Organisations</p>
           </li>
-          <li class="flex-[1_1_45%]">
+          <li 
+            class="flex-[1_1_45%]"
+            data-aos="fade-up"
+            data-aos-delay="450"
+            data-aos-once="true"
+          >
             <p class="font-helvetica-bold fond-bold text-primary text-3xl md:text-[38px]">100%</p>
             <p class="text-gray-90 text-lg">Audit Pass Rate</p>
           </li>
