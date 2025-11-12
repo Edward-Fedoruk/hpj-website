@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_user_socials",
+  "info": {
+    "displayName": "User Socials"
+  },
+  "options": {},
+  "attributes": {
+    "email": {
+      "type": "string"
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "linkedin": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

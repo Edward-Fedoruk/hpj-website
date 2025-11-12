@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_sections_user_spotlights",
+  "info": {
+    "displayName": "User Spotlight",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:user_spotlight",
+      "required": true,
+      "unique": false
+    },
+    "users": {
+      "type": "component",
+      "component": "shared.user-card",
+      "repeatable": true
+    },
+    "customWrapperStyle": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}
