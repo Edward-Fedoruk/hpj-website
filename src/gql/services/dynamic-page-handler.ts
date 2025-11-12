@@ -14,6 +14,7 @@ import type {
   RoadMapSection,
   NewsAltSection,
   AboutAltSection,
+  UserSpotlightSection,
 } from '@/types/sectionTypes';
 
 export type Section =
@@ -26,8 +27,9 @@ export type Section =
   | NewsSection
   | InfoSection
   | InfoSection
-  | RoadMapSection |
-  NewsAltSection
+  | RoadMapSection 
+  | NewsAltSection
+  | UserSpotlightSection
   | ContactFormSection
   | CvFormSection
   | GetInTouchFormSection;
@@ -297,6 +299,30 @@ export class DynamicPageHandler {
               businessUnitsForFormSelect {
                 documentId
                 title
+              }
+            }
+            ... on ComponentSectionsUserSpotlight {
+              componentId
+              subtitle
+              title
+              customWrapperStyle
+              userProfiles: users {
+                name
+                bio
+                avatar {
+                  url
+                  alternativeText
+                  width
+                  height
+                  mime
+                  size
+                  formats
+                }
+                socials {
+                  email
+                  facebook
+                  linkedin
+                }
               }
             }
             ... on Error {

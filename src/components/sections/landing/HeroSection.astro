@@ -28,7 +28,7 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
 >
   <div class="mx-auto h-fit max-w-7xl">
     {
-      builtBgImg && bgImgAlt && (
+      builtBgImg && (bgImgAlt || builtBgImg) && (
         <div class="hero-img pointer-events-none absolute top-0 left-0 -z-20 h-full w-full overflow-hidden bg-white md:h-[700px]">
           <Image
             src={builtBgImg.src}

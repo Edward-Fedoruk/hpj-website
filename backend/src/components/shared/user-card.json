@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_shared_user_cards",
+  "info": {
+    "displayName": "User Card",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string",
+      "required": true
+    },
+    "bio": {
+      "type": "string",
+      "required": true
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "socials": {
+      "type": "component",
+      "component": "shared.user-socials",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
