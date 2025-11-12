@@ -73,8 +73,8 @@ interface Props extends RoadMapSectionProps {}
                   data-aos-once="true"
                 >
                   <RoadMapItem {...item} index={index} />
-                  <div class="absolute top-[3px] left-0 -z-10 mt-6 hidden h-[110px] w-px rotate-90 bg-white opacity-50 sm:block" />
-                  <div class="absolute top-[3px] right-0 -z-10 mt-6 hidden h-[110px] w-px rotate-90 bg-white opacity-50 sm:block" />
+                  <div class="absolute top-[58px] left-0 -translate-x-1/2 -z-10 mt-6 hidden w-[calc(100%-232px)] h-px bg-white opacity-50 sm:block" />
+                  <div class="absolute top-[58px] right-0 translate-x-1/2 -z-10 mt-6 hidden w-[calc(100%-232px)] h-px bg-white opacity-50 sm:block" />
                   <h4 class="mt-auto text-2xl font-bold">
                     {item.date
                       ? new Date(item.date).toLocaleDateString("en-US", {
@@ -95,7 +95,7 @@ interface Props extends RoadMapSectionProps {}
                   data-aos-once="true"
                 >
                   <RoadMapItem {...item} index={index} />
-                  <div class="absolute top-[3px] left-0 -z-10 mt-6 hidden h-[110px] w-px rotate-90 bg-white opacity-50 sm:block" />
+                  <div class="absolute top-[58px] -translate-x-1/2 left-0 -z-10 mt-6 hidden w-[calc(100%-232px)] h-px bg-white opacity-50 sm:block" />
                   <h4 class="mt-auto text-2xl font-bold">
                     {item.date
                       ? new Date(item.date).toLocaleDateString("en-US", {
