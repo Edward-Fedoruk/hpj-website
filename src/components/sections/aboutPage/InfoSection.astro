@@ -112,7 +112,12 @@ if (img) {
   >
     {
       builtImg && (
-        <div class="overflow-hidden rounded-2xl">
+        <div 
+            class="overflow-hidden rounded-2xl"
+            data-aos="fade-up"
+            data-aos-delay="350"
+            data-aos-once="true"
+            >
           <Image
             src={builtImg.src}
             width={builtImg.width}
