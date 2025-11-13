@@ -16,6 +16,7 @@ import CvFormSection from './misc/CVFormSection.astro';
 import GetInTouchFormSection from "./misc/GetInTouchFormSection.astro";
 import HeroSection from "./landing/HeroSection.astro";
 import UserSpotlightSection from './boardMembers/userSpotlight/UserSpotlightSection.astro';
+import FAQSection from "./faq/FAQSection.astro";
 
 export const sections: Record<SectionType,  (_props: Props) => any> = { 
     [SectionType.Hero]: HeroSection as unknown as (_props: Props) => any,
@@ -30,6 +31,7 @@ export const sections: Record<SectionType,  (_props: Props) => any> = {
     [SectionType.AboutAlt]: AboutAltSection as unknown as (_props: Props) => any,
     [SectionType.Service]: ServiceSection as unknown as (_props: Props) => any,
     [SectionType.UserSpotlight]: UserSpotlightSection as unknown as (_props: Props) => any,
+    [SectionType.FAQSection]: FAQSection as unknown as (_props: Props) => any,
     [SectionType.ContactForm]: ContactFormSection as unknown as (_props: Props) => any,
     [SectionType.CvForm]: CvFormSection as unknown as (_props: Props) => any,
     [SectionType.GetInTouchForm]: GetInTouchFormSection as unknown as (_props: Props) => any,

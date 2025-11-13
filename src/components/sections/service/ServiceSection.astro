@@ -1,9 +1,9 @@
 ---
-import type { StrapiImageType } from '@/types/common';
-import { buildStrapiResponsive } from '@/utils/strapiImg';
-import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro';
-import SecondaryCTA from '@components/ui/buttons/SecondaryCTA.astro';
-import { Image } from 'astro:assets';
+import type { StrapiImageType } from "@/types/common";
+import { buildStrapiResponsive } from "@/utils/strapiImg";
+import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
+import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
+import { Image } from "astro:assets";
 
 const { business_unit, imgPositionLeft, customWrapperStyle } = Astro.props;
 
@@ -27,22 +27,22 @@ if (business_unit?.img) {
   builtImg = buildStrapiResponsive(business_unit?.img);
 }
 
-const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : '';
+const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 ---
 
 {
   business_unit && (
     <section
-      class="header-text-dark mx-auto flex flex-col gap-6 bg-[#F5F5F5] px-4 py-[100px] md:items-center md:gap-8 md:px-10"
+      class="header-text-dark mx-auto flex flex-col gap-6 bg-[#F5F5F5] px-4 py-8 md:items-center md:gap-8 md:px-[45px]"
       style={customWrapperStyleStr}
     >
       <div
-        data-aos="fade-in"
+        data-aos="fade-up"
         data-aos-delay="150"
         data-aos-once="true"
-        class="flex w-full max-w-7xl flex-col gap-8 md:flex-row"
+        class="flex w-full max-w-7xl flex-col gap-4 rounded-2xl bg-white shadow-[0px_4px_20px_0px_#00000026] md:flex-row md:gap-8 md:bg-transparent md:shadow-none"
       >
-        <div class={`flex-[0_1_50%] ${imgPositionLeft ? 'md:order-0' : 'md:order-1'}`}>
+        <div class={`flex-[0_1_50%] ${imgPositionLeft ? "md:order-0" : "md:order-1"}`}>
           {builtImg && (
             <Image
               src={builtImg.src}
@@ -50,27 +50,32 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : '';
               height={builtImg.height}
               srcset={builtImg.srcset}
               sizes="(max-width: 500px) 500px, 100vw"
-              alt={builtImg.alt ?? business_unit?.imgAlt ?? business_unit.title + ' image'}
-              draggable={'false'}
-              loading={'eager'}
-              fetchpriority={'high'}
+              alt={builtImg.alt ?? business_unit?.imgAlt ?? business_unit.title + " image"}
+              draggable={"false"}
+              loading={"eager"}
+              fetchpriority={"high"}
               class="m-auto h-full max-h-[440px] w-full max-w-7xl overflow-hidden rounded-2xl object-cover object-center"
             />
           )}
         </div>
 
-        <div class={`flex-[0_1_50%] ${imgPositionLeft ? 'md:order-1' : 'md:order-0'}`}>
-          <h1 class="text-text-main font-helvetica-black block text-center text-2xl text-balance md:text-start lg:text-[52px]">
+        <div class={`flex-[0_1_50%] px-4 ${imgPositionLeft ? "md:order-1" : "md:order-0"}`}>
+          <h1 class="text-text-main font-helvetica-black block text-[32px] leading-[120%] md:text-start lg:text-[52px]">
             <Fragment set:html={business_unit?.title} />
           </h1>
           {business_unit.description && (
-            <p class="text-text-secondary mx-auto mt-5 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
+            <p class="text-text-secondary mx-auto mt-6 w-full max-w-[846px] text-lg text-pretty md:mt-5 md:text-start">
               {business_unit.description}
             </p>
           )}
           {business_unit.url && (
-            <div class="mt-8 grid w-full justify-center gap-3 sm:inline-flex md:justify-start">
-              <SecondaryCTA title={'Learn more'} url={business_unit.url} className=" h-[46px] text-primary" arrow />
+            <div class="mx-auto mt-6 mb-8 w-full max-w-[320px] justify-center gap-3 md:mx-0 md:w-fit md:justify-start">
+              <SecondaryCTA
+                title={"Learn more"}
+                url={business_unit.url}
+                className="w-full md:h-[46px] text-primary h-14"
+                arrow
+              />
             </div>
           )}
         </div>

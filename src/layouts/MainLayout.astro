@@ -1,18 +1,17 @@
 ---
 // Importing necessary components
-import Meta from '@components/Meta.astro';
-import Navbar from '@components/sections/navbar&footer/Navbar.astro';
-import FooterSection from '@components/sections/navbar&footer/FooterSection.astro';
-import { SITE } from '@data/constants';
-import '@styles/global.css';
-import UserSpotlightSection from '@/components/sections/boardMembers/userSpotlight/UserSpotlightSection.astro';
+import Meta from "@components/Meta.astro";
+import Navbar from "@components/sections/navbar&footer/Navbar.astro";
+import FooterSection from "@components/sections/navbar&footer/FooterSection.astro";
+import { SITE } from "@data/constants";
+import "@styles/global.css";
 
 // Setting expected props
 const {
   title = SITE.title,
   meta,
   structuredData,
-  lang = 'en',
+  lang = "en",
   customDescription = null,
   customOgTitle = null,
 } = Astro.props;
@@ -55,7 +54,7 @@ interface Props {
 
     <script>
       // https://preline.co
-      import 'preline/preline.js';
+      import "preline/preline.js";
     </script>
     <script src="../utils/aos.js"></script>
     <style>
@@ -70,7 +69,7 @@ interface Props {
     </style>
 
     <style is:global>
-      button[disabled='disabled'] {
+      button[disabled="disabled"] {
         opacity: 0.5;
         transition-duration: 400ms;
       }

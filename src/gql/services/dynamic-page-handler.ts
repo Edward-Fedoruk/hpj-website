@@ -326,6 +326,15 @@ export class DynamicPageHandler {
                 }
               }
             }
+            ... on ComponentSectionsFaqSection {
+              componentId
+              title
+              subtitle
+              faqItems {
+                questionText
+                answerText
+              }
+            }
             ... on Error {
               code
               message

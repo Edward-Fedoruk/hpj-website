@@ -37,7 +37,8 @@
         "sections.contact-form",
         "sections.cv-form",
         "sections.get-in-touch-form",
-        "sections.user-spotlight"
+        "sections.user-spotlight",
+        "sections.faq-section"
       ]
     },
     "seoTitle": {

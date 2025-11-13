@@ -436,6 +436,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         "sections.cv-form",
         "sections.get-in-touch-form",
         "sections.user-spotlight",
+        "sections.faq-section",
       ]
     >;
     seoDescription: Schema.Attribute.String;

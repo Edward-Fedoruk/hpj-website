@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_faq_sections",
+  "info": {
+    "displayName": "FAQ Section",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "faqItems": {
+      "type": "component",
+      "component": "shared.faq-item",
+      "repeatable": true,
+      "required": true
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:faq",
+      "required": true
+    }
+  },
+  "config": {}
+}
