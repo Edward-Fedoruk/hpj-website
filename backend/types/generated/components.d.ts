@@ -89,6 +89,20 @@ export interface SectionsCvForm extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsFaqSection extends Struct.ComponentSchema {
+  collectionName: "components_sections_faq_sections";
+  info: {
+    displayName: "FAQ Section";
+    icon: "bulletList";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"page:section:faq">;
+    faqItems: Schema.Attribute.Component<"shared.faq-item", true> & Schema.Attribute.Required;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsGetInTouchForm extends Struct.ComponentSchema {
   collectionName: "components_sections_get_in_touch_forms";
   info: {
@@ -249,6 +263,17 @@ export interface SectionsWhyUs extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedFaqItem extends Struct.ComponentSchema {
+  collectionName: "components_shared_faq_items";
+  info: {
+    displayName: "FAQ Item";
+  };
+  attributes: {
+    answerText: Schema.Attribute.Text & Schema.Attribute.Required;
+    questionText: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedNewsItem extends Struct.ComponentSchema {
   collectionName: "components_shared_news_items";
   info: {
@@ -335,6 +360,7 @@ declare module "@strapi/strapi" {
       "sections.business-units": SectionsBusinessUnits;
       "sections.contact-form": SectionsContactForm;
       "sections.cv-form": SectionsCvForm;
+      "sections.faq-section": SectionsFaqSection;
       "sections.get-in-touch-form": SectionsGetInTouchForm;
       "sections.hero": SectionsHero;
       "sections.info": SectionsInfo;
@@ -345,6 +371,7 @@ declare module "@strapi/strapi" {
       "sections.service-block": SectionsServiceBlock;
       "sections.user-spotlight": SectionsUserSpotlight;
       "sections.why-us": SectionsWhyUs;
+      "shared.faq-item": SharedFaqItem;
       "shared.news-item": SharedNewsItem;
       "shared.quotes-item": SharedQuotesItem;
       "shared.road-map-item": SharedRoadMapItem;

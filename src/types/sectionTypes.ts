@@ -12,6 +12,8 @@ import type { RoadMapSectionProps } from '@/components/sections/aboutPage/RoadMa
 import type { AboutAltSectionProps } from '@/components/sections/about/AboutAltSection.astro';
 import type { ServiceSectionProps } from '@/components/sections/service/ServiceSection.astro';
 import type { UserSpotlightSectionProps } from '@/components/sections/boardMembers/userSpotlight/UserSpotlightSection.astro';
+import type { FAQSectionProps } from '@/components/sections/misc/FAQSection.astro';
+
 
 export enum SectionType {
   Hero = "page:section:hero",
@@ -26,6 +28,7 @@ export enum SectionType {
   RoadMap = "page:section:road_map",
   Service = "page:section:service",
   UserSpotlight = "page:section:user_spotlight",
+  FAQSection = "page:section:faq",
   ContactForm = "page:section:contact_form",
   CvForm = "page:section:cv_form",
   GetInTouchForm = "page:section:get_in_touch_form",
@@ -146,4 +149,9 @@ export interface UserSpotlightSection extends UserSpotlightSectionProps {
     __typename: "ComponentSectionsUserSpotlight";
     componentId: SectionType.UserSpotlight;
     id: string;
+};
+
+export interface FAQSection extends FAQSectionProps {
+    __typename: "ComponentSectionsFaqSection";
+    componentId: SectionType.FAQSection;
 };

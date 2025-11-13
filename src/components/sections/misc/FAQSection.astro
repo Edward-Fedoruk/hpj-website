@@ -1,0 +1,117 @@
+---
+const { title, subtitle, customWrapperStyle, faqItems } = Astro.props;
+
+export interface FAQItem {
+  questionText: string;
+  answerText: string;
+}
+
+export interface FAQSectionProps {
+  title: string;
+  subtitle?: string;
+  customWrapperStyle?: string;
+  faqItems: FAQItem[];
+}
+
+interface Props extends FAQSectionProps {}
+
+const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
+---
+
+<section
+  class="header-text-dark mx-auto flex flex-col gap-6 overflow-hidden bg-white px-4 py-25 md:items-center md:gap-8 md:pb-[100px] lg:px-10"
+  style={customWrapperStyleStr}
+>
+  <div
+    data-aos="fade-up"
+    data-aos-delay="150"
+    data-aos-once="true"
+    class="flex w-full max-w-7xl flex-col gap-8 md:flex-row md:gap-8"
+  >
+    <div class="flex-[1_1_45%]">
+      <div class="mx-auto w-full max-w-7xl">
+        <h1
+          class="text-text-main font-helvetica-black block text-center text-[32px] leading-[120%] font-bold text-pretty whitespace-pre-line md:text-start lg:text-[52px] dark:text-neutral-200"
+        >
+          <Fragment set:html={title} />
+        </h1>
+        {
+          subtitle && (
+            <p class="text-text-secondary mx-auto mt-8 w-full max-w-[846px] text-center text-lg text-pretty md:mt-6 md:text-start">
+              {subtitle}
+            </p>
+          )
+        }
+      </div>
+    </div>
+
+    <div class="flex-[1_1_45%]">
+      <div class="accordion-container">
+        {
+          faqItems.map((item, index) => (
+            <div class="ac rounded-[10px]" data-aos="fade-up" data-aos-delay={300 + index * 200} data-aos-once="true">
+              <h2 class="ac-header relative">
+                <button
+                  type="button"
+                  class="ac-trigger font-helvetica-bold! text-[20px]! leading-[100%]! md:text-[22px]!"
+                >
+                  {item.questionText}
+                </button>
+                <svg
+                  class="chevron-down absolute top-5 right-4 duration-500 ease-in-out"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M12 15.4L6 9.4L7.4 8L12 12.6L16.6 8L18 9.4L12 15.4Z" fill="#1D1B20" />
+                </svg>
+              </h2>
+              <div class="ac-panel">
+                <p class="ac-text text-text-secondary! text-lg! leading-[100%]!">{item.answerText}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ac {
+    box-shadow:
+      0px 8px 16px 0px #00000014,
+      0px 0px 4px 0px #0000000a;
+  }
+  .ac .ac-trigger::after {
+    content: none !important;
+  }
+
+  .ac .ac-trigger:focus,
+  .ac .ac-trigger {
+    color: var(--color-text-main) !important;
+  }
+
+  .ac .ac-trigger {
+    padding: 20px;
+    padding-right: 40px;
+  }
+
+  .ac .ac-text {
+    padding: 20px;
+    padding-top: 0px;
+  }
+
+  .ac.is-active .chevron-down {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  import Accordion from "accordion-js";
+  import "accordion-js/dist/accordion.min.css";
+
+  new Accordion(".accordion-container");
+</script>

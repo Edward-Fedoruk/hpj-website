@@ -241,6 +241,7 @@ export class DynamicPageHandler {
             }
             ... on ComponentSectionsServiceBlock {
               componentId
+              customWrapperStyle
               business_unit {
                 title
                 description
@@ -324,6 +325,15 @@ export class DynamicPageHandler {
                   facebook
                   linkedin
                 }
+              }
+            }
+            ... on ComponentSectionsFaqSection {
+              componentId
+              title
+              subtitle
+              faqItems {
+                questionText
+                answerText
               }
             }
             ... on Error {

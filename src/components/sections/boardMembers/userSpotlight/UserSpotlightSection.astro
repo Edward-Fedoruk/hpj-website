@@ -1,6 +1,6 @@
 ---
-import type { StrapiImageType } from '@/types/common';
-import ProfileCard from './ProfileCard.astro';
+import type { StrapiImageType } from "@/types/common";
+import ProfileCard from "./ProfileCard.astro";
 
 const { title, subtitle, customWrapperStyle, userProfiles } = Astro.props;
 
@@ -25,11 +25,11 @@ export interface UserSpotlightSectionProps {
 
 interface Props extends UserSpotlightSectionProps {}
 
-const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : '';
+const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 ---
 
 <section
-  class="header-text-dark mx-auto flex flex-col gap-6 overflow-hidden bg-[#F5F5F5] px-4 py-[100px] pb-[142px] md:items-center md:gap-8 md:py-[150px] md:pb-[100px] lg:px-10"
+  class="header-text-dark mx-auto flex flex-col gap-6 overflow-hidden bg-[#F5F5F5] px-4 py-22 md:items-center md:gap-8 md:pb-[100px] lg:px-10"
   style={customWrapperStyleStr}
 >
   <div data-aos="fade-up" data-aos-delay="150" data-aos-once="true" class="w-full">
@@ -90,10 +90,10 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : '';
 </style>
 
 <script>
-  import EmblaCarousel, { type EmblaOptionsType, type EmblaCarouselType } from 'embla-carousel';
+  import EmblaCarousel, { type EmblaOptionsType, type EmblaCarouselType } from "embla-carousel";
 
-  const emblaNodes = document.querySelectorAll('.embla');
-  const options: EmblaOptionsType = { loop: false, align: 'start', dragFree: true };
+  const emblaNodes = document.querySelectorAll(".embla");
+  const options: EmblaOptionsType = { loop: false, align: "start", dragFree: true };
 
   const emblaInstances = new Map<Element, EmblaCarouselType>();
 
@@ -113,11 +113,11 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : '';
     });
   }
 
-  const mobileQuery = window.matchMedia('(max-width: 767px)');
+  const mobileQuery = window.matchMedia("(max-width: 767px)");
 
   if (mobileQuery.matches) enableMobileEmbla();
 
-  mobileQuery.addEventListener('change', (e) => {
+  mobileQuery.addEventListener("change", (e) => {
     if (e.matches) {
       enableMobileEmbla();
     } else {
