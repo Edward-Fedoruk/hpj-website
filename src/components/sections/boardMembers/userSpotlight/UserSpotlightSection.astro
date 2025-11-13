@@ -1,14 +1,14 @@
 ---
 import type { StrapiImageType } from '@/types/common';
-import ProfileCard from "./ProfileCard.astro";
+import ProfileCard from './ProfileCard.astro';
 
 const { title, subtitle, customWrapperStyle, userProfiles } = Astro.props;
 
 export interface Profile {
   name: string;
-  role: string;
-  bio: string;
-  avatar: StrapiImageType;
+  role?: string;
+  bio?: string;
+  avatar?: StrapiImageType;
   socials: {
     email?: string;
     facebook?: string;
@@ -25,12 +25,11 @@ export interface UserSpotlightSectionProps {
 
 interface Props extends UserSpotlightSectionProps {}
 
-const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
-
+const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : '';
 ---
 
 <section
-  class="header-text-dark overflow-hidden mx-auto flex flex-col gap-6 bg-[#F5F5F5] px-4 py-[100px] pb-[142px] md:items-center md:gap-8 md:py-[150px] md:pb-[100px] lg:px-10"
+  class="header-text-dark mx-auto flex flex-col gap-6 overflow-hidden bg-[#F5F5F5] px-4 py-[100px] pb-[142px] md:items-center md:gap-8 md:py-[150px] md:pb-[100px] lg:px-10"
   style={customWrapperStyleStr}
 >
   <div data-aos="fade-up" data-aos-delay="150" data-aos-once="true" class="w-full">
@@ -49,21 +48,22 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
       }
     </div>
 
-    <div
-      class="embla mx-auto mt-[60px] max-w-7xl"
-      data-aos="fade-up"
-      data-aos-delay="150"
-      data-aos-once="true"
-    >
-      <div class="embla__container md:flex md:w-full md:flex-row md:justify-center md:gap-6">
-        {userProfiles && userProfiles.map((item) => <div class="embla__slide"><ProfileCard {...item} /></div>)}
+    <div class="embla mx-auto mt-[60px] max-w-7xl" data-aos="fade-up" data-aos-delay="150" data-aos-once="true">
+      <div class="embla__container md:flex md:w-full md:flex-row md:flex-wrap md:justify-center md:gap-6">
+        {
+          userProfiles &&
+            userProfiles.map((user) => (
+              <div class="embla__slide md:flex-[0_0_30%]">
+                <ProfileCard {...user} />
+              </div>
+            ))
+        }
       </div>
     </div>
   </div>
 </section>
 
 <style>
-
   @media screen and (max-width: 768px) {
     .embla {
       width: 100%;
@@ -87,17 +87,41 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
       margin-left: var(--slide-spacing);
     }
   }
-
 </style>
 
 <script>
-  import EmblaCarousel, { type EmblaOptionsType } from "embla-carousel";
+  import EmblaCarousel, { type EmblaOptionsType, type EmblaCarouselType } from 'embla-carousel';
 
-  const emblaNodes = document.querySelectorAll(".embla");
-  const options: EmblaOptionsType = { loop: false, align: "start", dragFree: true };
-  emblaNodes.forEach(emblaNode => {
-    if (emblaNode) {
-      const emblaApi = EmblaCarousel(emblaNode! as HTMLElement, options);
+  const emblaNodes = document.querySelectorAll('.embla');
+  const options: EmblaOptionsType = { loop: false, align: 'start', dragFree: true };
+
+  const emblaInstances = new Map<Element, EmblaCarouselType>();
+
+  function enableMobileEmbla() {
+    emblaNodes.forEach((node) => {
+      if (!emblaInstances.has(node)) {
+        const embla = EmblaCarousel(node as HTMLElement, options);
+        emblaInstances.set(node, embla);
+      }
+    });
+  }
+
+  function disableMobileEmbla() {
+    emblaInstances.forEach((embla, node) => {
+      embla.destroy();
+      emblaInstances.delete(node);
+    });
+  }
+
+  const mobileQuery = window.matchMedia('(max-width: 767px)');
+
+  if (mobileQuery.matches) enableMobileEmbla();
+
+  mobileQuery.addEventListener('change', (e) => {
+    if (e.matches) {
+      enableMobileEmbla();
+    } else {
+      disableMobileEmbla();
     }
   });
 </script>

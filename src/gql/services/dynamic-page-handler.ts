@@ -306,9 +306,10 @@ export class DynamicPageHandler {
               subtitle
               title
               customWrapperStyle
-              userProfiles: users {
+              userProfiles: public_user_profiles {
                 name
                 bio
+                role
                 avatar {
                   url
                   alternativeText

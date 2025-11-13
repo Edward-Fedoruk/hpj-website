@@ -3,7 +3,6 @@ import { buildStrapiResponsive } from '@/utils/strapiImg';
 import type { Profile } from './UserSpotlightSection.astro';
 import { Image } from 'astro:assets';
 
-
 interface Props extends Profile {}
 
 const { name, role, bio, avatar, socials } = Astro.props;
@@ -16,13 +15,12 @@ if (avatar) {
 ---
 
 <article
-  class="md:max-w-[411px] w-full transform overflow-hidden rounded-2xl bg-white shadow-[0px_8px_16px_0px_#00000014,0px_0px_4px_0px_#0000000A]"
+  class="w-full transform overflow-hidden rounded-2xl bg-white shadow-[0px_8px_16px_0px_#00000014,0px_0px_4px_0px_#0000000A] md:max-w-[411px]"
 >
-  <div class="flex flex-col items-center p-4 lg:p-12 text-center">
+  <div class="flex flex-col items-center p-4 text-center lg:p-12">
     <div class="mb-8 h-[103px] w-[103px] overflow-hidden rounded-full ring-2 ring-white dark:ring-gray-700">
-        {
-          builtImg &&
-          (
+      {
+        builtImg && (
           <Image
             src={builtImg.src}
             width={builtImg.width}
@@ -30,12 +28,13 @@ if (avatar) {
             srcset={builtImg.srcset}
             sizes="(max-width: 500px) 500px, 100vw"
             alt={builtImg.alt ?? `${name} — profile photo`}
-            draggable={"false"}
-            loading={"eager"}
-            fetchpriority={"high"}
+            draggable={'false'}
+            loading={'eager'}
+            fetchpriority={'high'}
             class="h-full w-full object-cover"
-          />)
-        } 
+          />
+        )
+      }
     </div>
 
     <h2 class="font-helvetica-bold text-text-main mt-4 text-2xl leading-[120%]">{name}</h2>
@@ -74,7 +73,7 @@ if (avatar) {
 
       {
         socials.email && (
-          <a href={"mailto:" + socials.email} class="social-link" aria-label="E-mail" target="_blank">
+          <a href={'mailto:' + socials.email} class="social-link" aria-label="E-mail" target="_blank">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M27.3 5H5.7C4.215 5 3.0135 6.18125 3.0135 7.625L3 23.375C3 24.8188 4.215 26 5.7 26H27.3C28.785 26 30 24.8188 30 23.375V7.625C30 6.18125 28.785 5 27.3 5ZM27.3 10.25L16.5 16.8125L5.7 10.25V7.625L16.5 14.1875L27.3 7.625V10.25Z"
