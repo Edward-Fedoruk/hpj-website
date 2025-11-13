@@ -13,16 +13,16 @@
     "subtitle": {
       "type": "text"
     },
+    "public_user_profiles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::public-user-profile.public-user-profile"
+    },
     "componentId": {
       "type": "string",
       "default": "page:section:user_spotlight",
       "required": true,
       "unique": false
-    },
-    "users": {
-      "type": "component",
-      "component": "shared.user-card",
-      "repeatable": true
     },
     "customWrapperStyle": {
       "type": "text"

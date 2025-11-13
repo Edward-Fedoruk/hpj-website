@@ -241,22 +241,22 @@ export class DynamicPageHandler {
             }
             ... on ComponentSectionsServiceBlock {
               componentId
-              title
-              text
-              primaryBtnLabel
-              primaryBtnURL
-              secondaryBtnLabel
-              secondaryBtnURL
-              img {
+              business_unit {
+                title
+                description
                 url
-                alternativeText
-                width
-                height
-                mime
-                size
-                formats
+                imgAlt
+                img {
+                  url
+                  alternativeText
+                  width
+                  height
+                  mime
+                  size
+                  formats
+                }
               }
-              imgAlt
+              imgPositionLeft
             }
             ... on ComponentSectionsContactForm {
               componentId
@@ -306,9 +306,10 @@ export class DynamicPageHandler {
               subtitle
               title
               customWrapperStyle
-              userProfiles: users {
+              userProfiles: public_user_profiles {
                 name
                 bio
+                role
                 avatar {
                   url
                   alternativeText

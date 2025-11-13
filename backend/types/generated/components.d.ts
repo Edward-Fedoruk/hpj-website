@@ -208,17 +208,28 @@ export interface SectionsServiceBlock extends Struct.ComponentSchema {
     displayName: "Service Block";
   };
   attributes: {
+    business_unit: Schema.Attribute.Relation<"oneToOne", "api::business-unit.business-unit">;
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<"page:section:service">;
     customWrapperStyle: Schema.Attribute.Text;
-    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
-    imgAlt: Schema.Attribute.String;
-    primaryBtnLabel: Schema.Attribute.String;
-    primaryBtnURL: Schema.Attribute.String;
-    secondaryBtnLabel: Schema.Attribute.String;
-    secondaryBtnURL: Schema.Attribute.String;
-    text: Schema.Attribute.Text;
+    imgPositionLeft: Schema.Attribute.Boolean & Schema.Attribute.Required & Schema.Attribute.DefaultTo<true>;
+  };
+}
+
+export interface SectionsUserSpotlight extends Struct.ComponentSchema {
+  collectionName: "components_sections_user_spotlights";
+  info: {
+    displayName: "User Spotlight";
+    icon: "dashboard";
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"page:section:user_spotlight">;
+    customWrapperStyle: Schema.Attribute.Text;
+    public_user_profiles: Schema.Attribute.Relation<"oneToMany", "api::public-user-profile.public-user-profile">;
+    subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -276,6 +287,33 @@ export interface SharedRoadMapItem extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedUserCard extends Struct.ComponentSchema {
+  collectionName: "components_shared_user_cards";
+  info: {
+    displayName: "User Card";
+    icon: "user";
+  };
+  attributes: {
+    avatar: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    bio: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    role: Schema.Attribute.String & Schema.Attribute.Required;
+    socials: Schema.Attribute.Component<"shared.user-socials", false>;
+  };
+}
+
+export interface SharedUserSocials extends Struct.ComponentSchema {
+  collectionName: "components_shared_user_socials";
+  info: {
+    displayName: "User Socials";
+  };
+  attributes: {
+    email: Schema.Attribute.String;
+    facebook: Schema.Attribute.String;
+    linkedin: Schema.Attribute.String;
+  };
+}
+
 export interface SharedWhyHpjItem extends Struct.ComponentSchema {
   collectionName: "components_shared_why_hpj_items";
   info: {
@@ -305,10 +343,13 @@ declare module "@strapi/strapi" {
       "sections.quotes": SectionsQuotes;
       "sections.road-map": SectionsRoadMap;
       "sections.service-block": SectionsServiceBlock;
+      "sections.user-spotlight": SectionsUserSpotlight;
       "sections.why-us": SectionsWhyUs;
       "shared.news-item": SharedNewsItem;
       "shared.quotes-item": SharedQuotesItem;
       "shared.road-map-item": SharedRoadMapItem;
+      "shared.user-card": SharedUserCard;
+      "shared.user-socials": SharedUserSocials;
       "shared.why-hpj-item": SharedWhyHpjItem;
     }
   }

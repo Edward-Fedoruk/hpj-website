@@ -435,12 +435,40 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         "sections.contact-form",
         "sections.cv-form",
         "sections.get-in-touch-form",
+        "sections.user-spotlight",
       ]
     >;
     seoDescription: Schema.Attribute.String;
     seoTitle: Schema.Attribute.String;
     slug: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.Unique;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPublicUserProfilePublicUserProfile extends Struct.CollectionTypeSchema {
+  collectionName: "public_user_profiles";
+  info: {
+    displayName: "Public user profile";
+    pluralName: "public-user-profiles";
+    singularName: "public-user-profile";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    avatar: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    bio: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<"oneToMany", "api::public-user-profile.public-user-profile"> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.String;
+    socials: Schema.Attribute.Component<"shared.user-socials", false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
   };
@@ -1005,6 +1033,7 @@ declare module "@strapi/strapi" {
       "admin::user": AdminUser;
       "api::business-unit.business-unit": ApiBusinessUnitBusinessUnit;
       "api::page.page": ApiPagePage;
+      "api::public-user-profile.public-user-profile": ApiPublicUserProfilePublicUserProfile;
       "plugin::api-forms.form": PluginApiFormsForm;
       "plugin::api-forms.notification": PluginApiFormsNotification;
       "plugin::api-forms.setting": PluginApiFormsSetting;

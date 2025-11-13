@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "public_user_profiles",
+  "info": {
+    "singularName": "public-user-profile",
+    "pluralName": "public-user-profiles",
+    "displayName": "Public user profile"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "role": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "text"
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "socials": {
+      "type": "component",
+      "component": "shared.user-socials",
+      "repeatable": false
+    }
+  }
+}
