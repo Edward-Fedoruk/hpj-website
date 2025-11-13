@@ -5,37 +5,15 @@
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
+    "business_unit": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::business-unit.business-unit"
     },
-    "text": {
-      "type": "text"
-    },
-    "primaryBtnLabel": {
-      "type": "string"
-    },
-    "primaryBtnURL": {
-      "type": "string"
-    },
-    "secondaryBtnLabel": {
-      "type": "string"
-    },
-    "secondaryBtnURL": {
-      "type": "string"
-    },
-    "img": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "imgAlt": {
-      "type": "string"
+    "imgPositionLeft": {
+      "type": "boolean",
+      "required": true,
+      "default": true
     },
     "customWrapperStyle": {
       "type": "text"

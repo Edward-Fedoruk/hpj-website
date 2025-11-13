@@ -1,31 +1,21 @@
 ---
-import type { StrapiImageType } from "@/types/common";
-import { buildStrapiResponsive } from "@/utils/strapiImg";
-import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
-import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
-import { Image } from "astro:assets";
+import type { StrapiImageType } from '@/types/common';
+import { buildStrapiResponsive } from '@/utils/strapiImg';
+import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro';
+import SecondaryCTA from '@components/ui/buttons/SecondaryCTA.astro';
+import { Image } from 'astro:assets';
 
-const {
-  title,
-  text,
-  primaryBtnLabel,
-  primaryBtnURL,
-  secondaryBtnLabel,
-  secondaryBtnURL,
-  img,
-  imgAlt,
-  customWrapperStyle,
-} = Astro.props;
+const { business_unit, imgPositionLeft, customWrapperStyle } = Astro.props;
 
 export interface ServiceSectionProps {
-  title: string;
-  text?: string;
-  primaryBtnLabel?: string;
-  primaryBtnURL?: string;
-  secondaryBtnLabel?: string;
-  secondaryBtnURL?: string;
-  img?: StrapiImageType;
-  imgAlt?: string | null;
+  business_unit?: {
+    title: string;
+    description?: string;
+    url?: string;
+    imgAlt?: string;
+    img?: StrapiImageType;
+  };
+  imgPositionLeft?: boolean;
   customWrapperStyle?: string;
 }
 
@@ -33,67 +23,58 @@ interface Props extends ServiceSectionProps {}
 
 let builtImg = null;
 
-if (img) {
-  builtImg = buildStrapiResponsive(img);
+if (business_unit?.img) {
+  builtImg = buildStrapiResponsive(business_unit?.img);
 }
 
-const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
+const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : '';
 ---
 
-<section
-  class="header-text-dark mx-auto flex flex-col gap-6 bg-[#F5F5F5] px-4 py-[100px] md:items-center md:gap-8 md:px-10"
-  style={customWrapperStyleStr}
->
-  <div
-    data-aos="fade-in"
-    data-aos-delay="150"
-    data-aos-once="true"
-    class="flex w-full max-w-7xl flex-col gap-8 md:flex-row"
-  >
-    <div class="flex-[0_1_50%]">
-      {
-        builtImg && (
-          <Image
-            src={builtImg.src}
-            width={builtImg.width}
-            height={builtImg.height}
-            srcset={builtImg.srcset}
-            sizes="(max-width: 500px) 500px, 100vw"
-            alt={builtImg.alt ?? imgAlt ?? "background image"}
-            draggable={"false"}
-            loading={"eager"}
-            fetchpriority={"high"}
-            class="m-auto h-full max-h-[440px] w-full max-w-7xl overflow-hidden rounded-2xl object-cover object-center"
-          />
-        )
-      }
-    </div>
-
-    <div class="flex-[0_1_50%]">
-      <h1
-        class="text-text-main font-helvetica-black block text-center text-2xl text-balance md:text-start lg:text-[52px]"
+{
+  business_unit && (
+    <section
+      class="header-text-dark mx-auto flex flex-col gap-6 bg-[#F5F5F5] px-4 py-[100px] md:items-center md:gap-8 md:px-10"
+      style={customWrapperStyleStr}
+    >
+      <div
+        data-aos="fade-in"
+        data-aos-delay="150"
+        data-aos-once="true"
+        class="flex w-full max-w-7xl flex-col gap-8 md:flex-row"
       >
-        <Fragment set:html={title} />
-      </h1>
-      {
-        text && (
-          <p class="text-text-secondary mx-auto mt-5 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
-            {text}
-          </p>
-        )
-      }
-      {
-        (primaryBtnLabel || secondaryBtnLabel) && (
-          <div class="mt-8 grid w-full justify-center gap-3 sm:inline-flex md:justify-start">
-            {primaryBtnLabel && (
-              <PrimaryCTA title={primaryBtnLabel} url={primaryBtnURL} noArrow className="w-[300px] h-[46px]" />
-            )}
-            {secondaryBtnLabel && (
-              <SecondaryCTA title={secondaryBtnLabel} url={secondaryBtnURL} className=" h-[46px] text-primary" arrow />
-            )}
-          </div>
-        )
-      }
-    </div>
-  </div>
-</section>
+        <div class={`flex-[0_1_50%] ${imgPositionLeft ? 'md:order-0' : 'md:order-1'}`}>
+          {builtImg && (
+            <Image
+              src={builtImg.src}
+              width={builtImg.width}
+              height={builtImg.height}
+              srcset={builtImg.srcset}
+              sizes="(max-width: 500px) 500px, 100vw"
+              alt={builtImg.alt ?? business_unit?.imgAlt ?? business_unit.title + ' image'}
+              draggable={'false'}
+              loading={'eager'}
+              fetchpriority={'high'}
+              class="m-auto h-full max-h-[440px] w-full max-w-7xl overflow-hidden rounded-2xl object-cover object-center"
+            />
+          )}
+        </div>
+
+        <div class={`flex-[0_1_50%] ${imgPositionLeft ? 'md:order-1' : 'md:order-0'}`}>
+          <h1 class="text-text-main font-helvetica-black block text-center text-2xl text-balance md:text-start lg:text-[52px]">
+            <Fragment set:html={business_unit?.title} />
+          </h1>
+          {business_unit.description && (
+            <p class="text-text-secondary mx-auto mt-5 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
+              {business_unit.description}
+            </p>
+          )}
+          {business_unit.url && (
+            <div class="mt-8 grid w-full justify-center gap-3 sm:inline-flex md:justify-start">
+              <SecondaryCTA title={'Learn more'} url={business_unit.url} className=" h-[46px] text-primary" arrow />
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
