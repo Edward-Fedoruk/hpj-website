@@ -16,7 +16,7 @@ import CvFormSection from './misc/CVFormSection.astro';
 import GetInTouchFormSection from "./misc/GetInTouchFormSection.astro";
 import HeroSection from "./landing/HeroSection.astro";
 import UserSpotlightSection from './boardMembers/userSpotlight/UserSpotlightSection.astro';
-import FAQSection from "./faq/FAQSection.astro";
+import FAQSection from "./misc/FAQSection.astro";
 
 export const sections: Record<SectionType,  (_props: Props) => any> = { 
     [SectionType.Hero]: HeroSection as unknown as (_props: Props) => any,

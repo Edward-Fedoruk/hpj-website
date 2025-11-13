@@ -241,6 +241,7 @@ export class DynamicPageHandler {
             }
             ... on ComponentSectionsServiceBlock {
               componentId
+              customWrapperStyle
               business_unit {
                 title
                 description

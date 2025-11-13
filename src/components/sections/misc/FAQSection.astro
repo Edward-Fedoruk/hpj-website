@@ -48,8 +48,8 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
     <div class="flex-[1_1_45%]">
       <div class="accordion-container">
         {
-          faqItems.map((item) => (
-            <div class="ac rounded-[10px]">
+          faqItems.map((item, index) => (
+            <div class="ac rounded-[10px]" data-aos="fade-up" data-aos-delay={300 + index * 200} data-aos-once="true">
               <h2 class="ac-header relative">
                 <button
                   type="button"

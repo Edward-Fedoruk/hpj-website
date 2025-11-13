@@ -12,7 +12,8 @@ import type { RoadMapSectionProps } from '@/components/sections/aboutPage/RoadMa
 import type { AboutAltSectionProps } from '@/components/sections/about/AboutAltSection.astro';
 import type { ServiceSectionProps } from '@/components/sections/service/ServiceSection.astro';
 import type { UserSpotlightSectionProps } from '@/components/sections/boardMembers/userSpotlight/UserSpotlightSection.astro';
-import type { FAQSectionProps } from '@/components/sections/faq/FAQSection.astro';
+import type { FAQSectionProps } from '@/components/sections/misc/FAQSection.astro';
+
 
 export enum SectionType {
   Hero = "page:section:hero",
