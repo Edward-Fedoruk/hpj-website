@@ -37,7 +37,7 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
         </h1>
         {
           subtitle && (
-            <p class="text-text-secondary mx-auto mt-8 w-full max-w-[846px] text-center text-lg text-pretty md:mt-6 md:text-start">
+            <p class="text-text-secondary font-helvetica mx-auto mt-8 w-full max-w-[846px] text-center text-lg text-pretty md:mt-6 md:text-start">
               {subtitle}
             </p>
           )
@@ -49,7 +49,13 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
       <div class="accordion-container">
         {
           faqItems.map((item, index) => (
-            <div class="ac rounded-[10px]" data-aos="fade-up" data-aos-delay={300 + index * 200} data-aos-once="true">
+            <div
+              class="ac rounded-[10px]"
+              data-aos="fade-up"
+              data-aos-delay={300 + index * 200}
+              data-aos-anchor-placement="top-bottom"
+              data-aos-once="true"
+            >
               <h2 class="ac-header relative">
                 <button
                   type="button"
@@ -69,7 +75,7 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
                 </svg>
               </h2>
               <div class="ac-panel">
-                <p class="ac-text text-text-secondary! text-lg! leading-[100%]!">{item.answerText}</p>
+                <p class="ac-text text-text-secondary! font-helvetica! text-lg! leading-[100%]!">{item.answerText}</p>
               </div>
             </div>
           ))

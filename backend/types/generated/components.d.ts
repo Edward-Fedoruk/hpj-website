@@ -1,14 +1,16 @@
-import type { Schema, Struct } from "@strapi/strapi";
+import type { Schema, Struct } from '@strapi/strapi';
 
 export interface SectionsAbout extends Struct.ComponentSchema {
-  collectionName: "components_sections_abouts";
+  collectionName: 'components_sections_abouts';
   info: {
-    displayName: "About";
+    displayName: 'About';
   };
   attributes: {
-    componentId: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"page:section:about">;
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:section:about'>;
     customWrapperStyle: Schema.Attribute.Text;
-    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     imgAlt: Schema.Attribute.String;
     primaryBtnLabel: Schema.Attribute.String;
     primaryBtnURL: Schema.Attribute.String;
@@ -20,17 +22,20 @@ export interface SectionsAbout extends Struct.ComponentSchema {
 }
 
 export interface SectionsAboutAlt extends Struct.ComponentSchema {
-  collectionName: "components_sections_about_alts";
+  collectionName: 'components_sections_about_alts';
   info: {
-    displayName: "About Alt";
+    displayName: 'About Alt';
   };
   attributes: {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:about_alt">;
+      Schema.Attribute.DefaultTo<'page:section:about_alt'>;
     primaryBtnLabel: Schema.Attribute.String;
     primaryBtnURL: Schema.Attribute.String;
-    profilePictures: Schema.Attribute.Media<"images" | "files" | "videos" | "audios", true>;
+    profilePictures: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     secondaryBtnLabel: Schema.Attribute.String;
     secondaryBtnURL: Schema.Attribute.String;
     subtitle: Schema.Attribute.Text;
@@ -39,98 +44,119 @@ export interface SectionsAboutAlt extends Struct.ComponentSchema {
 }
 
 export interface SectionsBusinessUnits extends Struct.ComponentSchema {
-  collectionName: "components_sections_business_units";
+  collectionName: 'components_sections_business_units';
   info: {
-    displayName: "Business Units";
+    displayName: 'Business Units';
   };
   attributes: {
     bussinessUnitsSubtitle: Schema.Attribute.Text;
     bussinessUnitsTitle: Schema.Attribute.String & Schema.Attribute.Required;
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:bussiness_units">;
-    sliderItems: Schema.Attribute.Relation<"oneToMany", "api::business-unit.business-unit">;
+      Schema.Attribute.DefaultTo<'page:section:bussiness_units'>;
+    sliderItems: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::business-unit.business-unit'
+    >;
   };
 }
 
 export interface SectionsContactForm extends Struct.ComponentSchema {
-  collectionName: "components_sections_contact_forms";
+  collectionName: 'components_sections_contact_forms';
   info: {
-    displayName: "Contact Form";
+    displayName: 'Contact Form';
   };
   attributes: {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
-      Schema.Attribute.DefaultTo<"page:section:contact_form">;
-    form: Schema.Attribute.Relation<"oneToOne", "plugin::api-forms.form">;
-    submitBtnLabel: Schema.Attribute.String & Schema.Attribute.DefaultTo<"Send">;
+      Schema.Attribute.DefaultTo<'page:section:contact_form'>;
+    form: Schema.Attribute.Relation<'oneToOne', 'plugin::api-forms.form'>;
+    submitBtnLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Send'>;
     subTitle: Schema.Attribute.Text &
-      Schema.Attribute.DefaultTo<"Looking to grow your career with a forward-thinking organization? Join our dynamic team today">;
-    title: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"Join Our Team ">;
+      Schema.Attribute.DefaultTo<'Looking to grow your career with a forward-thinking organization? Join our dynamic team today'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Join Our Team '>;
   };
 }
 
 export interface SectionsCvForm extends Struct.ComponentSchema {
-  collectionName: "components_sections_cv_forms";
+  collectionName: 'components_sections_cv_forms';
   info: {
-    displayName: "CV Form";
+    displayName: 'CV Form';
   };
   attributes: {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
-      Schema.Attribute.DefaultTo<"page:section:cv_form">;
-    form: Schema.Attribute.Relation<"oneToOne", "plugin::api-forms.form">;
-    submitBtnLabel: Schema.Attribute.String & Schema.Attribute.DefaultTo<"Submit Application">;
+      Schema.Attribute.DefaultTo<'page:section:cv_form'>;
+    form: Schema.Attribute.Relation<'oneToOne', 'plugin::api-forms.form'>;
+    submitBtnLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Submit Application'>;
     subTitle: Schema.Attribute.Text &
-      Schema.Attribute.DefaultTo<"\"Didn't find a position that fits? We'd still love to hear from you.\"">;
-    title: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"Submit Your CV">;
+      Schema.Attribute.DefaultTo<'"Didn\'t find a position that fits? We\'d still love to hear from you."'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Submit Your CV'>;
   };
 }
 
 export interface SectionsFaqSection extends Struct.ComponentSchema {
-  collectionName: "components_sections_faq_sections";
+  collectionName: 'components_sections_faq_sections';
   info: {
-    displayName: "FAQ Section";
-    icon: "bulletList";
+    displayName: 'FAQ Section';
+    icon: 'bulletList';
   };
   attributes: {
-    componentId: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"page:section:faq">;
-    faqItems: Schema.Attribute.Component<"shared.faq-item", true> & Schema.Attribute.Required;
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:section:faq'>;
+    faqItems: Schema.Attribute.Component<'shared.faq-item', true> &
+      Schema.Attribute.Required;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
 export interface SectionsGetInTouchForm extends Struct.ComponentSchema {
-  collectionName: "components_sections_get_in_touch_forms";
+  collectionName: 'components_sections_get_in_touch_forms';
   info: {
-    displayName: "Get In Touch Form";
+    displayName: 'Get In Touch Form';
   };
   attributes: {
-    businessUnitsForFormSelect: Schema.Attribute.Relation<"oneToMany", "api::business-unit.business-unit">;
+    businessUnitsForFormSelect: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::business-unit.business-unit'
+    >;
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
-      Schema.Attribute.DefaultTo<"page:section:get_in_touch_form">;
-    form: Schema.Attribute.Relation<"oneToOne", "plugin::api-forms.form">;
-    formSubmitBtnLabel: Schema.Attribute.String & Schema.Attribute.DefaultTo<"Send Message">;
-    formSubTitle: Schema.Attribute.String & Schema.Attribute.DefaultTo<"You  can reach us anytime.">;
-    formTitle: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"Get In Touch">;
+      Schema.Attribute.DefaultTo<'page:section:get_in_touch_form'>;
+    form: Schema.Attribute.Relation<'oneToOne', 'plugin::api-forms.form'>;
+    formSubmitBtnLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Send Message'>;
+    formSubTitle: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'You  can reach us anytime.'>;
+    formTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Get In Touch'>;
   };
 }
 
 export interface SectionsHero extends Struct.ComponentSchema {
-  collectionName: "components_sections_heroes";
+  collectionName: 'components_sections_heroes';
   info: {
-    displayName: "hero";
-    icon: "apps";
+    displayName: 'hero';
+    icon: 'apps';
   };
   attributes: {
     bgImgAlt: Schema.Attribute.String;
-    bgImgSrc: Schema.Attribute.Media<"images" | "files">;
-    componentId: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"page:section:hero">;
+    bgImgSrc: Schema.Attribute.Media<'images' | 'files'>;
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:section:hero'>;
     heroSubtitle: Schema.Attribute.Text;
     heroTitle: Schema.Attribute.String & Schema.Attribute.Required;
     primaryBtnLabel: Schema.Attribute.String;
@@ -141,14 +167,16 @@ export interface SectionsHero extends Struct.ComponentSchema {
 }
 
 export interface SectionsInfo extends Struct.ComponentSchema {
-  collectionName: "components_sections_infos";
+  collectionName: 'components_sections_infos';
   info: {
-    displayName: "info";
-    icon: "information";
+    displayName: 'info';
+    icon: 'information';
   };
   attributes: {
-    componentId: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"page:section:info">;
-    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:section:info'>;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     imgAlt: Schema.Attribute.String;
     infoSubtitle: Schema.Attribute.Text;
     infoTitle: Schema.Attribute.String & Schema.Attribute.Required;
@@ -160,113 +188,123 @@ export interface SectionsInfo extends Struct.ComponentSchema {
 }
 
 export interface SectionsNews extends Struct.ComponentSchema {
-  collectionName: "components_sections_news";
+  collectionName: 'components_sections_news';
   info: {
-    displayName: "News";
+    displayName: 'News';
   };
   attributes: {
-    componentId: Schema.Attribute.String & Schema.Attribute.Required & Schema.Attribute.DefaultTo<"page:section:news">;
-    newsList: Schema.Attribute.Component<"shared.news-item", true>;
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:section:news'>;
+    newsList: Schema.Attribute.Component<'shared.news-item', true>;
     newsSubtitle: Schema.Attribute.Text;
     newsTitle: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
 export interface SectionsNewsAlt extends Struct.ComponentSchema {
-  collectionName: "components_sections_news_alts";
+  collectionName: 'components_sections_news_alts';
   info: {
-    displayName: "News Alt";
+    displayName: 'News Alt';
   };
   attributes: {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:news_alt">;
-    newsList: Schema.Attribute.Component<"shared.news-item", true>;
+      Schema.Attribute.DefaultTo<'page:section:news_alt'>;
+    newsList: Schema.Attribute.Component<'shared.news-item', true>;
     newsSubtitle: Schema.Attribute.Text;
     newsTitle: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
 export interface SectionsQuotes extends Struct.ComponentSchema {
-  collectionName: "components_sections_quotes";
+  collectionName: 'components_sections_quotes';
   info: {
-    displayName: "Quotes";
+    displayName: 'Quotes';
   };
   attributes: {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:quotes">;
-    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+      Schema.Attribute.DefaultTo<'page:section:quotes'>;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     imgAlt: Schema.Attribute.String;
-    quotesList: Schema.Attribute.Component<"shared.quotes-item", true>;
+    quotesList: Schema.Attribute.Component<'shared.quotes-item', true>;
   };
 }
 
 export interface SectionsRoadMap extends Struct.ComponentSchema {
-  collectionName: "components_sections_road_maps";
+  collectionName: 'components_sections_road_maps';
   info: {
-    displayName: "Road Map";
+    displayName: 'Road Map';
   };
   attributes: {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:road_map">;
-    roadMapItems: Schema.Attribute.Component<"shared.road-map-item", true>;
+      Schema.Attribute.DefaultTo<'page:section:road_map'>;
+    roadMapItems: Schema.Attribute.Component<'shared.road-map-item', true>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
 export interface SectionsServiceBlock extends Struct.ComponentSchema {
-  collectionName: "components_sections_service_blocks";
+  collectionName: 'components_sections_service_blocks';
   info: {
-    displayName: "Service Block";
+    displayName: 'Service Block';
   };
   attributes: {
-    business_unit: Schema.Attribute.Relation<"oneToOne", "api::business-unit.business-unit">;
+    business_unit: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::business-unit.business-unit'
+    >;
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:service">;
+      Schema.Attribute.DefaultTo<'page:section:service'>;
     customWrapperStyle: Schema.Attribute.Text;
-    imgPositionLeft: Schema.Attribute.Boolean & Schema.Attribute.Required & Schema.Attribute.DefaultTo<true>;
+    imgPositionLeft: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
   };
 }
 
 export interface SectionsUserSpotlight extends Struct.ComponentSchema {
-  collectionName: "components_sections_user_spotlights";
+  collectionName: 'components_sections_user_spotlights';
   info: {
-    displayName: "User Spotlight";
-    icon: "dashboard";
+    displayName: 'User Spotlight';
+    icon: 'dashboard';
   };
   attributes: {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:user_spotlight">;
+      Schema.Attribute.DefaultTo<'page:section:user_spotlight'>;
     customWrapperStyle: Schema.Attribute.Text;
-    public_user_profiles: Schema.Attribute.Relation<"oneToMany", "api::public-user-profile.public-user-profile">;
+    public_user_profiles: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::public-user-profile.public-user-profile'
+    >;
     subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
 export interface SectionsWhyUs extends Struct.ComponentSchema {
-  collectionName: "components_sections_why_uses";
+  collectionName: 'components_sections_why_uses';
   info: {
-    displayName: "Why Us";
+    displayName: 'Why Us';
   };
   attributes: {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<"page:section:why_us">;
-    whyUsItems: Schema.Attribute.Component<"shared.why-hpj-item", true>;
+      Schema.Attribute.DefaultTo<'page:section:why_us'>;
+    whyUsItems: Schema.Attribute.Component<'shared.why-hpj-item', true>;
     whyUsSubtitle: Schema.Attribute.Text;
     whyUsTitle: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
 export interface SharedFaqItem extends Struct.ComponentSchema {
-  collectionName: "components_shared_faq_items";
+  collectionName: 'components_shared_faq_items';
   info: {
-    displayName: "FAQ Item";
+    displayName: 'FAQ Item';
   };
   attributes: {
     answerText: Schema.Attribute.Text & Schema.Attribute.Required;
@@ -275,13 +313,13 @@ export interface SharedFaqItem extends Struct.ComponentSchema {
 }
 
 export interface SharedNewsItem extends Struct.ComponentSchema {
-  collectionName: "components_shared_news_items";
+  collectionName: 'components_shared_news_items';
   info: {
-    displayName: "News Item";
+    displayName: 'News Item';
   };
   attributes: {
     dateCreatedAt: Schema.Attribute.DateTime;
-    img: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     imgAlt: Schema.Attribute.Text;
     text: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
@@ -290,9 +328,9 @@ export interface SharedNewsItem extends Struct.ComponentSchema {
 }
 
 export interface SharedQuotesItem extends Struct.ComponentSchema {
-  collectionName: "components_shared_quotes_items";
+  collectionName: 'components_shared_quotes_items';
   info: {
-    displayName: "Quotes Item";
+    displayName: 'Quotes Item';
   };
   attributes: {
     text: Schema.Attribute.Text;
@@ -301,9 +339,9 @@ export interface SharedQuotesItem extends Struct.ComponentSchema {
 }
 
 export interface SharedRoadMapItem extends Struct.ComponentSchema {
-  collectionName: "components_shared_road_map_items";
+  collectionName: 'components_shared_road_map_items';
   info: {
-    displayName: "Road Map Item";
+    displayName: 'Road Map Item';
   };
   attributes: {
     date: Schema.Attribute.Date & Schema.Attribute.Required;
@@ -313,24 +351,24 @@ export interface SharedRoadMapItem extends Struct.ComponentSchema {
 }
 
 export interface SharedUserCard extends Struct.ComponentSchema {
-  collectionName: "components_shared_user_cards";
+  collectionName: 'components_shared_user_cards';
   info: {
-    displayName: "User Card";
-    icon: "user";
+    displayName: 'User Card';
+    icon: 'user';
   };
   attributes: {
-    avatar: Schema.Attribute.Media<"images" | "files" | "videos" | "audios">;
+    avatar: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     bio: Schema.Attribute.String & Schema.Attribute.Required;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     role: Schema.Attribute.String & Schema.Attribute.Required;
-    socials: Schema.Attribute.Component<"shared.user-socials", false>;
+    socials: Schema.Attribute.Component<'shared.user-socials', false>;
   };
 }
 
 export interface SharedUserSocials extends Struct.ComponentSchema {
-  collectionName: "components_shared_user_socials";
+  collectionName: 'components_shared_user_socials';
   info: {
-    displayName: "User Socials";
+    displayName: 'User Socials';
   };
   attributes: {
     email: Schema.Attribute.String;
@@ -340,10 +378,10 @@ export interface SharedUserSocials extends Struct.ComponentSchema {
 }
 
 export interface SharedWhyHpjItem extends Struct.ComponentSchema {
-  collectionName: "components_shared_why_hpj_items";
+  collectionName: 'components_shared_why_hpj_items';
   info: {
-    displayName: "why_hpj_item";
-    icon: "grid";
+    displayName: 'why_hpj_item';
+    icon: 'grid';
   };
   attributes: {
     description: Schema.Attribute.Text;
@@ -352,32 +390,32 @@ export interface SharedWhyHpjItem extends Struct.ComponentSchema {
   };
 }
 
-declare module "@strapi/strapi" {
+declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      "sections.about": SectionsAbout;
-      "sections.about-alt": SectionsAboutAlt;
-      "sections.business-units": SectionsBusinessUnits;
-      "sections.contact-form": SectionsContactForm;
-      "sections.cv-form": SectionsCvForm;
-      "sections.faq-section": SectionsFaqSection;
-      "sections.get-in-touch-form": SectionsGetInTouchForm;
-      "sections.hero": SectionsHero;
-      "sections.info": SectionsInfo;
-      "sections.news": SectionsNews;
-      "sections.news-alt": SectionsNewsAlt;
-      "sections.quotes": SectionsQuotes;
-      "sections.road-map": SectionsRoadMap;
-      "sections.service-block": SectionsServiceBlock;
-      "sections.user-spotlight": SectionsUserSpotlight;
-      "sections.why-us": SectionsWhyUs;
-      "shared.faq-item": SharedFaqItem;
-      "shared.news-item": SharedNewsItem;
-      "shared.quotes-item": SharedQuotesItem;
-      "shared.road-map-item": SharedRoadMapItem;
-      "shared.user-card": SharedUserCard;
-      "shared.user-socials": SharedUserSocials;
-      "shared.why-hpj-item": SharedWhyHpjItem;
+      'sections.about': SectionsAbout;
+      'sections.about-alt': SectionsAboutAlt;
+      'sections.business-units': SectionsBusinessUnits;
+      'sections.contact-form': SectionsContactForm;
+      'sections.cv-form': SectionsCvForm;
+      'sections.faq-section': SectionsFaqSection;
+      'sections.get-in-touch-form': SectionsGetInTouchForm;
+      'sections.hero': SectionsHero;
+      'sections.info': SectionsInfo;
+      'sections.news': SectionsNews;
+      'sections.news-alt': SectionsNewsAlt;
+      'sections.quotes': SectionsQuotes;
+      'sections.road-map': SectionsRoadMap;
+      'sections.service-block': SectionsServiceBlock;
+      'sections.user-spotlight': SectionsUserSpotlight;
+      'sections.why-us': SectionsWhyUs;
+      'shared.faq-item': SharedFaqItem;
+      'shared.news-item': SharedNewsItem;
+      'shared.quotes-item': SharedQuotesItem;
+      'shared.road-map-item': SharedRoadMapItem;
+      'shared.user-card': SharedUserCard;
+      'shared.user-socials': SharedUserSocials;
+      'shared.why-hpj-item': SharedWhyHpjItem;
     }
   }
 }

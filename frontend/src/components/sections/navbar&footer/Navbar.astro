@@ -82,7 +82,7 @@ const homeUrl = "/";
       >
         <!-- Navigation links -->
         {
-          strings.navBarLinks.map((link) => {
+          strings.navBarLinks.map((link, index) => {
             if (link.url.includes("units")) {
               return <MegaMenuLink url={link.url} name={link.name} />;
             } else {
