@@ -144,6 +144,8 @@ export class DynamicPageHandler {
               componentId
               title: whyUsTitle
               subTitle: whyUsSubtitle
+              __typename
+              id
               whyUsItems {
                 iconStr: icon
                 description
@@ -336,6 +338,27 @@ export class DynamicPageHandler {
                 answerText
               }
             }
+            ... on ComponentSectionsOpportunitiesSection {
+              componentId
+              title
+              __typename
+              id
+              jobs {
+                summary
+                title
+                shortDescription
+                jobID
+                address {
+                  city
+                  country
+                  street
+                }
+                department {
+                  title
+                  url
+                }
+              }
+            } 
             ... on Error {
               code
               message

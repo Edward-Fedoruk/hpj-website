@@ -1,7 +1,7 @@
 import type { FormType } from './formTypes';
 
 import type { UnitSliderItem } from '@/components/sections/landing/BusinessUnitsSection.astro';
-import type { IWhyUsItem } from '@/components/sections/landing/WhyUsSection.astro';
+import type { WhyUsProps } from '@/components/sections/landing/WhyUsSection.astro';
 import type { QuotesSectionProps } from '@/components/sections/misc/QuotesSection.astro';
 import type { StrapiImageType } from './common';
 import type { NewsSectionProps } from '@/components/sections/news/NewsSection.astro';
@@ -13,6 +13,7 @@ import type { AboutAltSectionProps } from '@/components/sections/about/AboutAltS
 import type { ServiceSectionProps } from '@/components/sections/service/ServiceSection.astro';
 import type { UserSpotlightSectionProps } from '@/components/sections/boardMembers/userSpotlight/UserSpotlightSection.astro';
 import type { FAQSectionProps } from '@/components/sections/misc/FAQSection.astro';
+import type { OpportunitiesSectionProps } from '@/components/sections/job/Opportunities.astro';
 
 
 export enum SectionType {
@@ -29,6 +30,7 @@ export enum SectionType {
   Service = "page:section:service",
   UserSpotlight = "page:section:user_spotlight",
   FAQSection = "page:section:faq",
+  OpportunitiesSection = "page:section:opportunities",
   ContactForm = "page:section:contact_form",
   CvForm = "page:section:cv_form",
   GetInTouchForm = "page:section:get_in_touch_form",
@@ -61,13 +63,10 @@ export type BusinessUnitsSection = {
     sliderItems?: UnitSliderItem[];
 };
 
-export type WhyUsSection = {
+export interface WhyUsSection extends WhyUsProps {
     __typename: "ComponentSectionsWhyUs";
-    componentId: SectionType.BusinessUnits;
+    componentId: SectionType.WhyUs;
     id: string;
-    title?: string | null;
-    subTitle?: string | null;
-    whyUsItems?: IWhyUsItem[];
 };
 
 export interface QoutesSection extends QuotesSectionProps {
@@ -153,5 +152,10 @@ export interface UserSpotlightSection extends UserSpotlightSectionProps {
 
 export interface FAQSection extends FAQSectionProps {
     __typename: "ComponentSectionsFaqSection";
+    componentId: SectionType.FAQSection;
+};
+
+export interface OpportunitiesSection extends OpportunitiesSectionProps {
+    __typename: "ComponentSectionsOpportunities";
     componentId: SectionType.FAQSection;
 };

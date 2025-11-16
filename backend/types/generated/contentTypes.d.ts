@@ -448,6 +448,7 @@ export interface ApiBusinessUnitBusinessUnit
     description: Schema.Attribute.Text;
     img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     imgAlt: Schema.Attribute.String;
+    jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -460,6 +461,106 @@ export interface ApiBusinessUnitBusinessUnit
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     url: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ApiEmploymentTypeEmploymentType
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'employment_types';
+  info: {
+    displayName: 'Employment Type';
+    pluralName: 'employment-types';
+    singularName: 'employment-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    job: Schema.Attribute.Relation<'manyToOne', 'api::job.job'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::employment-type.employment-type'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiJobJob extends Struct.CollectionTypeSchema {
+  collectionName: 'jobs';
+  info: {
+    displayName: 'Job';
+    pluralName: 'jobs';
+    singularName: 'job';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.Component<'shared.address', false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    department: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::business-unit.business-unit'
+    >;
+    employment_types: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::employment-type.employment-type'
+    >;
+    jobID: Schema.Attribute.UID<''>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::job.job'> &
+      Schema.Attribute.Private;
+    location_types: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::location-type.location-type'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    shortDescription: Schema.Attribute.Text;
+    summary: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiLocationTypeLocationType
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'location_types';
+  info: {
+    displayName: 'Location Type';
+    pluralName: 'location-types';
+    singularName: 'location-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    job: Schema.Attribute.Relation<'manyToOne', 'api::job.job'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::location-type.location-type'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -500,6 +601,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.get-in-touch-form',
         'sections.user-spotlight',
         'sections.faq-section',
+        'sections.opportunities-section',
       ]
     >;
     seoDescription: Schema.Attribute.String;
@@ -1237,6 +1339,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::business-unit.business-unit': ApiBusinessUnitBusinessUnit;
+      'api::employment-type.employment-type': ApiEmploymentTypeEmploymentType;
+      'api::job.job': ApiJobJob;
+      'api::location-type.location-type': ApiLocationTypeLocationType;
       'api::page.page': ApiPagePage;
       'api::public-user-profile.public-user-profile': ApiPublicUserProfilePublicUserProfile;
       'plugin::api-forms.form': PluginApiFormsForm;

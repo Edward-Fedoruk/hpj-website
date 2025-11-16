@@ -1,8 +1,8 @@
 {
   "collectionName": "components_sections_heroes",
   "info": {
-    "displayName": "hero",
-    "icon": "apps"
+    "displayName": "Hero Section",
+    "icon": "monitor"
   },
   "options": {},
   "attributes": {
@@ -19,17 +19,67 @@
     "heroSubtitle": {
       "type": "text"
     },
+    "primaryButton": {
+      "type": "boolean",
+      "private": true,
+      "default": false
+    },
     "primaryBtnLabel": {
-      "type": "string"
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "primaryButton"
+            },
+            true
+          ]
+        }
+      }
     },
     "primaryBtnURL": {
-      "type": "string"
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "primaryButton"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "secondaryButton": {
+      "type": "boolean",
+      "private": true,
+      "default": false
     },
     "secondaryBtnLabel": {
-      "type": "string"
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "secondaryButton"
+            },
+            true
+          ]
+        }
+      }
     },
     "secondaryBtnURL": {
-      "type": "string"
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "secondaryButton"
+            },
+            true
+          ]
+        }
+      }
     },
     "bgImgSrc": {
       "type": "media",

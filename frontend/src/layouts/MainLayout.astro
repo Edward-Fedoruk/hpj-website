@@ -37,6 +37,8 @@ interface Props {
       customOgTitle={customOgTitle}
     />
     {/* Define the title of the page */}
+    <script src="../utils/aos.js"></script>
+    <script src="../utils/setCornerColor.js"></script>
     <title>{title}</title>
   </head>
   <body
@@ -56,7 +58,6 @@ interface Props {
       // https://preline.co
       import "preline/preline.js";
     </script>
-    <script src="../utils/aos.js"></script>
     <style>
       .scrollbar-hide::-webkit-scrollbar {
         display: none;

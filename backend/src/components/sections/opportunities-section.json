@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_opportunities_sections",
+  "info": {
+    "displayName": "Opportunities Section",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job"
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:opportunities",
+      "required": true
+    }
+  },
+  "config": {}
+}

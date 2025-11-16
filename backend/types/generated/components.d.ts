@@ -1,5 +1,28 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface JobJobResponsibility extends Struct.ComponentSchema {
+  collectionName: 'components_job_job_responsibilities';
+  info: {
+    displayName: 'Job Responsibility';
+  };
+  attributes: {
+    icon: Schema.Attribute.Text;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
+export interface JobJobSkill extends Struct.ComponentSchema {
+  collectionName: 'components_job_job_skills';
+  info: {
+    displayName: 'Job Skill';
+  };
+  attributes: {
+    icon: Schema.Attribute.Text;
+    text: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsAbout extends Struct.ComponentSchema {
   collectionName: 'components_sections_abouts';
   info: {
@@ -148,8 +171,8 @@ export interface SectionsGetInTouchForm extends Struct.ComponentSchema {
 export interface SectionsHero extends Struct.ComponentSchema {
   collectionName: 'components_sections_heroes';
   info: {
-    displayName: 'hero';
-    icon: 'apps';
+    displayName: 'Hero Section';
+    icon: 'monitor';
   };
   attributes: {
     bgImgAlt: Schema.Attribute.String;
@@ -161,8 +184,14 @@ export interface SectionsHero extends Struct.ComponentSchema {
     heroTitle: Schema.Attribute.String & Schema.Attribute.Required;
     primaryBtnLabel: Schema.Attribute.String;
     primaryBtnURL: Schema.Attribute.String;
+    primaryButton: Schema.Attribute.Boolean &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<false>;
     secondaryBtnLabel: Schema.Attribute.String;
     secondaryBtnURL: Schema.Attribute.String;
+    secondaryButton: Schema.Attribute.Boolean &
+      Schema.Attribute.Private &
+      Schema.Attribute.DefaultTo<false>;
   };
 }
 
@@ -214,6 +243,21 @@ export interface SectionsNewsAlt extends Struct.ComponentSchema {
     newsList: Schema.Attribute.Component<'shared.news-item', true>;
     newsSubtitle: Schema.Attribute.Text;
     newsTitle: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsOpportunitiesSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_opportunities_sections';
+  info: {
+    displayName: 'Opportunities Section';
+    icon: 'bulletList';
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:section:opportunities'>;
+    jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -298,6 +342,18 @@ export interface SectionsWhyUs extends Struct.ComponentSchema {
     whyUsItems: Schema.Attribute.Component<'shared.why-hpj-item', true>;
     whyUsSubtitle: Schema.Attribute.Text;
     whyUsTitle: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SharedAddress extends Struct.ComponentSchema {
+  collectionName: 'components_shared_addresses';
+  info: {
+    displayName: 'Address';
+  };
+  attributes: {
+    city: Schema.Attribute.String & Schema.Attribute.Required;
+    country: Schema.Attribute.String & Schema.Attribute.Required;
+    street: Schema.Attribute.String;
   };
 }
 
@@ -393,6 +449,8 @@ export interface SharedWhyHpjItem extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'job.job-responsibility': JobJobResponsibility;
+      'job.job-skill': JobJobSkill;
       'sections.about': SectionsAbout;
       'sections.about-alt': SectionsAboutAlt;
       'sections.business-units': SectionsBusinessUnits;
@@ -404,11 +462,13 @@ declare module '@strapi/strapi' {
       'sections.info': SectionsInfo;
       'sections.news': SectionsNews;
       'sections.news-alt': SectionsNewsAlt;
+      'sections.opportunities-section': SectionsOpportunitiesSection;
       'sections.quotes': SectionsQuotes;
       'sections.road-map': SectionsRoadMap;
       'sections.service-block': SectionsServiceBlock;
       'sections.user-spotlight': SectionsUserSpotlight;
       'sections.why-us': SectionsWhyUs;
+      'shared.address': SharedAddress;
       'shared.faq-item': SharedFaqItem;
       'shared.news-item': SharedNewsItem;
       'shared.quotes-item': SharedQuotesItem;

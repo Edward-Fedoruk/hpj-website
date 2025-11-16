@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_job_job_skills",
+  "info": {
+    "displayName": "Job Skill"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "text"
+    },
+    "text": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}
