@@ -30,6 +30,7 @@ cornerElements.forEach((cornerEl) => {
   if (bgColor && !cornerEl.classList.contains("updated-color")) {
     cornerEl.style.color = bgColor;
     cornerEl.classList.add("updated-color");
+    console.log(`updated color for ${cornerEl}, ${bgColor}`);
   }
 });
 
