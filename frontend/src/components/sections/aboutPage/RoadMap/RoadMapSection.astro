@@ -27,7 +27,7 @@ interface Props extends RoadMapSectionProps {}
     data-aos-once="true"
   >
     <h1
-      class="block text-center font-helvetica-black text-[32px] text-balance whitespace-pre-line  md:text-[52px] lg:text-[52px] leading-[120%]"
+      class="font-bold block text-center text-[32px] text-balance whitespace-pre-line  md:text-[52px] lg:text-[52px] leading-[120%]"
     >
       <Fragment set:html={title} />
     </h1>
@@ -134,7 +134,7 @@ interface Props extends RoadMapSectionProps {}
           data-aos-once="true"
         >
           {roadMapItems.map((item) => {
-            return <p class="hidden text-center text-[18px]">{item.description}</p>;
+            return <p class="hidden text-center font-normal text-[18px]">{item.description}</p>;
           })}
         </div>
       )

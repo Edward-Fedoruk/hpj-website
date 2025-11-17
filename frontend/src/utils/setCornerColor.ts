@@ -1,67 +1,63 @@
+const cornerElements = document.querySelectorAll(`.section-corner:not(.updated-color)`) as NodeListOf<HTMLElement>;
 
-    const cornerElements = document.querySelectorAll(`.section-corner:not(.updated-color)`) as NodeListOf<HTMLElement>;
+cornerElements.forEach((cornerEl) => {
+  const currentSection = cornerEl.closest("section");
+  if (!currentSection) return;
 
-    cornerElements.forEach(cornerEl => {
-      const currentSection = cornerEl.closest('section');
-      if (!currentSection) return;
+  const previousSection = findPreviousSection(currentSection);
+  const nextSection = findNextSection(currentSection);
 
-      const previousSection = findPreviousSection(currentSection);
-      const nextSection = findNextSection(currentSection);
+  const cornerPosition: "top-left" | "top-right" | "bottom-left" | "bottom-right" = cornerEl.dataset.position as any;
 
-      const cornerPosition: "top-left" | "top-right" | "bottom-left" | "bottom-right" = cornerEl.dataset.position as any;
+  let sectionToUse: HTMLElement | null = null;
 
-      let sectionToUse: HTMLElement | null = null;
+  if (cornerPosition.startsWith("top")) {
+    sectionToUse = previousSection;
+  } else if (cornerPosition.startsWith("bottom")) {
+    sectionToUse = nextSection;
+  }
+  if (!sectionToUse) return;
 
-      if (cornerPosition.startsWith("top")) {
-        sectionToUse = previousSection;
-      } else if (cornerPosition.startsWith("bottom")) {
-        sectionToUse = nextSection;
-      }
-      if (!sectionToUse) return;
+  const bgClass = [...sectionToUse.classList].find((c) => c.startsWith("bg-"));
+  let bgColor: string | null = null;
 
-      const bgClass = [...sectionToUse.classList].find(c => c.startsWith("bg-"));
-      let bgColor: string | null = null;
-
-      if (bgClass) {
-        bgColor = bgClass.split("bg-")[1].replace("[", "").replace("]", "");
-      } else if (sectionToUse.style.backgroundColor) {
-        bgColor = sectionToUse.style.backgroundColor;
-      }
-
-      console.log(!cornerEl.classList.contains('updated-color'));
-      console.log(bgColor);
-
-      if (bgColor && !cornerEl.classList.contains('updated-color')) {
-        cornerEl.style.color = bgColor;
-        cornerEl.classList.add('updated-color');
-      }
-    });
-
-  function findNextSection(startEl: Element | null): HTMLElement | null {
-    if (!startEl) return null;
-
-    let el = startEl.nextElementSibling;
-    while (el) {
-      if (el.tagName === "SECTION") return el as HTMLElement;
-      el = el.nextElementSibling;
-    }
-    return null;
+  if (bgClass) {
+    bgColor = bgClass.split("bg-")[1].replace("[", "").replace("]", "");
+  } else if (sectionToUse.style.backgroundColor) {
+    bgColor = sectionToUse.style.backgroundColor;
   }
 
-  function findPreviousSection(startEl: Element | null): HTMLElement | null {
-    if (!startEl) return null;
-
-    let el = startEl.previousElementSibling;
-    while (el) {
-      if (el.tagName === "SECTION") return el as HTMLElement;
-      el = el.previousElementSibling;
-    }
-    return null;
+  if (bgColor && !cornerEl.classList.contains("updated-color")) {
+    cornerEl.style.color = bgColor;
+    cornerEl.classList.add("updated-color");
   }
+});
+
+function findNextSection(startEl: Element | null): HTMLElement | null {
+  if (!startEl) return null;
+
+  let el = startEl.nextElementSibling;
+  while (el) {
+    if (el.tagName === "SECTION") return el as HTMLElement;
+    el = el.nextElementSibling;
+  }
+  return null;
+}
+
+function findPreviousSection(startEl: Element | null): HTMLElement | null {
+  if (!startEl) return null;
+
+  let el = startEl.previousElementSibling;
+  while (el) {
+    if (el.tagName === "SECTION") return el as HTMLElement;
+    el = el.previousElementSibling;
+  }
+  return null;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const cornerElements = document.querySelectorAll(".corner");
-  cornerElements.forEach(el => {
+  cornerElements.forEach((el) => {
     // your logic
     console.log("Corner element:", el);
   });

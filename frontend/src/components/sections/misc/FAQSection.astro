@@ -31,13 +31,13 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
     <div class="flex-[1_1_45%]">
       <div class="mx-auto w-full max-w-7xl">
         <h1
-          class="text-text-main font-helvetica-black block text-center text-[32px] leading-[120%] font-bold text-pretty whitespace-pre-line md:text-start lg:text-[52px] dark:text-neutral-200"
+          class="text-text-main   block text-center text-[32px] leading-[120%] font-bold whitespace-pre-line md:text-start lg:text-[52px]"
         >
           <Fragment set:html={title} />
         </h1>
         {
           subtitle && (
-            <p class="text-text-secondary font-helvetica mx-auto mt-8 w-full max-w-[846px] text-center text-lg text-pretty md:mt-6 md:text-start">
+            <p class="text-text-secondary  mx-auto mt-8 w-full max-w-[846px] text-center text-lg md:mt-6 md:text-start">
               {subtitle}
             </p>
           )
@@ -59,7 +59,7 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
               <h2 class="ac-header relative">
                 <button
                   type="button"
-                  class="ac-trigger font-helvetica-bold! text-[20px]! leading-[100%]! md:text-[22px]!"
+                  class="ac-trigger  ! text-[20px]! leading-[100%]! md:text-[22px]!"
                 >
                   {item.questionText}
                 </button>
@@ -103,11 +103,14 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
   .ac .ac-trigger {
     padding: 20px;
     padding-right: 40px;
+    font-family: "Helvetica Now", Arial, sans-serif !important;
+    font-weight: 600 !important;
   }
 
   .ac .ac-text {
     padding: 20px;
     padding-top: 0px;
+    font-family: "Helvetica Now", Arial, sans-serif !important;
   }
 
   .ac.is-active .chevron-down {

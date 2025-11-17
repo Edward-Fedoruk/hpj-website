@@ -49,13 +49,13 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
     }
     <div data-aos="fade-in" data-aos-delay="500" data-aos-once="true" class="flex flex-col items-center justify-center">
       <h1
-        class="font-helvetica-black block text-center text-[40px] leading-[120%] font-black text-wrap text-white lg:text-[52px] dark:text-neutral-200"
+        class="block text-center text-[40px] leading-[120%] font-black text-wrap text-white lg:text-[52px] dark:text-neutral-200"
       >
         <Fragment set:html={title} />
       </h1>
       {
         subtitle && (
-          <p class="font-helvetica mx-auto mt-3 w-full text-center text-lg leading-relaxed text-pretty text-white md:max-w-[742px]">
+          <p class="mx-auto mt-3 w-full text-center text-lg leading-relaxed text-pretty text-white md:max-w-[742px]">
             {subtitle}
           </p>
         )
@@ -72,7 +72,7 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
               title={secondaryBtnLabel}
               url={secondaryBtnURL}
               arrow
-              className="w-full md:w-[310px] h-14 text-white"
+              className="w-full md:w-[300px] h-14 text-white"
             />
           )
         }

@@ -24,7 +24,7 @@ interface Props extends NewsAltSectionProps {}
       newsList.length > 0 && (
         <div class="flex flex-col w-full md:min-w-[391px] md:w-[391px] bg-[#F7F7F7] h-full z-10 md:min-h-[457px] alt-news-text pr-4">
           <h1
-              class="md:text-start text-center font-helvetica-black block text-[32px] text-balance whitespace-pre-line text-gray-90 lg:text-[52px]"
+              class="md:text-start text-center   block text-[32px] text-balance whitespace-pre-line text-gray-90 lg:text-[52px]"
               data-aos="fade-up"
               data-aos-delay="150"
               data-aos-once="true"
@@ -90,7 +90,7 @@ interface Props extends NewsAltSectionProps {}
                   
                   <div class="p-4 flex flex-col md:items-center justify-between gap-4">
                     <div class="flex flex-col">
-                      <a href={item.url} class="line-clamp-2 text-xl font-helvetica-bold font-bold text-text-main">{item.title}</a>
+                      <a href={item.url} class="line-clamp-2 text-xl font-bold text-text-main">{item.title}</a>
                       <p class="text-lg line-clamp-3 mt-6 text-text-secondary">{item.description}</p>
                     </div>
 

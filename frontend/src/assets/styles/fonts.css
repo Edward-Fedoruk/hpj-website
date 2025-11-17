@@ -1,39 +1,47 @@
 @font-face {
-  font-family: 'Helvetica Now Light';
-  src: url('/fonts/HelveticaNow/HelveticaNowDisplayLight.otf');
+  font-family: "Helvetica Now";
+  src: url("/fonts/HelveticaNow/HelveticaNowDisplayLight.otf");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica Now';
-  src: url('/fonts/HelveticaNow/HelveticaNowDisplay.otf');
+  font-family: "Helvetica Now";
+  src: url("/fonts/HelveticaNow/HelveticaNowDisplay.otf");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica Now Medium';
-  src: url('/fonts/HelveticaNow/HelveticaNowDisplayMedium.otf');
+  font-family: "Helvetica Now";
+  src: url("/fonts/HelveticaNow/HelveticaNowDisplayMedium.otf");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica Now Bold';
-  src: url('/fonts/HelveticaNow/HelveticaNowDisplayBold.otf');
+  font-family: "Helvetica Now";
+  src: url("/fonts/HelveticaNow/HelveticaNowDisplayBold.otf");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Helvetica Now Black';
-  src: url('/fonts/HelveticaNow/HelveticaNowDisplayBlack.otf');
+  font-family: "Helvetica Now";
+  src: url("/fonts/HelveticaNow/HelveticaNowDisplayBlack.otf");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.font-loaded body {
+  font-family: "Helvetica Now", Arial, sans-serif;
 }

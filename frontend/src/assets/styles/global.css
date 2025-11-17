@@ -13,6 +13,7 @@
   --color-current: currentColor;
   --color-black: #000;
   --color-white: #fff;
+  --color-light-gray: #f5f5f5;
 
   --color-primary: #524cf2;
   --color-primary-hover: #635df3;
@@ -27,13 +28,7 @@
 
   --shadow-card: 0px 8px 16px 0px #00000014, 0px 0px 4px 0px #0000000a;
 
-  --font-default: "Arial";
-
-  --font-helvetica-light: "Helvetica Now Light";
-  --font-helvetica: "Helvetica Now";
-  --font-helvetica-medium: "Helvetica Now Medium";
-  --font-helvetica-bold: "Helvetica Now Bold";
-  --font-helvetica-black: "Helvetica Now Black";
+  --font-default: Arial, sans-serif;
 }
 
 /*

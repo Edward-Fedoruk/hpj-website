@@ -33,7 +33,7 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 {
   business_unit && (
     <section
-      class="header-text-dark mx-auto flex flex-col gap-6 bg-[#F5F5F5] px-4 py-8 md:items-center md:gap-8 md:py-[45px]"
+      class="header-text-dark mx-auto flex flex-col gap-6 bg-light-gray px-4 py-8 md:items-center md:gap-8 md:py-[45px]"
       style={customWrapperStyleStr}
     >
       <div class="flex w-full max-w-7xl flex-col gap-4 rounded-2xl bg-white shadow-[0px_4px_20px_0px_#00000026] md:flex-row md:gap-8 md:bg-transparent md:shadow-none">
@@ -61,7 +61,7 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 
         <div class={`flex-[0_1_50%] px-4 ${imgPositionLeft ? "md:order-1" : "md:order-0"}`}>
           <h1
-            class="text-text-main font-helvetica-black block text-[32px] leading-[120%] md:text-start lg:text-[52px]"
+            class="text-text-main font-black block text-[32px] leading-[120%] md:text-start lg:text-[42px]"
             data-aos="fade-up"
             data-aos-delay="350"
             data-aos-once="true"
@@ -70,7 +70,7 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
           </h1>
           {business_unit.description && (
             <p
-              class="text-text-secondary font-helvetica mx-auto mt-6 w-full max-w-[846px] text-lg text-pretty md:mt-5 md:text-start"
+              class="text-text-secondary  mx-auto mt-6 w-full max-w-[846px] text-lg text-pretty md:mt-5 md:text-start"
               data-aos="fade-up"
               data-aos-delay="450"
               data-aos-once="true"
