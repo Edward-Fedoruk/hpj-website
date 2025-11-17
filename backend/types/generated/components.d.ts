@@ -330,6 +330,20 @@ export interface SectionsUserSpotlight extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsWhyThisUnit extends Struct.ComponentSchema {
+  collectionName: 'components_sections_why_this_units';
+  info: {
+    displayName: 'Why This Unit';
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:section:why_this_unit'>;
+    items: Schema.Attribute.Component<'shared.why-this-unit-item', true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsWhyUs extends Struct.ComponentSchema {
   collectionName: 'components_sections_why_uses';
   info: {
@@ -342,6 +356,24 @@ export interface SectionsWhyUs extends Struct.ComponentSchema {
     whyUsItems: Schema.Attribute.Component<'shared.why-hpj-item', true>;
     whyUsSubtitle: Schema.Attribute.Text;
     whyUsTitle: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsWhyUsAlt extends Struct.ComponentSchema {
+  collectionName: 'components_sections_why_us_alts';
+  info: {
+    displayName: 'WhyUsAlt';
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:section:why_us_alt'>;
+    HasTitle: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    subTitle: Schema.Attribute.Text;
+    whyUsAlt_Title: Schema.Attribute.String;
+    whyUsItems: Schema.Attribute.Component<'shared.why-hpj-item', true>;
   };
 }
 
@@ -446,6 +478,17 @@ export interface SharedWhyHpjItem extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedWhyThisUnitItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_why_this_unit_items';
+  info: {
+    displayName: 'Why This Unit Item';
+  };
+  attributes: {
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -467,7 +510,9 @@ declare module '@strapi/strapi' {
       'sections.road-map': SectionsRoadMap;
       'sections.service-block': SectionsServiceBlock;
       'sections.user-spotlight': SectionsUserSpotlight;
+      'sections.why-this-unit': SectionsWhyThisUnit;
       'sections.why-us': SectionsWhyUs;
+      'sections.why-us-alt': SectionsWhyUsAlt;
       'shared.address': SharedAddress;
       'shared.faq-item': SharedFaqItem;
       'shared.news-item': SharedNewsItem;
@@ -476,6 +521,7 @@ declare module '@strapi/strapi' {
       'shared.user-card': SharedUserCard;
       'shared.user-socials': SharedUserSocials;
       'shared.why-hpj-item': SharedWhyHpjItem;
+      'shared.why-this-unit-item': SharedWhyThisUnitItem;
     }
   }
 }

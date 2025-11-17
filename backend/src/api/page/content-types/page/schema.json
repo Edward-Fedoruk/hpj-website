@@ -39,7 +39,9 @@
         "sections.get-in-touch-form",
         "sections.user-spotlight",
         "sections.faq-section",
-        "sections.opportunities-section"
+        "sections.opportunities-section",
+        "sections.why-us-alt",
+        "sections.why-this-unit"
       ]
     },
     "seoTitle": {

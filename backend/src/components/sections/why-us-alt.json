@@ -1,0 +1,52 @@
+{
+  "collectionName": "components_sections_why_us_alts",
+  "info": {
+    "displayName": "WhyUsAlt"
+  },
+  "options": {},
+  "attributes": {
+    "HasTitle": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "whyUsAlt_Title": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "HasTitle"
+            },
+            true
+          ]
+        }
+      },
+      "required": false
+    },
+    "subTitle": {
+      "type": "text",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "HasTitle"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "whyUsItems": {
+      "type": "component",
+      "component": "shared.why-hpj-item",
+      "repeatable": true
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:why_us_alt",
+      "required": true
+    }
+  },
+  "config": {}
+}
