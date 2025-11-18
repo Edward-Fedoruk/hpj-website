@@ -29,19 +29,27 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 ---
 
 <section
-  class="header-text-dark mx-auto flex flex-col gap-6 overflow-hidden bg-[#F5F5F5] px-4 py-22 md:items-center md:gap-8 md:pb-[100px] lg:px-10"
+  class="header-text-dark mx-auto flex flex-col gap-6 overflow-hidden bg-[#f5f5f5] px-4 py-22 md:items-center md:gap-8 md:pb-[100px] lg:px-10"
   style={customWrapperStyleStr}
 >
-  <div data-aos="fade-up" data-aos-delay="150" data-aos-once="true" class="w-full">
+  <div class="w-full">
     <div class="mx-auto w-full max-w-7xl">
       <h1
-        class="text-text-main font-helvetica-black block text-center text-[32px] leading-[120%] font-bold text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
+        class="text-text-main   block text-center text-[32px] leading-[120%] font-black text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-once="true"
       >
         <Fragment set:html={title} />
       </h1>
       {
         subtitle && (
-          <p class="text-text-secondary mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty">
+          <p
+            class="text-text-secondary  mx-auto mt-6 w-full max-w-[846px] text-center text-lg"
+            data-aos="fade-up"
+            data-aos-delay="350"
+            data-aos-once="true"
+          >
             {subtitle}
           </p>
         )
@@ -52,8 +60,13 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
       <div class="embla__container md:flex md:w-full md:flex-row md:flex-wrap md:justify-center md:gap-6">
         {
           userProfiles &&
-            userProfiles.map((user) => (
-              <div class="embla__slide md:flex-[0_0_30%]">
+            userProfiles.map((user, index) => (
+              <div
+                class="embla__slide md:flex-[0_0_30%]"
+                data-aos="fade-up"
+                data-aos-delay={300 + index * 200}
+                data-aos-once="true"
+              >
                 <ProfileCard {...user} />
               </div>
             ))

@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "employment_types",
+  "info": {
+    "singularName": "employment-type",
+    "pluralName": "employment-types",
+    "displayName": "Employment Type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "job": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::job.job",
+      "inversedBy": "employment_types"
+    }
+  }
+}

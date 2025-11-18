@@ -49,7 +49,7 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
     }
     <div data-aos="fade-in" data-aos-delay="500" data-aos-once="true" class="flex flex-col items-center justify-center">
       <h1
-        class="font-helvetica-black block text-center text-[40px] leading-[120%] font-black text-wrap text-white lg:text-[52px] dark:text-neutral-200"
+        class="block text-center text-[40px] leading-[120%] font-black text-wrap text-white lg:text-[52px] dark:text-neutral-200"
       >
         <Fragment set:html={title} />
       </h1>
@@ -72,7 +72,7 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
               title={secondaryBtnLabel}
               url={secondaryBtnURL}
               arrow
-              className="w-full md:w-[310px] h-14 text-white"
+              className="w-full md:w-[300px] h-14 text-white"
             />
           )
         }
@@ -80,26 +80,6 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
     </div>
   </div>
 </section>
-
-<script>
-  const setCornerColor = () => {
-    const heroSection = document.querySelector("section:has(.hero-img)");
-    if (!heroSection) return;
-
-    const sectionAfterHero = heroSection?.nextElementSibling?.nextElementSibling;
-    if (!sectionAfterHero) return;
-
-    sectionAfterHero.classList.forEach((classStr) => {
-      if (classStr.includes("bg-")) {
-        const cornerElement = heroSection.querySelector(".hero-img > svg");
-        const bgColor = classStr.split("bg-")[1].replace("[", "").replace("]", "");
-        cornerElement?.classList.add(`text-[${bgColor}]`);
-      }
-    });
-  };
-
-  setCornerColor();
-</script>
 
 <style>
   img {

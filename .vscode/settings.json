@@ -16,12 +16,13 @@
     "/src/content/**/*": "/src/images/content/${documentBaseName}/"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "prettier.requireConfig": true,
-  "prettier.configPath": "./",
+  "prettier.requireConfig": false,
+  "prettier.configPath": "",
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
   },
   "prettier.proseWrap": "preserve",
   "html.format.wrapAttributesIndentSize": null,
-  "html.format.wrapAttributes": "auto"
+  "html.format.wrapAttributes": "auto",
+  "editor.formatOnSave": true
 }

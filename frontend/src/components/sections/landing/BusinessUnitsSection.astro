@@ -25,7 +25,7 @@ export interface UnitSliderItem {
   class="header-text-dark bg-gray-10 mx-auto flex flex-col overflow-hidden px-4 py-[100px] sm:px-6 md:items-center md:py-[120px] lg:px-8 xl:px-10"
 >
   <h1
-    class="font-helvetica-black text-text-main block text-center text-[32px] leading-[120%] font-black text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
+    class="  text-text-main block text-center text-[32px] leading-[120%] font-black text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
     data-aos="fade-up"
     data-aos-delay="150"
     data-aos-once="true"
@@ -59,7 +59,7 @@ export interface UnitSliderItem {
             const itemImg = buildStrapiResponsive(item.img);
 
             return (
-              <div class="embla__slide group z-20 h-fit max-h-[323px] max-w-[412px] overflow-hidden rounded-xl shadow-[0px_8px_16px_0px_#00000014,0px_0px_4px_0px_#0000000A] md:max-h-[415px]">
+              <div class="embla__slide group z-20 h-fit max-h-[323px] max-w-[412px] overflow-hidden rounded-xl shadow-card md:max-h-[415px]">
                 {itemImg ? (
                   <a href={item.url}>
                     <Image
@@ -75,11 +75,13 @@ export interface UnitSliderItem {
                     />
                   </a>
                 ) : (
-                  <div>Image placeholder</div>
+                  <svg width="100%" height="100%" viewBox="0 0 120 120"  fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M33.2503 38.4816C33.2603 37.0472 34.4199 35.8864 35.8543 35.875H83.1463C84.5848 35.875 85.7503 37.0431 85.7503 38.4816V80.5184C85.7403 81.9528 84.5807 83.1136 83.1463 83.125H35.8543C34.4158 83.1236 33.2503 81.957 33.2503 80.5184V38.4816ZM80.5006 41.1251H38.5006V77.8751L62.8921 53.4783C63.9172 52.4536 65.5788 52.4536 66.6039 53.4783L80.5006 67.4013V41.1251ZM43.75 51.6249C43.75 54.5244 46.1005 56.8749 49 56.8749C51.8995 56.8749 54.25 54.5244 54.25 51.6249C54.25 48.7254 51.8995 46.3749 49 46.3749C46.1005 46.3749 43.75 48.7254 43.75 51.6249Z" fill="#687787"/>
+                  </svg>
                 )}
                 <div class="flex min-h-32 flex-col bg-white p-4">
                   <a
-                    class="font-helvetica-bold text-text-main mt-2 mb-2 line-clamp-1 w-fit text-2xl font-bold"
+                    class="  text-text-main mt-2 mb-2 line-clamp-1 w-fit text-2xl font-bold"
                     href={item.url}
                   >
                     {item.title}

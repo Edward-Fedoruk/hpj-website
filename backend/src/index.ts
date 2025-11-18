@@ -1,6 +1,11 @@
-// import type { Core } from '@strapi/strapi';
+import type { Core } from '@strapi/strapi';
+import fs from "fs";
+import path from "path";
 
-import { Core } from "@strapi/strapi";
+const astroTriggerFile = path.resolve(
+  __dirname,
+  "../../../frontend/src/_strapi-trigger.txt"
+);
 
 export default {
   /**
@@ -46,6 +51,30 @@ export default {
             return { messageId: 'blocked', accepted: [], rejected: [] };
           },
         };
+      }
+
+      // Triggers Astro rerender on strapi changes if dev env is development
+      if (process.env.NODE_ENV !== "development") return;
+
+      strapi.db.lifecycles.subscribe(async (event) => {
+        const { action } = event;
+        
+        const triggerActions = [
+          "afterUpdate",
+        ];
+
+        if (triggerActions.includes(action)) {
+          touchAstro();
+        }
+      });
+
+      function touchAstro() {
+        const file = path.resolve(
+          __dirname,
+          astroTriggerFile
+        );
+
+        fs.writeFileSync(file, new Date().toISOString());
       }
     }
 };

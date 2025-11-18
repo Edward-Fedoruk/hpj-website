@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Job"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "department": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::business-unit.business-unit",
+      "inversedBy": "jobs"
+    },
+    "employment_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::employment-type.employment-type",
+      "mappedBy": "job"
+    },
+    "address": {
+      "type": "component",
+      "component": "shared.address",
+      "repeatable": false
+    },
+    "location_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::location-type.location-type",
+      "mappedBy": "job"
+    },
+    "jobID": {
+      "type": "uid",
+      "targetField": ""
+    }
+  }
+}

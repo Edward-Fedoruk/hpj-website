@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_job_job_responsibilities",
+  "info": {
+    "displayName": "Job Responsibility"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "icon": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

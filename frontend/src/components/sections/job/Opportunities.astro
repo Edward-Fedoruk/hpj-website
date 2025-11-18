@@ -1,0 +1,109 @@
+---
+import PrimaryCTA from '@/components/ui/buttons/PrimaryCTA.astro';
+import SecondaryCTA from '@/components/ui/buttons/SecondaryCTA.astro';
+
+const { title, jobs } = Astro.props;
+
+export interface Job {
+  summary: string;
+  title: string;
+  jobID: string;
+  shortDescription: string;
+  address: {
+    city: string;
+    country: string;
+    street: string;
+  }  
+      department: { 
+    title: string;
+    url: string;
+  }
+}
+
+
+export interface OpportunitiesSectionProps {
+  title: string;
+  jobs: Job[];
+}
+
+interface Props extends OpportunitiesSectionProps {}
+---
+
+<section
+  class="header-text-dark mx-auto flex flex-col gap-6 bg-[#FFFFFF] px-4 pt-[100px] pb-[70px] md:items-center md:gap-8 md:py-[120px] md:pb-[120px] lg:px-10"
+>
+  <div class="w-full">
+    <div class="mx-auto w-full max-w-7xl">
+      <h1
+        class="text-text-main   block text-center text-[32px] leading-[120%] font-black text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
+        data-aos="fade-up"
+        data-aos-delay="150"
+        data-aos-once="true"
+      >
+        <Fragment set:html={title} />
+      </h1>
+
+      {
+        jobs && (
+          <div class="mt-15 flex flex-col gap-8 items-center">
+            {
+              jobs.map((job, i) => {
+            return (
+                <div
+                  class="embla__slide w-full overflow-hidden rounded-2xl bg-white md:max-w-[932px] py-8 px-6 shadow-card"
+                  data-aos="fade-up"
+                  data-aos-delay={300 + i * 200}
+                  data-aos-anchor-placement="top-bottom"
+                  data-aos-once="true"
+                >
+                  <div class="flex flex-col justify-between gap-4 md:flex-row items-start">
+                    <div class="flex flex-col">
+                      <div class="flex flex-col">
+                        <a href={`/job/${job.jobID}`} class="text-text-main   line-clamp-4 text-2xl">
+                          {job.title}
+                        </a>
+                      </div>
+
+                      <div class="flex flex-col">
+                        <p class="text-text-secondary  line-clamp-4 text-lg mt-2">
+                          {job.shortDescription}
+                        </p>
+                      </div>
+
+                      <div>
+                        <p class="text-text-main   text-base mt-4">
+                          {job.department.title} - {job.address.country}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="flex w-full md:w-fit flex-col md:flex-row gap-4 min-w-fit">
+                      <SecondaryCTA title="View Details" arrow className="text-primary h-14 min-w-fit" url={`/job/${job.jobID}`} />
+                      <PrimaryCTA title="Apply Now" noArrow className="text-primary h-14 min-w-fit" url={`/job/${job.jobID}`} />
+                    </div>
+
+                  </div>
+                </div>
+            )
+        })
+            }
+          </div>
+
+          <div 
+            class="flex w-full md:max-w-[932px] bg-[#F7F7F7] p-6 rounded-xl mt-15 mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="300"
+            data-aos-anchor-placement="top-bottom"
+            data-aos-once="true"
+          >
+            <div class="border-l-2 border-primary pl-4">
+              <p class="text-lg text-text-secondary font-helvetica">If job listings are not yet available:</p>
+              <p class="text-lg text-text-main   mt-1">We're always looking for great people. You can submit your CV below for future opportunities.</p>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+

@@ -25,12 +25,7 @@ const mainImg = buildStrapiResponsive(img);
   class="header-text-dark mx-auto grid min-h-[636px] max-w-[1320px] gap-4 overflow-hidden px-5 py-14 pt-[86px] md:min-h-[700px] md:items-center md:gap-8"
   id="quotes-section"
 >
-  <div
-    class="flex flex-1 flex-col overflow-hidden md:flex-row"
-    data-aos="fade-up"
-    data-aos-delay="150"
-    data-aos-once="true"
-  >
+  <div class="flex flex-1 flex-col overflow-hidden md:flex-row">
     <div
       class="h-fit w-full overflow-hidden rounded-2xl md:mr-8 md:mb-0 md:flex-1 lg:mr-[132px] lg:w-[500px] lg:min-w-[500px]"
     >
@@ -41,19 +36,30 @@ const mainImg = buildStrapiResponsive(img);
             alt={imgAlt || mainImg.alt}
             height={mainImg.height}
             width={mainImg.width}
-            class={"max-h-[334px] w-full object-cover"}
+            class={"max-h-[334px] w-full rounded-2xl object-cover"}
             sizes="(max-width: 500px) 500px, 100vw"
             draggable={"false"}
             loading={"eager"}
             fetchpriority={"high"}
+            data-aos="fade-up"
+            data-aos-delay="150"
+            data-aos-once="true"
           />
         ) : (
-          <div>Image placeholder</div>
+          <svg width="100%" height="100%" viewBox="0 0 120 120" class={"max-h-[334px] w-full object-cover"} fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M33.2503 38.4816C33.2603 37.0472 34.4199 35.8864 35.8543 35.875H83.1463C84.5848 35.875 85.7503 37.0431 85.7503 38.4816V80.5184C85.7403 81.9528 84.5807 83.1136 83.1463 83.125H35.8543C34.4158 83.1236 33.2503 81.957 33.2503 80.5184V38.4816ZM80.5006 41.1251H38.5006V77.8751L62.8921 53.4783C63.9172 52.4536 65.5788 52.4536 66.6039 53.4783L80.5006 67.4013V41.1251ZM43.75 51.6249C43.75 54.5244 46.1005 56.8749 49 56.8749C51.8995 56.8749 54.25 54.5244 54.25 51.6249C54.25 48.7254 51.8995 46.3749 49 46.3749C46.1005 46.3749 43.75 48.7254 43.75 51.6249Z" fill="#687787"/>
+          </svg>
         )
       }
     </div>
 
-    <div class="embla relative overflow-hidden pb-4 md:flex-1" id="quotes-slider">
+    <div
+      class="embla relative h-fit overflow-hidden pb-4 md:flex-1"
+      id="quotes-slider"
+      data-aos="fade-up"
+      data-aos-delay="450"
+      data-aos-once="true"
+    >
       <div class="embla__container mt-20 md:mt-20">
         {
           quotesList.map((item) => {
@@ -67,7 +73,7 @@ const mainImg = buildStrapiResponsive(img);
                   )}
 
                   <div class="relative flex h-12 items-center">
-                    <p class="font-helvetica-bold text-gray-90 block text-xl text-balance text-neutral-800 dark:text-neutral-200">
+                    <p class="font-bold text-gray-90 block text-xl text-balance text-neutral-800 dark:text-neutral-200">
                       <Fragment set:html={item.title} />
                     </p>
                   </div>
@@ -79,7 +85,7 @@ const mainImg = buildStrapiResponsive(img);
       </div>
       {
         quotesList && quotesList.length > 1 && (
-          <div class="embla__controls absolute right-0 bottom-4 z-10 bg-white text-[#373B43]">
+          <div class="embla__controls absolute right-4 bottom-4 z-10 mt-20 bg-white text-[#373B43]">
             <div class="embla__buttons flex justify-center gap-4">
               <button class="embla__button embla__button--prev cursor-pointer" type="button">
                 <svg class="embla__button__svg" viewBox="0 0 532 532">

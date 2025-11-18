@@ -43,122 +43,131 @@ function pos(id: string) {
 ---
 
 <section
-  class="bg-dark-purple relative mx-auto flex flex-col gap-6 px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10"
+  class="header-text-dark bg-[#f5f5f5] relative mx-auto flex flex-col gap-6 md:px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10"
 >
-  <h1
-    class="font-helvetica-bold block max-w-[578px] text-center text-3xl leading-[120%] font-bold text-balance whitespace-pre-line text-white lg:text-[52px]"
-  >
-    <Fragment set:html={title} />
-  </h1>
+  <div class="bg-white shadow-card px-5 py-12 md:p-12 max-w-[846px] w-full rounded-xl flex flex-col items-center">
+    <h1
+      class="mx-auto block max-w-[578px] text-center text-3xl leading-[120%] font-black text-balance whitespace-pre-line text-text-main lg:text-[52px]"
+    >
+      <Fragment set:html={title} />
+    </h1>
 
-  {subTitle && <p class="mx-auto w-full max-w-[578px] text-center text-lg text-[#FFFFFFB2]">{subTitle}</p>}
+    {subTitle && <p class="mt-3 mx-auto w-full max-w-[578px] text-center text-lg text-text-secondary">{subTitle}</p>}
 
-  {
-    layouts && (
-      <form
-        class="flex w-full flex-col items-center"
-        data-endpoint={ENDPOINT}
-        data-form-id={FORM_ID}
-        data-success-message={form?.successMessage || "Your CV has been sent successfully."}
-        data-error-message={form?.errorMessage || "There was an error submitting the form. Please try again."}
-        onsubmit="return CVFormhandleSubmit(event, this)"
-      >
-        <div class="flex w-full flex-col items-center">
-          <input type="text" name="honeypot_field" class="hidden" tabindex="-1" autocomplete="off" />
+    {
+      layouts && (
+        <form
+          class="flex w-full flex-col items-center mt-8"
+          data-endpoint={ENDPOINT}
+          data-form-id={FORM_ID}
+          data-success-message={form?.successMessage || "Your CV has been sent successfully."}
+          data-error-message={form?.errorMessage || "There was an error submitting the form. Please try again."}
+          onsubmit="return CVFormhandleSubmit(event, this)"
+        >
+          <div class="flex w-full flex-col items-center">
+            <input type="text" name="honeypot_field" class="hidden" tabindex="-1" autocomplete="off" />
 
-          <div class="grid12 w-full max-w-[920px] gap-4">
-            {order.map((it: FormLayoutType) => {
-              const p = pos(it.i);
-              const f = it.field;
-              const required = f.config?.required ? true : undefined;
+            <div class="grid12 w-full max-w-[920px] gap-6">
+              {order.map((it: FormLayoutType) => {
+                const p = pos(it.i);
+                const f = it.field;
+                const required = f.config?.required ? true : undefined;
 
-              return (
-                <div
-                  class="cell flex flex-col"
-                  style={
-                    {
-                      "--x-sm": p.smx,
-                      "--w-sm": p.smw,
-                      "--x-md": p.mdx,
-                      "--w-md": p.mdw,
-                      "--x-lg": p.lgx,
-                      "--w-lg": p.lgw,
-                    } as any
-                  }
-                >
-                  {f.type === "text" || f.type === "email" ? (
-                    <label class="flex flex-col gap-1">
-                      <span class="label">
-                        {f.label}
-                        {required && <sup class="req">*</sup>}
-                      </span>
-                      <input
-                        id={f.name}
-                        type={f.type}
-                        name={f.name}
-                        placeholder={f.placeholder || ""}
-                        required={required}
-                        class="input"
-                      />
-                    </label>
-                  ) : f.type === "textarea" ? (
-                    <label class="flex flex-col gap-1">
-                      <span class="label">
-                        {f.label}
-                        {required && <sup class="req">*</sup>}
-                      </span>
-                      <textarea
-                        name={f.name}
-                        placeholder={f.placeholder || ""}
-                        required={required}
-                        class="input min-h-[120px]"
-                      />
-                    </label>
-                  ) : f.type === "file" ? (
-                    <label class="flex flex-col gap-1">
-                      <span class="label">
-                        {f.label}
-                        {required && <sup class="req">*</sup>}
-                      </span>
-                      <input type="file" name={f.name} required={required} class="fileinput" />
-                    </label>
-                  ) : f.type === "checkboxgroup" ? (
-                    <fieldset class="flex flex-col gap-2">
-                      <legend class="label">
-                        {f.label}
-                        {required && <sup class="req">*</sup>}
-                      </legend>
-                      <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
-                        {(f.options ?? []).map((opt) => (
-                          <label class="inline-flex items-center gap-2 text-white">
-                            <input type="checkbox" name={`${f.name}[]`} value={opt.value} class="h-4 w-4" />
-                            <span>{opt.label}</span>
-                          </label>
-                        ))}
+                return (
+                  <div
+                    class="cell flex flex-col"
+                    style={
+                      {
+                        "--x-sm": p.smx,
+                        "--w-sm": p.smw,
+                        "--x-md": p.mdx,
+                        "--w-md": p.mdw,
+                        "--x-lg": p.lgx,
+                        "--w-lg": p.lgw,
+                      } as any
+                    }
+                  >
+                    {f.type === "text" || f.type === "email" ? (
+                      <label class="flex flex-col gap-1">
+                        <span class="label">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </span>
+                        <input
+                          id={f.name}
+                          type={f.type}
+                          name={f.name}
+                          placeholder={f.placeholder || ""}
+                          required={required}
+                          class="input ring-primary"
+                        />
+                      </label>
+                    ) : f.type === "textarea" ? (
+                      <label class="flex flex-col gap-1">
+                        <span class="label">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </span>
+                        <textarea
+                          name={f.name}
+                          placeholder={f.placeholder || ""}
+                          required={required}
+                          class="input h-[120px] resize-none ring-primary"
+                        />
+                      </label>
+                    ) : f.type === "file" ? (
+                      <label class="flex flex-col gap-1 relative">
+                        <span class="label w-fit">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </span>
+                        <input type="file" name={f.name} required={required} class="hidden fileinput ring-primary" onchange="return cvInputFieldHandler(this)"/>
+                        <div class="text-text-secondary placeholder cursor-pointer h-[130px] flex flex-col justify-center items-center overflow-hidden">
+                          <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 3V15M12 3L17 8M12 3L7 8M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          <p class="text-text-secondary mt-1 break-all text-center line-clamp-2">CV Upload</p>
+                        </div>
+                      </label>
+                    ) : f.type === "checkboxgroup" ? (
+                      <fieldset class="flex flex-col gap-2">
+                        <legend class="label mb-2">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </legend>
+                        <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
+                          {(f.options ?? []).map((opt) => (
+                            <label class="inline-flex items-center gap-2 text-white">
+                              <input type="checkbox" name={`${f.name}[]`} value={opt.value} class="h-6 w-6 ring-0 cursor-pointer rounded-sm border-px text-primary border-[#A9A9A9] checked:border-transparent outline-0! " />
+                              <span class="checkbox-label text-pretty cursor-pointer">{opt.label}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </fieldset>
+                    ) : (
+                      <div class="text-sm text-amber-300">
+                        Unsupported field: <code>{f.type}</code>
                       </div>
-                    </fieldset>
-                  ) : (
-                    <div class="text-sm text-amber-300">
-                      Unsupported field: <code>{f.type}</code>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <button
+              type="submit"
+              class="mt-6 flex h-14 w-full max-w-[300px] items-center justify-center rounded-[10px] bg-primary text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {submitBtnLabel ?? "Submit"}
+            </button>
+
+            <p id="status" class="h-5 pt-2.5 text-sm text-text-main" aria-live="polite" />
           </div>
-
-          <button
-            type="submit"
-            class="mt-4 flex h-[56px] w-full max-w-[300px] items-center justify-center rounded-[10px] bg-[var(--color-primary)] text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {submitBtnLabel ?? "Submit"}
-          </button>
-
-          <p id="status" class="h-5 pt-[10px] text-sm text-[#FFFFFFCC]" aria-live="polite" />
-        </div>
-      </form>
-    )
-  }
+        </form>
+      )
+    }
+  </div>
+  
 </section>
 
 <style>
@@ -185,29 +194,57 @@ function pos(id: string) {
   }
 
   .label {
-    color: white;
-    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    font-size: 16px;
     font-weight: 600;
+  }
+  .checkbox-label {
+    color: var(--color-text-main);
+    font-size: 18px;
+    font-weight: 400;
   }
   .req {
     color: #f87171;
   }
   .input {
-    color: white;
-    background: color-mix(in oklab, white 5%, transparent);
+    color: var(--color-text-main);
     padding: 0.5rem 0.75rem;
     outline: none;
   }
+  .input,.textarea,.fileinput + .placeholder {
+    background-color: #F8F8F8;
+    border: 1px solid #F3F3F3;
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
   .fileinput {
-    color: white;
-    font-size: 0.875rem;
-    padding: 0.5rem 0.75rem;
+    color: var(--color-text-secondary);
+    font-size: 16px;
     outline: none;
-    background: color-mix(in oklab, white 5%, transparent);
+    cursor: pointer;
+  }
+  .fileinput + .placeholder {
+    cursor: pointer;
+  }
+  [type='checkbox']:focus, [type='radio']:focus {
+    outline: 0 !important;
+    --tw-ring-offset-width: 0px;
   }
 </style>
 
 <script is:inline>
+  function cvInputFieldHandler(inputElement) {
+    if (!inputElement) return
+
+    const placeholderElement = inputElement?.closest('label').querySelector(".placeholder");
+
+    if (inputElement.files.length > 0) {
+      placeholderElement.querySelector('p').textContent = "Chosen file: " + Array.from(inputElement.files).map(file => file.name).join(', ')
+    } else {
+      placeholderElement.querySelector('p').textContent = "CV Upload";
+    }
+  }
+
   async function CVFormhandleSubmit(ev, formElement) {
     console.log(formElement.dataset);
     ev.preventDefault();
