@@ -92,7 +92,6 @@ export interface SectionsContactForm extends Struct.ComponentSchema {
   attributes: {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.Unique &
       Schema.Attribute.DefaultTo<'page:section:contact_form'>;
     form: Schema.Attribute.Relation<'oneToOne', 'plugin::api-forms.form'>;
     submitBtnLabel: Schema.Attribute.String &
