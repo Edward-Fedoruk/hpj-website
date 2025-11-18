@@ -5,6 +5,25 @@
   },
   "options": {},
   "attributes": {
+    "blockTitle": {
+      "type": "string",
+      "required": true
+    },
+    "blockSubtitle": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "workingTime": {
+      "type": "text"
+    },
+    "address": {
+      "type": "text"
+    },
     "componentId": {
       "type": "string",
       "default": "page:section:get_in_touch_form",

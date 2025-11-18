@@ -1,5 +1,6 @@
 ---
 import type { FormType, FormLayoutType } from "@/types/formTypes";
+import '@styles/forms.css';
 
 interface Props {
   title: string;
@@ -137,7 +138,7 @@ function pos(id: string) {
                         </legend>
                         <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
                           {(f.options ?? []).map((opt) => (
-                            <label class="inline-flex items-center gap-2 text-white">
+                            <label class="inline-flex items-center gap-2">
                               <input type="checkbox" name={`${f.name}[]`} value={opt.value} class="h-6 w-6 ring-0 cursor-pointer rounded-sm border-px text-primary border-[#A9A9A9] checked:border-transparent outline-0! " />
                               <span class="checkbox-label text-pretty cursor-pointer">{opt.label}</span>
                             </label>
@@ -170,67 +171,7 @@ function pos(id: string) {
   
 </section>
 
-<style>
-  .grid12 {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-  }
-  .cell {
-    --x: var(--x-sm);
-    --w: var(--w-sm);
-    grid-column: calc(var(--x) + 1) / span var(--w);
-  }
-  @media (min-width: 768px) {
-    .cell {
-      --x: var(--x-md);
-      --w: var(--w-md);
-    }
-  }
-  @media (min-width: 1024px) {
-    .cell {
-      --x: var(--x-lg);
-      --w: var(--w-lg);
-    }
-  }
 
-  .label {
-    color: var(--color-text-secondary);
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .checkbox-label {
-    color: var(--color-text-main);
-    font-size: 18px;
-    font-weight: 400;
-  }
-  .req {
-    color: #f87171;
-  }
-  .input {
-    color: var(--color-text-main);
-    padding: 0.5rem 0.75rem;
-    outline: none;
-  }
-  .input,.textarea,.fileinput + .placeholder {
-    background-color: #F8F8F8;
-    border: 1px solid #F3F3F3;
-    border-radius: 8px;
-    padding: 12px 16px;
-  }
-  .fileinput {
-    color: var(--color-text-secondary);
-    font-size: 16px;
-    outline: none;
-    cursor: pointer;
-  }
-  .fileinput + .placeholder {
-    cursor: pointer;
-  }
-  [type='checkbox']:focus, [type='radio']:focus {
-    outline: 0 !important;
-    --tw-ring-offset-width: 0px;
-  }
-</style>
 
 <script is:inline>
   function cvInputFieldHandler(inputElement) {

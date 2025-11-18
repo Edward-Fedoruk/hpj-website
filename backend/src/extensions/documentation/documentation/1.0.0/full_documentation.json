@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-18T14:07:47.556Z"
+    "x-generation-date": "2025-11-18T14:45:54.242Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -10902,6 +10902,25 @@
             "enum": [
               "sections.get-in-touch-form"
             ]
+          },
+          "blockTitle": {
+            "type": "string"
+          },
+          "blockSubtitle": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "workingTime": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
           },
           "componentId": {
             "type": "string"

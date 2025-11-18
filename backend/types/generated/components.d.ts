@@ -148,6 +148,9 @@ export interface SectionsGetInTouchForm extends Struct.ComponentSchema {
     displayName: 'Get In Touch Form';
   };
   attributes: {
+    address: Schema.Attribute.Text;
+    blockSubtitle: Schema.Attribute.String;
+    blockTitle: Schema.Attribute.String & Schema.Attribute.Required;
     businessUnitsForFormSelect: Schema.Attribute.Relation<
       'oneToMany',
       'api::business-unit.business-unit'
@@ -156,6 +159,7 @@ export interface SectionsGetInTouchForm extends Struct.ComponentSchema {
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
       Schema.Attribute.DefaultTo<'page:section:get_in_touch_form'>;
+    email: Schema.Attribute.Email;
     form: Schema.Attribute.Relation<'oneToOne', 'plugin::api-forms.form'>;
     formSubmitBtnLabel: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Send Message'>;
@@ -164,6 +168,8 @@ export interface SectionsGetInTouchForm extends Struct.ComponentSchema {
     formTitle: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'Get In Touch'>;
+    phone: Schema.Attribute.String;
+    workingTime: Schema.Attribute.Text;
   };
 }
 

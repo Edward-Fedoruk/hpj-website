@@ -59,19 +59,19 @@ interface Props extends OpportunitiesSectionProps {}
                   <div class="flex flex-col justify-between gap-4 md:flex-row items-start">
                     <div class="flex flex-col">
                       <div class="flex flex-col">
-                        <a href={`/job/${job.jobID}`} class="text-text-main   line-clamp-4 text-2xl">
+                        <a href={`/job/${job.jobID}`} class="text-text-main font-bold line-clamp-4 text-2xl">
                           {job.title}
                         </a>
                       </div>
 
                       <div class="flex flex-col">
-                        <p class="text-text-secondary  line-clamp-4 text-lg mt-2">
+                        <p class="text-text-secondary line-clamp-4 text-lg mt-2">
                           {job.shortDescription}
                         </p>
                       </div>
 
                       <div>
-                        <p class="text-text-main   text-base mt-4">
+                        <p class="text-text-main font-bold text-base mt-4">
                           {job.department.title} - {job.address.country}
                         </p>
                       </div>
@@ -98,7 +98,7 @@ interface Props extends OpportunitiesSectionProps {}
           >
             <div class="border-l-2 border-primary pl-4">
               <p class="text-lg text-text-secondary font-helvetica">If job listings are not yet available:</p>
-              <p class="text-lg text-text-main   mt-1">We're always looking for great people. You can submit your CV below for future opportunities.</p>
+              <p class="text-lg text-text-main font-bold mt-1">We're always looking for great people. You can submit your CV below for future opportunities.</p>
             </div>
           </div>
         )
