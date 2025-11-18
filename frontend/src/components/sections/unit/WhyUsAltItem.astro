@@ -1,0 +1,17 @@
+---
+import type { IWhyUsAltItem } from './WhyUsAltSection.astro';
+
+
+const { iconStr, title, description } = Astro.props;
+
+interface Props extends IWhyUsAltItem {}
+---
+
+<div class="flex h-fit max-w-[280px] flex-1 flex-col items-center gap-4">
+  <div class="min-h-8">
+    <Fragment set:html={iconStr} />
+  </div>
+
+  <p class="text-center text-xl text-text-main">{title}</p>
+  <p class="text-center tracking-wider text-text-secondary">{description}</p>
+</div>

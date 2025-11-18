@@ -21,16 +21,15 @@ cornerElements.forEach((cornerEl) => {
   const bgClass = [...sectionToUse.classList].find((c) => c.startsWith("bg-"));
   let bgColor: string | null = null;
 
-  if (bgClass) {
-    bgColor = bgClass.split("bg-")[1].replace("[", "").replace("]", "");
-  } else if (sectionToUse.style.backgroundColor) {
+  if (sectionToUse.style.backgroundColor) {
     bgColor = sectionToUse.style.backgroundColor;
+  } else if (bgClass) {
+    bgColor = bgClass.split("bg-")[1].replace("[", "").replace("]", "");
   }
 
   if (bgColor && !cornerEl.classList.contains("updated-color")) {
     cornerEl.style.color = bgColor;
     cornerEl.classList.add("updated-color");
-    console.log(`updated color for ${cornerEl}, ${bgColor}`);
   }
 });
 

@@ -15,7 +15,9 @@ import type {
   NewsAltSection,
   AboutAltSection,
   UserSpotlightSection,
-} from '@/types/sectionTypes';
+  WhyUsAltSection,
+  WhyThisUnitSection,
+} from "@/types/sectionTypes";
 
 export type Section =
   | HeroSection
@@ -23,11 +25,12 @@ export type Section =
   | AboutAltSection
   | BusinessUnitsSection
   | WhyUsSection
+  | WhyUsAltSection
+  | WhyThisUnitSection
   | QoutesSection
   | NewsSection
   | InfoSection
-  | InfoSection
-  | RoadMapSection 
+  | RoadMapSection
   | NewsAltSection
   | UserSpotlightSection
   | ContactFormSection
@@ -52,7 +55,7 @@ export interface Form {
 }
 
 export class DynamicPageHandler {
-  async getDynamicPageData(): Promise<{ pages: Page[], apiFormsForms: Form[] }> {
+  async getDynamicPageData(): Promise<{ pages: Page[]; apiFormsForms: Form[] }> {
     const document = gql`
       {
         pages {
@@ -150,6 +153,27 @@ export class DynamicPageHandler {
                 iconStr: icon
                 description
                 title
+              }
+            }
+            ... on ComponentSectionsWhyUsAlt {
+              HasTitle
+              componentId
+              altTitle: whyUsAlt_Title
+              subTitle
+              __typename
+              id
+              whyUsItems {
+                iconStr: icon
+                description
+                title
+              }
+            }
+            ... on ComponentSectionsWhyThisUnit {
+              componentId
+              title
+              items {
+                title
+                text
               }
             }
             ... on ComponentSectionsQuotes {
@@ -358,7 +382,7 @@ export class DynamicPageHandler {
                   url
                 }
               }
-            } 
+            }
             ... on Error {
               code
               message
@@ -369,9 +393,7 @@ export class DynamicPageHandler {
     `;
 
     try {
-      const data = await GqlClient.instance.request<{ pages: Page[], apiFormsForms: Form[] }>(
-        document,
-      );
+      const data = await GqlClient.instance.request<{ pages: Page[]; apiFormsForms: Form[] }>(document);
 
       return data;
     } catch (error) {

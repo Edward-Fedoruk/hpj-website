@@ -2,22 +2,21 @@
 import WhyUsItem from "../pros/WhyUsItem.astro";
 import SectionCorner from "../SectionCorner.astro";
 
-const { title, whyUsItems, id, __typename } = Astro.props;
+const { title, items, id, __typename } = Astro.props;
 
-export interface IWhyUsItem {
-  iconStr: string;
+export interface WhyThisUnitItem {
   title: string;
-  description: string;
+  text: string;
 }
 
-export interface WhyUsProps {
+export interface WhyThisUnitProps {
   title: string;
-  whyUsItems?: IWhyUsItem[];
+  items?: WhyThisUnitItem[];
   id: string;
   __typename: string;
 }
 
-interface Props extends WhyUsProps {}
+interface Props extends WhyThisUnitProps {}
 ---
 
 <section
@@ -35,30 +34,23 @@ interface Props extends WhyUsProps {}
     </h1>
 
     {
-      whyUsItems && (
+      items && (
         <ul class="mt-[90px] flex w-full flex-col items-center justify-center gap-6 sm:grid sm:justify-items-center md:grid-cols-2 xl:flex xl:flex-row xl:flex-wrap xl:items-start">
-          {whyUsItems.map((item, index) => {
-            if (index < whyUsItems.length && index !== whyUsItems.length - 1) {
-              return (
-                <li
-                  data-aos="fade-up"
-                  data-aos-delay={300 + index * 200}
-                  data-aos-once="true"
-                  class={"relative flex md:flex-[0_0_280px] w-full items-center justify-center gap-4"}
-                >
-                  <WhyUsItem {...item} />
-                  <div class="divider absolute right-0 translate-x-2 md:translate-x-[calc(12px+1px)] top-10 hidden h-[100px] w-px bg-[#E1E1E1] opacity-50 md:block" />
-                </li>
-              );
-            }
+          {items.map((item, index) => {
             return (
               <li
                 data-aos="fade-up"
                 data-aos-delay={300 + index * 200}
                 data-aos-once="true"
-                class={"flex md:flex-[0_0_280px] w-full  flex-col items-center gap-4"}
+                class={"w-full flex flex-row flex-nowrap gap-3 flex-[1_1_45%]"}
               >
-                <WhyUsItem {...item} />
+                <svg class="min-w-6 min-h-6 mt-1" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 6L9 17L4 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>
+                  <p class="text-[22px] font-bold leading-[150%] text-white">{item.title}</p>
+                  <p class="text-base font-light leading-[140%] mt-3 text-white">{item.text}</p>
+                </div>
               </li>
             );
           })}

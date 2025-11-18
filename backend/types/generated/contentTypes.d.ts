@@ -602,6 +602,8 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.user-spotlight',
         'sections.faq-section',
         'sections.opportunities-section',
+        'sections.why-us-alt',
+        'sections.why-this-unit',
       ]
     >;
     seoDescription: Schema.Attribute.String;

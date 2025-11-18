@@ -1,38 +1,40 @@
 ---
-import WhyUsItem from "../pros/WhyUsItem.astro";
 import SectionCorner from "../SectionCorner.astro";
+import WhyUsAltItem from "./WhyUsAltItem.astro";
 
-const { title, whyUsItems, id, __typename } = Astro.props;
+const { altTitle, whyUsItems, id, __typename, HasTitle } = Astro.props;
 
-export interface IWhyUsItem {
+export interface IWhyUsAltItem {
   iconStr: string;
   title: string;
   description: string;
 }
 
-export interface WhyUsProps {
-  title: string;
-  whyUsItems?: IWhyUsItem[];
+export interface WhyUsAltProps {
+  HasTitle: Boolean;
+  altTitle?: String;
+  whyUsItems?: IWhyUsAltItem[];
   id: string;
   __typename: string;
 }
 
-interface Props extends WhyUsProps {}
+interface Props extends WhyUsAltProps {}
 ---
 
 <section
-  class={`${__typename} bg-primary relative mx-auto gap-8 px-4 py-[100px] selection:bg-white! selection:text-[#524CF2]! md:items-center md:gap-8 md:py-[134px] xl:px-10`}
-  id={`${__typename}-${id}`}
+  class={`${__typename} bg-[#F5F5F5] relative mx-auto gap-8 px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10`}
 >
-  <SectionCorner className="text-gray-10" position="top-left" />
-  <SectionCorner className="text-[white]" position="bottom-right" />
+  <div class="m-auto flex max-w-7xl flex-col " data-aos="fade-up" data-aos-delay="150" data-aos-once="true">
 
-  <div class="m-auto flex max-w-7xl flex-col text-white" data-aos="fade-up" data-aos-delay="150" data-aos-once="true">
-    <h1
-      class="  block text-center text-[32px] leading-[120%] font-black text-balance whitespace-pre-line md:text-[52px] lg:text-[52px] dark:text-neutral-200"
-    >
-      <Fragment set:html={title} />
-    </h1>
+    {
+      HasTitle && (
+        <h1
+          class="  block text-center text-[32px] text-text-main leading-[120%] font-black text-balance whitespace-pre-line md:text-[52px] lg:text-[52px] dark:text-neutral-200"
+        >
+          <Fragment set:html={altTitle} />
+        </h1>
+      )
+    }
 
     {
       whyUsItems && (
@@ -46,8 +48,8 @@ interface Props extends WhyUsProps {}
                   data-aos-once="true"
                   class={"relative flex md:flex-[0_0_280px] w-full items-center justify-center gap-4"}
                 >
-                  <WhyUsItem {...item} />
-                  <div class="divider absolute right-0 translate-x-2 md:translate-x-[calc(12px+1px)] top-10 hidden h-[100px] w-px bg-[#E1E1E1] opacity-50 md:block" />
+                  <WhyUsAltItem {...item} />
+                  <div class="divider absolute right-0 translate-x-2 md:translate-x-[calc(12px+1px)] top-8 hidden h-[140px] w-px bg-[#E1E1E1] opacity-50 md:block" />
                 </li>
               );
             }
@@ -58,7 +60,7 @@ interface Props extends WhyUsProps {}
                 data-aos-once="true"
                 class={"flex md:flex-[0_0_280px] w-full  flex-col items-center gap-4"}
               >
-                <WhyUsItem {...item} />
+                <WhyUsAltItem {...item} />
               </li>
             );
           })}

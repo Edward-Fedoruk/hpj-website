@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-17T14:55:49.172Z"
+    "x-generation-date": "2025-11-17T20:03:58.501Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -9166,6 +9166,12 @@
                     },
                     {
                       "$ref": "#/components/schemas/SectionsOpportunitiesSectionComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SectionsWhyUsAltComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SectionsWhyThisUnitComponent"
                     }
                   ]
                 },
@@ -9188,7 +9194,9 @@
                     "sections.get-in-touch-form": "#/components/schemas/SectionsGetInTouchFormComponent",
                     "sections.user-spotlight": "#/components/schemas/SectionsUserSpotlightComponent",
                     "sections.faq-section": "#/components/schemas/SectionsFaqSectionComponent",
-                    "sections.opportunities-section": "#/components/schemas/SectionsOpportunitiesSectionComponent"
+                    "sections.opportunities-section": "#/components/schemas/SectionsOpportunitiesSectionComponent",
+                    "sections.why-us-alt": "#/components/schemas/SectionsWhyUsAltComponent",
+                    "sections.why-this-unit": "#/components/schemas/SectionsWhyThisUnitComponent"
                   }
                 }
               },
@@ -9330,6 +9338,12 @@
                 },
                 {
                   "$ref": "#/components/schemas/SectionsOpportunitiesSectionComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsWhyUsAltComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsWhyThisUnitComponent"
                 }
               ]
             },
@@ -9352,7 +9366,9 @@
                 "sections.get-in-touch-form": "#/components/schemas/SectionsGetInTouchFormComponent",
                 "sections.user-spotlight": "#/components/schemas/SectionsUserSpotlightComponent",
                 "sections.faq-section": "#/components/schemas/SectionsFaqSectionComponent",
-                "sections.opportunities-section": "#/components/schemas/SectionsOpportunitiesSectionComponent"
+                "sections.opportunities-section": "#/components/schemas/SectionsOpportunitiesSectionComponent",
+                "sections.why-us-alt": "#/components/schemas/SectionsWhyUsAltComponent",
+                "sections.why-this-unit": "#/components/schemas/SectionsWhyThisUnitComponent"
               }
             }
           },
@@ -9473,6 +9489,12 @@
                       },
                       {
                         "$ref": "#/components/schemas/SectionsOpportunitiesSectionComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsWhyUsAltComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsWhyThisUnitComponent"
                       }
                     ]
                   },
@@ -9495,7 +9517,9 @@
                       "sections.get-in-touch-form": "#/components/schemas/SectionsGetInTouchFormComponent",
                       "sections.user-spotlight": "#/components/schemas/SectionsUserSpotlightComponent",
                       "sections.faq-section": "#/components/schemas/SectionsFaqSectionComponent",
-                      "sections.opportunities-section": "#/components/schemas/SectionsOpportunitiesSectionComponent"
+                      "sections.opportunities-section": "#/components/schemas/SectionsOpportunitiesSectionComponent",
+                      "sections.why-us-alt": "#/components/schemas/SectionsWhyUsAltComponent",
+                      "sections.why-this-unit": "#/components/schemas/SectionsWhyThisUnitComponent"
                     }
                   }
                 },
@@ -11028,6 +11052,78 @@
                   "type": "string"
                 }
               }
+            }
+          },
+          "componentId": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsWhyUsAltComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.why-us-alt"
+            ]
+          },
+          "HasTitle": {
+            "type": "boolean"
+          },
+          "whyUsAlt_Title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "whyUsItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedWhyHpjItemComponent"
+            }
+          },
+          "componentId": {
+            "type": "string"
+          }
+        }
+      },
+      "SharedWhyThisUnitItemComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsWhyThisUnitComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.why-this-unit"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedWhyThisUnitItemComponent"
             }
           },
           "componentId": {

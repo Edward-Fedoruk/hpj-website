@@ -6,11 +6,11 @@ const { iconStr, title, description } = Astro.props;
 interface Props extends IWhyUsItem {}
 ---
 
-<div class="flex h-[177px] max-w-[280px] flex-1 flex-col items-center gap-4">
-  <div class="min-h-[32px]">
+<div class="flex max-w-[280px] flex-1 flex-col items-center gap-4">
+  <div class="min-h-8">
     <Fragment set:html={iconStr} />
   </div>
 
-  <p class="  text-center text-xl">{title}</p>
-  <p class="  text-center tracking-wider">{description}</p>
+  <p class="text-center text-xl">{title}</p>
+  <p class="text-center tracking-wider">{description}</p>
 </div>

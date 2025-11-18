@@ -1,20 +1,21 @@
-import type { FormType } from './formTypes';
+import type { FormType } from "./formTypes";
 
-import type { UnitSliderItem } from '@/components/sections/landing/BusinessUnitsSection.astro';
-import type { WhyUsProps } from '@/components/sections/landing/WhyUsSection.astro';
-import type { QuotesSectionProps } from '@/components/sections/misc/QuotesSection.astro';
-import type { StrapiImageType } from './common';
-import type { NewsSectionProps } from '@/components/sections/news/NewsSection.astro';
-import type { NewsAltSectionProps } from '@/components/sections/news/NewsAltSection.astro';
-import type { AboutSectionProps } from '@/components/sections/about/AboutSection.astro';
-import type { InfoSectionProps } from '@/components/sections/aboutPage/InfoSection.astro';
-import type { RoadMapSectionProps } from '@/components/sections/aboutPage/RoadMap/RoadMapSection.astro';
-import type { AboutAltSectionProps } from '@/components/sections/about/AboutAltSection.astro';
-import type { ServiceSectionProps } from '@/components/sections/service/ServiceSection.astro';
-import type { UserSpotlightSectionProps } from '@/components/sections/boardMembers/userSpotlight/UserSpotlightSection.astro';
-import type { FAQSectionProps } from '@/components/sections/misc/FAQSection.astro';
-import type { OpportunitiesSectionProps } from '@/components/sections/job/Opportunities.astro';
-
+import type { UnitSliderItem } from "@/components/sections/landing/BusinessUnitsSection.astro";
+import type { WhyUsProps } from "@/components/sections/landing/WhyUsSection.astro";
+import type { QuotesSectionProps } from "@/components/sections/misc/QuotesSection.astro";
+import type { StrapiImageType } from "./common";
+import type { NewsSectionProps } from "@/components/sections/news/NewsSection.astro";
+import type { NewsAltSectionProps } from "@/components/sections/news/NewsAltSection.astro";
+import type { AboutSectionProps } from "@/components/sections/about/AboutSection.astro";
+import type { InfoSectionProps } from "@/components/sections/aboutPage/InfoSection.astro";
+import type { RoadMapSectionProps } from "@/components/sections/aboutPage/RoadMap/RoadMapSection.astro";
+import type { AboutAltSectionProps } from "@/components/sections/about/AboutAltSection.astro";
+import type { ServiceSectionProps } from "@/components/sections/service/ServiceSection.astro";
+import type { UserSpotlightSectionProps } from "@/components/sections/boardMembers/userSpotlight/UserSpotlightSection.astro";
+import type { FAQSectionProps } from "@/components/sections/misc/FAQSection.astro";
+import type { OpportunitiesSectionProps } from "@/components/sections/job/Opportunities.astro";
+import type { WhyUsAltProps } from "@/components/sections/unit/WhyUsAltSection.astro";
+import type { WhyThisUnitProps } from "@/components/sections/unit/WhyThisUnitSection.astro";
 
 export enum SectionType {
   Hero = "page:section:hero",
@@ -22,6 +23,8 @@ export enum SectionType {
   AboutAlt = "page:section:about_alt",
   BusinessUnits = "page:section:bussiness_units",
   WhyUs = "page:section:why_us",
+  WhyUsAlt = "page:section:why_us_alt",
+  WhyThisUnit = "page:section:why_this_unit",
   Quotes = "page:section:quotes",
   News = "page:section:news",
   NewsAlt = "page:section:news_alt",
@@ -37,125 +40,137 @@ export enum SectionType {
 }
 
 export type HeroSection = {
-    __typename: "ComponentSectionsHero";
-    componentId: SectionType.Hero;
-    id: string;
-    title: string;
-    subtitle?: string | null;
-    primaryBtnLabel?: string | null;
-    primaryBtnUrl?: string | null;
-    secondaryBtnLabel?: string | null;
-    secondaryBtnUrl?: string | null;
+  __typename: "ComponentSectionsHero";
+  componentId: SectionType.Hero;
+  id: string;
+  title: string;
+  subtitle?: string | null;
+  primaryBtnLabel?: string | null;
+  primaryBtnUrl?: string | null;
+  secondaryBtnLabel?: string | null;
+  secondaryBtnUrl?: string | null;
 };
 
 export interface AboutSection extends AboutSectionProps {
-    __typename: "ComponentSectionsAbout";
-    id: string;
-    componentId: SectionType.About;
-};
+  __typename: "ComponentSectionsAbout";
+  id: string;
+  componentId: SectionType.About;
+}
 
 export type BusinessUnitsSection = {
-    __typename: "ComponentSectionsBusinessUnits";
-    id: string;
-    componentId: SectionType.BusinessUnits;
-    title?: string | null;
-    subTitle?: string | null;
-    sliderItems?: UnitSliderItem[];
+  __typename: "ComponentSectionsBusinessUnits";
+  id: string;
+  componentId: SectionType.BusinessUnits;
+  title?: string | null;
+  subTitle?: string | null;
+  sliderItems?: UnitSliderItem[];
 };
 
 export interface WhyUsSection extends WhyUsProps {
-    __typename: "ComponentSectionsWhyUs";
-    componentId: SectionType.WhyUs;
-    id: string;
-};
+  __typename: "ComponentSectionsWhyUs";
+  componentId: SectionType.WhyUs;
+  id: string;
+}
+
+export interface WhyUsAltSection extends WhyUsAltProps {
+  __typename: "ComponentSectionsWhyUsAlt";
+  componentId: SectionType.WhyUs;
+  id: string;
+}
 
 export interface QoutesSection extends QuotesSectionProps {
-    __typename: "ComponentSectionsQuotes";
-    componentId: SectionType.Quotes;
+  __typename: "ComponentSectionsQuotes";
+  componentId: SectionType.Quotes;
 }
 
 export type NewsItem = {
-    title: string;
-    description: string;
-    date?: string;
-    url?: string;
-    imgAlt?: string;
-    img: StrapiImageType;
-}
+  title: string;
+  description: string;
+  date?: string;
+  url?: string;
+  imgAlt?: string;
+  img: StrapiImageType;
+};
 
 export interface NewsSection extends NewsSectionProps {
-    __typename: "ComponentSectionsNews";
-    componentId: SectionType.News;
+  __typename: "ComponentSectionsNews";
+  componentId: SectionType.News;
 }
 
 export interface NewsAltSection extends NewsAltSectionProps {
-    __typename: "ComponentSectionsNewsAlt";
-    componentId: SectionType.NewsAlt;
+  __typename: "ComponentSectionsNewsAlt";
+  componentId: SectionType.NewsAlt;
 }
 
 export type ContactFormSection = {
-    __typename: "ComponentSectionsContactForm";
-    componentId: string;
-    title?: string | null;
-    subTitle?: string | null;
-    form?: FormType | null;
-}
+  __typename: "ComponentSectionsContactForm";
+  componentId: string;
+  title?: string | null;
+  subTitle?: string | null;
+  form?: FormType | null;
+};
 
 export type CvFormSection = {
-    __typename: "ComponentSectionsCvForm";
-    componentId: string;
-    title: string;
-    subTitle?: string | null;
-    form?: FormType | null;
-    submitBtnLabel?: string | null;
-}
+  __typename: "ComponentSectionsCvForm";
+  componentId: string;
+  title: string;
+  subTitle?: string | null;
+  form?: FormType | null;
+  submitBtnLabel?: string | null;
+};
 
 export type GetInTouchFormSection = {
-    __typename: "ComponentSectionsGetInTouchForm";
-    componentId: string;
-    title: string;
-    subTitle?: string | null;
-    form?: FormType | null;
-    submitBtnLabel?: string | null;
-    businessUnitsForFormSelect?: Array<{ documentId: string; title: string }>;
-}
+  __typename: "ComponentSectionsGetInTouchForm";
+  componentId: string;
+  title: string;
+  subTitle?: string | null;
+  form?: FormType | null;
+  submitBtnLabel?: string | null;
+  businessUnitsForFormSelect?: Array<{ documentId: string; title: string }>;
+};
 
 export interface InfoSection extends InfoSectionProps {
-    __typename: "ComponentSectionsInfo";
-    componentId: SectionType.Info;
-    id: string;
-};
+  __typename: "ComponentSectionsInfo";
+  componentId: SectionType.Info;
+  id: string;
+}
 
 export interface RoadMapSection extends RoadMapSectionProps {
-    __typename: "ComponentSectionsRoadMap";
-    componentId: SectionType.RoadMap;
-    id: string;
-};
+  __typename: "ComponentSectionsRoadMap";
+  componentId: SectionType.RoadMap;
+  id: string;
+}
 
 export interface AboutAltSection extends AboutAltSectionProps {
-    __typename: "ComponentSectionsAboutAlt";
-    componentId: SectionType.RoadMap;
-    id: string;
-};
+  __typename: "ComponentSectionsAboutAlt";
+  componentId: SectionType.RoadMap;
+  id: string;
+}
 
 export interface ServiceSection extends ServiceSectionProps {
-    __typename: "ComponentSectionsServiceBlock";
-    componentId: SectionType.Service;
-    id: string;
-};
+  __typename: "ComponentSectionsServiceBlock";
+  componentId: SectionType.Service;
+  id: string;
+}
 
 export interface UserSpotlightSection extends UserSpotlightSectionProps {
-    __typename: "ComponentSectionsUserSpotlight";
-    componentId: SectionType.UserSpotlight;
-    id: string;
-};
+  __typename: "ComponentSectionsUserSpotlight";
+  componentId: SectionType.UserSpotlight;
+  id: string;
+}
 
 export interface FAQSection extends FAQSectionProps {
-    __typename: "ComponentSectionsFaqSection";
-    componentId: SectionType.FAQSection;
-};
+  __typename: "ComponentSectionsFaqSection";
+  componentId: SectionType.FAQSection;
+}
 
 export interface OpportunitiesSection extends OpportunitiesSectionProps {
-    __typename: "ComponentSectionsOpportunities";
-    componentId: SectionType.FAQSection;
-};
+  __typename: "ComponentSectionsOpportunities";
+  componentId: SectionType.FAQSection;
+}
+
+export interface WhyThisUnitSection extends WhyThisUnitProps {
+  __typename: "ComponentSectionsWhyThisUnit";
+  componentId: SectionType.WhyThisUnit;
+  id: string;
+}

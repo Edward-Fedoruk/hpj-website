@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_why_this_unit_items",
+  "info": {
+    "displayName": "Why This Unit Item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "config": {}
+}
