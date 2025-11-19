@@ -1,0 +1,62 @@
+.grid12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+.cell {
+  --x: var(--x-sm);
+  --w: var(--w-sm);
+  grid-column: calc(var(--x) + 1) / span var(--w);
+}
+@media (min-width: 768px) {
+  .cell {
+    --x: var(--x-md);
+    --w: var(--w-md);
+  }
+}
+@media (min-width: 1024px) {
+  .cell {
+    --x: var(--x-lg);
+    --w: var(--w-lg);
+  }
+}
+
+.label {
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  font-weight: 600;
+}
+.checkbox-label {
+  color: var(--color-text-main);
+  font-size: 18px;
+  font-weight: 400;
+}
+.req {
+  color: #f87171;
+}
+.input {
+  color: var(--color-text-main);
+  padding: 0.5rem 0.75rem;
+  outline: none;
+}
+.input,
+.textarea,
+.fileinput + .placeholder {
+  background-color: #f8f8f8;
+  border: 1px solid #f3f3f3;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+.fileinput {
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+}
+.fileinput + .placeholder {
+  cursor: pointer;
+}
+[type="checkbox"]:focus,
+[type="radio"]:focus {
+  outline: 0 !important;
+  --tw-ring-offset-width: 0px;
+}

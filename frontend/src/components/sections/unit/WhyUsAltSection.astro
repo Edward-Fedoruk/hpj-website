@@ -22,14 +22,14 @@ interface Props extends WhyUsAltProps {}
 ---
 
 <section
-  class={`${__typename} bg-[#F5F5F5] relative mx-auto gap-8 px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10`}
+  class={`${__typename} bg-[#F5F5F5] relative mx-auto gap-8 px-4 py-[100px] md:items-center md:gap-8 md:py-[120px] xl:px-10`}
 >
   <div class="m-auto flex max-w-7xl flex-col " data-aos="fade-up" data-aos-delay="150" data-aos-once="true">
 
     {
       HasTitle && (
         <h1
-          class="  block text-center text-[32px] text-text-main leading-[120%] font-black text-balance whitespace-pre-line md:text-[52px] lg:text-[52px] dark:text-neutral-200"
+          class="mb-[90px] block text-center text-[32px] text-text-main leading-[120%] font-black text-balance whitespace-pre-line md:text-[52px] lg:text-[52px] dark:text-neutral-200"
         >
           <Fragment set:html={altTitle} />
         </h1>
@@ -38,7 +38,7 @@ interface Props extends WhyUsAltProps {}
 
     {
       whyUsItems && (
-        <ul class="mt-[90px] flex w-full flex-col items-center justify-center gap-6 sm:grid sm:justify-items-center md:grid-cols-2 xl:flex xl:flex-row xl:flex-wrap xl:items-start">
+        <ul class="flex w-full flex-col items-center justify-center gap-6 sm:grid sm:justify-items-center md:grid-cols-2 xl:flex xl:flex-row xl:flex-wrap xl:items-start">
           {whyUsItems.map((item, index) => {
             if (index < whyUsItems.length && index !== whyUsItems.length - 1) {
               return (

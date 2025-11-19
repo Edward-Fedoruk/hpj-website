@@ -313,6 +313,12 @@ export class DynamicPageHandler {
             }
             ... on ComponentSectionsGetInTouchForm {
               componentId
+              blockTitle
+              blockSubtitle
+              email
+              address
+              workingTime
+              phone
               formTitle
               formSubTitle
               form {
