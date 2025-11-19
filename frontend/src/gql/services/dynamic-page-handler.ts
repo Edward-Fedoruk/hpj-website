@@ -17,6 +17,7 @@ import type {
   UserSpotlightSection,
   WhyUsAltSection,
   WhyThisUnitSection,
+  CoursesSection,
 } from "@/types/sectionTypes";
 
 export type Section =
@@ -33,6 +34,7 @@ export type Section =
   | RoadMapSection
   | NewsAltSection
   | UserSpotlightSection
+  | CoursesSection
   | ContactFormSection
   | CvFormSection
   | GetInTouchFormSection;
@@ -173,6 +175,7 @@ export class DynamicPageHandler {
               title
               items {
                 title
+                icon
                 text
               }
             }
@@ -239,10 +242,16 @@ export class DynamicPageHandler {
               componentId
               title: infoTitle
               subTitle: infoSubtitle
+              primaryButton
               primaryBtnLabel
               primaryBtnURL
+              secondaryButton
               secondaryBtnLabel
               secondaryBtnURL
+              infoItems {
+                bigText
+                smallText
+              }
               img {
                 url
                 alternativeText
@@ -386,6 +395,19 @@ export class DynamicPageHandler {
                 department {
                   title
                   url
+                }
+              }
+            }
+            ... on ComponentSectionsCoursesSection {
+              componentId
+              title
+              subTitle
+              coursesList {
+                blockTitle
+                trainingCourses {
+                  courseId
+                  title
+                  date
                 }
               }
             }

@@ -20,6 +20,7 @@ import FAQSection from "./misc/FAQSection.astro";
 import Opportunities from "./job/Opportunities.astro";
 import WhyUsAltSection from "./unit/WhyUsAltSection.astro";
 import WhyThisUnitSection from "./unit/WhyThisUnitSection.astro";
+import CoursesSection from "./unit/CoursesSection.astro";
 
 export const sections: Record<SectionType, (_props: Props) => any> = {
   [SectionType.Hero]: HeroSection as unknown as (_props: Props) => any,
@@ -37,6 +38,7 @@ export const sections: Record<SectionType, (_props: Props) => any> = {
   [SectionType.Service]: ServiceSection as unknown as (_props: Props) => any,
   [SectionType.UserSpotlight]: UserSpotlightSection as unknown as (_props: Props) => any,
   [SectionType.FAQSection]: FAQSection as unknown as (_props: Props) => any,
+  [SectionType.Courses]: CoursesSection as unknown as (_props: Props) => any,
   [SectionType.ContactForm]: ContactFormSection as unknown as (_props: Props) => any,
   [SectionType.CvForm]: CvFormSection as unknown as (_props: Props) => any,
   [SectionType.GetInTouchForm]: GetInTouchFormSection as unknown as (_props: Props) => any,

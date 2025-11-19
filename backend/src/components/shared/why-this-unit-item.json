@@ -9,9 +9,11 @@
       "type": "string",
       "required": true
     },
+    "icon": {
+      "type": "text"
+    },
     "text": {
-      "type": "text",
-      "required": true
+      "type": "blocks"
     }
   },
   "config": {}

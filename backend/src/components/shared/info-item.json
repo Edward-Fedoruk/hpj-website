@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_info_items",
+  "info": {
+    "displayName": "Info Item"
+  },
+  "options": {},
+  "attributes": {
+    "bigText": {
+      "type": "text",
+      "required": true
+    },
+    "smallText": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

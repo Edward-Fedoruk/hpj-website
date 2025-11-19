@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_courses_sections",
+  "info": {
+    "displayName": "Courses Section",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subTitle": {
+      "type": "text"
+    },
+    "coursesList": {
+      "type": "component",
+      "component": "shared.courses-block",
+      "repeatable": true
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:courses",
+      "required": true
+    }
+  },
+  "config": {}
+}

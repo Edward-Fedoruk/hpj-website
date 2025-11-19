@@ -18,17 +18,67 @@
     "infoSubtitle": {
       "type": "text"
     },
+    "primaryButton": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
     "primaryBtnLabel": {
-      "type": "string"
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "primaryButton"
+            },
+            true
+          ]
+        }
+      }
     },
     "primaryBtnURL": {
-      "type": "string"
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "primaryButton"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "secondaryButton": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     },
     "secondaryBtnLabel": {
-      "type": "string"
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "secondaryButton"
+            },
+            true
+          ]
+        }
+      }
     },
     "secondaryBtnURL": {
-      "type": "string"
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "secondaryButton"
+            },
+            true
+          ]
+        }
+      }
     },
     "img": {
       "type": "media",
@@ -42,6 +92,11 @@
     },
     "imgAlt": {
       "type": "string"
+    },
+    "infoItems": {
+      "type": "component",
+      "component": "shared.info-item",
+      "repeatable": true
     }
   },
   "config": {}

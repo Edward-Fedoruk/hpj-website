@@ -604,6 +604,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.opportunities-section',
         'sections.why-us-alt',
         'sections.why-this-unit',
+        'sections.courses-section',
       ]
     >;
     seoDescription: Schema.Attribute.String;
@@ -645,6 +646,37 @@ export interface ApiPublicUserProfilePublicUserProfile
     publishedAt: Schema.Attribute.DateTime;
     role: Schema.Attribute.String;
     socials: Schema.Attribute.Component<'shared.user-socials', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTrainingCourseTrainingCourse
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'training_courses';
+  info: {
+    displayName: 'Training Course';
+    pluralName: 'training-courses';
+    singularName: 'training-course';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    courseId: Schema.Attribute.UID;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::training-course.training-course'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1346,6 +1378,7 @@ declare module '@strapi/strapi' {
       'api::location-type.location-type': ApiLocationTypeLocationType;
       'api::page.page': ApiPagePage;
       'api::public-user-profile.public-user-profile': ApiPublicUserProfilePublicUserProfile;
+      'api::training-course.training-course': ApiTrainingCourseTrainingCourse;
       'plugin::api-forms.form': PluginApiFormsForm;
       'plugin::api-forms.notification': PluginApiFormsNotification;
       'plugin::api-forms.setting': PluginApiFormsSetting;

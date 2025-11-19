@@ -16,6 +16,7 @@ import type { FAQSectionProps } from "@/components/sections/misc/FAQSection.astr
 import type { OpportunitiesSectionProps } from "@/components/sections/job/Opportunities.astro";
 import type { WhyUsAltProps } from "@/components/sections/unit/WhyUsAltSection.astro";
 import type { WhyThisUnitProps } from "@/components/sections/unit/WhyThisUnitSection.astro";
+import type { CoursesSectionProps } from "@/components/sections/unit/CoursesSection.astro";
 
 export enum SectionType {
   Hero = "page:section:hero",
@@ -34,6 +35,7 @@ export enum SectionType {
   UserSpotlight = "page:section:user_spotlight",
   FAQSection = "page:section:faq",
   OpportunitiesSection = "page:section:opportunities",
+  Courses = "page:section:courses",
   ContactForm = "page:section:contact_form",
   CvForm = "page:section:cv_form",
   GetInTouchForm = "page:section:get_in_touch_form",
@@ -172,5 +174,11 @@ export interface OpportunitiesSection extends OpportunitiesSectionProps {
 export interface WhyThisUnitSection extends WhyThisUnitProps {
   __typename: "ComponentSectionsWhyThisUnit";
   componentId: SectionType.WhyThisUnit;
+  id: string;
+}
+
+export interface CoursesSection extends CoursesSectionProps {
+  __typename: "ComponentSectionsCourses";
+  componentId: SectionType.Courses;
   id: string;
 }

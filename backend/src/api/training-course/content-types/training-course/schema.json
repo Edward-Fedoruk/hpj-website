@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "training_courses",
+  "info": {
+    "singularName": "training-course",
+    "pluralName": "training-courses",
+    "displayName": "Training Course"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date"
+    },
+    "courseId": {
+      "type": "uid"
+    }
+  }
+}
