@@ -30,10 +30,10 @@ interface Props extends CoursesSectionProps {}
 ---
 
 <section
-  class="header-text-dark mx-auto flex flex-col gap-6 bg-white px-4 py-[100px] pb-[142px] md:items-center md:gap-8 md:py-[120px] md:pb-[120px] lg:px-10"
+  class="header-text-dark mx-auto flex flex-col gap-6 bg-white md:px-4 py-[100px] pb-[142px] md:items-center md:gap-8 md:py-[120px] md:pb-[120px] lg:px-10"
 >
   <div class="w-full">
-    <div class="mx-auto w-full max-w-7xl bg-[#F8F8F8] p-4 md:p-12 shadow-card overflow-hidden rounded-xl">
+    <div class="mx-auto w-full max-w-7xl bg-[#F8F8F8] p-4 py-10 md:p-12 shadow-card overflow-hidden rounded-xl">
       <div class="max-w-[840px] mx-auto">
         <h1
           class="text-text-main   block text-center text-[32px] leading-[110%] font-black text-balance whitespace-pre-line lg:text-[52px] dark:text-neutral-200"
@@ -78,13 +78,13 @@ interface Props extends CoursesSectionProps {}
                       couseBlock.trainingCourses.map((courseItem, index) => {
                         return (
                           <li 
-                            class="flex flex-row gap-4 justify-between bg-white px-8 py-4 items-center rounded-2xl hover:shadow-card ease-in-out duration-300 group"
+                            class="flex flex-col md:flex-row gap-4 md:justify-between bg-white px-4 md:px-8 py-4 md:items-center rounded-2xl hover:shadow-card ease-in-out duration-300 group"
                             data-aos="fade-up"
                             data-aos-delay={300 + index * 200}
                             data-aos-once="true"
                             data-aos-anchor-placement="top-bottom"
                           >
-                            <div class="flex flex-col gap-4">
+                            <div class="flex flex-col gap-4 w-full">
                               <p class="text-text-main font-bold">{courseItem.title}</p>
                               <p class="text-text-secondary">{new Date(courseItem.date).toLocaleDateString("en-US", {
                                       day:"numeric",
@@ -95,7 +95,7 @@ interface Props extends CoursesSectionProps {}
                               </p>
                             </div>
 
-                            <SecondaryCTA title={"Contact To Book"} className={"text-primary h-[38px] group-hover:bg-primary group-hover:text-white hover:bg-primary! hover:text-white!"}  data-courseId={courseItem.courseId} />
+                            <SecondaryCTA title={"Contact To Book"} className={"text-primary h-[38px] min-w-fit group-hover:bg-primary group-hover:text-white hover:bg-primary! hover:text-white!"}  data-courseId={courseItem.courseId} />
                           </li>
                         )
                       })

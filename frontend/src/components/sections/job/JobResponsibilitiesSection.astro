@@ -1,0 +1,80 @@
+---
+const { title, responsibilitiesItems } = Astro.props;
+
+export interface JobResponsibilityItem {
+  icon: string;
+  text: string;
+}
+
+export interface JobResponsibilitiesProps {
+    title: string;
+    responsibilitiesItems?: JobResponsibilityItem[];
+}
+
+interface Props extends JobResponsibilitiesProps {}
+---
+
+<section
+  class={`bg-white relative mx-auto gap-8 px-4 py-[100px] md:items-center md:gap-8 md:py-[120px] xl:px-10`}
+>
+
+  <div class="m-auto flex max-w-7xl flex-col" data-aos="fade-up" data-aos-delay="150" data-aos-once="true">
+    {
+        title && (
+            <h1
+                class="mb-[60px] block text-center text-[32px] text-text-main leading-[120%] font-black text-balance whitespace-pre-line md:text-[52px] lg:text-[52px] dark:text-neutral-200"
+            >
+                <Fragment set:html={title} />
+            </h1>
+        )
+    }
+
+    {
+      responsibilitiesItems && (
+        <ul class="flex w-full relative flex-col items-center justify-center gap-6 sm:grid sm:justify-items-center md:grid-cols-2 xl:flex xl:flex-row xl:flex-wrap xl:items-start">
+          {responsibilitiesItems.map((item, index) => {
+            if (index < responsibilitiesItems.length && index !== responsibilitiesItems.length - 1) {
+              return (
+                <li
+                  data-aos="fade-up"
+                  data-aos-delay={300 + index * 200}    
+                  data-aos-once="true"
+                  class={"relative flex  md:flex-[0_0_280px] w-full items-center justify-center gap-4"}
+                >
+                  <div class="flex flex-col items-center gap-4 sm:min-h-[120px] justify-center">
+                    {item.icon && <div class="max-h-6" set:html={item.icon}></div>}
+                    <div class="text-base font-normal max-w-[280px] text-text-main text-center" set:html={item.text}></div>
+                  </div>
+
+                  <div class="divider absolute  right-0 translate-x-2 md:translate-x-[calc(12px+1px)] hidden top-4 h-[100px] w-px bg-[#E1E1E1] opacity-50 md:block" />
+                </li>
+              );
+            }
+            return (
+              <li
+                data-aos="fade-up"
+                data-aos-delay={300 + index * 200}
+                data-aos-once="true"
+                class={"flex md:flex-[0_0_280px] w-full  flex-col items-center gap-4 sm:min-h-[120px] justify-center"}
+              >
+                {item.icon && <div set:html={item.icon}></div>}
+                <div class="text-base font-normal max-w-[280px] text-text-main text-center" set:html={item.text}></div>
+              </li>
+            );
+          })}
+        </ul>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  ul li:nth-child(4n) .divider {
+    display: none;
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+  ul li:nth-child(2n) .divider {
+    display: none;
+  }
+}
+</style>

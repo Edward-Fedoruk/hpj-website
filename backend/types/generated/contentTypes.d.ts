@@ -557,6 +557,7 @@ export interface ApiLocationTypeLocationType
       'api::location-type.location-type'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -605,6 +606,11 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.why-us-alt',
         'sections.why-this-unit',
         'sections.courses-section',
+        'sections.job-info',
+        'sections.job-responsibilities-section',
+        'sections.job-benefits',
+        'job.job-form',
+        'job.related-jobs',
       ]
     >;
     seoDescription: Schema.Attribute.String;

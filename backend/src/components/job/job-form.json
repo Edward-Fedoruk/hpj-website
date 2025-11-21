@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_job_job_forms",
+  "info": {
+    "displayName": "Job Form"
+  },
+  "options": {},
+  "attributes": {
+    "componentId": {
+      "type": "string",
+      "default": "page:job:job_form",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subTitle": {
+      "type": "text"
+    },
+    "form": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::api-forms.form"
+    },
+    "submitBtnLabel": {
+      "type": "string"
+    },
+    "job": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::job.job"
+    }
+  },
+  "config": {}
+}

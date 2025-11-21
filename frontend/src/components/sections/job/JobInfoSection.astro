@@ -1,0 +1,97 @@
+---
+import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
+
+const { job } = Astro.props;
+
+export interface JobItem {
+    title: string;
+    summary?: string;
+    jobID?: string;
+    shortDescription?: string;
+    publishedAt: string;
+    address: {
+        city: string;
+        country: string;
+        street: string;
+    }
+    department: {
+        title: string;
+        url: string;
+    }
+    employment_types: {
+        name: string;
+    }[]
+    location_types: {
+        name: string;
+    }[]
+}
+
+export interface JobInfoSectionProps {
+    job: JobItem;
+}
+
+interface Props extends JobInfoSectionProps {}
+---
+
+<section
+  class="header-text-dark mx-auto bg-[#F5F5F5] px-4 py-[100px] pb-[70px] md:px-10 md:py-[150px]  xl:px-10"
+>
+    <div class="max-w-7xl flex flex-col gap-8 md:gap-8 md:flex-row mx-auto">
+        <div 
+            class="flex flex-1 flex-col items-start" 
+            data-aos="fade-up"
+            data-aos-delay="150"
+            data-aos-once="true"
+        >
+            <h1
+            class="font-black text-text-main block text-[32px] text-balance whitespace-pre-line lg:text-[52px] leading-[120%]"
+            >
+            <Fragment set:html={job.title} />
+            </h1>
+
+            <div class="my-6 flex flex-col gap-2 items-start">
+                <p class="order-1 text-text-main inline-flex font-bold flex-col md:flex-row">Location:
+                    <span class="text-text-secondary md:ml-3 font-normal">
+                        {job.location_types.map((locationType) => {
+                            if (locationType.name.toLowerCase() === "onsite") {
+                                return `${locationType.name} (${job.address.city}, ${job.address.country})`
+                            }
+                            return locationType.name
+                        }).join(', ')}
+                    </span>
+                </p>
+                <p class="order-1 text-text-main inline-flex font-bold flex-col md:flex-row">Employment Type:
+                    <span class="text-text-secondary md:ml-3 font-normal">
+                        {job.employment_types.map((employmentType) => {
+                            return employmentType.name
+                        }).join(' / ')}
+                    </span>
+                </p>
+                <p class="order-1 text-text-main inline-flex font-bold flex-col md:flex-row">Department / Division:
+                    <span class="text-text-secondary md:ml-3 font-normal">
+                        { job.department.title}
+                    </span>
+                </p>
+            </div>
+
+            {<PrimaryCTA title={"Apply Now"} noArrow className="w-full sm:max-w-[174px] h-14" />}
+            
+        </div>
+        <div 
+            class="order-1 flex-1"     
+            data-aos="fade-up"
+            data-aos-delay="150"
+            data-aos-once="true"
+        >
+            <h2 class="font-black text-3xl md:text-[42px] text-text-main">Job Summary</h2>
+
+            {
+                job.summary && (
+                    <p class="text-text-secondary order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
+                        {job.summary}
+                    </p>
+                )
+            }
+        </div>
+    </div>
+</section>

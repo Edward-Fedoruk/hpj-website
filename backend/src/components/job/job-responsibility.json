@@ -10,7 +10,8 @@
       "required": true
     },
     "icon": {
-      "type": "text"
+      "type": "text",
+      "required": true
     }
   },
   "config": {}

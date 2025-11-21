@@ -42,7 +42,12 @@
         "sections.opportunities-section",
         "sections.why-us-alt",
         "sections.why-this-unit",
-        "sections.courses-section"
+        "sections.courses-section",
+        "sections.job-info",
+        "sections.job-responsibilities-section",
+        "sections.job-benefits",
+        "job.job-form",
+        "job.related-jobs"
       ]
     },
     "seoTitle": {

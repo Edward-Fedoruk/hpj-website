@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_sections_job_infos",
+  "info": {
+    "displayName": "Job Info"
+  },
+  "options": {},
+  "attributes": {
+    "job": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::job.job"
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:job_info",
+      "required": true
+    }
+  },
+  "config": {}
+}

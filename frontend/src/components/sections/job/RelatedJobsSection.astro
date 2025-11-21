@@ -1,0 +1,207 @@
+---
+import SecondaryCTA from "@/components/ui/buttons/SecondaryCTA.astro";
+import type { JobItem } from "./JobInfoSection.astro";
+
+const { title, subTitle, relatedJobs } = Astro.props;
+
+export interface RelatedJobsProps {
+  title: string;
+  subTitle?: string;
+  relatedJobs?: JobItem[];
+}
+
+interface Props extends RelatedJobsProps {}
+
+const uniqueDepartments = relatedJobs && [...new Set(relatedJobs.map(j => j.department.title))]
+---
+
+<section 
+  class="mx-auto gap-8 bg-[#F7F7F7] header-text-dark px-4 py-[100px] md:gap-8 md:py-[134px] md:px-10 overflow-hidden"
+>
+  <div class="flex flex-col md:flex-row max-w-7xl m-auto">
+    {
+      relatedJobs && relatedJobs.length > 0 && (
+        <div class="flex flex-col w-full md:min-w-[391px] md:w-[391px] bg-[#F7F7F7] h-full z-10 md:min-h-[457px] alt-news-text pr-4">
+          <h1
+              class="md:text-start text-center font-black block text-[32px] text-balance whitespace-pre-line text-text-main lg:text-[52px]"
+              data-aos="fade-up"
+              data-aos-delay="150"
+              data-aos-once="true"
+            >
+            <Fragment set:html={title} />
+          </h1>
+          {
+            subTitle && (
+              <p 
+                class="mx-auto md:text-start tracking-wide text-center mt-8 w-full max-w-[846px] text-lg text-neutral-gray"
+                data-aos="fade-up"
+                data-aos-delay="150"
+                data-aos-once="true"
+          >
+                {subTitle}
+              </p>
+            )
+          }
+          {
+            uniqueDepartments && (
+                <ul class="mt-6 flex flex-row flex-wrap gap-y-2 gap-x-3 w-full justify-center md:justify-start mb-8"             
+                    data-aos="fade-up"
+                    data-aos-delay="150"
+                    data-aos-once="true"
+                >
+                    {uniqueDepartments.map((item, index) => {
+                            return (
+                                <li
+                                    class="block flex-[0_0_fit-content] p-0 text-text-main md:px-3 md:py-1 md:bg-[#E3E3E3] font-bold overflow-hidden md:text-nowrap line-clamp-1 w-fit rounded-xl text-[18px]"
+                                    data-aos="fade-up"
+                                    data-aos-delay={300 + index * 200}
+                                    data-aos-anchor-placement="top-bottom"
+                                    data-aos-once="true"
+                                >
+                                    {item}
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            )
+          }
+        </div>
+
+        <div class="embla" id="news-slider">
+          <div class="embla__container">
+          {relatedJobs.map((item, i) => {
+              if (item) {
+              const jobUrl = `/job/${item.department.url.split('/units/')[1]}/${item.jobID}`
+
+              return (
+                <div 
+                  class="w-full overflow-hidden rounded-2xl min-h-[350px] bg-white embla__slide md:max-w-[820px] shadow-card"
+                  data-aos="fade-up"
+                  data-aos-delay={300 + i * 200}
+                  data-aos-once="true"
+                >
+                  <div class="p-4 flex flex-col md:items-center justify-between gap-4 h-full">
+                    <div class="flex flex-col">
+                        <a href={jobUrl} class="line-clamp-2 text-2xl font-bold text-text-main">{item.title}</a>
+
+                        <span class="text-text-secondary block mt-4 text-sm md:mt-1">
+                            {item.publishedAt ? new Date(item.publishedAt).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                            }): null}
+                        </span>
+
+                        <span class="block p-0 text-text-main md:px-3 md:py-1 md:bg-[#E3E3E3] font-bold overflow-hidden md:text-nowrap line-clamp-1 w-fit rounded-xl text-[18px] mt-4 md:mt-3">
+                            { item.department.title }
+                        </span>
+
+                        {
+                            item.location_types?.length > 0 &&
+                            ( 
+                                <p class="text-text-main inline-flex font-bold text-[18px] mt-1 leading-8 flex-col md:flex-row">Location:
+                                    <span class="text-text-secondary md:ml-3 font-normal">
+                                        {item.location_types.map((locationType) => {
+                                            if (locationType.name.toLowerCase() === "onsite") {
+                                                return `${locationType.name} (${item.address.city}, ${item.address.country})`
+                                            }
+                                            return locationType.name
+                                        }).join(', ')}
+                                    </span>
+                                </p>
+                            )
+                        }
+
+
+                        <p class="mt-2 text-text-secondary text-base line-clamp-3">{item.summary && item.summary}</p>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row w-full md:justify-between md:items-center md:mb-4 mt-auto">
+                      <SecondaryCTA title="View Job" arrow className="text-primary h-10 min-w-fit w-full" url={jobUrl} />
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+          })}
+          </div>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .embla {
+    width: 100%;
+    max-width: calc(100% - 391px);
+    --slide-height: 323px;
+    --slide-spacing: 2rem;
+    --slide-size: 375px;
+  }
+  .embla__viewport {
+    overflow: hidden;
+  }
+  .embla__container {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+    margin-left: calc(var(--slide-spacing) * -1);
+  }
+  .embla__slide {
+    transform: translate3d(0, 0, 0);
+    flex: 0 0 var(--slide-size);
+    min-width: 0;
+    margin-left: var(--slide-spacing);
+  }
+  .alt-news-text::before {
+    content: "";
+    display: block;
+    pointer-events: none;
+    width: 100dvw;
+    position: absolute;
+    transform: translateX(calc(-100%));
+    height: 457px;
+    background-color: #F7F7F7;
+  }
+  @media screen and (max-width: 768px) {
+    .embla {
+      width: 100%;
+      max-width: 100%;
+      --slide-height: 323px;
+      --slide-spacing: 2rem;
+      --slide-size: 75%;
+    }
+    .embla__viewport {
+      overflow: hidden;
+    }
+    .embla__container {
+      display: flex;
+      touch-action: pan-y pinch-zoom;
+      margin-left: calc(var(--slide-spacing) * -1);
+    }
+    .embla__slide {
+      transform: translate3d(0, 0, 0);
+      flex: 0 0 var(--slide-size);
+      min-width: 0;
+      margin-left: var(--slide-spacing);
+    }
+  }
+</style>
+
+<script>
+  import EmblaCarousel, { type EmblaCarouselType, type EmblaOptionsType } from 'embla-carousel';
+
+  let embla: EmblaCarouselType | null = null;
+
+  function setupEmbla() {
+    if (typeof window === 'undefined') return;
+
+    const emblaNode = document.querySelector('#news-slider') as HTMLElement | null;
+
+    const options: EmblaOptionsType = { loop: false, align: "start", dragFree: true };
+    embla = EmblaCarousel(emblaNode as HTMLElement, options)
+  }
+
+  setupEmbla();
+</script>

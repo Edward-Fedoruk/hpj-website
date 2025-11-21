@@ -1,0 +1,303 @@
+---
+import type { FormType, FormLayoutType } from "@/types/formTypes";
+import '@styles/forms.css';
+
+interface Props {
+  title: string;
+  job?: {
+    jobID:string
+  }
+  subTitle?: string;
+  form?: FormType | null;
+  submitBtnLabel?: string | null;
+}
+
+const { title, subTitle, form, submitBtnLabel, job } = Astro.props;
+
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL || "http://localhost:1337";
+const ENDPOINT = `${STRAPI_URL}/api/api-forms/submission/post`;
+const FORM_ID = form?.documentId ?? "";
+
+const JOB_ID = job?.jobID ?? null;
+
+const layouts = (form as any)?.steps?.[0]?.layouts ?? null;
+
+function byIdMap(arr: FormLayoutType[] | undefined) {
+  const m = new Map<string, FormLayoutType>();
+  (arr ?? []).forEach((it) => m.set(it.i, it));
+  return m;
+}
+const lgMap = byIdMap(layouts?.lg);
+const mdMap = byIdMap(layouts?.md);
+const smMap = byIdMap(layouts?.sm);
+
+const order = layouts?.lg?.length ? layouts.lg : layouts?.md?.length ? layouts.md : (layouts?.sm ?? []);
+
+function pos(id: string) {
+  const lg = lgMap.get(id) ?? mdMap.get(id) ?? smMap.get(id);
+  const md = mdMap.get(id) ?? smMap.get(id) ?? lgMap.get(id);
+  const sm = smMap.get(id) ?? mdMap.get(id) ?? lgMap.get(id);
+  return {
+    lgx: lg?.x ?? 0,
+    lgw: lg?.w ?? 12,
+    mdx: md?.x ?? 0,
+    mdw: md?.w ?? 12,
+    smx: sm?.x ?? 0,
+    smw: sm?.w ?? 12,
+  };
+}
+---
+
+<section
+  class="header-text-dark bg-[#f5f5f5] relative mx-auto flex flex-col gap-6 md:px-4 py-[100px] md:items-center md:gap-8 md:py-[134px] xl:px-10"
+>
+  <div class="bg-white shadow-card px-5 py-12 md:p-12 max-w-[846px] w-full rounded-xl flex flex-col items-center">
+    <h1
+      class="mx-auto block max-w-[578px] text-center text-3xl leading-[120%] font-black text-balance whitespace-pre-line text-text-main lg:text-[52px]"
+    >
+      <Fragment set:html={title} />
+    </h1>
+
+    {subTitle && <p class="mt-3 mx-auto w-full max-w-[578px] text-center text-lg text-text-secondary">{subTitle}</p>}
+
+    {
+      layouts && (
+        <form
+          class="flex w-full flex-col items-center mt-8"
+          data-endpoint={ENDPOINT}
+          data-form-id={FORM_ID}
+          data-jobId={JOB_ID}
+          data-success-message={form?.successMessage || "Your CV has been sent successfully."}
+          data-error-message={form?.errorMessage || "There was an error submitting the form. Please try again."}
+          onsubmit="return CVFormhandleSubmit(event, this)"
+        >
+          <div class="flex w-full flex-col items-center">
+            <input type="text" name="honeypot_field" class="hidden" tabindex="-1" autocomplete="off" />
+
+            <div class="grid12 w-full max-w-[920px] gap-6">
+              {order.map((it: FormLayoutType) => {
+                const p = pos(it.i);
+                const f = it.field;
+                const required = f.config?.required ? true : undefined;
+
+                return (
+                  <div
+                    class="cell flex flex-col"
+                    style={
+                      {
+                        "--x-sm": p.smx,
+                        "--w-sm": p.smw,
+                        "--x-md": p.mdx,
+                        "--w-md": p.mdw,
+                        "--x-lg": p.lgx,
+                        "--w-lg": p.lgw,
+                      } as any
+                    }
+                  >
+                    {f.type === "text" || f.type === "email" ? (
+                      <label class="flex flex-col gap-1">
+                        <span class="label">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </span>
+                        <input
+                          id={f.name}
+                          type={f.type}
+                          name={f.name}
+                          placeholder={f.placeholder || ""}
+                          required={required}
+                          class="input ring-primary"
+                        />
+                      </label>
+                    ) : f.type === "textarea" ? (
+                      <label class="flex flex-col gap-1">
+                        <span class="label">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </span>
+                        <textarea
+                          name={f.name}
+                          placeholder={f.placeholder || ""}
+                          required={required}
+                          class="input h-[120px] resize-none ring-primary"
+                        />
+                      </label>
+                    ) : f.type === "hidden" ? (
+                      <input type="hidden" name={f.name} />
+                    ) : f.type === "file" ? (
+                      <label class="flex flex-col gap-1 relative" >
+                        <span class="label w-fit">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </span>
+                        <input type="file" name={f.name} required={required} class="h-[calc(100%-22px)] top-6 w-[calc(100%-2px)] absolute -z-10 fileinput ring-primary focus:ring-primary focus:ring-1 focus:outline-0" onchange="return cvInputFieldHandler(this)"/>
+                        <div class="text-text-secondary placeholder cursor-pointer h-[130px] flex flex-col justify-center items-center overflow-hidden ">
+                          <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 3V15M12 3L17 8M12 3L7 8M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          <p class="text-text-secondary mt-1 break-all text-center line-clamp-2">CV Upload</p>
+                        </div>
+                      </label>
+                    ) : f.type === "checkboxgroup" ? (
+                      <fieldset class="flex flex-col gap-2">
+                        <legend class="label mb-2">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </legend>
+                        <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
+                          {(f.options ?? []).map((opt) => (
+                            <label class="inline-flex items-center gap-2">
+                              <input type="checkbox" name={`${f.name}[]`} value={opt.value} class="h-6 w-6 ring-0 cursor-pointer rounded-sm border-px text-primary border-[#A9A9A9] checked:border-transparent outline-0! " />
+                              <span class="checkbox-label text-pretty cursor-pointer">{opt.label}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </fieldset>
+                    ) : (
+                      <div class="text-sm text-amber-300">
+                        Unsupported field: <code>{f.type}</code>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <button
+              type="submit"
+              class="mt-6 flex h-14 w-full max-w-[300px] items-center justify-center rounded-[10px] bg-primary text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {submitBtnLabel ?? "Submit"}
+            </button>
+
+            <p id="status" class="h-5 pt-2.5 text-sm text-text-main" aria-live="polite" />
+          </div>
+        </form>
+      )
+    }
+  </div>
+  
+</section>
+
+
+
+<script is:inline>
+  function cvInputFieldHandler(inputElement) {
+    if (!inputElement) return
+
+    const placeholderElement = inputElement?.closest('label').querySelector(".placeholder");
+
+    if (inputElement.files.length > 0) {
+      placeholderElement.querySelector('p').textContent = "Chosen file: " + Array.from(inputElement.files).map(file => file.name).join(', ')
+    } else {
+      placeholderElement.querySelector('p').textContent = "CV Upload";
+    }
+  }
+
+  async function CVFormhandleSubmit(ev, formElement) {
+    ev.preventDefault();
+    const statusEl = formElement.querySelector("#status");
+    const setStatus = (m) => (statusEl.textContent = m || "");
+
+    const honey = (formElement.querySelector('[name="honeypot_field"]')?.value || "").trim();
+    if (honey) return false;
+
+    const endpoint = formElement.dataset.endpoint;
+    const formId = formElement.dataset.formId;
+    if (!formId) return setStatus("Form ID is missing");
+
+    const emailEl = formElement.querySelector('input[type="email"], input[name*="email" i]');
+    const nameEl = formElement.querySelector('input[name*="name" i]');
+    if (!emailEl || !emailEl.value.trim()) {
+      setStatus("Enter email");
+      emailEl?.focus();
+      return false;
+    }
+    if (!nameEl || !nameEl.value.trim()) {
+      setStatus("Enter your name");
+      nameEl?.focus();
+      return false;
+    }
+
+    const checkboxes = formElement.querySelectorAll('input[type="checkbox"]');
+    const checkedBoxes = formElement.querySelectorAll('input[type="checkbox"]:checked');
+    if (checkboxes.length > 0 && checkedBoxes.length === 0) {
+      setStatus("Please select at least one option");
+      checkboxes[0]?.focus();
+      return false;
+    }
+
+    const fileInputs = formElement.querySelectorAll('input[type="file"]');
+    const hasFileInputs = fileInputs.length > 0;
+    const hasSelectedFile = [...fileInputs].some((i) => i.files?.length > 0);
+    if (hasFileInputs && !hasSelectedFile) {
+      setStatus("Please upload a file before submitting");
+      fileInputs[0].focus();
+      return false;
+    }
+
+    const fd = new FormData();
+    fd.append("form", formId);
+
+    const inputs = formElement.querySelectorAll('input[type="text"], input[type="email"], textarea');
+    for (const el of inputs) {
+      const name = el.name?.trim();
+      if (!name) continue;
+      const val = el.value?.trim();
+      if (val) fd.append(`submission[${name}]`, val);
+    }
+
+    for (const cb of checkboxes) {
+      const name = cb.name?.replace("[]", "").trim();
+      if (!name) continue;
+      if (cb.checked) fd.append(`submission[${name}][]`, cb.value ?? "on");
+    }
+
+    for (const inp of fileInputs) {
+      const name = inp.name?.trim();
+      if (!name || !inp.files) continue;
+      for (const f of inp.files) {
+        fd.append(`files[${name}]`, f, f.name);
+      }
+    }
+
+    const btn = formElement.querySelector('button[type="submit"]');
+    btn?.setAttribute("disabled", "true");
+    setStatus("Sending...");
+
+    try {
+      const res = await fetch(endpoint, { method: "POST", body: fd });
+      if (!res.ok) throw new Error(await res.text());
+      formElement.reset();
+      setStatus(formElement.dataset.successMessage);
+    } catch (err) {
+      console.error(err);
+      setStatus(formElement.dataset.errorMessage);
+    } finally {
+      btn?.removeAttribute("disabled");
+    }
+
+    return false;
+  }
+</script>
+
+<script is:inline>
+  function hiddenInputFieldHandler() {
+    const hiddenInputs = document.querySelectorAll('form input[type="hidden"]')
+
+    if (!hiddenInputs.length) return
+
+    hiddenInputs.forEach((input) => {
+      const formElement = input.closest('form')
+      if (!formElement) return
+
+      if (formElement.dataset?.jobid && input.name.toLowerCase() === 'jobid') {
+        input.value = formElement.dataset.jobid
+      }
+    })
+  }
+  
+  window.addEventListener('load', () => {
+    hiddenInputFieldHandler()
+  })
+</script>

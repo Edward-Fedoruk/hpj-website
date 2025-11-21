@@ -1,12 +1,29 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface JobJobForm extends Struct.ComponentSchema {
+  collectionName: 'components_job_job_forms';
+  info: {
+    displayName: 'Job Form';
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:job:job_form'>;
+    form: Schema.Attribute.Relation<'oneToOne', 'plugin::api-forms.form'>;
+    job: Schema.Attribute.Relation<'oneToOne', 'api::job.job'>;
+    submitBtnLabel: Schema.Attribute.String;
+    subTitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface JobJobResponsibility extends Struct.ComponentSchema {
   collectionName: 'components_job_job_responsibilities';
   info: {
     displayName: 'Job Responsibility';
   };
   attributes: {
-    icon: Schema.Attribute.Text;
+    icon: Schema.Attribute.Text & Schema.Attribute.Required;
     text: Schema.Attribute.Text & Schema.Attribute.Required;
   };
 }
@@ -19,6 +36,20 @@ export interface JobJobSkill extends Struct.ComponentSchema {
   attributes: {
     icon: Schema.Attribute.Text;
     text: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface JobRelatedJobs extends Struct.ComponentSchema {
+  collectionName: 'components_job_related_jobs';
+  info: {
+    displayName: 'Related Jobs';
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:job:related_jobs'>;
+    jobs: Schema.Attribute.Relation<'oneToMany', 'api::job.job'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -241,6 +272,51 @@ export interface SectionsInfo extends Struct.ComponentSchema {
     secondaryButton: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface SectionsJobBenefits extends Struct.ComponentSchema {
+  collectionName: 'components_sections_job_benefits';
+  info: {
+    displayName: 'Job Benefits';
+  };
+  attributes: {
+    benefitsItems: Schema.Attribute.Component<'job.job-responsibility', true>;
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:section:job_benefits'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsJobInfo extends Struct.ComponentSchema {
+  collectionName: 'components_sections_job_infos';
+  info: {
+    displayName: 'Job Info';
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:section:job_info'>;
+    job: Schema.Attribute.Relation<'oneToOne', 'api::job.job'>;
+  };
+}
+
+export interface SectionsJobResponsibilitiesSection
+  extends Struct.ComponentSchema {
+  collectionName: 'components_sections_job_responsibilities_sections';
+  info: {
+    displayName: 'Job Responsibilities Section';
+  };
+  attributes: {
+    componentId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'page:section:job_responsibilities'>;
+    responsibilitiesItems: Schema.Attribute.Component<
+      'job.job-responsibility',
+      true
+    >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -554,8 +630,10 @@ export interface SharedWhyThisUnitItem extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'job.job-form': JobJobForm;
       'job.job-responsibility': JobJobResponsibility;
       'job.job-skill': JobJobSkill;
+      'job.related-jobs': JobRelatedJobs;
       'sections.about': SectionsAbout;
       'sections.about-alt': SectionsAboutAlt;
       'sections.business-units': SectionsBusinessUnits;
@@ -566,6 +644,9 @@ declare module '@strapi/strapi' {
       'sections.get-in-touch-form': SectionsGetInTouchForm;
       'sections.hero': SectionsHero;
       'sections.info': SectionsInfo;
+      'sections.job-benefits': SectionsJobBenefits;
+      'sections.job-info': SectionsJobInfo;
+      'sections.job-responsibilities-section': SectionsJobResponsibilitiesSection;
       'sections.news': SectionsNews;
       'sections.news-alt': SectionsNewsAlt;
       'sections.opportunities-section': SectionsOpportunitiesSection;

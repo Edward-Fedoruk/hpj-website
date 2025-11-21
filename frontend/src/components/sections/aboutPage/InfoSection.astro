@@ -36,7 +36,7 @@ if (img) {
 ---
 
 <section
-  class="header-text-dark mx-auto flex max-w-340 flex-col gap-8 bg-white px-4 py-[100px] pb-[70px] md:items-center md:gap-8 md:px-10 md:py-[150px] md:flex-row xl:px-10"
+  class="header-text-dark mx-auto flex max-w-340 flex-col gap-8 bg-white px-4 py-[100px] pb-[70px] md:gap-8 md:px-10 md:py-[150px] md:flex-row xl:px-10"
 >
   <div 
     class="flex flex-1 flex-col items-center md:items-start" 
@@ -51,14 +51,18 @@ if (img) {
     </h1>
     {
       subTitle && (
-        <p class="text-text-secondary order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
+        <p 
+          data-aos="fade-up"
+          data-aos-delay="250"
+          data-aos-once="true"
+          class="text-text-secondary order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
           {subTitle}
         </p>
       )
     }
 
     {
-      infoItems && (
+      infoItems && infoItems.length > 0 && (
         <ul 
           class="order-2 mt-10 flex-row flex-wrap gap-x-6 gap-y-10 hidden md:flex w-full"
         >

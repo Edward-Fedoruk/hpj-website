@@ -17,6 +17,10 @@ import type { OpportunitiesSectionProps } from "@/components/sections/job/Opport
 import type { WhyUsAltProps } from "@/components/sections/unit/WhyUsAltSection.astro";
 import type { WhyThisUnitProps } from "@/components/sections/unit/WhyThisUnitSection.astro";
 import type { CoursesSectionProps } from "@/components/sections/unit/CoursesSection.astro";
+import type { JobInfoSectionProps } from "@/components/sections/job/JobInfoSection.astro";
+import type { JobResponsibilitiesProps } from "@/components/sections/job/JobResponsibilitiesSection.astro";
+import type { JobBenefitsProps } from "@/components/sections/job/JobBenefitsSection.astro";
+import type { RelatedJobsProps } from "@/components/sections/job/RelatedJobsSection.astro";
 
 export enum SectionType {
   Hero = "page:section:hero",
@@ -36,8 +40,13 @@ export enum SectionType {
   FAQSection = "page:section:faq",
   OpportunitiesSection = "page:section:opportunities",
   Courses = "page:section:courses",
+  JobInfo = "page:section:job_info",
+  JobResponsibilities = "page:section:job_responsibilities",
+  JobBenefits = "page:section:job_benefits",
+  RelatedJobs = "page:job:related_jobs",
   ContactForm = "page:section:contact_form",
   CvForm = "page:section:cv_form",
+  JobForm = "page:job:job_form",
   GetInTouchForm = "page:section:get_in_touch_form",
 }
 
@@ -121,6 +130,16 @@ export type CvFormSection = {
   submitBtnLabel?: string | null;
 };
 
+export type JobFormSection = {
+  __typename: "ComponentJobJobForm";
+  componentId: string;
+  title: string;
+  jobId: string;
+  subTitle?: string | null;
+  form?: FormType | null;
+  submitBtnLabel?: string | null;
+};
+
 export type GetInTouchFormSection = {
   __typename: "ComponentSectionsGetInTouchForm";
   componentId: string;
@@ -179,6 +198,30 @@ export interface WhyThisUnitSection extends WhyThisUnitProps {
 
 export interface CoursesSection extends CoursesSectionProps {
   __typename: "ComponentSectionsCourses";
+  componentId: SectionType.Courses;
+  id: string;
+}
+
+export interface JobInfoSection extends JobInfoSectionProps {
+  __typename: "ComponentSectionsJobInfo";
+  componentId: SectionType.Courses;
+  id: string;
+}
+
+export interface JobResponsibilitiesSection extends JobResponsibilitiesProps {
+  __typename: "ComponentSectionsJobResponsibilitiesSection";
+  componentId: SectionType.Courses;
+  id: string;
+}
+
+export interface JobBenefitsSection extends JobBenefitsProps {
+  __typename: "ComponentSectionsJobBenefits";
+  componentId: SectionType.Courses;
+  id: string;
+}
+
+export interface RelatedJobsSection extends RelatedJobsProps {
+  __typename: "ComponentSectionsRelatedJobs";
   componentId: SectionType.Courses;
   id: string;
 }

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_job_related_jobs",
+  "info": {
+    "displayName": "Related Jobs"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:job:related_jobs",
+      "required": true
+    },
+    "jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job"
+    }
+  },
+  "config": {}
+}

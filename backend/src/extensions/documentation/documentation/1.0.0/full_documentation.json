@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-19T15:50:36.396Z"
+    "x-generation-date": "2025-11-20T23:29:52.438Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -5998,7 +5998,13 @@
                     }
                   }
                 },
-                "employment_types": {
+                "address": {
+                  "$ref": "#/components/schemas/SharedAddressComponent"
+                },
+                "jobID": {
+                  "type": "string"
+                },
+                "location_types": {
                   "type": "array",
                   "items": {
                     "type": "object",
@@ -6077,10 +6083,7 @@
                     }
                   }
                 },
-                "address": {
-                  "$ref": "#/components/schemas/SharedAddressComponent"
-                },
-                "location_types": {
+                "employment_types": {
                   "type": "array",
                   "items": {
                     "type": "object",
@@ -6089,6 +6092,9 @@
                         "type": "number"
                       },
                       "documentId": {
+                        "type": "string"
+                      },
+                      "name": {
                         "type": "string"
                       },
                       "job": {
@@ -6155,9 +6161,6 @@
                       }
                     }
                   }
-                },
-                "jobID": {
-                  "type": "string"
                 },
                 "createdAt": {
                   "type": "string",
@@ -7095,7 +7098,13 @@
                   }
                 }
               },
-              "employment_types": {
+              "address": {
+                "$ref": "#/components/schemas/SharedAddressComponent"
+              },
+              "jobID": {
+                "type": "string"
+              },
+              "location_types": {
                 "type": "array",
                 "items": {
                   "type": "object",
@@ -7174,10 +7183,7 @@
                   }
                 }
               },
-              "address": {
-                "$ref": "#/components/schemas/SharedAddressComponent"
-              },
-              "location_types": {
+              "employment_types": {
                 "type": "array",
                 "items": {
                   "type": "object",
@@ -7186,6 +7192,9 @@
                       "type": "number"
                     },
                     "documentId": {
+                      "type": "string"
+                    },
+                    "name": {
                       "type": "string"
                     },
                     "job": {
@@ -7252,9 +7261,6 @@
                     }
                   }
                 }
-              },
-              "jobID": {
-                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -7405,22 +7411,11 @@
                 ],
                 "example": "string or id"
               },
-              "employment_types": {
-                "type": "array",
-                "items": {
-                  "oneOf": [
-                    {
-                      "type": "integer"
-                    },
-                    {
-                      "type": "string"
-                    }
-                  ],
-                  "example": "string or id"
-                }
-              },
               "address": {
                 "$ref": "#/components/schemas/SharedAddressComponent"
+              },
+              "jobID": {
+                "type": "string"
               },
               "location_types": {
                 "type": "array",
@@ -7436,8 +7431,19 @@
                   "example": "string or id"
                 }
               },
-              "jobID": {
-                "type": "string"
+              "employment_types": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
               },
               "locale": {
                 "type": "string"
@@ -8166,7 +8172,13 @@
                         }
                       }
                     },
-                    "employment_types": {
+                    "address": {
+                      "$ref": "#/components/schemas/SharedAddressComponent"
+                    },
+                    "jobID": {
+                      "type": "string"
+                    },
+                    "location_types": {
                       "type": "array",
                       "items": {
                         "type": "object",
@@ -8245,10 +8257,7 @@
                         }
                       }
                     },
-                    "address": {
-                      "$ref": "#/components/schemas/SharedAddressComponent"
-                    },
-                    "location_types": {
+                    "employment_types": {
                       "type": "array",
                       "items": {
                         "type": "object",
@@ -8257,6 +8266,9 @@
                             "type": "number"
                           },
                           "documentId": {
+                            "type": "string"
+                          },
+                          "name": {
                             "type": "string"
                           },
                           "job": {
@@ -8323,9 +8335,6 @@
                           }
                         }
                       }
-                    },
-                    "jobID": {
-                      "type": "string"
                     },
                     "createdAt": {
                       "type": "string",
@@ -8434,22 +8443,11 @@
               }
             }
           },
-          "employment_types": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number"
-                },
-                "documentId": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "address": {
             "$ref": "#/components/schemas/SharedAddressComponent"
+          },
+          "jobID": {
+            "type": "string"
           },
           "location_types": {
             "type": "array",
@@ -8465,8 +8463,19 @@
               }
             }
           },
-          "jobID": {
-            "type": "string"
+          "employment_types": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "createdAt": {
             "type": "string",
@@ -8539,8 +8548,14 @@
         ],
         "properties": {
           "data": {
+            "required": [
+              "name"
+            ],
             "type": "object",
             "properties": {
+              "name": {
+                "type": "string"
+              },
               "job": {
                 "oneOf": [
                   {
@@ -8610,11 +8625,17 @@
       },
       "LocationType": {
         "type": "object",
+        "required": [
+          "name"
+        ],
         "properties": {
           "id": {
             "type": "number"
           },
           "documentId": {
+            "type": "string"
+          },
+          "name": {
             "type": "string"
           },
           "job": {
@@ -9321,7 +9342,13 @@
                   }
                 }
               },
-              "employment_types": {
+              "address": {
+                "$ref": "#/components/schemas/SharedAddressComponent"
+              },
+              "jobID": {
+                "type": "string"
+              },
+              "location_types": {
                 "type": "array",
                 "items": {
                   "type": "object",
@@ -9400,10 +9427,7 @@
                   }
                 }
               },
-              "address": {
-                "$ref": "#/components/schemas/SharedAddressComponent"
-              },
-              "location_types": {
+              "employment_types": {
                 "type": "array",
                 "items": {
                   "type": "object",
@@ -9412,6 +9436,9 @@
                       "type": "number"
                     },
                     "documentId": {
+                      "type": "string"
+                    },
+                    "name": {
                       "type": "string"
                     },
                     "job": {
@@ -9478,9 +9505,6 @@
                     }
                   }
                 }
-              },
-              "jobID": {
-                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -9681,6 +9705,21 @@
                     },
                     {
                       "$ref": "#/components/schemas/SectionsCoursesSectionComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SectionsJobInfoComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SectionsJobResponsibilitiesSectionComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SectionsJobBenefitsComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/JobJobFormComponent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/JobRelatedJobsComponent"
                     }
                   ]
                 },
@@ -9706,7 +9745,12 @@
                     "sections.opportunities-section": "#/components/schemas/SectionsOpportunitiesSectionComponent",
                     "sections.why-us-alt": "#/components/schemas/SectionsWhyUsAltComponent",
                     "sections.why-this-unit": "#/components/schemas/SectionsWhyThisUnitComponent",
-                    "sections.courses-section": "#/components/schemas/SectionsCoursesSectionComponent"
+                    "sections.courses-section": "#/components/schemas/SectionsCoursesSectionComponent",
+                    "sections.job-info": "#/components/schemas/SectionsJobInfoComponent",
+                    "sections.job-responsibilities-section": "#/components/schemas/SectionsJobResponsibilitiesSectionComponent",
+                    "sections.job-benefits": "#/components/schemas/SectionsJobBenefitsComponent",
+                    "job.job-form": "#/components/schemas/JobJobFormComponent",
+                    "job.related-jobs": "#/components/schemas/JobRelatedJobsComponent"
                   }
                 }
               },
@@ -9857,6 +9901,21 @@
                 },
                 {
                   "$ref": "#/components/schemas/SectionsCoursesSectionComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsJobInfoComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsJobResponsibilitiesSectionComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/SectionsJobBenefitsComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/JobJobFormComponent"
+                },
+                {
+                  "$ref": "#/components/schemas/JobRelatedJobsComponent"
                 }
               ]
             },
@@ -9882,7 +9941,12 @@
                 "sections.opportunities-section": "#/components/schemas/SectionsOpportunitiesSectionComponent",
                 "sections.why-us-alt": "#/components/schemas/SectionsWhyUsAltComponent",
                 "sections.why-this-unit": "#/components/schemas/SectionsWhyThisUnitComponent",
-                "sections.courses-section": "#/components/schemas/SectionsCoursesSectionComponent"
+                "sections.courses-section": "#/components/schemas/SectionsCoursesSectionComponent",
+                "sections.job-info": "#/components/schemas/SectionsJobInfoComponent",
+                "sections.job-responsibilities-section": "#/components/schemas/SectionsJobResponsibilitiesSectionComponent",
+                "sections.job-benefits": "#/components/schemas/SectionsJobBenefitsComponent",
+                "job.job-form": "#/components/schemas/JobJobFormComponent",
+                "job.related-jobs": "#/components/schemas/JobRelatedJobsComponent"
               }
             }
           },
@@ -10012,6 +10076,21 @@
                       },
                       {
                         "$ref": "#/components/schemas/SectionsCoursesSectionComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsJobInfoComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsJobResponsibilitiesSectionComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/SectionsJobBenefitsComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/JobJobFormComponent"
+                      },
+                      {
+                        "$ref": "#/components/schemas/JobRelatedJobsComponent"
                       }
                     ]
                   },
@@ -10037,7 +10116,12 @@
                       "sections.opportunities-section": "#/components/schemas/SectionsOpportunitiesSectionComponent",
                       "sections.why-us-alt": "#/components/schemas/SectionsWhyUsAltComponent",
                       "sections.why-this-unit": "#/components/schemas/SectionsWhyThisUnitComponent",
-                      "sections.courses-section": "#/components/schemas/SectionsCoursesSectionComponent"
+                      "sections.courses-section": "#/components/schemas/SectionsCoursesSectionComponent",
+                      "sections.job-info": "#/components/schemas/SectionsJobInfoComponent",
+                      "sections.job-responsibilities-section": "#/components/schemas/SectionsJobResponsibilitiesSectionComponent",
+                      "sections.job-benefits": "#/components/schemas/SectionsJobBenefitsComponent",
+                      "job.job-form": "#/components/schemas/JobJobFormComponent",
+                      "job.related-jobs": "#/components/schemas/JobRelatedJobsComponent"
                     }
                   }
                 },
@@ -11746,6 +11830,182 @@
           },
           "componentId": {
             "type": "string"
+          }
+        }
+      },
+      "SectionsJobInfoComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.job-info"
+            ]
+          },
+          "job": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "componentId": {
+            "type": "string"
+          }
+        }
+      },
+      "JobJobResponsibilityComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "text": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsJobResponsibilitiesSectionComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.job-responsibilities-section"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "responsibilitiesItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobJobResponsibilityComponent"
+            }
+          },
+          "componentId": {
+            "type": "string"
+          }
+        }
+      },
+      "SectionsJobBenefitsComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "sections.job-benefits"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "benefitsItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobJobResponsibilityComponent"
+            }
+          }
+        }
+      },
+      "JobJobFormComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "job.job-form"
+            ]
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "subTitle": {
+            "type": "string"
+          },
+          "form": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          },
+          "submitBtnLabel": {
+            "type": "string"
+          },
+          "job": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "documentId": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "JobRelatedJobsComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "__component": {
+            "type": "string",
+            "enum": [
+              "job.related-jobs"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "componentId": {
+            "type": "string"
+          },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
