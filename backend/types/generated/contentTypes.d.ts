@@ -494,6 +494,37 @@ export interface ApiEmploymentTypeEmploymentType
   };
 }
 
+export interface ApiHeaderUnitHeaderUnit extends Struct.SingleTypeSchema {
+  collectionName: 'header_units';
+  info: {
+    displayName: 'Header Unit';
+    pluralName: 'header-units';
+    singularName: 'header-unit';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    business_units: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::business-unit.business-unit'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::header-unit.header-unit'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiJobJob extends Struct.CollectionTypeSchema {
   collectionName: 'jobs';
   info: {
@@ -1380,6 +1411,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::business-unit.business-unit': ApiBusinessUnitBusinessUnit;
       'api::employment-type.employment-type': ApiEmploymentTypeEmploymentType;
+      'api::header-unit.header-unit': ApiHeaderUnitHeaderUnit;
       'api::job.job': ApiJobJob;
       'api::location-type.location-type': ApiLocationTypeLocationType;
       'api::page.page': ApiPagePage;

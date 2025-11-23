@@ -12,21 +12,18 @@ interface Props {
 // Define CSS classes for the hyperlink button
 
 const baseClasses =
-  "cursor-pointer inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center text-lg font-bold  text-currentColor shadow-xs outline-hidden ring-currentColor focus-visible:ring-3 transition duration-300";
+  "cursor-pointer inline-flex items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-center font-bold  text-currentColor shadow-xs outline-hidden ring-currentColor focus-visible:ring-3 transition duration-300";
 const borderClasses = "border border-currentColor";
 const bgColorClasses = "bg-transparent";
 const hoverClasses = "hover:bg-white/10 active:text-neutral-700";
 const disableClasses = "disabled:pointer-events-none disabled:opacity-50";
-const fontSizeClasses = "2xl:text-base";
+const fontSizeClasses = "text-lg";
 const ringClasses = "ring-currentColor";
-
-const darkClasses =
-  "dark:border-neutral-700 dark:text-neutral-300 dark:ring-zinc-200 dark:hover:bg-zinc-600 dark:focus:outline-hidden";
 ---
 
 <!-- Styled hyperlink -->
 <a
-  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${darkClasses} ${className} group/button`}
+  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${className} group/button`}
   href={url}
 >
   {title}

@@ -3,7 +3,7 @@ const navBarLinks = [
   { name: "Home", url: "/", width: 50 },
   { name: "About Us", url: "/about", width: 75 },
   { name: "Board Members", url: "/board-members", width: 140 },
-  { name: "Units", url: "/units", width: 65 },
+  { name: "Business Organisations", url: "/units", width: 65 },
   { name: "Careers", url: "/careers", width: 60 },
 ];
 // An array of links for footer

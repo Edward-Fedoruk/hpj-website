@@ -494,6 +494,7 @@ export class DynamicPageHandler {
               componentId
               title
               subTitle
+              sectionId
               coursesList {
                 blockTitle
                 trainingCourses {
