@@ -1,16 +1,16 @@
 {
-  "collectionName": "components_job_job_responsibilities",
+  "collectionName": "components_shared_info_items",
   "info": {
-    "displayName": "Job Responsibility"
+    "displayName": "Info Item"
   },
   "options": {},
   "attributes": {
-    "text": {
+    "bigText": {
       "type": "text",
       "required": true
     },
-    "icon": {
-      "type": "text",
+    "smallText": {
+      "type": "string",
       "required": true
     }
   },

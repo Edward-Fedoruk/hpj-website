@@ -5,17 +5,25 @@ import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 import { Image } from "astro:assets";
 import { buildStrapiResponsive } from "@/utils/strapiImg";
 
-const { title, subTitle, primaryBtn, primaryBtnURL, secondaryBtn, secondaryBtnURL, img, imgAlt } = Astro.props;
+const { title, subTitle, primaryButton, primaryBtnLabel, primaryBtnURL, secondaryButton, secondaryBtnLabel, secondaryBtnURL, img, imgAlt, infoItems } = Astro.props;
+
+export interface InfoItem {
+  bigText: string;
+  smallText: string;
+}
 
 export interface InfoSectionProps {
   title: string;
   subTitle?: string;
-  primaryBtn?: string;
+  primaryButton: boolean;
+  primaryBtnLabel?: string;
   primaryBtnURL?: string;
-  secondaryBtn?: string;
+  secondaryButton: boolean;
+  secondaryBtnLabel?: string;
   secondaryBtnURL?: string;
   img?: StrapiImageType;
   imgAlt?: string | null;
+  infoItems?: InfoItem[]
 }
 
 interface Props extends InfoSectionProps {}
@@ -28,7 +36,7 @@ if (img) {
 ---
 
 <section
-  class="header-text-dark mx-auto flex max-w-340 flex-col gap-8 bg-white px-4 py-[100px] pb-[70px] md:items-center md:gap-8 md:px-10 md:py-[150px] md:flex-row xl:px-10"
+  class="header-text-dark mx-auto flex max-w-340 flex-col gap-8 bg-white px-4 py-[100px] pb-[70px] md:gap-8 md:px-10 md:py-[150px] md:flex-row xl:px-10"
 >
   <div 
     class="flex flex-1 flex-col items-center md:items-start" 
@@ -43,66 +51,59 @@ if (img) {
     </h1>
     {
       subTitle && (
-        <p class="text-text-secondary order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
+        <p 
+          data-aos="fade-up"
+          data-aos-delay="250"
+          data-aos-once="true"
+          class="text-text-secondary order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
           {subTitle}
         </p>
       )
     }
+
     {
-      (primaryBtn || secondaryBtn) && (
-        <div class="order-1 mt-6 grid w-full justify-center gap-3 sm:inline-flex">
-          {primaryBtn && <PrimaryCTA title={primaryBtn} url={primaryBtnURL} noArrow className="w-[300px] h-[46px]" />}
-          {secondaryBtn && (
+      infoItems && infoItems.length > 0 && (
+        <ul 
+          class="order-2 mt-10 flex-row flex-wrap gap-x-6 gap-y-10 hidden md:flex w-full"
+        >
+          {
+            infoItems.map((item, index) => (
+              <li 
+                class="flex-[0_0_45%]"
+                data-aos="fade-up"
+                data-aos-delay={300 + index * 200}
+                data-aos-once="true"
+              >
+                <p class="text-primary font-bold text-3xl md:text-[38px]">{item.bigText}</p>
+                <p class="text-gray-90 text-lg">{item.smallText}</p>
+              </li>
+            ))
+          }
+        </ul>
+      )
+    }
+
+    {
+      (primaryButton || secondaryButton) && (
+        <div 
+          class="order-15 mt-6 flex w-full justify-start gap-3"
+          data-aos="fade-up"
+          data-aos-delay="550"
+          data-aos-once="true"
+        >
+          {primaryButton && primaryBtnLabel && <PrimaryCTA title={primaryBtnLabel} url={primaryBtnURL} noArrow className="w-full max-w-[191px] h-14" />}
+          {secondaryButton && secondaryBtnLabel && (
             <SecondaryCTA
-              title={secondaryBtn}
+              title={secondaryBtnLabel}
               url={secondaryBtnURL}
-              className="w-48 h-[46px] text-primary"
+              className="w-full max-w-[191px] h-14 text-primary"
               arrow
             />
           )}
         </div>
       )
     }
-    <ul 
-      class="order-2 mt-10 flex-row flex-wrap gap-x-6 gap-y-10 hidden md:flex"
-    >
-      <li 
-        class="flex-[0_0_45%]"
-        data-aos="fade-up"
-        data-aos-delay="150"
-        data-aos-once="true"
-      >
-        <p class="  text-primary font-bold text-3xl md:text-[38px]">98%</p>
-        <p class="text-gray-90 text-lg">Client Retention</p>
-      </li>
-      <li 
-        class="flex-[0_0_45%]"
-        data-aos="fade-up"
-        data-aos-delay="250"
-        data-aos-once="true"
-      >
-        <p class="  text-primary font-bold text-3xl md:text-[38px]">650+</p>
-        <p class="text-gray-90 text-lg">Projects Delivered</p>
-      </li>
-      <li 
-        class="flex-[0_0_45%]"
-        data-aos="fade-up"
-        data-aos-delay="350"
-        data-aos-once="true"
-      >
-        <p class="  text-primary font-bold text-3xl md:text-[38px]">4+</p>
-        <p class="text-gray-90 text-lg">Business Organisations</p>
-      </li>
-      <li 
-        class="flex-[0_0_45%]"
-        data-aos="fade-up"
-        data-aos-delay="450"
-        data-aos-once="true"
-      >
-        <p class="  text-primary font-bold text-3xl md:text-[38px]">100%</p>
-        <p class="text-gray-90 text-lg">Audit Pass Rate</p>
-      </li>
-    </ul>
+    
   </div>
   <div 
     class="order-1 flex-1"     
@@ -130,50 +131,31 @@ if (img) {
             fetchpriority={"high"}
             class="h-full w-full scale-110 object-cover object-center"
           />
+        {
+          infoItems && (
+            <ul 
+              class="order-2 mt-10 flex flex-row flex-wrap gap-x-6 gap-y-10 md:hidden text-center"     
+              data-aos="fade-up"
+              data-aos-delay="150"
+              data-aos-once="true"
+            >
+              {
+                infoItems.map((item, index) => (
+                  <li 
+                    class="flex-[1_1_45%]"
+                    data-aos="fade-up"
+                    data-aos-delay={300 + index * 200}
+                    data-aos-once="true"
+                  >
+                    <p class="fond-bold text-primary text-3xl md:text-[38px]">{item.bigText}</p>
+                    <p class="text-gray-90 text-lg">{item.smallText}</p>
+                  </li>
+                ))
+              }
+            </ul>
+          )
+        }
         </div>
-        <ul 
-          class="order-2 mt-10 flex flex-row flex-wrap gap-x-6 gap-y-10 md:hidden text-center"     
-          data-aos="fade-up"
-          data-aos-delay="150"
-          data-aos-once="true"
-        >
-          <li 
-            class="flex-[1_1_45%]"
-            data-aos="fade-up"
-            data-aos-delay="150"
-            data-aos-once="true"
-          >
-            <p class="fond-bold text-primary text-3xl md:text-[38px]">98%</p>
-            <p class="text-gray-90 text-lg">Client Retention</p>
-          </li>
-          <li 
-            class="flex-[1_1_45%]"
-            data-aos="fade-up"
-            data-aos-delay="250"
-            data-aos-once="true"
-          >
-            <p class="fond-bold text-primary text-3xl md:text-[38px]">650+</p>
-            <p class="text-gray-90 text-lg">Projects Delivered</p>
-          </li>
-          <li 
-            class="flex-[1_1_45%]"
-            data-aos="fade-up"
-            data-aos-delay="350"
-            data-aos-once="true"
-          >
-            <p class="fond-bold text-primary text-3xl md:text-[38px]">4+</p>
-            <p class="text-gray-90 text-lg">Business Organisations</p>
-          </li>
-          <li 
-            class="flex-[1_1_45%]"
-            data-aos="fade-up"
-            data-aos-delay="450"
-            data-aos-once="true"
-          >
-            <p class="fond-bold text-primary text-3xl md:text-[38px]">100%</p>
-            <p class="text-gray-90 text-lg">Audit Pass Rate</p>
-          </li>
-        </ul>
       )
     }
   </div>

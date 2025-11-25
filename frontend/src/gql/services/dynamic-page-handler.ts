@@ -17,6 +17,12 @@ import type {
   UserSpotlightSection,
   WhyUsAltSection,
   WhyThisUnitSection,
+  CoursesSection,
+  JobResponsibilitiesSection,
+  JobInfoSection,
+  JobBenefitsSection,
+  JobFormSection,
+  RelatedJobsSection,
 } from "@/types/sectionTypes";
 
 export type Section =
@@ -33,8 +39,14 @@ export type Section =
   | RoadMapSection
   | NewsAltSection
   | UserSpotlightSection
+  | CoursesSection
+  | JobInfoSection
+  | JobResponsibilitiesSection
+  | JobBenefitsSection
+  | RelatedJobsSection
   | ContactFormSection
   | CvFormSection
+  | JobFormSection
   | GetInTouchFormSection;
 
 export interface Page {
@@ -173,6 +185,7 @@ export class DynamicPageHandler {
               title
               items {
                 title
+                icon
                 text
               }
             }
@@ -239,10 +252,16 @@ export class DynamicPageHandler {
               componentId
               title: infoTitle
               subTitle: infoSubtitle
+              primaryButton
               primaryBtnLabel
               primaryBtnURL
+              secondaryButton
               secondaryBtnLabel
               secondaryBtnURL
+              infoItems {
+                bigText
+                smallText
+              }
               img {
                 url
                 alternativeText
@@ -253,6 +272,72 @@ export class DynamicPageHandler {
                 formats
               }
               imgAlt
+            }
+            ... on ComponentSectionsJobInfo {
+              componentId
+              job {
+                title
+                summary
+                jobID
+                shortDescription
+                address {
+                  city
+                  country
+                  street
+                }
+                department {
+                  title
+                  url
+                }
+                employment_types {
+                  name
+                }
+                location_types {
+                  name
+                }
+              }
+            }
+            ... on ComponentSectionsJobBenefits {
+              componentId
+              title
+              benefitsItems {
+                icon
+                text
+              }
+            }
+            ... on ComponentJobRelatedJobs {
+              componentId
+              title
+              relatedJobs: jobs {
+                title
+                summary
+                jobID
+                shortDescription
+                publishedAt
+                address {
+                  city
+                  country
+                  street
+                }
+                department {
+                  title
+                  url
+                }
+                employment_types {
+                  name
+                }
+                location_types {
+                  name
+                }
+              }
+            }
+            ... on ComponentSectionsJobResponsibilitiesSection {
+              componentId
+              title
+              responsibilitiesItems {
+                text
+                icon
+              }
             }
             ... on ComponentSectionsRoadMap {
               componentId
@@ -309,6 +394,22 @@ export class DynamicPageHandler {
                 successMessage
                 errorMessage
                 steps
+              }
+            }
+            ... on ComponentJobJobForm {
+              componentId
+              title
+              subTitle
+              submitBtnLabel
+              form {
+                documentId
+                title
+                successMessage
+                errorMessage
+                steps
+              }
+              job {
+                jobID
               }
             }
             ... on ComponentSectionsGetInTouchForm {
@@ -386,6 +487,19 @@ export class DynamicPageHandler {
                 department {
                   title
                   url
+                }
+              }
+            }
+            ... on ComponentSectionsCoursesSection {
+              componentId
+              title
+              subTitle
+              coursesList {
+                blockTitle
+                trainingCourses {
+                  courseId
+                  title
+                  date
                 }
               }
             }

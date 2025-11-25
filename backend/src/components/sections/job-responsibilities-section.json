@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_job_responsibilities_sections",
+  "info": {
+    "displayName": "Job Responsibilities Section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "responsibilitiesItems": {
+      "type": "component",
+      "component": "job.job-responsibility",
+      "repeatable": true
+    },
+    "componentId": {
+      "type": "string",
+      "default": "page:section:job_responsibilities",
+      "required": true
+    }
+  },
+  "config": {}
+}

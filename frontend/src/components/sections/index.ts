@@ -20,6 +20,12 @@ import FAQSection from "./misc/FAQSection.astro";
 import Opportunities from "./job/Opportunities.astro";
 import WhyUsAltSection from "./unit/WhyUsAltSection.astro";
 import WhyThisUnitSection from "./unit/WhyThisUnitSection.astro";
+import CoursesSection from "./unit/CoursesSection.astro";
+import JobInfoSection from "./job/JobInfoSection.astro";
+import JobResponsibilitiesSection from "./job/JobResponsibilitiesSection.astro";
+import JobBenefitsSection from "./job/JobBenefitsSection.astro";
+import JobFormSection from "./job/JobFormSection.astro";
+import RelatedJobsSection from "./job/RelatedJobsSection.astro";
 
 export const sections: Record<SectionType, (_props: Props) => any> = {
   [SectionType.Hero]: HeroSection as unknown as (_props: Props) => any,
@@ -37,8 +43,14 @@ export const sections: Record<SectionType, (_props: Props) => any> = {
   [SectionType.Service]: ServiceSection as unknown as (_props: Props) => any,
   [SectionType.UserSpotlight]: UserSpotlightSection as unknown as (_props: Props) => any,
   [SectionType.FAQSection]: FAQSection as unknown as (_props: Props) => any,
+  [SectionType.Courses]: CoursesSection as unknown as (_props: Props) => any,
+  [SectionType.JobInfo]: JobInfoSection as unknown as (_props: Props) => any,
+  [SectionType.JobResponsibilities]: JobResponsibilitiesSection as unknown as (_props: Props) => any,
+  [SectionType.JobBenefits]: JobBenefitsSection as unknown as (_props: Props) => any,
+  [SectionType.RelatedJobs]: RelatedJobsSection as unknown as (_props: Props) => any,
   [SectionType.ContactForm]: ContactFormSection as unknown as (_props: Props) => any,
   [SectionType.CvForm]: CvFormSection as unknown as (_props: Props) => any,
+  [SectionType.JobForm]: JobFormSection as unknown as (_props: Props) => any,
   [SectionType.GetInTouchForm]: GetInTouchFormSection as unknown as (_props: Props) => any,
   [SectionType.OpportunitiesSection]: Opportunities as unknown as (_props: Props) => any,
 };

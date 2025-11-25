@@ -1,11 +1,12 @@
 ---
-import WhyUsItem from "../pros/WhyUsItem.astro";
 import SectionCorner from "../SectionCorner.astro";
+import renderBlocks from '@utils/strapi-blocks-renderer.js';
 
 const { title, items, id, __typename } = Astro.props;
 
 export interface WhyThisUnitItem {
   title: string;
+  icon: string;
   text: string;
 }
 
@@ -42,15 +43,19 @@ interface Props extends WhyThisUnitProps {}
                 data-aos="fade-up"
                 data-aos-delay={300 + index * 200}
                 data-aos-once="true"
+                data-aos-anchor-placement="top-bottom"
                 class={"w-full flex flex-row flex-nowrap gap-3 flex-[1_1_45%]"}
               >
-                <svg class="min-w-6 min-h-6 mt-1" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 6L9 17L4 12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                {
+                  item.icon && (<div set:html={item.icon}></div>)
+                }
+
                 <div>
-                  <p class="text-[22px] font-bold leading-[150%] text-white">{item.title}</p>
-                  <p class="text-base font-light leading-[140%] mt-3 text-white">{item.text}</p>
+                  <p class="text-[22px] font-bold leading-none mb-3 text-white">{item.title}</p>
+                  <div class="text-white font-light" set:html={item.text && renderBlocks(item.text)}></div>
                 </div>
+                
+                
               </li>
             );
           })}
