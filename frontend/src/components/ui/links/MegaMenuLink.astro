@@ -12,8 +12,6 @@ interface Props {
 
 const linkWidth = width !== undefined ? "w-[" + width + "px]" : "w-fit";
 
-const { business_units: units } = headerUnit
-
 ---
 
 <div
@@ -41,14 +39,14 @@ const { business_units: units } = headerUnit
             </div>
         </a>
         {
-          units &&
-            units.map((data) => (
+          headerUnit?.business_units &&
+            headerUnit.business_units.map((item) => (
               <a
                 class="group items-center text-center h-[50px] lg:text-start lg:h-fit w-full flex gap-x-5 rounded-lg p-2 hover:bg-black/5"
-                href={`/unit/${data.url}`}
+                href={`/unit/${item.url}`}
               >
                 <div class="grow">
-                  <p class="font-normal">{data.title}</p>
+                  <p class="font-normal">{item.title}</p>
                 </div>
               </a>
             ))
