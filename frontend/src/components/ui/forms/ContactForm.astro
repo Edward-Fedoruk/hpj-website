@@ -1,0 +1,143 @@
+---
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL || "http://localhost:1337";
+const ENDPOINT = `${STRAPI_URL}/api/api-forms/submission/post`;
+const FORM_ID = "tfnmpi1ljr81ql28fvyzwxyz"
+---
+
+<form
+  class="flex w-full flex-col items-center"
+  data-endpoint={ENDPOINT}
+  data-form-id={FORM_ID}
+  data-success-message={"We will contact you shortly"}
+  data-error-message={"There was an error submitting the form. Please try again."}
+  onsubmit="return formhandleSubmit(event, this)"
+  class="w-[532px]"
+>
+    <div class="mb-8">
+        <h2 class="text-3xl md:text-[36px] text-center text-text-main font-medium">Contact to Book</h2>
+        <p class="text-text-secondary text-center text-lg mt-3">You can reach us anytime</p>
+    </div>
+  <div class="flex w-full flex-col items-center">
+    <input type="text" name="honeypot_field" class="hidden" tabindex="-1" autocomplete="off" />
+    <div class="grid12 w-full max-w-[920px] gap-6">
+      <div class="cell flex flex-col" style="--x-sm: 0; --w-sm: 12; --x-lg: 0; --w-lg: 12">
+        <label class="flex flex-col gap-1">
+          <span class="label"> Your Name <sup class="req">*</sup> </span>
+          <input id="yourName" type="text" name="yourName" placeholder="John" required="" class="input ring-primary" />
+        </label>
+      </div>
+      <div class="cell flex flex-col" style="--x-sm: 0; --w-sm: 12; --x-md: 0; --w-md: 12; --x-lg: 0; --w-lg: 12">
+        <label class="flex flex-col gap-1">
+          <span class="label"> Your Email <sup class="req">*</sup> </span>
+          <input
+            id="yourEmail"
+            type="email"
+            name="yourEmail"
+            placeholder="john@mail.com"
+            required=""
+            class="input ring-primary"
+          />
+        </label>
+      </div>
+      <div class="cell flex flex-col" style="--x-sm: 0; --w-sm: 12; --x-md: 0; --w-md: 12; --x-lg: 0; --w-lg: 12">
+        <label class="flex flex-col gap-1">
+          <span class="label"> Phone number <sup class="req">*</sup> </span>
+          <input
+            id="phoneNumber"
+            type="tel"
+            name="phoneNumber"
+            placeholder="+123456789"
+            required=""
+            class="input ring-primary"
+          />
+        </label>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="bg-primary mt-6 flex h-14 w-full items-center justify-center rounded-[10px] text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+    >
+      Send Email
+    </button>
+    <p id="status" class="text-text-main my-2 h-5 text-sm" aria-live="polite"></p>
+    <p 
+          class="text-text-secondary text-center"
+          data-aos="fade-up"
+          data-aos-delay="250"
+          data-aos-once="true"
+          data-aos-anchor-placement="top-bottom"
+        >By contacting us you agree to our <a href="/terms-and-conditions" target="_blank"  class="underline underline-offset-3 cursor-pointer">Terms & Conditions</a> and <a href="/privacy-policy" target="_blank" class="underline underline-offset-3 cursor-pointer">Privacy Policy</a>.</p>
+  </div>
+</form>
+
+<script is:inline>
+async function formhandleSubmit(ev, formElement) {
+    ev.preventDefault();
+    const statusEl = formElement.querySelector("#status");
+    const setStatus = (m) => (statusEl.textContent = m || "");
+
+    const honey = (formElement.querySelector('[name="honeypot_field"]')?.value || "").trim();
+    if (honey) return false;
+
+    const endpoint = formElement.dataset.endpoint;
+    const formId = formElement.dataset.formId;
+    if (!formId) return setStatus("Form ID is missing");
+
+    const emailEl = formElement.querySelector('input[type="email"], input[name*="email" i]');
+    const nameEl = formElement.querySelector('input[name*="name" i]');
+    const phoneEl = formElement.querySelector('input[type="tel"]');
+    if (!emailEl || !emailEl.value.trim()) {
+      setStatus("Enter email");
+      emailEl?.focus();
+      return false;
+    }
+    if (!nameEl || !nameEl.value.trim()) {
+      setStatus("Enter your name");
+      nameEl?.focus();
+      return false;
+    }
+    if (!isValidPhone(phoneEl.value.trim())) {
+      setStatus("Invalid phone number");
+      phoneEl?.focus();
+      return false;
+    }
+    if (!phoneEl || !phoneEl.value.trim()) {
+      setStatus("Enter your phone");
+      phoneEl?.focus();
+      return false;
+    }
+
+    const fd = new FormData();
+    fd.append("form", formId);
+
+    const inputs = formElement.querySelectorAll('input[type="text"], input[type="email"], textarea, input[type="tel"]');
+    for (const el of inputs) {
+      const name = el.name?.trim();
+      if (!name) continue;
+      const val = el.value?.trim();
+      if (val) fd.append(`submission[${name}]`, val);
+    }
+
+    const btn = formElement.querySelector('button[type="submit"]');
+    btn?.setAttribute("disabled", "true");
+    setStatus("Sending...");
+
+    try {
+      const res = await fetch(endpoint, { method: "POST", body: fd });
+      if (!res.ok) throw new Error(await res.text());
+      formElement.reset();
+      setStatus(formElement.dataset.successMessage);
+    } catch (err) {
+      console.error(err);
+      setStatus(formElement.dataset.errorMessage);
+    } finally {
+      btn?.removeAttribute("disabled");
+    }
+
+    return false;
+  }
+
+  function isValidPhone(phone) {
+    return /^\+?[0-9][0-9\s\-()]{6,20}$/.test(phone);
+  }
+</script>

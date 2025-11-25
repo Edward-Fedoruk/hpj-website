@@ -1,6 +1,6 @@
 ---
 // Destructure the properties from Astro.props
-const { title, url, arrow, className } = Astro.props;
+const { title, url, arrow, className, ...rest } = Astro.props;
 
 // Define TypeScript interface for the properties
 interface Props {
@@ -25,6 +25,7 @@ const ringClasses = "ring-currentColor";
 <a
   class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${className} group/button`}
   href={url}
+  {...rest}
 >
   {title}
   {

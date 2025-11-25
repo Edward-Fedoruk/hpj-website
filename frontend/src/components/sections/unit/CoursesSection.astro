@@ -1,5 +1,6 @@
 ---
 import SecondaryCTA from "@/components/ui/buttons/SecondaryCTA.astro";
+import CoursesModal from "@/components/ui/modal/CoursesModal.astro";
 
 const {
   title,
@@ -96,7 +97,7 @@ interface Props extends CoursesSectionProps {}
                               </p>
                             </div>
 
-                            <SecondaryCTA title={"Contact To Book"} className={"text-primary h-[38px] min-w-fit group-hover:bg-primary group-hover:text-white hover:bg-primary! hover:text-white!"}  data-courseId={courseItem.courseId} />
+                            <SecondaryCTA data-micromodal-trigger="courses-modal" title={"Contact To Book"} className={"text-primary h-[38px] min-w-fit group-hover:bg-primary group-hover:text-white hover:bg-primary! hover:text-white!"}  data-courseId={courseItem.courseId} />
                           </li>
                         )
                       })
@@ -120,3 +121,5 @@ interface Props extends CoursesSectionProps {}
     </div>
   </div>
 </section>
+
+<CoursesModal />
