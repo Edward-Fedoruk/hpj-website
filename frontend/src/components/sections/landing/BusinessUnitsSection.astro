@@ -61,7 +61,7 @@ export interface UnitSliderItem {
             return (
               <div class="embla__slide group z-20 h-[323px] md:h-fit max-w-[412px] overflow-hidden rounded-xl shadow-card md:max-h-[415px]">
                 {itemImg ? (
-                  <a href={item.url}>
+                  <a href={`/unit/${item.url}`}>
                     <Image
                       src={itemImg.src}
                       alt={item.imgAlt || item.img.alternativeText || item.title}

@@ -72,7 +72,7 @@ const uniqueDepartments = relatedJobs && [...new Set(relatedJobs.map(j => j.depa
           <div class="embla__container">
           {relatedJobs.map((item, i) => {
               if (item) {
-              const jobUrl = `/job/${item.department.url.split('/units/')[1]}/${item.jobID}`
+              const jobUrl = `/job/${item.department.url}/${item.jobID}`
 
               return (
                 <div 

@@ -59,7 +59,7 @@ interface Props extends OpportunitiesSectionProps {}
                   <div class="flex flex-col justify-between gap-4 md:flex-row items-start">
                     <div class="flex flex-col">
                       <div class="flex flex-col">
-                        <a href={`/job/${job.jobID}`} class="text-text-main font-bold line-clamp-4 text-2xl">
+                        <a href={`/job/${job.department.url}/${job.jobID}`} class="text-text-main font-bold line-clamp-4 text-2xl">
                           {job.title}
                         </a>
                       </div>
@@ -78,8 +78,8 @@ interface Props extends OpportunitiesSectionProps {}
                     </div>
 
                     <div class="flex w-full md:w-fit flex-col md:flex-row gap-4 min-w-fit">
-                      <SecondaryCTA title="View Details" arrow className="text-primary h-14 min-w-fit" url={`/job/${job.jobID}`} />
-                      <PrimaryCTA title="Apply Now" noArrow className="text-primary h-14 min-w-fit" url={`/job/${job.jobID}`} />
+                      <SecondaryCTA title="View Details" arrow className="text-primary h-14 min-w-fit" url={`/job/${job.department.url}/${job.jobID}`} />
+                      <PrimaryCTA title="Apply Now" noArrow className="text-primary h-14 min-w-fit" url={`/job/${job.department.url}/${job.jobID}`} />
                     </div>
 
                   </div>

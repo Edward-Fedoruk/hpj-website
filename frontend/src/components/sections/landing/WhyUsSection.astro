@@ -36,7 +36,7 @@ interface Props extends WhyUsProps {}
 
     {
       whyUsItems && (
-        <ul class="mt-[90px] flex w-full flex-col items-center justify-center gap-6 sm:grid sm:justify-items-center md:grid-cols-2 xl:flex xl:flex-row xl:flex-wrap xl:items-start">
+        <ul class="why-us-list mt-[90px] flex w-full flex-col items-center justify-center gap-12 sm:grid sm:justify-items-center md:grid-cols-2 xl:flex xl:flex-row xl:flex-wrap xl:items-start">
           {whyUsItems.map((item, index) => {
             if (index < whyUsItems.length && index !== whyUsItems.length - 1) {
               return (
@@ -47,7 +47,7 @@ interface Props extends WhyUsProps {}
                   class={"relative flex md:flex-[0_0_280px] w-full items-center justify-center gap-4"}
                 >
                   <WhyUsItem {...item} />
-                  <div class="divider absolute right-0 translate-x-2 md:translate-x-[calc(12px+1px)] top-10 hidden h-[100px] w-px bg-[#E1E1E1] opacity-50 md:block" />
+                  <div class="divider absolute right-0 translate-x-2 md:translate-x-[calc(24px+1px)] top-0 hidden min-h-[100px] h-full w-px bg-[#E1E1E1] opacity-50 lg:block" />
                 </li>
               );
             }
@@ -67,6 +67,25 @@ interface Props extends WhyUsProps {}
     }
   </div>
 </section>
+
+<script is:inline>
+  const list = document.querySelector('.why-us-list');
+
+  const dividers = list?.querySelectorAll('li .divider')
+
+  let maxBlockHeight = 0;
+
+  dividers.forEach(divider => {
+    if (maxBlockHeight < divider.getBoundingClientRect().height) {
+      maxBlockHeight = divider.getBoundingClientRect().height
+    }
+  });
+
+  dividers.forEach(divider => {
+    divider.style.height = `${maxBlockHeight}px`
+  });
+  
+</script>
 
 <style>
   .ComponentSectionsWhyUs ul li:nth-child(4n) .divider {
