@@ -1,6 +1,6 @@
 ---
+import { headerUnit } from "@/data_files/mega_link";
 import Icon from "../icons/Icon.astro";
-import { servicesData } from "@data/mega_link";
 
 const { url, name, width } = Astro.props;
 
@@ -11,44 +11,42 @@ interface Props {
 }
 
 const linkWidth = width !== undefined ? "w-[" + width + "px]" : "w-fit";
+
 ---
 
 <div
-  class={`hs-dropdown py-3 [--adaptive:none] [--strategy:static] md:px-3 md:py-4 md:[--strategy:absolute] md:[--trigger:hover] ${linkWidth}`}
+  class={`hs-dropdown [--adaptive:none] [--strategy:static] lg:px-3 lg:py-4 lg:[--strategy:absolute] lg:[--trigger:hover] w-full lg:w-fit ${linkWidth}`}
 >
-  <a
+  <button
     type="button"
-    class="hidden min-h-[77px] w-full items-center text-center text-2xl font-normal text-current md:flex md:min-h-fit md:text-center md:text-lg dark:text-neutral-400 dark:hover:text-neutral-500"
-    href={url}
+    class="outline-0! min-h-[77px] justify-center flex w-full lg:w-fit items-center text-center text-2xl font-normal text-current lg:min-h-fit lg:text-center lg:text-lg"
     >
     {name}
     <Icon name="chevronDown" className="mt-[3px] ml-1 size-5" />
-  </a>
-
-  <a
-    id={url === "/" ? "home" : url.replace("/", "")}
-    href={url}
-    data-astro-prefetch
-    class={"text-nowrap text md:hidden md:text-center min-h-[77px] md:min-h-fit flex items-center rounded-lg text-2xl font-normal outline-hidden ring-zinc-500 focus-visible:ring-3 dark:text-neutral-400 dark:ring-zinc-200 dark:hover:text-neutral-500 dark:focus:outline-hidden md:py-3 md:text-lg text-current"}
-    style={`min-width: ${width}px;`}
-  >
-    {name}
-  </a>
+  </button>
 
   <div
-    class="hs-dropdown-menu hs-dropdown-open:opacity-100 text-text-main top-full z-10 hidden w-fit min-w-60 rounded-2xl bg-white py-2 opacity-0 transition-[opacity,margin] duration-[0.1ms] before:absolute before:start-0 before:-top-5 before:h-5 before:w-full md:top-[70px] md:p-4 md:shadow-2xl md:duration-[150ms] dark:divide-neutral-700 dark:bg-neutral-800"
+    class="hs-dropdown-menu duration-500 lg:duration-300 w-full hs-dropdown-open:opacity-100 text-white lg:text-text-main top-full z-10 hidden lg:w-fit min-w-60 rounded-2xl lg:bg-white lg:py-2 opacity-0 transition-[opacity,margin] before:absolute before:start-0 before:-top-5 before:h-5 before:w-full lg:top-[70px] lg:p-4 lg:shadow-2xl"
   >
-    <div class="gap-4 md:grid">
-      <div class="mx-1 flex flex-col md:mx-0">
+    <div class="gap-4 lg:grid text-lg leading-[120%] lg:leading-[150%]">
+      <div class="mx-1 flex flex-col lg:mx-0 items-center lg:items-start">
+        <a
+          class="group items-center text-center h-[50px] lg:text-start lg:h-fit w-full flex gap-x-5 rounded-lg p-2 hover:bg-black/5"
+          href={'/units/'}
+        >
+            <div class="grow">
+              <p class="font-normal">All business organisations</p>
+            </div>
+        </a>
         {
-          servicesData &&
-            servicesData.map((data) => (
+          headerUnit?.business_units &&
+            headerUnit.business_units.map((item) => (
               <a
-                class="group flex gap-x-5 rounded-lg p-2 hover:bg-black/5 dark:text-neutral-200 dark:hover:bg-neutral-500/10"
-                href={data.url}
+                class="group items-center text-center h-[50px] lg:text-start lg:h-fit w-full flex gap-x-5 rounded-lg p-2 hover:bg-black/5"
+                href={`/unit/${item.url}`}
               >
                 <div class="grow">
-                  <p class="font-medium text-neutral-800 dark:text-neutral-200">{data.title}</p>
+                  <p class="font-normal">{item.title}</p>
                 </div>
               </a>
             ))
@@ -58,8 +56,10 @@ const linkWidth = width !== undefined ? "w-[" + width + "px]" : "w-fit";
   </div>
 </div>
 
-<script>
-  const goToUnitsPage = () => {
-    window.location.href = "/units"
+<style>
+  @media screen and (max-width:768px) {
+    body:has(.hs-dropdown.open) {
+      overflow-y: hidden;
+    }
   }
-</script>
+</style>

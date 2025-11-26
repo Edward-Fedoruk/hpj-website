@@ -1,0 +1,9 @@
+.toast-close {
+  opacity: 1 !important;
+  color: black !important;
+  margin-left: 10px;
+}
+.toastify {
+  color: black !important;
+  box-shadow: var(--shadow-card);
+}

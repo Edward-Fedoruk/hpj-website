@@ -146,6 +146,7 @@ export interface SectionsCoursesSection extends Struct.ComponentSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'page:section:courses'>;
     coursesList: Schema.Attribute.Component<'shared.courses-block', true>;
+    sectionId: Schema.Attribute.String;
     subTitle: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
@@ -182,6 +183,7 @@ export interface SectionsFaqSection extends Struct.ComponentSchema {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'page:section:faq'>;
+    customWrapperStyle: Schema.Attribute.Text;
     faqItems: Schema.Attribute.Component<'shared.faq-item', true> &
       Schema.Attribute.Required;
     subtitle: Schema.Attribute.Text;
@@ -257,6 +259,7 @@ export interface SectionsInfo extends Struct.ComponentSchema {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'page:section:info'>;
+    customWrapperStyle: Schema.Attribute.Text;
     img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     imgAlt: Schema.Attribute.String;
     infoItems: Schema.Attribute.Component<'shared.info-item', true>;

@@ -65,34 +65,37 @@ const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
             data-aos="fade-up"
             data-aos-delay="350"
             data-aos-once="true"
+            ata-aos-anchor-placement="top-bottom"
           >
             <Fragment set:html={business_unit?.title} />
           </h1>
           {business_unit.description && (
-            <p
-              class="text-text-secondary  mx-auto mt-6 w-full max-w-[846px] text-lg text-pretty md:mt-5 md:text-start"
+            <div 
+              class=""
               data-aos="fade-up"
               data-aos-delay="450"
               data-aos-once="true"
-              data-aos-anchor-placement="top-bottom"
             >
-              {business_unit.description}
-            </p>
-          )}
-          {business_unit.url && (
-            <div
-              class="mx-auto mt-6 mb-8 w-full max-w-[320px] justify-center gap-3 md:mx-0 md:w-fit md:justify-start"
-              data-aos="fade-up"
-              data-aos-delay="550"
-              data-aos-once="true"
-              data-aos-anchor-placement="top-bottom"
-            >
-              <SecondaryCTA
-                title={"Learn more"}
-                url={business_unit.url}
-                className="w-full md:h-[46px] text-primary h-14"
-                arrow
-              />
+              <p
+                class="text-text-secondary  mx-auto mt-6 w-full max-w-[846px] text-lg text-pretty md:mt-5 md:text-start"
+
+                data-aos-anchor-placement="top-bottom"
+              >
+                {business_unit.description}
+              </p>
+              {business_unit.url && (
+                <div
+                  class="mx-auto mt-6 mb-8 w-full sm:max-w-[320px] justify-center gap-3 md:mx-0 md:w-fit md:justify-start"
+                  data-aos-anchor-placement="top-bottom"
+                >
+                  <SecondaryCTA
+                    title={"Learn more"}
+                    url={`/unit/${business_unit.url}`}
+                    className="w-full md:h-[46px] text-primary h-14"
+                    arrow
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>

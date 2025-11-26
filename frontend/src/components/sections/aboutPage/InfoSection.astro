@@ -5,7 +5,20 @@ import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 import { Image } from "astro:assets";
 import { buildStrapiResponsive } from "@/utils/strapiImg";
 
-const { title, subTitle, primaryButton, primaryBtnLabel, primaryBtnURL, secondaryButton, secondaryBtnLabel, secondaryBtnURL, img, imgAlt, infoItems } = Astro.props;
+const { 
+  title, 
+  subTitle, 
+  primaryButton, 
+  primaryBtnLabel, 
+  primaryBtnURL, 
+  secondaryButton, 
+  secondaryBtnLabel, 
+  secondaryBtnURL, 
+  img, 
+  imgAlt, 
+  infoItems, 
+  customWrapperStyle 
+} = Astro.props;
 
 export interface InfoItem {
   bigText: string;
@@ -23,7 +36,8 @@ export interface InfoSectionProps {
   secondaryBtnURL?: string;
   img?: StrapiImageType;
   imgAlt?: string | null;
-  infoItems?: InfoItem[]
+  infoItems?: InfoItem[];
+  customWrapperStyle?: string;
 }
 
 interface Props extends InfoSectionProps {}
@@ -33,130 +47,135 @@ let builtImg = null;
 if (img) {
   builtImg = buildStrapiResponsive(img);
 }
+
+const customWrapperStyleStr = customWrapperStyle ? customWrapperStyle : "";
 ---
 
 <section
-  class="header-text-dark mx-auto flex max-w-340 flex-col gap-8 bg-white px-4 py-[100px] pb-[70px] md:gap-8 md:px-10 md:py-[150px] md:flex-row xl:px-10"
+  class="header-text-dark bg-white px-4 py-[100px] pb-[70px] md:gap-8 md:px-10 md:py-[150px] md:flex-row xl:px-10"
+  style={customWrapperStyleStr}
 >
-  <div 
-    class="flex flex-1 flex-col items-center md:items-start" 
-    data-aos="fade-up"
-    data-aos-delay="150"
-    data-aos-once="true"
-  >
-    <h1
-      class="font-black  text-text-main order-1 block text-center text-[32px] text-balance whitespace-pre-line  md:text-start lg:text-[52px] leading-[120%]"
+  <div class="max-w-7xl mx-auto flex flex-col gap-8 md:flex-row">
+      <div 
+      class="flex flex-1 flex-col items-center md:items-start" 
+      data-aos="fade-up"
+      data-aos-delay="150"
+      data-aos-once="true"
     >
-      <Fragment set:html={title} />
-    </h1>
-    {
-      subTitle && (
-        <p 
-          data-aos="fade-up"
-          data-aos-delay="250"
-          data-aos-once="true"
-          class="text-text-secondary order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
-          {subTitle}
-        </p>
-      )
-    }
+      <h1
+        class="font-black  text-text-main order-1 block text-center text-[32px] text-balance whitespace-pre-line  md:text-start lg:text-[52px] leading-[120%]"
+      >
+        <Fragment set:html={title} />
+      </h1>
+      {
+        subTitle && (
+          <p 
+            data-aos="fade-up"
+            data-aos-delay="250"
+            data-aos-once="true"
+            class="text-text-main order-1 mx-auto mt-6 w-full max-w-[846px] text-center text-lg text-pretty md:text-start">
+            {subTitle}
+          </p>
+        )
+      }
 
-    {
-      infoItems && infoItems.length > 0 && (
-        <ul 
-          class="order-2 mt-10 flex-row flex-wrap gap-x-6 gap-y-10 hidden md:flex w-full"
-        >
+      {
+        infoItems && infoItems.length > 0 && (
+          <ul 
+            class="order-2 mt-10 flex-row flex-wrap gap-x-6 gap-y-10 hidden md:flex w-full"
+          >
+            {
+              infoItems.map((item, index) => (
+                <li 
+                  class="flex-[0_0_45%]"
+                  data-aos="fade-up"
+                  data-aos-delay={300 + index * 200}
+                  data-aos-once="true"
+                >
+                  <p class="text-primary font-bold text-3xl md:text-[38px]">{item.bigText}</p>
+                  <p class="text-gray-90 text-lg">{item.smallText}</p>
+                </li>
+              ))
+            }
+          </ul>
+        )
+      }
+
+      {
+        (primaryButton || secondaryButton) && (
+          <div 
+            class="order-15 mt-6 flex w-full justify-start gap-3"
+            data-aos="fade-up"
+            data-aos-delay="550"
+            data-aos-once="true"
+          >
+            {primaryButton && primaryBtnLabel && <PrimaryCTA title={primaryBtnLabel} url={primaryBtnURL} noArrow className="w-full max-w-[191px] h-14" />}
+            {secondaryButton && secondaryBtnLabel && (
+              <SecondaryCTA
+                title={secondaryBtnLabel}
+                url={secondaryBtnURL}
+                className="w-full max-w-[191px] h-14 text-primary"
+                arrow
+              />
+            )}
+          </div>
+        )
+      }
+      
+    </div>
+    <div 
+      class="order-1 flex-1"     
+      data-aos="fade-up"
+      data-aos-delay="150"
+      data-aos-once="true"
+    >
+      {
+        builtImg && (
+          <div 
+              class="overflow-hidden rounded-2xl"
+              data-aos="fade-up"
+              data-aos-delay="350"
+              data-aos-once="true"
+              >
+            <Image
+              src={builtImg.src}
+              width={builtImg.width}
+              height={builtImg.height}
+              srcset={builtImg.srcset}
+              sizes="(max-width: 500px) 500px, 100vw"
+              alt={img?.alternativeText ?? imgAlt ?? "background image"}
+              draggable={"false"}
+              loading={"eager"}
+              fetchpriority={"high"}
+              class="h-full w-full scale-110 object-cover object-center"
+            />
           {
-            infoItems.map((item, index) => (
-              <li 
-                class="flex-[0_0_45%]"
+            infoItems && (
+              <ul 
+                class="order-2 mt-10 flex flex-row flex-wrap gap-x-6 gap-y-10 md:hidden text-center"     
                 data-aos="fade-up"
-                data-aos-delay={300 + index * 200}
+                data-aos-delay="150"
                 data-aos-once="true"
               >
-                <p class="text-primary font-bold text-3xl md:text-[38px]">{item.bigText}</p>
-                <p class="text-gray-90 text-lg">{item.smallText}</p>
-              </li>
-            ))
+                {
+                  infoItems.map((item, index) => (
+                    <li 
+                      class="flex-[1_1_45%]"
+                      data-aos="fade-up"
+                      data-aos-delay={300 + index * 200}
+                      data-aos-once="true"
+                    >
+                      <p class="font-bold text-primary text-3xl md:text-[38px]">{item.bigText}</p>
+                      <p class="text-gray-90 text-lg">{item.smallText}</p>
+                    </li>
+                  ))
+                }
+              </ul>
+            )
           }
-        </ul>
-      )
-    }
-
-    {
-      (primaryButton || secondaryButton) && (
-        <div 
-          class="order-15 mt-6 flex w-full justify-start gap-3"
-          data-aos="fade-up"
-          data-aos-delay="550"
-          data-aos-once="true"
-        >
-          {primaryButton && primaryBtnLabel && <PrimaryCTA title={primaryBtnLabel} url={primaryBtnURL} noArrow className="w-full max-w-[191px] h-14" />}
-          {secondaryButton && secondaryBtnLabel && (
-            <SecondaryCTA
-              title={secondaryBtnLabel}
-              url={secondaryBtnURL}
-              className="w-full max-w-[191px] h-14 text-primary"
-              arrow
-            />
-          )}
-        </div>
-      )
-    }
-    
-  </div>
-  <div 
-    class="order-1 flex-1"     
-    data-aos="fade-up"
-    data-aos-delay="150"
-    data-aos-once="true"
-  >
-    {
-      builtImg && (
-        <div 
-            class="overflow-hidden rounded-2xl"
-            data-aos="fade-up"
-            data-aos-delay="350"
-            data-aos-once="true"
-            >
-          <Image
-            src={builtImg.src}
-            width={builtImg.width}
-            height={builtImg.height}
-            srcset={builtImg.srcset}
-            sizes="(max-width: 500px) 500px, 100vw"
-            alt={img?.alternativeText ?? imgAlt ?? "background image"}
-            draggable={"false"}
-            loading={"eager"}
-            fetchpriority={"high"}
-            class="h-full w-full scale-110 object-cover object-center"
-          />
-        {
-          infoItems && (
-            <ul 
-              class="order-2 mt-10 flex flex-row flex-wrap gap-x-6 gap-y-10 md:hidden text-center"     
-              data-aos="fade-up"
-              data-aos-delay="150"
-              data-aos-once="true"
-            >
-              {
-                infoItems.map((item, index) => (
-                  <li 
-                    class="flex-[1_1_45%]"
-                    data-aos="fade-up"
-                    data-aos-delay={300 + index * 200}
-                    data-aos-once="true"
-                  >
-                    <p class="fond-bold text-primary text-3xl md:text-[38px]">{item.bigText}</p>
-                    <p class="text-gray-90 text-lg">{item.smallText}</p>
-                  </li>
-                ))
-              }
-            </ul>
-          )
-        }
-        </div>
-      )
-    }
+          </div>
+        )
+      }
+    </div>
   </div>
 </section>

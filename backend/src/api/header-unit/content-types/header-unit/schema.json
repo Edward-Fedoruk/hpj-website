@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "header_units",
+  "info": {
+    "singularName": "header-unit",
+    "pluralName": "header-units",
+    "displayName": "Header Unit"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "business_units": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::business-unit.business-unit"
+    }
+  }
+}

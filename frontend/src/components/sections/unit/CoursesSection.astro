@@ -1,12 +1,12 @@
 ---
 import SecondaryCTA from "@/components/ui/buttons/SecondaryCTA.astro";
-import type { StrapiImageType } from "@/types/common";
-import { buildStrapiResponsive } from "@/utils/strapiImg";
+import CoursesModal from "@/components/ui/modal/CoursesModal.astro";
 
 const {
   title,
   subTitle,
-  coursesList
+  coursesList,
+  sectionId
 } = Astro.props;
 
 export interface CourseItem {
@@ -24,12 +24,14 @@ export interface CoursesSectionProps {
   title: string;
   subTitle?: string;
   coursesList?: CourseBlockItem[];
+  sectionId?:string;
 }
 
 interface Props extends CoursesSectionProps {}
 ---
 
 <section
+  id={sectionId}
   class="header-text-dark mx-auto flex flex-col gap-6 bg-white md:px-4 py-[100px] pb-[142px] md:items-center md:gap-8 md:py-[120px] md:pb-[120px] lg:px-10"
 >
   <div class="w-full">
@@ -47,7 +49,7 @@ interface Props extends CoursesSectionProps {}
         {
           subTitle && 
           <p  
-            class="text-text-secondary  mx-auto mt-3 w-full max-w-[846px] text-center text-lg"
+            class="text-text-main  mx-auto mt-3 w-full max-w-[846px] text-center text-lg"
             data-aos="fade-up"
             data-aos-delay="250"
             data-aos-once="true"
@@ -95,7 +97,7 @@ interface Props extends CoursesSectionProps {}
                               </p>
                             </div>
 
-                            <SecondaryCTA title={"Contact To Book"} className={"text-primary h-[38px] min-w-fit group-hover:bg-primary group-hover:text-white hover:bg-primary! hover:text-white!"}  data-courseId={courseItem.courseId} />
+                            <SecondaryCTA data-micromodal-trigger="courses-modal" title={"Contact To Book"} className={"text-primary h-[38px] min-w-fit group-hover:bg-primary group-hover:text-white hover:bg-primary! hover:text-white!"}  data-courseId={courseItem.courseId} />
                           </li>
                         )
                       })
@@ -119,3 +121,5 @@ interface Props extends CoursesSectionProps {}
     </div>
   </div>
 </section>
+
+<CoursesModal />

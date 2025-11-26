@@ -1,9 +1,11 @@
+import { headerUnit } from "@/data_files/mega_link";
+
 // An array of links for navigation bar
 const navBarLinks = [
   { name: "Home", url: "/", width: 50 },
   { name: "About Us", url: "/about", width: 75 },
   { name: "Board Members", url: "/board-members", width: 140 },
-  { name: "Units", url: "/units", width: 65 },
+  { name: "Business Organisations", url: "/units", width: 65 },
   { name: "Careers", url: "/careers", width: 60 },
 ];
 // An array of links for footer
@@ -19,15 +21,13 @@ const footerLinks = [
     ],
   },
   {
-    section: "Business Units",
-    links: [
-      { name: "EHS Training ", url: "#" },
-      { name: "Security Solutions", url: "#" },
-      { name: "Assurance ", url: "#" },
-      { name: "Event Management", url: "#" },
-      { name: "Recruitment", url: "#" },
-      { name: "CFLS", url: "#" },
-    ],
+    section: "Business Organisations",
+    links: headerUnit.business_units.map((item) => {
+      return {
+        name: item.title,
+        url: item.url,
+      };
+    }),
   },
 ];
 // An object of links for social icons

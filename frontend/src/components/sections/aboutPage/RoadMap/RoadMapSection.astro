@@ -61,66 +61,86 @@ interface Props extends RoadMapSectionProps {}
     {
       roadMapItems && (
         <div
-          class="mt-[90px] hidden w-full flex-col items-center justify-center sm:flex-row lg:flex"
+          class="embla cursor-grab mt-[90px] hidden w-full flex-col items-center justify-center sm:flex-row lg:flex "
           id="road-map-titles"
         >
-          {roadMapItems.map((item, index) => {
-            if (index < roadMapItems.length && index === roadMapItems.length - 1) {
+          <div class="embla__container select-none flex w-full flex-row flex-nowrap relative max-w-7xl mx-auto">
+            {roadMapItems.map((item, index) => {
+              if (index === 0) {
+                return (
+                  <div class="embla__slide relative min-w-[250px] flex h-[280px] flex-[0_0_20%] flex-col items-center gap-4"
+                    data-aos="fade-up"
+                    data-aos-delay={200 + index * 100}
+                    data-aos-once="true"
+                  >
+                    <RoadMapItem {...item} index={index} />
+                    <h4 class="mt-auto text-2xl font-bold">
+                      {item.date
+                        ? new Date(item.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "2-digit",
+                          })
+                        : null}
+                    </h4>
+                  </div>
+                );
+              }
+              if (index < roadMapItems.length && index === roadMapItems.length - 1) {
+                return (
+                  <div class="embla__slide relative min-w-[250px] flex h-[280px] flex-[0_0_20%] flex-col items-center gap-4"
+                    data-aos="fade-up"
+                    data-aos-delay={200 + index * 100}
+                    data-aos-once="true"
+                  >
+                    <RoadMapItem {...item} index={index} />
+                    <div class="absolute top-[58px] left-0 -translate-x-1/2 -z-10 mt-6 hidden w-[calc(100%-232px)] h-px bg-white opacity-50 sm:block" />
+                    <h4 class="mt-auto text-2xl font-bold">
+                      {item.date
+                        ? new Date(item.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "2-digit",
+                          })
+                        : null}
+                    </h4>
+                  </div>
+                );
+              }
+              if (index < roadMapItems.length && index !== roadMapItems.length - 1) {
+                return (
+                  <div 
+                    class="embla__slide relative min-w-[250px] flex h-[280px] flex-[0_0_20%] flex-col items-center gap-4" 
+                    data-aos="fade-up"
+                    data-aos-delay={200 + index * 100}
+                    data-aos-once="true"
+                  >
+                    <RoadMapItem {...item} index={index} />
+                    <div class="absolute top-[58px] -translate-x-1/2 left-0 -z-10 mt-6 hidden w-[calc(100%-232px)] h-px bg-white opacity-50 sm:block" />
+                    <h4 class="mt-auto text-2xl font-bold">
+                      {item.date
+                        ? new Date(item.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "2-digit",
+                          })
+                        : null}
+                    </h4>
+                  </div>
+                );
+              }
               return (
-                <div class="relative flex h-[280px] flex-1 flex-col items-center gap-4"
-                  data-aos="fade-up"
-                  data-aos-delay={200 + index * 100}
-                  data-aos-once="true"
-                >
-                  <RoadMapItem {...item} index={index} />
-                  <div class="absolute top-[58px] left-0 -translate-x-1/2 -z-10 mt-6 hidden w-[calc(100%-232px)] h-px bg-white opacity-50 sm:block" />
-                  <div class="absolute top-[58px] right-0 translate-x-1/2 -z-10 mt-6 hidden w-[calc(100%-232px)] h-px bg-white opacity-50 sm:block" />
+                <RoadMapItem {...item} index={index} />
                   <h4 class="mt-auto text-2xl font-bold">
-                    {item.date
-                      ? new Date(item.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "2-digit",
-                        })
-                      : null}
+                    {
+                      item.date
+                        ? new Date(item.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "2-digit",
+                          })
+                        : null
+                    }
                   </h4>
-                </div>
               );
-            }
-            if (index < roadMapItems.length && index !== roadMapItems.length - 1) {
-              return (
-                <div 
-                  class="relative flex h-[280px] flex-1 flex-col items-center gap-4" 
-                  data-aos="fade-up"
-                  data-aos-delay={200 + index * 100}
-                  data-aos-once="true"
-                >
-                  <RoadMapItem {...item} index={index} />
-                  <div class="absolute top-[58px] -translate-x-1/2 left-0 -z-10 mt-6 hidden w-[calc(100%-232px)] h-px bg-white opacity-50 sm:block" />
-                  <h4 class="mt-auto text-2xl font-bold">
-                    {item.date
-                      ? new Date(item.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "2-digit",
-                        })
-                      : null}
-                  </h4>
-                </div>
-              );
-            }
-            return (
-              <RoadMapItem {...item} index={index} />
-                <h4 class="mt-auto text-2xl font-bold">
-                  {
-                    item.date
-                      ? new Date(item.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "2-digit",
-                        })
-                      : null
-                  }
-                </h4>
-            );
-          })}
+            })}
+          </div>
         </div>
       )
     }
@@ -143,9 +163,6 @@ interface Props extends RoadMapSectionProps {}
 </section>
 
 <style is:global>
-  #road-map-titles .selected p {
-    font-weight: 700;
-  }
   #road-map-titles .selected .square {
     background-color: #ffffff40;
   }
@@ -226,18 +243,19 @@ interface Props extends RoadMapSectionProps {}
   import EmblaCarousel, { type EmblaOptionsType } from "embla-carousel";
   import { addPrevNextBtnsClickHandlers } from "@scripts/emblaSliderButtons";
 
-  const emblaNode = document.querySelector("#mobile-road-map");
-  const options: EmblaOptionsType = { loop: false, align: "start", dragFree: false };
-  const emblaApi = EmblaCarousel(emblaNode! as HTMLElement, options);
+  const emblaNodes = document.querySelectorAll(".embla");
 
-  const prevBtnNode = emblaNode!.querySelector(".embla__button--prev") as HTMLElement;
-  const nextBtnNode = emblaNode!.querySelector(".embla__button--next") as HTMLElement;
+  emblaNodes!.forEach(emblaNode => {
+    const options: EmblaOptionsType = { loop: false, align: "start", dragFree: false };
+    const emblaApi = EmblaCarousel(emblaNode! as HTMLElement, options);
 
-  if (prevBtnNode && nextBtnNode) {
-    const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtnNode, nextBtnNode);
+    const prevBtnNode = emblaNode!.querySelector(".embla__button--prev") as HTMLElement;
+    const nextBtnNode = emblaNode!.querySelector(".embla__button--next") as HTMLElement;
 
-    emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
-  }
+    if (prevBtnNode && nextBtnNode) {
+      const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtnNode, nextBtnNode);
 
-
+      emblaApi.on("destroy", removePrevNextBtnsClickHandlers);
+    }
+  })
 </script>

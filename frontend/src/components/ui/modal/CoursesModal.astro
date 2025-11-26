@@ -1,0 +1,36 @@
+---
+import '@styles/modals.css'
+import ContactForm from '../forms/ContactForm.astro'
+
+---
+
+<div class="micromodal" id="courses-modal" aria-hidden="true">
+    <div class="micromodal__overlay" tabindex="-1" data-micromodal-close>
+      <div class="micromodal__container" role="dialog" aria-modal="true" aria-labelledby="courses-modal-title">
+        <button aria-label="Close modal" class="absolute right-7 top-7 h-[30px] w-[30px] text-text-main" data-micromodal-close>
+            <svg
+              class="shrink-0"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg>
+        </button>
+
+        <ContactForm />
+      </div>
+    </div>
+</div>
+
+<script>
+  import MicroModal from 'micromodal';
+
+  MicroModal.init();
+</script>

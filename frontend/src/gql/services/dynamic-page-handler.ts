@@ -70,7 +70,7 @@ export class DynamicPageHandler {
   async getDynamicPageData(): Promise<{ pages: Page[]; apiFormsForms: Form[] }> {
     const document = gql`
       {
-        pages {
+        pages(pagination: { page: 1, pageSize: 500 }) {
           documentId
           slug
           title
@@ -258,6 +258,7 @@ export class DynamicPageHandler {
               secondaryButton
               secondaryBtnLabel
               secondaryBtnURL
+              customWrapperStyle
               infoItems {
                 bigText
                 smallText
@@ -464,6 +465,7 @@ export class DynamicPageHandler {
               componentId
               title
               subtitle
+              customWrapperStyle
               faqItems {
                 questionText
                 answerText
@@ -494,6 +496,7 @@ export class DynamicPageHandler {
               componentId
               title
               subTitle
+              sectionId
               coursesList {
                 blockTitle
                 trainingCourses {

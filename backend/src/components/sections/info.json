@@ -97,6 +97,9 @@
       "type": "component",
       "component": "shared.info-item",
       "repeatable": true
+    },
+    "customWrapperStyle": {
+      "type": "text"
     }
   },
   "config": {}

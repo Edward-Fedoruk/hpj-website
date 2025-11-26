@@ -22,7 +22,7 @@ export default function renderBlocks(blocks) {
     .map((block) => {
       switch (block.type) {
         case "paragraph":
-          return `<p>${renderChildren(block.children)}</p>`;
+          return `<p class="min-h-2">${renderChildren(block.children)}</p>`;
 
         case "heading":
           const level = block.level || 2;
