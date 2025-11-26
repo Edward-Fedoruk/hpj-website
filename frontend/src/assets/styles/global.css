@@ -3,6 +3,7 @@
 @plugin '@tailwindcss/forms';
 
 @import "./fonts.css";
+@import "./toast.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -62,6 +63,10 @@
   box-shadow:
     0px 8px 16px 0px #00000014,
     0px 0px 4px 0px #0000000a;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @media screen and (max-width: 768px) {

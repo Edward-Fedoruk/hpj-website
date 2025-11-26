@@ -5,13 +5,12 @@ const FORM_ID = "tfnmpi1ljr81ql28fvyzwxyz"
 ---
 
 <form
-  class="flex w-full flex-col items-center"
+  class="flex w-full flex-col items-center contact-form"
   data-endpoint={ENDPOINT}
   data-form-id={FORM_ID}
   data-success-message={"We will contact you shortly"}
   data-error-message={"There was an error submitting the form. Please try again."}
-  onsubmit="return formhandleSubmit(event, this)"
-  class="w-[532px]"
+  class="md:w-[532px]"
 >
     <div class="mb-8">
         <h2 class="text-3xl md:text-[36px] text-center text-text-main font-medium">Contact to Book</h2>
@@ -59,7 +58,6 @@ const FORM_ID = "tfnmpi1ljr81ql28fvyzwxyz"
     >
       Send Email
     </button>
-    <p id="status" class="text-text-main my-2 h-5 text-sm" aria-live="polite"></p>
     <p 
           class="text-text-secondary text-center"
           data-aos="fade-up"
@@ -70,39 +68,46 @@ const FORM_ID = "tfnmpi1ljr81ql28fvyzwxyz"
   </div>
 </form>
 
-<script is:inline>
-async function formhandleSubmit(ev, formElement) {
-    ev.preventDefault();
-    const statusEl = formElement.querySelector("#status");
-    const setStatus = (m) => (statusEl.textContent = m || "");
+<script>
+  import showToast from '@utils/toastMessages'
 
-    const honey = (formElement.querySelector('[name="honeypot_field"]')?.value || "").trim();
+  const formElement = document.querySelector('.contact-form') as HTMLFormElement;
+
+  if (formElement) {
+    formElement.addEventListener('submit', (event) => (formHandleSubmit(event, formElement)))
+  }
+
+  async function formHandleSubmit(ev: SubmitEvent, formElement: HTMLFormElement) {
+    ev.preventDefault();
+
+    const honeyElement = formElement.querySelector('[name="honeypot_field"]') as HTMLFormElement;
+    const honey = (honeyElement?.value || "").trim()
     if (honey) return false;
 
     const endpoint = formElement.dataset.endpoint;
     const formId = formElement.dataset.formId;
-    if (!formId) return setStatus("Form ID is missing");
+    if (!formId) return showToast("Form ID is missing");
 
-    const emailEl = formElement.querySelector('input[type="email"], input[name*="email" i]');
-    const nameEl = formElement.querySelector('input[name*="name" i]');
-    const phoneEl = formElement.querySelector('input[type="tel"]');
+    const emailEl = formElement.querySelector('input[type="email"], input[name*="email" i]') as HTMLInputElement;
+    const nameEl = formElement.querySelector('input[name*="name" i]')as HTMLInputElement;
+    const phoneEl = formElement.querySelector('input[type="tel"]')as HTMLInputElement;
     if (!emailEl || !emailEl.value.trim()) {
-      setStatus("Enter email");
+      showToast("Enter email", "warning");
       emailEl?.focus();
       return false;
     }
     if (!nameEl || !nameEl.value.trim()) {
-      setStatus("Enter your name");
+      showToast("Enter your name", "warning");
       nameEl?.focus();
       return false;
     }
     if (!isValidPhone(phoneEl.value.trim())) {
-      setStatus("Invalid phone number");
+      showToast("Invalid phone number", "warning");
       phoneEl?.focus();
       return false;
     }
     if (!phoneEl || !phoneEl.value.trim()) {
-      setStatus("Enter your phone");
+      showToast("Enter your phone", "warning");
       phoneEl?.focus();
       return false;
     }
@@ -110,7 +115,7 @@ async function formhandleSubmit(ev, formElement) {
     const fd = new FormData();
     fd.append("form", formId);
 
-    const inputs = formElement.querySelectorAll('input[type="text"], input[type="email"], textarea, input[type="tel"]');
+    const inputs = formElement.querySelectorAll('input[type="text"], input[type="email"], textarea, input[type="tel"]') as NodeListOf<HTMLInputElement>;
     for (const el of inputs) {
       const name = el.name?.trim();
       if (!name) continue;
@@ -120,16 +125,18 @@ async function formhandleSubmit(ev, formElement) {
 
     const btn = formElement.querySelector('button[type="submit"]');
     btn?.setAttribute("disabled", "true");
-    setStatus("Sending...");
+    showToast("Sending...");
 
     try {
+      if (!endpoint) return
+
       const res = await fetch(endpoint, { method: "POST", body: fd });
       if (!res.ok) throw new Error(await res.text());
       formElement.reset();
-      setStatus(formElement.dataset.successMessage);
+      showToast(formElement.dataset.successMessage, "success");
     } catch (err) {
       console.error(err);
-      setStatus(formElement.dataset.errorMessage);
+      showToast(formElement.dataset.errorMessage, "error");
     } finally {
       btn?.removeAttribute("disabled");
     }
@@ -137,7 +144,7 @@ async function formhandleSubmit(ev, formElement) {
     return false;
   }
 
-  function isValidPhone(phone) {
+  function isValidPhone(phone:string) {
     return /^\+?[0-9][0-9\s\-()]{6,20}$/.test(phone);
   }
 </script>

@@ -1,11 +1,13 @@
 ---
+import FormLayout from "@/components/ui/forms/FormLayout.astro";
 import type { FormType, FormLayoutType } from "@/types/formTypes";
 import '@styles/forms.css';
 
-interface BU {
+export interface BU {
   documentId: string;
   title: string;
 }
+
 interface Props {
   blockTitle: string;
   blockSubtitle: string;
@@ -15,49 +17,12 @@ interface Props {
   phone: string;
   formTitle: string;
   formSubTitle?: string;
-  form?: FormType | null;
-  submitBtnLabel?: string | null;
+  form: FormType | null;
+  submitBtnLabel: string | null;
   businessUnitsForFormSelect?: BU[] | null;
 }
 
 const { blockTitle, blockSubtitle, email, address, workingTime, phone, formTitle, formSubTitle, form, submitBtnLabel, businessUnitsForFormSelect = [] } = Astro.props;
-
-const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL || "http://localhost:1337";
-const ENDPOINT = `${STRAPI_URL}/api/api-forms/submission/post`;
-const FORM_ID = form?.documentId ?? "";
-
-const layouts = (form as any)?.steps?.[0]?.layouts ?? null;
-
-function byIdMap(arr: FormLayoutType[] | undefined) {
-  const m = new Map<string, FormLayoutType>();
-  (arr ?? []).forEach((it) => m.set(it.i, it));
-  return m;
-}
-const lgMap = byIdMap(layouts?.lg);
-const mdMap = byIdMap(layouts?.md);
-const smMap = byIdMap(layouts?.sm);
-
-const order = layouts?.lg?.length ? layouts.lg : layouts?.md?.length ? layouts.md : (layouts?.sm ?? []);
-
-function pos(id: string) {
-  const lg = lgMap.get(id) ?? mdMap.get(id) ?? smMap.get(id);
-  const md = mdMap.get(id) ?? smMap.get(id) ?? lgMap.get(id);
-  const sm = smMap.get(id) ?? mdMap.get(id) ?? lgMap.get(id);
-  return {
-    lgx: lg?.x ?? 0,
-    lgw: lg?.w ?? 12,
-    mdx: md?.x ?? 0,
-    mdw: md?.w ?? 12,
-    smx: sm?.x ?? 0,
-    smw: sm?.w ?? 12,
-  };
-}
-
-const BU_OPTIONS = (businessUnitsForFormSelect ?? []).map((u) => ({
-  value: u.title,
-  label: u.title,
-}));
-
 ---
 
 <section
@@ -128,131 +93,7 @@ const BU_OPTIONS = (businessUnitsForFormSelect ?? []).map((u) => ({
 
     {formSubTitle && <p class="mt-3 mx-auto w-full max-w-[578px] text-center text-lg text-text-secondary">{formSubTitle}</p>}
 
-    {
-      layouts && (
-        <form
-          class="flex w-full flex-col items-center mt-8"
-          data-endpoint={ENDPOINT}
-          data-form-id={FORM_ID}
-          data-success-message={form?.successMessage || "Your message has been sent successfully."}
-          data-error-message={form?.errorMessage || "There was an error submitting the form. Please try again."}
-          onsubmit="return GetInTouchFormhandleSubmit(event, this)"
-        >
-          <div class="flex w-full flex-col items-center">
-            <input type="text" name="honeypot_field" class="hidden" tabindex="-1" autocomplete="off" />
-
-            <div class="grid12 w-full max-w-[920px] gap-4">
-              {order.map((it: FormLayoutType) => {
-                const p = pos(it.i);
-                const f = it.field;
-                const required = f.config?.required ? true : undefined;
-
-                const isBUSelect = f.type === "select" && f.name === "businessUnit";
-                const selectOptions = isBUSelect ? BU_OPTIONS : (f.options ?? []);
-
-                return (
-                  <div
-                    class="cell flex flex-col"
-                    style={
-                      {
-                        "--x-sm": p.smx,
-                        "--w-sm": p.smw,
-                        "--x-md": p.mdx,
-                        "--w-md": p.mdw,
-                        "--x-lg": p.lgx,
-                        "--w-lg": p.lgw,
-                      } as any
-                    }
-                  >
-                    {f.type === "text" || f.type === "email" ? (
-                      <label class="flex flex-col gap-1">
-                        <span class="label">
-                          {f.label}
-                          {required && <sup class="req">*</sup>}
-                        </span>
-                        <input
-                          id={f.name}
-                          type={f.type}
-                          name={f.name}
-                          placeholder={f.placeholder || ""}
-                          required={required}
-                          class="input"
-                        />
-                      </label>
-                    ) : f.type === "textarea" ? (
-                      <label class="flex flex-col gap-1">
-                        <span class="label">
-                          {f.label}
-                          {required && <sup class="req">*</sup>}
-                        </span>
-                        <textarea
-                          name={f.name}
-                          placeholder={f.placeholder || ""}
-                          required={required}
-                          class="input min-h-[120px]"
-                        />
-                      </label>
-                    ) : f.type === "file" ? (
-                      <label class="flex flex-col gap-1">
-                        <span class="label">
-                          {f.label}
-                          {required && <sup class="req">*</sup>}
-                        </span>
-                        <input type="file" name={f.name} required={required} class="fileinput" />
-                      </label>
-                    ) : f.type === "select" ? (
-                      <label class="flex flex-col gap-1">
-                        <span class="label">
-                          {f.label}
-                          {required && <sup class="req">*</sup>}
-                        </span>
-                        <select name={f.name} required={required} class="input">
-                          <option value="" disabled selected>
-                            {f.placeholder || "Select"}
-                          </option>
-                          {selectOptions.map((opt) => (
-                            <option value={opt.value}>{opt.label}</option>
-                          ))}
-                        </select>
-                      </label>
-                    ) : f.type === "checkboxgroup" ? (
-                      <fieldset class="flex flex-col gap-2">
-                        <legend class="label">
-                          {f.label}
-                          {required && <sup class="req">*</sup>}
-                        </legend>
-                        <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
-                          {(f.options ?? []).map((opt) => (
-                            <label class="inline-flex items-center gap-2 text-text-main">
-                              <input type="checkbox" name={`${f.name}[]`} value={opt.value} class="h-4 w-4" />
-                              <span>{opt.label}</span>
-                            </label>
-                          ))}
-                        </div>
-                      </fieldset>
-                    ) : (
-                      <div class="text-sm text-amber-300">
-                        Unsupported field: <code>{f.type}</code>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            <button
-              type="submit"
-              class="mt-6 flex h-14 w-full items-center justify-center rounded-[10px] bg-primary text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {submitBtnLabel ?? "Submit"}
-            </button>
-
-            <p id="status" class="h-5 pt-[10px] text-sm text-[#FFFFFFCC]" aria-live="polite" />
-          </div>
-        </form>
-      )
-    }
-    <p class="mt-2 text-text-main">By contacting us you agree to our <a href="/terms-and-conditions" target="_blank"  class="underline underline-offset-3 cursor-pointer">Terms & Conditions</a> and <a href="/privacy-policy" target="_blank" class="underline underline-offset-3 cursor-pointer">Privacy Policy</a>.</p>
+    <FormLayout form={form} submitBtnLabel={submitBtnLabel} formId="get-in-touch-form" businessUnitsForFormSelect={businessUnitsForFormSelect} />
   </div>
 </section>
 

@@ -1,0 +1,189 @@
+---
+import type { BU } from "@/components/sections/misc/GetInTouchFormSection.astro";
+import type { FormType, FormLayoutType } from "@/types/formTypes";
+import '@styles/forms.css';
+
+interface Props {
+  form: FormType | null;
+  submitBtnLabel: string | null;
+  formId: string;
+  className?: string;
+  businessUnitsForFormSelect?: BU[] | null;
+}
+
+const { form, submitBtnLabel, formId, className, businessUnitsForFormSelect = [] } = Astro.props;
+
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL || "http://localhost:1337";
+const ENDPOINT = `${STRAPI_URL}/api/api-forms/submission/post`;
+const FORM_ID = form?.documentId ?? "";
+
+const layouts = (form as any)?.steps?.[0]?.layouts ?? null;
+
+function byIdMap(arr: FormLayoutType[] | undefined) {
+  const m = new Map<string, FormLayoutType>();
+  (arr ?? []).forEach((it) => m.set(it.i, it));
+  return m;
+}
+const lgMap = byIdMap(layouts?.lg);
+const mdMap = byIdMap(layouts?.md);
+const smMap = byIdMap(layouts?.sm);
+
+const order = layouts?.lg?.length ? layouts.lg : layouts?.md?.length ? layouts.md : (layouts?.sm ?? []);
+
+function pos(id: string) {
+  const lg = lgMap.get(id) ?? mdMap.get(id) ?? smMap.get(id);
+  const md = mdMap.get(id) ?? smMap.get(id) ?? lgMap.get(id);
+  const sm = smMap.get(id) ?? mdMap.get(id) ?? lgMap.get(id);
+  return {
+    lgx: lg?.x ?? 0,
+    lgw: lg?.w ?? 12,
+    mdx: md?.x ?? 0,
+    mdw: md?.w ?? 12,
+    smx: sm?.x ?? 0,
+    smw: sm?.w ?? 12,
+  };
+}
+
+const BU_OPTIONS = (businessUnitsForFormSelect ?? []).map((u) => ({
+  value: u.title,
+  label: u.title,
+}));
+---
+
+{
+    layouts && (
+        <form
+          class={`form-layout flex w-full flex-col items-center mt-8 cv-form ${className}`}
+          data-endpoint={ENDPOINT}
+          data-form-id={FORM_ID}
+          data-success-message={form?.successMessage || "Your CV has been sent successfully."}
+          data-error-message={form?.errorMessage || "There was an error submitting the form. Please try again."}
+          method="post"
+          id={formId}
+        >
+          <div class="flex w-full flex-col items-center">
+            <input type="text" name="honeypot_field" class="hidden" tabindex="-1" autocomplete="off" />
+
+            <div class="grid12 w-full max-w-[920px] gap-6">
+              {order.map((it: FormLayoutType) => {
+                const p = pos(it.i);
+                const f = it.field;
+                const required = f.config?.required ? true : undefined;
+
+                const isBUSelect = f.type === "select" && f.name === "businessUnit";
+                const selectOptions = isBUSelect ? BU_OPTIONS : (f.options ?? []);
+
+                return (
+                  <div
+                    class="cell flex flex-col"
+                    style={
+                      {
+                        "--x-sm": p.smx,
+                        "--w-sm": p.smw,
+                        "--x-md": p.mdx,
+                        "--w-md": p.mdw,
+                        "--x-lg": p.lgx,
+                        "--w-lg": p.lgw,
+                      } as any
+                    }
+                  >
+                    {f.type === "text" || f.type === "email" ? (
+                      <label class="flex flex-col gap-1">
+                        <span class="label">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </span>
+                        <input
+                          id={f.name}
+                          type={f.type}
+                          name={f.name}
+                          placeholder={f.placeholder || ""}
+                          required={required}
+                          class="input ring-primary"
+                        />
+                      </label>
+                    ) : f.type === "textarea" ? (
+                      <label class="flex flex-col gap-1">
+                        <span class="label">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </span>
+                        <textarea
+                          name={f.name}
+                          placeholder={f.placeholder || ""}
+                          required={required}
+                          class="input h-[120px] resize-none ring-primary"
+                        />
+                      </label>
+                    ) : f.type === "file" ? (
+                      <label class="flex flex-col gap-1 relative">
+                        <span class="label w-fit">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </span>
+                        <input type="file" name={f.name} required={required} class="fileinput w-full h-[calc(100%-24px)] top-6 absolute left-0 ring-primary" onload="() => {fileInputFieldHandler(this)}" onchange="() => {fileInputFieldHandler(this)}"/>
+                        <div class="text-text-secondary placeholder cursor-pointer h-[130px] flex flex-col justify-center items-center overflow-hidden">
+                          <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 3V15M12 3L17 8M12 3L7 8M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          <p class="text-text-secondary mt-1 break-all text-center line-clamp-2">CV Upload</p>
+                        </div>
+                      </label>
+                    ) : f.type === "checkboxgroup" ? (
+                      <fieldset class="flex flex-col gap-2">
+                        <legend class="label mb-2">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </legend>
+                        <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
+                          {(f.options ?? []).map((opt) => (
+                            <label class="inline-flex items-center gap-2">
+                              <input type="checkbox" name={`${f.name}[]`} value={opt.value} class="h-6 w-6 ring-0 cursor-pointer rounded-sm border-px text-primary border-[#A9A9A9] checked:border-transparent outline-0! " />
+                              <span class="checkbox-label text-pretty cursor-pointer">{opt.label}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </fieldset>
+                    ): f.type === "select" ? (
+                      <label class="flex flex-col gap-1">
+                        <span class="label">
+                          {f.label}
+                          {required && <sup class="req">*</sup>}
+                        </span>
+                        <select name={f.name} required={required} class="input">
+                          <option value="" disabled selected>
+                            {f.placeholder || "Select"}
+                          </option>
+                          {selectOptions.map((opt) => (
+                            <option value={opt.value}>{opt.label}</option>
+                          ))}
+                        </select>
+                      </label>
+                    ) : (
+                      <div class="text-sm text-amber-300">
+                        Unsupported field: <code>{f.type}</code>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <button
+              type="submit"
+              class="mt-6 flex h-14 w-full max-w-[300px] items-center justify-center rounded-[10px] bg-primary text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {submitBtnLabel ?? "Submit"}
+            </button>
+
+            <p id="status" class="h-5 pt-2.5 text-sm text-text-main" aria-live="polite" />
+          </div>
+        </form>
+    )
+}
+
+<script>
+    import { formsInit } from "@utils/forms.ts"
+
+    formsInit();
+</script>

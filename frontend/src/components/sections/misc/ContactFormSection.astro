@@ -35,9 +35,9 @@ const FORM_ID = form?.documentId ?? "";
         class="flex w-full flex-col items-center"
         data-endpoint={ENDPOINT}
         data-form-id={FORM_ID}
-        onsubmit="return handleSubmit(event, this)"
         data-success-message={form?.successMessage || "Your CV has been sent successfully."}
         data-error-message={form?.errorMessage || "There was an error submitting the form. Please try again."}
+        id="contact-form"
       >
         <div class="relative flex w-full max-w-[436px] rounded-[10px] border border-[var(--color-primary)] bg-white p-1">
           <input type="text" name="honeypot_field" class="hidden" tabindex="-1" autocomplete="off" />
@@ -62,43 +62,51 @@ const FORM_ID = form?.documentId ?? "";
             {submitBtnLabel || "Send"}
           </button>
         </div>
-
-        <p id="status" class="h-5 pt-[10px] text-sm text-[#FFFFFFCC]" aria-live="polite" />
       </form>
     )
   }
 </section>
 
-<script is:inline>
-  async function handleSubmit(ev, form) {
+<script>
+  import showToast from "@/utils/toastMessages";
+
+  window.addEventListener("load", () => {
+    const formElement = document.querySelector("#contact-form") as HTMLFormElement;
+
+    if (!formElement) return
+
+    formElement.addEventListener("submit", (event) => handleSubmit(event, formElement));
+  });
+
+  async function handleSubmit(ev: SubmitEvent, form: HTMLFormElement) {
     ev.preventDefault();
 
-    const statusEl = form.querySelector("#status");
-    const setStatus = (m) => (statusEl.textContent = m || "");
-
-    const honey = (form.querySelector('[name="honeypot_field"]')?.value || "").trim();
+    const honeyElement = form.querySelector('[name="honeypot_field"]') as HTMLFormElement;
+    const honey = (honeyElement?.value || "").trim();
     if (honey) return false;
 
     const endpoint = form.dataset.endpoint;
     const formId = form.dataset.formId;
-    const emailEl = form.querySelector("#emailaddress");
-    const btn = form.querySelector('button[type="submit"]');
+    const emailEl = form.querySelector("#emailaddress") as HTMLInputElement;
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
 
     const email = (emailEl?.value || "").trim();
     if (!email) {
-      setStatus("Enter email");
+      showToast("Enter email", 'warning');
       emailEl?.focus();
       return false;
     }
 
     const fd = new FormData();
-    fd.append("form", formId);
+    fd.append("form", formId ? formId : 'null');
     fd.append("submission", JSON.stringify({ emailaddress: email }));
 
     btn.disabled = true;
-    setStatus("Sending...");
+    showToast("Sending...");
 
     try {
+      if (!endpoint) return
+
       const res = await fetch(endpoint, {
         method: "POST",
         body: fd,
@@ -107,10 +115,10 @@ const FORM_ID = form?.documentId ?? "";
       if (!res.ok) throw new Error(await res.text());
 
       form.reset();
-      setStatus(form.dataset.successMessage);
+      showToast(form.dataset.successMessage, 'success');
     } catch (err) {
       console.error(err);
-      setStatus(form.dataset.errorMessage);
+      showToast(form.dataset.errorMessage, 'error');
     } finally {
       btn.disabled = false;
     }
