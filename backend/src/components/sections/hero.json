@@ -91,6 +91,19 @@
     },
     "bgImgAlt": {
       "type": "string"
+    },
+    "altBgImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "altBgImageText": {
+      "type": "string"
     }
   },
   "config": {}

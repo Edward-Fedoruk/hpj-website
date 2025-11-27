@@ -59,6 +59,16 @@
     "isIndexable": {
       "type": "boolean",
       "default": false
+    },
+    "customFooterImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

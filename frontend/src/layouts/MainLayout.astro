@@ -6,6 +6,7 @@ import FooterSection from "@components/sections/navbar&footer/FooterSection.astr
 import { SITE } from "@data/constants";
 import "@styles/global.css";
 import "toastify-js/src/toastify.css"
+import type { StrapiImageType } from "@/types/common";
 
 // Setting expected props
 const {
@@ -15,6 +16,7 @@ const {
   lang = "en",
   customDescription = null,
   customOgTitle = null,
+  customFooterImage = null,
 } = Astro.props;
 
 // Interface to type-check the properties
@@ -25,6 +27,7 @@ interface Props {
   lang?: string;
   customDescription?: string | null;
   customOgTitle?: string | null;
+  customFooterImage?: StrapiImageType | null;
 }
 ---
 
@@ -53,7 +56,7 @@ interface Props {
       </main>
     </div>
 
-    <FooterSection />
+    <FooterSection customFooterImage={customFooterImage} />
 
     <script>
       import "preline/preline.js";

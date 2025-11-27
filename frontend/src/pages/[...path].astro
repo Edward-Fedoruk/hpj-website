@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   const dynamicPageHandler = new DynamicPageHandler();
   const cmsResponse = await dynamicPageHandler.getDynamicPageData();
 
-  return cmsResponse.pages.map(({ slug, title, seoTitle, seoDescription, sections, isIndexable, documentId }) => {
+  return cmsResponse.pages.map(({ slug, title, seoTitle, seoDescription, sections, isIndexable, documentId, customFooterImage }) => {
     return {
       params: { path: slug === "/home" ? "/" : slug },
       props: {
@@ -22,12 +22,13 @@ export async function getStaticPaths() {
         cmsSections: sections,
         isIndexable,
         documentId,
+        customFooterImage
       },
     };
   });
 }
 
-const { cmsSections = [], seoTitle, seoDescription } = Astro.props;
+const { cmsSections = [], seoTitle, seoDescription, customFooterImage } = Astro.props;
 
 const blocks = cmsSections.map((s: CMSSection) => {
   const key = s.componentId;
@@ -44,7 +45,7 @@ const blocks = cmsSections.map((s: CMSSection) => {
 
   <body>
     <main>
-      <MainLayout>
+      <MainLayout customFooterImage={customFooterImage}>
         {blocks.length === 0 && <h1>Empty page</h1>}
 
         {

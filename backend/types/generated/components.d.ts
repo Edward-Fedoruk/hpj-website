@@ -229,6 +229,10 @@ export interface SectionsHero extends Struct.ComponentSchema {
     icon: 'monitor';
   };
   attributes: {
+    altBgImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    altBgImageText: Schema.Attribute.String;
     bgImgAlt: Schema.Attribute.String;
     bgImgSrc: Schema.Attribute.Media<'images' | 'files'>;
     componentId: Schema.Attribute.String &
