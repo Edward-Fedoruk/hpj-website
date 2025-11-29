@@ -135,11 +135,11 @@ if (altBgImage) {
 
     const isNight = hour >= 18 || hour < 6;
 
-    if (isNight) {
+    if (isNight && !heroSection.dataset.altImgSrc) {
       heroImgElement?.classList.add('hidden')
       nightHeroImgElement?.classList.remove('hidden')
+    } else {
+      heroImgElement?.classList.remove('hidden')
     }
-
-    console.log(heroSection.dataset.altImgSrc);
   });
 </script>

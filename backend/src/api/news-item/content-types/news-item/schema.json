@@ -1,9 +1,15 @@
 {
-  "collectionName": "components_shared_news_items",
+  "kind": "collectionType",
+  "collectionName": "news_items",
   "info": {
+    "singularName": "news-item",
+    "pluralName": "news-items",
     "displayName": "News Item"
   },
-  "options": {},
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
@@ -13,11 +19,13 @@
       "type": "text"
     },
     "dateCreatedAt": {
-      "type": "datetime"
+      "type": "date"
     },
-    "url": {
+    "slug": {
       "type": "string",
-      "required": true
+      "default": "/news/",
+      "required": true,
+      "unique": true
     },
     "img": {
       "type": "media",
@@ -32,6 +40,5 @@
     "imgAlt": {
       "type": "text"
     }
-  },
-  "config": {}
+  }
 }

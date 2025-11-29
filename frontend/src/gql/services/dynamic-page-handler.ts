@@ -231,12 +231,12 @@ export class DynamicPageHandler {
               componentId
               title: newsTitle
               subTitle: newsSubtitle
-              newsList {
+              newsList: news_items {
                 title
                 description: text
                 date: dateCreatedAt
                 imgAlt
-                url
+                slug
                 img {
                   url
                   alternativeText
@@ -252,12 +252,12 @@ export class DynamicPageHandler {
               componentId
               title: newsTitle
               subTitle: newsSubtitle
-              newsList {
+              newsList: news_items {
                 title
                 description: text
                 date: dateCreatedAt
                 imgAlt
-                url
+                slug
                 img {
                   url
                   alternativeText

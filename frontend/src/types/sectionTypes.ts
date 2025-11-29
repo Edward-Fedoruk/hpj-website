@@ -98,7 +98,7 @@ export type NewsItem = {
   title: string;
   description: string;
   date?: string;
-  url?: string;
+  slug: string;
   imgAlt?: string;
   img: StrapiImageType;
 };
