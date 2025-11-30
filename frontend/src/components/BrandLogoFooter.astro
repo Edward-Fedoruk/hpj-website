@@ -1,6 +1,23 @@
 ---
-import logo from "@images/logoFooter.jpg";
+import type { StrapiImageType } from "@/types/common";
+import { buildStrapiResponsive } from "@/utils/strapiImg";
+import logo from "@images/logoFooter.svg";
 import { Image } from "astro:assets";
+
+const { customFooterImage, className } = Astro.props;
+
+interface Props {
+  customFooterImage?: StrapiImageType | null;
+  className?: string | null;
+}
+
+const builtImg = customFooterImage ? buildStrapiResponsive(customFooterImage) : null;
 ---
 
-<Image src={logo} width={177} height={38} alt="Logo" {...Astro.props} />
+{
+    builtImg ?
+        <Image src={builtImg.src} width={230} height={38} alt="Logo" class={className} />
+     :
+        <Image src={logo} width={230} height={38} alt="Logo" class={className} />
+
+}

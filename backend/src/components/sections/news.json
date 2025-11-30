@@ -17,10 +17,10 @@
       "default": "page:section:news",
       "required": true
     },
-    "newsList": {
-      "type": "component",
-      "component": "shared.news-item",
-      "repeatable": true
+    "news_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::news-item.news-item"
     }
   },
   "config": {}

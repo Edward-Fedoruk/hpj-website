@@ -229,6 +229,10 @@ export interface SectionsHero extends Struct.ComponentSchema {
     icon: 'monitor';
   };
   attributes: {
+    altBgImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    altBgImageText: Schema.Attribute.String;
     bgImgAlt: Schema.Attribute.String;
     bgImgSrc: Schema.Attribute.Media<'images' | 'files'>;
     componentId: Schema.Attribute.String &
@@ -332,7 +336,10 @@ export interface SectionsNews extends Struct.ComponentSchema {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'page:section:news'>;
-    newsList: Schema.Attribute.Component<'shared.news-item', true>;
+    news_items: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::news-item.news-item'
+    >;
     newsSubtitle: Schema.Attribute.Text;
     newsTitle: Schema.Attribute.String & Schema.Attribute.Required;
   };
@@ -347,7 +354,10 @@ export interface SectionsNewsAlt extends Struct.ComponentSchema {
     componentId: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'page:section:news_alt'>;
-    newsList: Schema.Attribute.Component<'shared.news-item', true>;
+    news_items: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::news-item.news-item'
+    >;
     newsSubtitle: Schema.Attribute.Text;
     newsTitle: Schema.Attribute.String & Schema.Attribute.Required;
   };
@@ -540,21 +550,6 @@ export interface SharedInfoItem extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedNewsItem extends Struct.ComponentSchema {
-  collectionName: 'components_shared_news_items';
-  info: {
-    displayName: 'News Item';
-  };
-  attributes: {
-    dateCreatedAt: Schema.Attribute.DateTime;
-    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    imgAlt: Schema.Attribute.Text;
-    text: Schema.Attribute.Text;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-    url: Schema.Attribute.String & Schema.Attribute.Required;
-  };
-}
-
 export interface SharedQuotesItem extends Struct.ComponentSchema {
   collectionName: 'components_shared_quotes_items';
   info: {
@@ -665,7 +660,6 @@ declare module '@strapi/strapi' {
       'shared.courses-block': SharedCoursesBlock;
       'shared.faq-item': SharedFaqItem;
       'shared.info-item': SharedInfoItem;
-      'shared.news-item': SharedNewsItem;
       'shared.quotes-item': SharedQuotesItem;
       'shared.road-map-item': SharedRoadMapItem;
       'shared.user-card': SharedUserCard;

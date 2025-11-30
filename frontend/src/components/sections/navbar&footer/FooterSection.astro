@@ -3,6 +3,13 @@ import FooterSocialLink from "@components/ui/links/FooterSocialLink.astro";
 import enStrings from "@utils/navigation.ts";
 import Icon from "@components/ui/icons/Icon.astro";
 import BrandLogoFooter from "@/components/BrandLogoFooter.astro";
+import type { StrapiImageType } from "@/types/common";
+
+const { customFooterImage } = Astro.props;
+
+interface Props {
+  customFooterImage?: StrapiImageType | null;
+}
 
 const strings = enStrings;
 
@@ -13,7 +20,9 @@ const sectionThreeTitle: string = "Contact Us";
   <div class="mx-auto w-full max-w-340 px-4 pt-20 pb-[30px] sm:px-6 sm:py-10 lg:px-10 lg:pt-20">
     <div class="grid grid-cols-2 gap-[30px] md:grid-cols-4 md:lg:grid-cols-4 xl:grid-cols-[355px_1fr_1fr_285px]">
       <div class="col-span-full flex flex-col items-center sm:block md:w-fit lg:col-span-1 xl:w-[355px]">
-        <BrandLogoFooter class="order-1 object-cover mix-blend-exclusion" />
+        
+        <BrandLogoFooter className="order-1 object-cover mix-blend-exclusion" customFooterImage={customFooterImage} />
+
         <div
           class="text-gray-90 order-2 mt-[34px] flex justify-center gap-x-5 gap-y-2 sm:flex sm:items-center sm:justify-start sm:gap-y-0 md:order-1 md:mt-[30px] md:gap-5"
         >

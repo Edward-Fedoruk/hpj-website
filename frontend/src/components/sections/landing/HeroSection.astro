@@ -5,6 +5,7 @@ import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 
 import { buildStrapiResponsive } from "@/utils/strapiImg";
 import SectionCorner from "../SectionCorner.astro";
+import type { StrapiImageType } from "@/types/common";
 
 interface Props {
   title: string;
@@ -13,31 +14,64 @@ interface Props {
   primaryBtnURL?: string | null;
   secondaryBtnLabel?: string | null;
   secondaryBtnURL?: string | null;
-  bgImgSrc?: any;
+  bgImgSrc?: StrapiImageType;
   bgImgAlt?: string | null;
+  altBgImage?: StrapiImageType;
+  altBgImageText?: string | null;
+  __typename: string;
 }
 
-const { title, subtitle, primaryBtnLabel, primaryBtnURL, secondaryBtnLabel, secondaryBtnURL, bgImgSrc, bgImgAlt } =
+const { title, subtitle, primaryBtnLabel, primaryBtnURL, secondaryBtnLabel, secondaryBtnURL, bgImgSrc, bgImgAlt, altBgImage, __typename } =
   Astro.props;
 
-const builtBgImg = buildStrapiResponsive(bgImgSrc);
+let builtImg = null;
+let builtAltImg = null;
+
+if (bgImgSrc) {
+  builtImg = buildStrapiResponsive(bgImgSrc);
+}
+
+if (altBgImage) {
+  builtAltImg = buildStrapiResponsive(altBgImage);
+}
 ---
 
 <section
-  class="relative flex min-h-[636px] items-center gap-4 px-4 py-14 pt-[104px] pb-40 md:min-h-[700px] md:items-center md:gap-8 md:px-10 md:pt-[100px] md:pb-16"
+  class=`${__typename} relative flex min-h-[636px] items-center gap-4 px-4 py-14 pt-[104px] pb-40 md:min-h-[700px] md:items-center md:gap-8 md:px-10 md:pt-[100px] md:pb-16`
+  data-alt-img-src={`${altBgImage?.url}`}
 >
   <div class="mx-auto h-fit max-w-7xl">
     {
-      builtBgImg && (bgImgAlt || builtBgImg) && (
+      builtImg && (bgImgAlt || bgImgSrc) && (
         <div class="hero-img pointer-events-none absolute top-0 left-0 -z-20 h-full w-full overflow-hidden bg-white md:h-[700px]">
           <Image
-            src={builtBgImg.src}
-            width={builtBgImg.width}
-            height={builtBgImg.height}
-            alt={bgImgAlt || builtBgImg}
-            srcset={builtBgImg.srcset}
+            src={builtImg.src}
+            width={builtImg.width}
+            height={builtImg.height}
+            alt={bgImgAlt || bgImgSrc}
+            srcset={builtImg.srcset}
             sizes="(max-width: 500px) 500px, 100vw"
-            alt={bgImgSrc.alternativeText ?? bgImgAlt ?? "background image"}
+            alt={builtImg.alt ?? bgImgAlt ?? "background image"}
+            draggable={"false"}
+            loading={"eager"}
+            fetchpriority={"high"}
+            class="h-full w-full scale-110 object-cover object-center"
+          />
+          <SectionCorner position="bottom-right" className="text-[#f7f7f7]" />
+        </div>
+      )
+    }
+    {
+      builtAltImg && (bgImgAlt || bgImgSrc) && (
+        <div class="night-hero-img hidden pointer-events-none absolute top-0 left-0 -z-20 h-full w-full overflow-hidden bg-white md:h-[700px]">
+          <Image
+            src={builtAltImg.src}
+            width={builtAltImg.width}
+            height={builtAltImg.height}
+            alt={bgImgAlt || bgImgSrc}
+            srcset={builtAltImg.srcset}
+            sizes="(max-width: 500px) 500px, 100vw"
+            alt={builtAltImg.alt ?? bgImgAlt ?? "background image"}
             draggable={"false"}
             loading={"eager"}
             fetchpriority={"high"}
@@ -86,3 +120,26 @@ const builtBgImg = buildStrapiResponsive(bgImgSrc);
     filter: brightness(0.3);
   }
 </style>
+
+<script>
+  const heroSection = document.querySelectorAll('section.ComponentSectionsHero') as NodeListOf<HTMLElement>;
+
+  heroSection.forEach(heroSection => {
+    const heroImgElement = heroSection.querySelector('.hero-img')
+    const nightHeroImgElement = heroSection.querySelector('.night-hero-img')
+
+    if (!heroImgElement) return;
+
+    const now = new Date();
+    const hour = now.getHours();
+
+    const isNight = hour >= 18 || hour < 6;
+
+    if (isNight && !heroSection.dataset.altImgSrc) {
+      heroImgElement?.classList.add('hidden')
+      nightHeroImgElement?.classList.remove('hidden')
+    } else {
+      heroImgElement?.classList.remove('hidden')
+    }
+  });
+</script>

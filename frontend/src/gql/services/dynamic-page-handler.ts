@@ -24,6 +24,7 @@ import type {
   JobFormSection,
   RelatedJobsSection,
 } from "@/types/sectionTypes";
+import type { StrapiImageType } from "@/types/common";
 
 export type Section =
   | HeroSection
@@ -57,6 +58,7 @@ export interface Page {
   seoTitle?: string | null;
   seoDescription?: string | null;
   isIndexable?: boolean | null;
+  customFooterImage?: StrapiImageType | null;
 }
 
 export interface Form {
@@ -77,6 +79,15 @@ export class DynamicPageHandler {
           seoTitle
           seoDescription
           isIndexable
+          customFooterImage {
+            url
+            alternativeText
+            width
+            height
+            mime
+            size
+            formats
+          }
           sections {
             ... on ComponentSectionsHero {
               componentId
@@ -86,7 +97,17 @@ export class DynamicPageHandler {
               primaryBtnURL
               secondaryBtnLabel
               secondaryBtnURL
+              __typename
               bgImgSrc {
+                url
+                alternativeText
+                width
+                height
+                mime
+                size
+                formats
+              }
+              altBgImage {
                 url
                 alternativeText
                 width
@@ -210,12 +231,12 @@ export class DynamicPageHandler {
               componentId
               title: newsTitle
               subTitle: newsSubtitle
-              newsList {
+              newsList: news_items {
                 title
                 description: text
                 date: dateCreatedAt
                 imgAlt
-                url
+                slug
                 img {
                   url
                   alternativeText
@@ -231,12 +252,12 @@ export class DynamicPageHandler {
               componentId
               title: newsTitle
               subTitle: newsSubtitle
-              newsList {
+              newsList: news_items {
                 title
                 description: text
                 date: dateCreatedAt
                 imgAlt
-                url
+                slug
                 img {
                   url
                   alternativeText

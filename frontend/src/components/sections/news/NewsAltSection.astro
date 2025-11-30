@@ -90,12 +90,12 @@ interface Props extends NewsAltSectionProps {}
                   
                   <div class="p-4 flex flex-col md:items-center justify-between gap-4">
                     <div class="flex flex-col">
-                      <a href={item.url} class="line-clamp-2 text-xl font-bold text-text-main">{item.title}</a>
+                      <a href={`/news/${item.slug}`} class="line-clamp-2 w-fit text-xl font-bold text-text-main">{item.title}</a>
                       <p class="text-lg line-clamp-3 mt-6 text-text-secondary">{item.description}</p>
                     </div>
 
                     <div class="flex flex-col md:flex-row w-full md:justify-between md:items-center md:mb-4">
-                      <SecondaryCTA title="View details" arrow className="text-primary h-10 min-w-fit w-full md:w-fit" url={item.url} />
+                      <SecondaryCTA title="View details" arrow className="text-primary h-10 min-w-fit w-full md:w-fit" url={`/news/${item.slug}`} />
 
                       <span class="text-text-secondary block mt-4 md:mt-0">
                         {item.date ? new Date(item.date).toLocaleDateString("en-US", {
