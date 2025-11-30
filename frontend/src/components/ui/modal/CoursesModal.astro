@@ -1,6 +1,14 @@
 ---
 import '@styles/modals.css'
 import ContactForm from '../forms/ContactForm.astro'
+import type { FormType } from '@/types/formTypes';
+
+interface Props {
+  form: FormType | null;
+  submitBtnLabel: string | null;
+}
+
+const {form, submitBtnLabel } = Astro.props;
 
 ---
 
@@ -24,7 +32,16 @@ import ContactForm from '../forms/ContactForm.astro'
             </svg>
         </button>
 
-        <ContactForm />
+        <ContactForm title='Contact to Book' subTitle='You can reach us anytime' form={form} submitBtnLabel={submitBtnLabel} />
+
+        <p 
+          class="mt-8 text-text-secondary text-center"
+          data-aos="fade-up"
+          data-aos-delay="250"
+          data-aos-once="true"
+          data-aos-anchor-placement="top-bottom"
+        >By contacting us you agree to our <a href="/terms-and-conditions" target="_blank"  class="underline underline-offset-3 cursor-pointer">Terms & Conditions</a> and <a href="/privacy-policy" target="_blank" class="underline underline-offset-3 cursor-pointer">Privacy Policy</a>.</p>
+      
       </div>
     </div>
 </div>

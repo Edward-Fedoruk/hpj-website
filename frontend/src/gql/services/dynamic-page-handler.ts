@@ -518,6 +518,13 @@ export class DynamicPageHandler {
               title
               subTitle
               sectionId
+              form {
+                documentId
+                title
+                successMessage
+                errorMessage
+                steps
+              }
               coursesList {
                 blockTitle
                 trainingCourses {

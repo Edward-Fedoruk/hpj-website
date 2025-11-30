@@ -1,6 +1,6 @@
 ---
 // Destructure the properties from Astro.props
-const { title, url, arrow, className, ...rest } = Astro.props;
+const { title, url, arrow, className, isButton = false, ...rest } = Astro.props;
 
 // Define TypeScript interface for the properties
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
   url?: string | null;
   arrow?: boolean | null;
   className?: string | null;
+  isButton?: boolean;
 }
 // Define CSS classes for the hyperlink button
 
@@ -21,7 +22,39 @@ const fontSizeClasses = "text-lg";
 const ringClasses = "ring-currentColor";
 ---
 
-<!-- Styled hyperlink -->
+
+{
+  isButton ?
+<button
+  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${className} group/button`}
+  {...rest}
+>
+  {title}
+  {
+    arrow ? (
+      <svg
+        width="22"
+        height="15"
+        viewBox="0 0 22 15"
+        fill="none"
+        class="duration-300 ease-in-out group-hover/button:translate-x-1.5"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M14.1667 13.5L20.5 7.5M20.5 7.5L14.1667 1.5M20.5 7.5H1.5"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-miterlimit="10"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    ) : (
+      ""
+    )
+  }
+</button>
+  :
 <a
   class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${disableClasses} ${fontSizeClasses} ${ringClasses} ${className} group/button`}
   href={url}
@@ -52,3 +85,5 @@ const ringClasses = "ring-currentColor";
     )
   }
 </a>
+}
+

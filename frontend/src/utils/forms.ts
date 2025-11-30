@@ -47,6 +47,12 @@ export async function formSubmitHandler(ev: SubmitEvent, formElement: HTMLFormEl
 
   const emailEl = formElement.querySelector('input[type="email"], input[name*="email" i]') as HTMLInputElement;
   const nameEl = formElement.querySelector('input[name*="name" i]') as HTMLInputElement;
+  const phoneEl = formElement.querySelector('input[type="tel"]') as HTMLInputElement;
+  if (!isValidPhone(phoneEl.value.trim())) {
+    showToast("Invalid phone number", "warning");
+    phoneEl?.focus();
+    return false;
+  }
   if (emailEl && !emailEl.value.trim()) {
     showToast("Enter email", "warning");
     emailEl?.focus();
@@ -79,7 +85,7 @@ export async function formSubmitHandler(ev: SubmitEvent, formElement: HTMLFormEl
   fd.append("form", formId);
 
   const inputs = formElement.querySelectorAll(
-    'input[type="text"], input[type="email"], textarea',
+    'input[type="text"], input[type="email"], input[type="tel"], input[type="hidden"], textarea',
   ) as NodeListOf<HTMLInputElement>;
   for (const el of inputs) {
     const name = el.name?.trim();
@@ -121,4 +127,8 @@ export async function formSubmitHandler(ev: SubmitEvent, formElement: HTMLFormEl
   }
 
   return false;
+}
+
+function isValidPhone(phone: string) {
+  return /^\+?[0-9][0-9\s\-()]{6,20}$/.test(phone);
 }

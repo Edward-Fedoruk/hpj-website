@@ -1,12 +1,15 @@
 ---
 import SecondaryCTA from "@/components/ui/buttons/SecondaryCTA.astro";
 import CoursesModal from "@/components/ui/modal/CoursesModal.astro";
+import type { FormType } from "@/types/formTypes";
 
 const {
   title,
   subTitle,
   coursesList,
-  sectionId
+  sectionId,
+  form,
+  submitBtnLabel,
 } = Astro.props;
 
 export interface CourseItem {
@@ -24,7 +27,9 @@ export interface CoursesSectionProps {
   title: string;
   subTitle?: string;
   coursesList?: CourseBlockItem[];
-  sectionId?:string;
+  sectionId?: string;
+  form: FormType | null;
+  submitBtnLabel: string;
 }
 
 interface Props extends CoursesSectionProps {}
@@ -97,7 +102,7 @@ interface Props extends CoursesSectionProps {}
                               </p>
                             </div>
 
-                            <SecondaryCTA data-micromodal-trigger="courses-modal" title={"Contact To Book"} className={"text-primary h-[38px] min-w-fit group-hover:bg-primary group-hover:text-white hover:bg-primary! hover:text-white!"}  data-courseId={courseItem.courseId} />
+                            <SecondaryCTA data-course-id={courseItem.courseId} isButton data-micromodal-trigger="courses-modal" title={"Contact To Book"} className={"text-primary h-[38px] min-w-fit group-hover:bg-primary group-hover:text-white hover:bg-primary! hover:text-white!"}  />
                           </li>
                         )
                       })
@@ -122,4 +127,23 @@ interface Props extends CoursesSectionProps {}
   </div>
 </section>
 
-<CoursesModal />
+<CoursesModal form={form} submitBtnLabel={submitBtnLabel} />
+
+<script>
+  const coursesModalEl = document.querySelector('#courses-modal');
+  const coursesform = coursesModalEl?.querySelector('form');
+
+  if (coursesform) {
+    const coursesSection = document.querySelector('section#courses-section');
+    const courseButtons = coursesSection?.querySelectorAll('ul li button') as NodeListOf<HTMLButtonElement>;
+
+    courseButtons?.forEach(button => {
+      button.addEventListener('click', () => {
+        const courseIdInput = coursesform.querySelector('input[name="courseId"]') as HTMLInputElement;
+        if (button.dataset.courseId) {
+          courseIdInput.value = button.dataset.courseId;
+        }
+      })
+    });
+  }
+</script>
