@@ -146,6 +146,7 @@ export interface SectionsCoursesSection extends Struct.ComponentSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'page:section:courses'>;
     coursesList: Schema.Attribute.Component<'shared.courses-block', true>;
+    form: Schema.Attribute.Relation<'oneToOne', 'plugin::api-forms.form'>;
     sectionId: Schema.Attribute.String;
     subTitle: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;

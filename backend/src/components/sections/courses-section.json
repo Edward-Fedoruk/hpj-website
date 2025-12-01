@@ -25,6 +25,11 @@
     },
     "sectionId": {
       "type": "string"
+    },
+    "form": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::api-forms.form"
     }
   },
   "config": {}

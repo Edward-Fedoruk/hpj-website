@@ -73,6 +73,14 @@ const BU_OPTIONS = (businessUnitsForFormSelect ?? []).map((u) => ({
                 const isBUSelect = f.type === "select" && f.name === "businessUnit";
                 const selectOptions = isBUSelect ? BU_OPTIONS : (f.options ?? []);
 
+                if (f.type === "hidden") {
+                  return (
+                    <div class="cell flex-col hidden">
+                      <input type="hidden" name={f.name} />
+                    </div>
+                  )
+                }
+
                 return (
                   <div
                     class="cell flex flex-col"
@@ -87,7 +95,7 @@ const BU_OPTIONS = (businessUnitsForFormSelect ?? []).map((u) => ({
                       } as any
                     }
                   >
-                    {f.type === "text" || f.type === "email" ? (
+                    {f.type === "text" || f.type === "email" || f.type === "tel" ? (
                       <label class="flex flex-col gap-1">
                         <span class="label">
                           {f.label}
@@ -151,11 +159,11 @@ const BU_OPTIONS = (businessUnitsForFormSelect ?? []).map((u) => ({
                           {required && <sup class="req">*</sup>}
                         </span>
                         <select name={f.name} required={required} class="input">
-                          <option value="" disabled selected>
+                          <option class="text-text-main" value="" disabled selected>
                             {f.placeholder || "Select"}
                           </option>
                           {selectOptions.map((opt) => (
-                            <option value={opt.value}>{opt.label}</option>
+                            <option class="text-text-main" value={opt.value}>{opt.label}</option>
                           ))}
                         </select>
                       </label>
@@ -175,8 +183,6 @@ const BU_OPTIONS = (businessUnitsForFormSelect ?? []).map((u) => ({
             >
               {submitBtnLabel ?? "Submit"}
             </button>
-
-            <p id="status" class="h-5 pt-2.5 text-sm text-text-main" aria-live="polite" />
           </div>
         </form>
     )
