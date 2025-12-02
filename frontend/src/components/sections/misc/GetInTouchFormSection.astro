@@ -1,6 +1,6 @@
 ---
 import FormLayout from "@/components/ui/forms/FormLayout.astro";
-import type { FormType, FormLayoutType } from "@/types/formTypes";
+import type { FormType } from "@/types/formTypes";
 import '@styles/forms.css';
 
 export interface BU {
@@ -94,59 +94,9 @@ const { blockTitle, blockSubtitle, email, address, workingTime, phone, formTitle
     {formSubTitle && <p class="mt-3 mx-auto w-full max-w-[578px] text-center text-lg text-text-secondary">{formSubTitle}</p>}
 
     <FormLayout form={form} submitBtnLabel={submitBtnLabel} formId="get-in-touch-form" businessUnitsForFormSelect={businessUnitsForFormSelect} />
+
+    <p class="mt-8 text-text-secondary text-center">
+      By contacting us you agree to our <a href="/terms-and-conditions" target="_blank"  class="underline underline-offset-3 cursor-pointer">Terms & Conditions</a> and <a href="/privacy-policy" target="_blank" class="underline underline-offset-3 cursor-pointer">Privacy Policy</a>.
+    </p>
   </div>
 </section>
-
-<script is:inline>
-  async function GetInTouchFormhandleSubmit(ev, formElement) {
-    ev.preventDefault();
-    const statusEl = formElement.querySelector("#status");
-    const setStatus = (m) => (statusEl.textContent = m || "");
-
-    // honeypot
-    const honey = (formElement.querySelector('[name="honeypot_field"]')?.value || "").trim();
-    if (honey) return false;
-
-    const endpoint = formElement.dataset.endpoint;
-    const formId = formElement.dataset.formId;
-    if (!formId) {
-      setStatus("Form ID is missing");
-      return false;
-    }
-
-    const emailEl = formElement.querySelector('input[type="email"], input[name*="email" i]');
-    if (!emailEl || !emailEl.value.trim()) {
-      setStatus("Enter email");
-      emailEl?.focus();
-      return false;
-    }
-
-    const fd = new FormData();
-    fd.append("form", formId);
-
-    const inputs = formElement.querySelectorAll('input[type="text"], input[type="email"], textarea, select');
-    for (const el of inputs) {
-      const name = el.name?.trim();
-      if (!name) continue;
-      const val = el.value?.trim?.() ?? el.value ?? "";
-      if (val) fd.append(`submission[${name}]`, val);
-    }
-
-    const btn = formElement.querySelector('button[type="submit"]');
-    btn?.setAttribute("disabled", "true");
-    setStatus("Sending...");
-
-    try {
-      const res = await fetch(endpoint, { method: "POST", body: fd });
-      if (!res.ok) throw new Error(await res.text());
-      formElement.reset();
-      setStatus(formElement.dataset.successMessage);
-    } catch (err) {
-      console.error(err);
-      setStatus(formElement.dataset.errorMessage);
-    } finally {
-      btn?.removeAttribute("disabled");
-    }
-    return false;
-  }
-</script>
