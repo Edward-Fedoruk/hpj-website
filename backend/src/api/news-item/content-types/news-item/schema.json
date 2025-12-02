@@ -23,7 +23,6 @@
     },
     "slug": {
       "type": "string",
-      "default": "/news/",
       "required": true,
       "unique": true
     },

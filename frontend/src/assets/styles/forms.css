@@ -61,3 +61,11 @@
   outline: 0 !important;
   --tw-ring-offset-width: 0px;
 }
+form *::placeholder,
+form select.input:invalid,
+option[disabled][hidden] {
+  color: var(--color-form-placeholder);
+}
+form select.input option {
+  color: var(--color-text-main);
+}

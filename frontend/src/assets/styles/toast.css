@@ -6,4 +6,5 @@
 .toastify {
   color: black !important;
   box-shadow: var(--shadow-card);
+  border-radius: 6px !important;
 }

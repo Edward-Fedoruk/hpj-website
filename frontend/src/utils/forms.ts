@@ -34,6 +34,13 @@ function fileInputFieldHandler(inputElement: HTMLInputElement) {
   }
 }
 
+function resetFileInputPlaceholder(inputElement: HTMLInputElement) {
+  if (!inputElement) return;
+  const placeholderElement = inputElement?.closest("label")?.querySelector(".placeholder");
+  if (!placeholderElement) return;
+  placeholderElement.querySelector("p")!.textContent = "CV Upload";
+}
+
 export async function formSubmitHandler(ev: SubmitEvent, formElement: HTMLFormElement) {
   ev.preventDefault();
 
@@ -48,7 +55,7 @@ export async function formSubmitHandler(ev: SubmitEvent, formElement: HTMLFormEl
   const emailEl = formElement.querySelector('input[type="email"], input[name*="email" i]') as HTMLInputElement;
   const nameEl = formElement.querySelector('input[name*="name" i]') as HTMLInputElement;
   const phoneEl = formElement.querySelector('input[type="tel"]') as HTMLInputElement;
-  if (!isValidPhone(phoneEl.value.trim())) {
+  if (phoneEl && !isValidPhone(phoneEl.value.trim())) {
     showToast("Invalid phone number", "warning");
     phoneEl?.focus();
     return false;
@@ -118,6 +125,11 @@ export async function formSubmitHandler(ev: SubmitEvent, formElement: HTMLFormEl
     const res = await fetch(endpoint, { method: "POST", body: fd });
     if (!res.ok) throw new Error(await res.text());
     formElement.reset();
+    if (fileInputs.length > 0) {
+      fileInputs.forEach((fileInput) => {
+        resetFileInputPlaceholder(fileInput);
+      });
+    }
     showToast(formElement.dataset.successMessage, "success");
   } catch (err) {
     console.error(err);

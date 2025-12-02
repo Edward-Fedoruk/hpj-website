@@ -9,9 +9,10 @@ interface Props {
   formId: string;
   className?: string;
   businessUnitsForFormSelect?: BU[] | null;
+  submitButtonClassName?: string;
 }
 
-const { form, submitBtnLabel, formId, className, businessUnitsForFormSelect = [] } = Astro.props;
+const { form, submitBtnLabel, formId, className, businessUnitsForFormSelect = [], submitButtonClassName = '' } = Astro.props;
 
 const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL || "http://localhost:1337";
 const ENDPOINT = `${STRAPI_URL}/api/api-forms/submission/post`;
@@ -130,11 +131,11 @@ const BU_OPTIONS = (businessUnitsForFormSelect ?? []).map((u) => ({
                           {required && <sup class="req">*</sup>}
                         </span>
                         <input type="file" name={f.name} required={required} class="fileinput w-full h-[calc(100%-24px)] top-6 absolute left-0 ring-primary" onload="() => {fileInputFieldHandler(this)}" onchange="() => {fileInputFieldHandler(this)}"/>
-                        <div class="text-text-secondary placeholder cursor-pointer h-[130px] flex flex-col justify-center items-center overflow-hidden">
+                        <div class="text-form-placeholder placeholder cursor-pointer h-[130px] flex flex-col justify-center items-center overflow-hidden">
                           <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 3V15M12 3L17 8M12 3L7 8M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                           </svg>
-                          <p class="text-text-secondary mt-1 break-all text-center line-clamp-2">CV Upload</p>
+                          <p class="mt-1 break-all text-center line-clamp-2">CV Upload</p>
                         </div>
                       </label>
                     ) : f.type === "checkboxgroup" ? (
@@ -158,12 +159,12 @@ const BU_OPTIONS = (businessUnitsForFormSelect ?? []).map((u) => ({
                           {f.label}
                           {required && <sup class="req">*</sup>}
                         </span>
-                        <select name={f.name} required={required} class="input">
-                          <option class="text-text-main" value="" disabled selected>
+                        <select name={f.name} required={required} class="input ring-primary">
+                          <option value="" disabled selected hidden>
                             {f.placeholder || "Select"}
                           </option>
                           {selectOptions.map((opt) => (
-                            <option class="text-text-main" value={opt.value}>{opt.label}</option>
+                            <option value={opt.value}>{opt.label}</option>
                           ))}
                         </select>
                       </label>
@@ -179,7 +180,7 @@ const BU_OPTIONS = (businessUnitsForFormSelect ?? []).map((u) => ({
 
             <button
               type="submit"
-              class="mt-6 flex h-14 w-full max-w-[300px] items-center justify-center rounded-[10px] bg-primary text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+              class={`mt-6 flex h-14 w-full items-center justify-center rounded-[10px] bg-primary text-lg font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60 ${submitButtonClassName}`}
             >
               {submitBtnLabel ?? "Submit"}
             </button>
