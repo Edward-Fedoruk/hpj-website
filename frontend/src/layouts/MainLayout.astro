@@ -6,7 +6,7 @@ import FooterSection from "@components/sections/navbar&footer/FooterSection.astr
 import { SITE } from "@data/constants";
 import "@styles/global.css";
 import "toastify-js/src/toastify.css"
-import type { StrapiImageType } from "@/types/common";
+import type { StrapiImageType, GlobalSettings } from "@/types/common";
 
 // Setting expected props
 const {
@@ -17,6 +17,7 @@ const {
   customDescription = null,
   customOgTitle = null,
   customFooterImage = null,
+  globalSettings = null,
 } = Astro.props;
 
 // Interface to type-check the properties
@@ -28,6 +29,7 @@ interface Props {
   customDescription?: string | null;
   customOgTitle?: string | null;
   customFooterImage?: StrapiImageType | null;
+  globalSettings?: GlobalSettings | null;
 }
 ---
 
@@ -48,7 +50,7 @@ interface Props {
   <body
     class="flex min-h-screen flex-col bg-white selection:bg-[#524CF2] selection:text-white dark:bg-neutral-800"
   >
-    <Navbar />
+    <Navbar globalSettings={globalSettings} />
 
     <div class="mx-auto w-full grow">
       <main>
@@ -56,7 +58,7 @@ interface Props {
       </main>
     </div>
 
-    <FooterSection customFooterImage={customFooterImage} />
+    <FooterSection customFooterImage={customFooterImage} globalSettings={globalSettings} />
 
     <script>
       import "preline/preline.js";

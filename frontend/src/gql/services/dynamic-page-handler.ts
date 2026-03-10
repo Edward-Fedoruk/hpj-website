@@ -24,7 +24,7 @@ import type {
   JobFormSection,
   RelatedJobsSection,
 } from "@/types/sectionTypes";
-import type { StrapiImageType } from "@/types/common";
+import type { StrapiImageType, GlobalSettings } from "@/types/common";
 
 export type Section =
   | HeroSection
@@ -69,7 +69,7 @@ export interface Form {
 }
 
 export class DynamicPageHandler {
-  async getDynamicPageData(): Promise<{ pages: Page[]; apiFormsForms: Form[] }> {
+  async getDynamicPageData(): Promise<{ pages: Page[]; apiFormsForms: Form[]; globalSetting: GlobalSettings }> {
     const document = gql`
       {
         pages(pagination: { page: 1, pageSize: 500 }) {
@@ -540,11 +540,43 @@ export class DynamicPageHandler {
             }
           }
         }
+        globalSetting {
+          short_name
+          full_name
+          tagline
+          logo {
+            url
+            alternativeText
+            width
+            height
+            mime
+            formats
+          }
+          instagram_url
+          youtube_url
+          facebook_url
+          emails {
+            email
+          }
+          phone_numbers {
+            phone_number
+          }
+          address
+          address_map_url
+          default_footer_logo {
+            url
+            alternativeText
+            width
+            height
+            mime
+            formats
+          }
+        }
       }
     `;
 
     try {
-      const data = await GqlClient.instance.request<{ pages: Page[]; apiFormsForms: Form[] }>(document);
+      const data = await GqlClient.instance.request<{ pages: Page[]; apiFormsForms: Form[]; globalSetting: GlobalSettings }>(document);
 
       return data;
     } catch (error) {

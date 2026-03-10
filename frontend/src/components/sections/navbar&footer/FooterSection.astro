@@ -3,12 +3,13 @@ import FooterSocialLink from "@components/ui/links/FooterSocialLink.astro";
 import enStrings from "@utils/navigation.ts";
 import Icon from "@components/ui/icons/Icon.astro";
 import BrandLogoFooter from "@/components/BrandLogoFooter.astro";
-import type { StrapiImageType } from "@/types/common";
+import type { StrapiImageType, GlobalSettings } from "@/types/common";
 
-const { customFooterImage } = Astro.props;
+const { customFooterImage, globalSettings } = Astro.props;
 
 interface Props {
   customFooterImage?: StrapiImageType | null;
+  globalSettings?: GlobalSettings | null;
 }
 
 const strings = enStrings;
@@ -21,21 +22,23 @@ const sectionThreeTitle: string = "Contact Us";
     <div class="grid grid-cols-2 gap-[30px] md:grid-cols-4 md:lg:grid-cols-4 xl:grid-cols-[355px_1fr_1fr_285px]">
       <div class="col-span-full flex flex-col items-center sm:block md:w-fit lg:col-span-1 xl:w-[355px]">
         
-        <BrandLogoFooter className="order-1 object-cover mix-blend-exclusion" customFooterImage={customFooterImage} />
+        <BrandLogoFooter className="order-1 object-cover mix-blend-exclusion" customFooterImage={customFooterImage ?? globalSettings?.default_footer_logo} />
 
-        <div
-          class="text-gray-90 order-2 mt-[34px] flex justify-center gap-x-5 gap-y-2 sm:flex sm:items-center sm:justify-start sm:gap-y-0 md:order-1 md:mt-[30px] md:gap-5"
-        >
-          <FooterSocialLink url={strings.socialLinks.facebook}><Icon name="instagram" /> </FooterSocialLink>
+        {(globalSettings?.instagram_url || globalSettings?.youtube_url || globalSettings?.facebook_url) && (
+          <div
+            class="text-gray-90 order-2 mt-[34px] flex justify-center gap-x-5 gap-y-2 sm:flex sm:items-center sm:justify-start sm:gap-y-0 md:order-1 md:mt-[30px] md:gap-5"
+          >
+            {globalSettings?.instagram_url && <FooterSocialLink url={globalSettings.instagram_url}><Icon name="instagram" /></FooterSocialLink>}
+            {globalSettings?.youtube_url && <FooterSocialLink url={globalSettings.youtube_url}><Icon name="youtube" /></FooterSocialLink>}
+            {globalSettings?.facebook_url && <FooterSocialLink url={globalSettings.facebook_url}><Icon name="facebook" /></FooterSocialLink>}
+          </div>
+        )}
 
-          <FooterSocialLink url={strings.socialLinks.facebook}><Icon name="youtube" /> </FooterSocialLink>
-
-          <FooterSocialLink url={strings.socialLinks.facebook}><Icon name="facebook" /> </FooterSocialLink>
-        </div>
-
-        <p class="text-text-main order-1 mt-[30px] text-center font-bold sm:max-w-[343px] sm:text-start">
-          We lead with experience, driven by professionalism, and guided by a commitment to lasting success.
-        </p>
+        {globalSettings?.tagline && (
+          <p class="text-text-main order-1 mt-[30px] text-center font-bold sm:max-w-[343px] sm:text-start">
+            {globalSettings.tagline}
+          </p>
+        )}
       </div>
       {
         strings.footerLinks.map((section) => (
@@ -63,18 +66,24 @@ const sectionThreeTitle: string = "Contact Us";
         </h3>
 
         <ul class="text-text-secondary mt-4 flex flex-col gap-4 text-[15px] md:mt-10 md:text-base">
-          <li class="flex items-center gap-2.5">
-            <Icon name="email" className="text-gray-90 min-w-5" />
-            <a href="mailto:info_general@hpj.ae">info_general@HPJ.AE</a>
-          </li>
-          <li class="flex items-center gap-2.5">
-            <Icon name="phone" className="text-gray-90 mb-0.5 min-w-5" />
-            <a href="tel:+97143622222">+971 4 362 2222</a>
-          </li>
-          <li class="flex items-start gap-2.5">
-            <Icon name="locationMarker" className="text-gray-90 mt-0.5 min-w-5" />
-            <p>Dubai International Financial Centre Authority Level 14, The Gate Building</p>
-          </li>
+          {globalSettings?.emails?.map(({ email }) => (
+            <li class="flex items-center gap-2.5">
+              <Icon name="email" className="text-gray-90 min-w-5" />
+              <a href={`mailto:${email}`}>{email}</a>
+            </li>
+          ))}
+          {globalSettings?.phone_numbers?.map(({ phone_number }) => phone_number && (
+            <li class="flex items-center gap-2.5">
+              <Icon name="phone" className="text-gray-90 mb-0.5 min-w-5" />
+              <a href={`tel:${phone_number}`}>{phone_number}</a>
+            </li>
+          ))}
+          {globalSettings?.address && (
+            <li class="flex items-start gap-2.5">
+              <Icon name="locationMarker" className="text-gray-90 mt-0.5 min-w-5" />
+              <p>{globalSettings.address}</p>
+            </li>
+          )}
         </ul>
       </div>
     </div>
@@ -87,7 +96,7 @@ const sectionThreeTitle: string = "Contact Us";
       <div class="order-1 mb-1 border-t-[0.5px] border-t-[#999999] md:hidden"></div>
       <div class="order-1 flex md:w-fit items-center justify-between">
         <p class="text-xs md:text-sm lg:text-base">
-          Copyright © <span id="current-year">2025</span> HPJ Holdings LLC
+          Copyright © <span id="current-year">2025</span> {globalSettings?.full_name ?? "HPJ Holdings LLC"}
         </p>
       </div>
 
