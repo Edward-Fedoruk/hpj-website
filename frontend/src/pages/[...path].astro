@@ -22,13 +22,14 @@ export async function getStaticPaths() {
         cmsSections: sections,
         isIndexable,
         documentId,
-        customFooterImage
+        customFooterImage,
+        globalSettings: cmsResponse.globalSetting,
       },
     };
   });
 }
 
-const { cmsSections = [], seoTitle, seoDescription, customFooterImage } = Astro.props;
+const { cmsSections = [], seoTitle, seoDescription, customFooterImage, globalSettings } = Astro.props;
 
 const blocks = cmsSections.map((s: CMSSection) => {
   const key = s.componentId;
@@ -45,7 +46,7 @@ const blocks = cmsSections.map((s: CMSSection) => {
 
   <body>
     <main>
-      <MainLayout customFooterImage={customFooterImage}>
+      <MainLayout customFooterImage={customFooterImage} globalSettings={globalSettings}>
         {blocks.length === 0 && <h1>Empty page</h1>}
 
         {

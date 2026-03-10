@@ -5,10 +5,18 @@ import enStrings from "@utils/navigation.ts";
 import BrandLogo from "@components/BrandLogo.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import MegaMenuLink from "@/components/ui/links/MegaMenuLink.astro";
+import type { GlobalSettings } from "@/types/common";
+import { buildStrapiResponsive } from "@/utils/strapiImg";
+
+interface Props {
+  globalSettings?: GlobalSettings | null;
+}
 
 // Select the correct translation based on the page's lang prop:
+const { globalSettings } = Astro.props;
 const strings = enStrings;
 const homeUrl = "/";
+const logoSrc = globalSettings?.logo ? buildStrapiResponsive(globalSettings.logo)?.src : undefined;
 
 ---
 
@@ -30,7 +38,7 @@ const homeUrl = "/";
           href={homeUrl}
           aria-label="Brand"
         >
-          <BrandLogo class="h-8 w-9 object-contain lg:h-[60px] lg:w-[74px]" />
+          <BrandLogo class="h-8 w-9 object-contain lg:h-[60px] lg:w-[74px]" src={logoSrc} />
         </a>
         <!-- Collapse toggle for smaller screens -->
         <div class="ml-auto text-white lg:hidden">

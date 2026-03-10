@@ -1,5 +1,8 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
+import { DynamicPageHandler } from "@/gql/services/dynamic-page-handler";
+
+const { globalSetting } = await new DynamicPageHandler().getDynamicPageData();
 ---
 
 <html>
@@ -10,7 +13,7 @@ import MainLayout from "@/layouts/MainLayout.astro";
 
   <body class="bg-[#F5F5F5]">
     <main>
-      <MainLayout>
+      <MainLayout globalSettings={globalSetting}>
         <section class="header-text-dark pb-10 bg-white md:bg-transparent pt-[72px] md:pt-[120px]! md:p-6 text-text-main">
             <div class="mx-auto bg-white max-w-7xl lg:rounded-xl lg:shadow-card mb-6 p-4 lg:p-20">
               <h1 class="font-black text-4xl leading-[150%]">HPJ Holdings</h1>

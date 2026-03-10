@@ -25,7 +25,7 @@ const footerLinks = [
     links: headerUnit.business_units.map((item) => {
       return {
         name: item.title,
-        url: item.url,
+        url: `/unit/${item.url}`,
       };
     }),
   },

@@ -494,6 +494,52 @@ export interface ApiEmploymentTypeEmploymentType
   };
 }
 
+export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
+  collectionName: 'global_settings';
+  info: {
+    displayName: 'Global Settings';
+    pluralName: 'global-settings';
+    singularName: 'global-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.Text;
+    address_map_url: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    default_footer_logo: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.Required;
+    emails: Schema.Attribute.Component<'contacts.email', true> &
+      Schema.Attribute.Required;
+    facebook_url: Schema.Attribute.String;
+    full_name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'HPJ Holdings LLC'>;
+    instagram_url: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::global-setting.global-setting'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    phone_numbers: Schema.Attribute.Component<'contacts.phone', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    short_name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'HPJ'>;
+    tagline: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'We lead with experience, driven by professionalism, and guided by a commitment to lasting success.'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    youtube_url: Schema.Attribute.String;
+  };
+}
+
 export interface ApiHeaderUnitHeaderUnit extends Struct.SingleTypeSchema {
   collectionName: 'header_units';
   info: {
@@ -1449,6 +1495,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::business-unit.business-unit': ApiBusinessUnitBusinessUnit;
       'api::employment-type.employment-type': ApiEmploymentTypeEmploymentType;
+      'api::global-setting.global-setting': ApiGlobalSettingGlobalSetting;
       'api::header-unit.header-unit': ApiHeaderUnitHeaderUnit;
       'api::job.job': ApiJobJob;
       'api::location-type.location-type': ApiLocationTypeLocationType;
