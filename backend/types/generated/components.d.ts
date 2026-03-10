@@ -1,5 +1,27 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ContactsEmail extends Struct.ComponentSchema {
+  collectionName: 'components_contacts_emails';
+  info: {
+    displayName: 'email';
+  };
+  attributes: {
+    email: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'info_general@HPJ.AE'>;
+  };
+}
+
+export interface ContactsPhone extends Struct.ComponentSchema {
+  collectionName: 'components_contacts_phones';
+  info: {
+    displayName: 'phone';
+  };
+  attributes: {
+    phone_number: Schema.Attribute.String;
+  };
+}
+
 export interface JobJobForm extends Struct.ComponentSchema {
   collectionName: 'components_job_job_forms';
   info: {
@@ -629,6 +651,8 @@ export interface SharedWhyThisUnitItem extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'contacts.email': ContactsEmail;
+      'contacts.phone': ContactsPhone;
       'job.job-form': JobJobForm;
       'job.job-responsibility': JobJobResponsibility;
       'job.job-skill': JobJobSkill;
