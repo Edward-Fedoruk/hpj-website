@@ -507,6 +507,10 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
   attributes: {
     address: Schema.Attribute.Text;
     address_map_url: Schema.Attribute.String;
+    contact_btn_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Contact Us'>;
+    copyright_text: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Copyright \u00A9 2026 HPJ Holdings LLC'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -515,6 +519,12 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
     emails: Schema.Attribute.Component<'contacts.email', true> &
       Schema.Attribute.Required;
     facebook_url: Schema.Attribute.String;
+    footer_col_contact_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Contact Us'>;
+    footer_col_organisations_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Business Organisations'>;
+    footer_col_pages_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Pages'>;
     full_name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'HPJ Holdings LLC'>;
@@ -526,7 +536,15 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
     > &
       Schema.Attribute.Private;
     logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    navigation_titles: Schema.Attribute.Component<
+      'navigation.navigation-labels',
+      false
+    >;
     phone_numbers: Schema.Attribute.Component<'contacts.phone', true>;
+    policy_titles: Schema.Attribute.Component<
+      'navigation.policy-labels',
+      false
+    >;
     publishedAt: Schema.Attribute.DateTime;
     short_name: Schema.Attribute.String &
       Schema.Attribute.Required &

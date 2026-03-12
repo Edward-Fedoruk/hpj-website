@@ -76,6 +76,32 @@ export interface JobRelatedJobs extends Struct.ComponentSchema {
   };
 }
 
+export interface NavigationNavigationLabels extends Struct.ComponentSchema {
+  collectionName: 'components_navigation_navigation_labels';
+  info: {
+    displayName: 'Navigation Labels';
+  };
+  attributes: {
+    about: Schema.Attribute.String;
+    board_members: Schema.Attribute.String;
+    business_organisations: Schema.Attribute.String;
+    careers: Schema.Attribute.String;
+    home: Schema.Attribute.String;
+  };
+}
+
+export interface NavigationPolicyLabels extends Struct.ComponentSchema {
+  collectionName: 'components_navigation_policy_labels';
+  info: {
+    displayName: 'Policy Labels';
+  };
+  attributes: {
+    cookie_policy: Schema.Attribute.String;
+    privacy_policy: Schema.Attribute.String;
+    terms_and_conditions: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsAbout extends Struct.ComponentSchema {
   collectionName: 'components_sections_abouts';
   info: {
@@ -657,6 +683,8 @@ declare module '@strapi/strapi' {
       'job.job-responsibility': JobJobResponsibility;
       'job.job-skill': JobJobSkill;
       'job.related-jobs': JobRelatedJobs;
+      'navigation.navigation-labels': NavigationNavigationLabels;
+      'navigation.policy-labels': NavigationPolicyLabels;
       'sections.about': SectionsAbout;
       'sections.about-alt': SectionsAboutAlt;
       'sections.business-units': SectionsBusinessUnits;
