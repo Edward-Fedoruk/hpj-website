@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_navigation_policy_labels",
+  "info": {
+    "displayName": "Policy Labels"
+  },
+  "options": {},
+  "attributes": {
+    "terms_and_conditions": {
+      "type": "string"
+    },
+    "privacy_policy": {
+      "type": "string"
+    },
+    "cookie_policy": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

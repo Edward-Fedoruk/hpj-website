@@ -12,9 +12,9 @@ interface Props {
   globalSettings?: GlobalSettings | null;
 }
 
-// Select the correct translation based on the page's lang prop:
 const { globalSettings } = Astro.props;
-const strings = enStrings;
+const navBarLinks = enStrings.getNavBarLinks(globalSettings?.navigation_titles);
+const contactBtnLabel = globalSettings?.contact_btn_label || "Contact Us";
 const homeUrl = "/";
 const logoSrc = globalSettings?.logo ? buildStrapiResponsive(globalSettings.logo)?.src : undefined;
 
@@ -92,7 +92,7 @@ const logoSrc = globalSettings?.logo ? buildStrapiResponsive(globalSettings.logo
         >
           <!-- Navigation links -->
           {
-            strings.navBarLinks.map((link, index) => {
+            navBarLinks.map((link) => {
               if (link.url.includes("units")) {
                 return <MegaMenuLink url={link.url} name={link.name} />;
               } else {
@@ -101,12 +101,12 @@ const logoSrc = globalSettings?.logo ? buildStrapiResponsive(globalSettings.logo
             })
           }
           <div class="mb-2 block min-w-fit lg:hidden">
-            <PrimaryCTA title={"Contact Us"} url={"/contact"} noArrow className="h-14 min-w-[174px]" />
+            <PrimaryCTA title={contactBtnLabel} url={"/contact"} noArrow className="h-14 min-w-[174px]" />
           </div>
         </div>
       </div>
       <div class="hidden min-w-fit lg:block">
-        <PrimaryCTA title={"Contact Us"} url={"/contact"} noArrow className="h-14 min-w-[120px] lg:min-w-[174px]" />
+        <PrimaryCTA title={contactBtnLabel} url={"/contact"} noArrow className="h-14 min-w-[120px] lg:min-w-[174px]" />
       </div>
     </nav>
   </div>

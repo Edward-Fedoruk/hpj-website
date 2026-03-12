@@ -571,6 +571,23 @@ export class DynamicPageHandler {
             mime
             formats
           }
+          navigation_titles {
+            home
+            about
+            board_members
+            business_organisations
+            careers
+          }
+          contact_btn_label
+          copyright_text
+          footer_col_pages_label
+          footer_col_organisations_label
+          footer_col_contact_label
+          policy_titles {
+            terms_and_conditions
+            privacy_policy
+            cookie_policy
+          }
         }
       }
     `;

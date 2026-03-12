@@ -1,35 +1,50 @@
 import { headerUnit } from "@/data_files/mega_link";
+import type { NavigationTitles, PolicyTitles } from "@/types/common";
 
-// An array of links for navigation bar
-const navBarLinks = [
-  { name: "Home", url: "/", width: 50 },
-  { name: "About Us", url: "/about", width: 75 },
-  { name: "Board Members", url: "/board-members", width: 140 },
-  { name: "Business Organisations", url: "/units", width: 65 },
-  { name: "Careers", url: "/careers", width: 60 },
-];
-// An array of links for footer
-const footerLinks = [
-  {
-    section: "Pages",
-    links: [
-      { name: "Home", url: "/" },
-      { name: "About Us", url: "/about" },
-      { name: "Board Members", url: "/board-members" },
-      { name: "Units", url: "/units" },
-      { name: "Careers", url: "/careers" },
-    ],
-  },
-  {
-    section: "Business Organisations",
-    links: headerUnit.business_units.map((item) => {
-      return {
+export function getNavBarLinks(titles?: NavigationTitles | null) {
+  return [
+    { name: titles?.home, url: "/", width: 50 },
+    { name: titles?.about, url: "/about", width: 75 },
+    { name: titles?.board_members, url: "/board-members", width: 140 },
+    { name: titles?.business_organisations, url: "/units", width: 65 },
+    { name: titles?.careers, url: "/careers", width: 60 },
+  ].filter((link) => link.name);
+}
+
+export function getFooterLinks(
+  titles?: NavigationTitles | null,
+  pagesLabel?: string | null,
+  organisationsLabel?: string | null,
+) {
+  return [
+    {
+      section: pagesLabel ?? "Pages",
+      links: [
+        { name: titles?.home, url: "/" },
+        { name: titles?.about, url: "/about" },
+        { name: titles?.board_members, url: "/board-members" },
+        { name: titles?.business_organisations, url: "/units" },
+        { name: titles?.careers, url: "/careers" },
+      ].filter((link) => link.name),
+    },
+    {
+      section: organisationsLabel ?? "Business Organisations",
+      links: headerUnit.business_units.map((item) => ({
         name: item.title,
         url: `/unit/${item.url}`,
-      };
-    }),
-  },
-];
+      })),
+    },
+  ];
+}
+
+export function getFooterBottomLinks(titles?: PolicyTitles | null) {
+  return [
+    { name: titles?.terms_and_conditions, url: "/terms-and-conditions" },
+    { name: titles?.privacy_policy, url: "/privacy-policy" },
+    { name: titles?.cookie_policy, url: "/cookie-policy" },
+  ].filter((link) => link.name);
+}
+
 // An object of links for social icons
 const socialLinks = {
   facebook: "https://www.facebook.com/",
@@ -45,8 +60,9 @@ const footerBottomLinks = [
 ];
 
 export default {
-  navBarLinks,
-  footerLinks,
   footerBottomLinks,
   socialLinks,
+  getNavBarLinks,
+  getFooterLinks,
+  getFooterBottomLinks,
 };

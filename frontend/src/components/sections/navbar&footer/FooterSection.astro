@@ -12,9 +12,15 @@ interface Props {
   globalSettings?: GlobalSettings | null;
 }
 
-const strings = enStrings;
+const footerBottomLinks = enStrings.getFooterBottomLinks(globalSettings?.policy_titles);
+const contactColLabel = globalSettings?.footer_col_contact_label || "Contact Us";
+const copyrightText = globalSettings?.copyright_text || "Copyright © 2026 HPJ Holdings LLC";
+const footerLinks = enStrings.getFooterLinks(
+  globalSettings?.navigation_titles,
+  globalSettings?.footer_col_pages_label,
+  globalSettings?.footer_col_organisations_label,
+);
 
-const sectionThreeTitle: string = "Contact Us";
 ---
 
 <footer class=" w-full bg-[#F7F7F7] dark:bg-neutral-900">
@@ -41,7 +47,7 @@ const sectionThreeTitle: string = "Contact Us";
         )}
       </div>
       {
-        strings.footerLinks.map((section) => (
+        footerLinks.map((section) => (
           <div class="col-span-1">
             <h3 class="text-text-main font-bold dark:text-neutral-200">{section.section}</h3>
             <ul class="mt-4 grid space-y-3 md:mt-10">
@@ -62,7 +68,7 @@ const sectionThreeTitle: string = "Contact Us";
 
       <div class="col-span-2 lg:col-span-1">
         <h3 class="text-text-main font-bold">
-          {sectionThreeTitle}
+          {contactColLabel}
         </h3>
 
         <ul class="text-text-secondary mt-4 flex flex-col gap-4 text-[15px] md:mt-10 md:text-base">
@@ -96,7 +102,7 @@ const sectionThreeTitle: string = "Contact Us";
       <div class="order-1 mb-1 border-t-[0.5px] border-t-[#999999] md:hidden"></div>
       <div class="order-1 flex md:w-fit items-center justify-between">
         <p class="text-xs md:text-sm lg:text-base">
-          Copyright © <span id="current-year">2025</span> {globalSettings?.full_name ?? "HPJ Holdings LLC"}
+          {copyrightText}
         </p>
       </div>
 
@@ -104,8 +110,8 @@ const sectionThreeTitle: string = "Contact Us";
         class="order-2 row-start-2 flex flex-wrap justify-between gap-x-6 gap-y-2 text-xs sm:justify-start lg:self-end lg:text-base"
       >
         {
-          strings.footerBottomLinks.map((link) => {
-            if (link.name !== "Cookie Policy") {
+          footerBottomLinks.map((link) => {
+            if (link.url !== "/cookie-policy") {
               return (
                 <li>
                   <a class="w-fit text-nowrap" href={link.url}>

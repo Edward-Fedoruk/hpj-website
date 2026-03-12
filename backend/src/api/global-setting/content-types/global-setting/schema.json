@@ -29,6 +29,15 @@
         "images"
       ]
     },
+    "navigation_titles": {
+      "type": "component",
+      "component": "navigation.navigation-labels",
+      "repeatable": false
+    },
+    "contact_btn_label": {
+      "type": "string",
+      "default": "Contact Us"
+    },
     "default_footer_logo": {
       "type": "media",
       "multiple": false,
@@ -66,6 +75,27 @@
     },
     "address_map_url": {
       "type": "string"
+    },
+    "footer_col_pages_label": {
+      "type": "string",
+      "default": "Pages"
+    },
+    "footer_col_organisations_label": {
+      "type": "string",
+      "default": "Business Organisations"
+    },
+    "footer_col_contact_label": {
+      "type": "string",
+      "default": "Contact Us"
+    },
+    "copyright_text": {
+      "type": "string",
+      "default": "Copyright © 2026 HPJ Holdings LLC"
+    },
+    "policy_titles": {
+      "type": "component",
+      "component": "navigation.policy-labels",
+      "repeatable": false
     }
   }
 }

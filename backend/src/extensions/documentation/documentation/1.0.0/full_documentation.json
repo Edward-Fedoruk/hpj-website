@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-03-10T11:31:45.595Z"
+    "x-generation-date": "2026-03-12T13:16:26.534Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -8564,6 +8564,12 @@
                 ],
                 "example": "string or id"
               },
+              "navigation_titles": {
+                "$ref": "#/components/schemas/NavigationNavigationLabelsComponent"
+              },
+              "contact_btn_label": {
+                "type": "string"
+              },
               "default_footer_logo": {
                 "oneOf": [
                   {
@@ -8604,6 +8610,21 @@
               },
               "address_map_url": {
                 "type": "string"
+              },
+              "footer_col_pages_label": {
+                "type": "string"
+              },
+              "footer_col_organisations_label": {
+                "type": "string"
+              },
+              "footer_col_contact_label": {
+                "type": "string"
+              },
+              "copyright_text": {
+                "type": "string"
+              },
+              "policy_titles": {
+                "$ref": "#/components/schemas/NavigationPolicyLabelsComponent"
               },
               "locale": {
                 "type": "string"
@@ -9281,6 +9302,12 @@
               }
             }
           },
+          "navigation_titles": {
+            "$ref": "#/components/schemas/NavigationNavigationLabelsComponent"
+          },
+          "contact_btn_label": {
+            "type": "string"
+          },
           "default_footer_logo": {
             "type": "object",
             "properties": {
@@ -9439,6 +9466,21 @@
           },
           "address_map_url": {
             "type": "string"
+          },
+          "footer_col_pages_label": {
+            "type": "string"
+          },
+          "footer_col_organisations_label": {
+            "type": "string"
+          },
+          "footer_col_contact_label": {
+            "type": "string"
+          },
+          "copyright_text": {
+            "type": "string"
+          },
+          "policy_titles": {
+            "$ref": "#/components/schemas/NavigationPolicyLabelsComponent"
           },
           "createdAt": {
             "type": "string",
@@ -9623,6 +9665,12 @@
                     }
                   }
                 },
+                "navigation_titles": {
+                  "$ref": "#/components/schemas/NavigationNavigationLabelsComponent"
+                },
+                "contact_btn_label": {
+                  "type": "string"
+                },
                 "default_footer_logo": {
                   "type": "object",
                   "properties": {
@@ -9782,6 +9830,21 @@
                 "address_map_url": {
                   "type": "string"
                 },
+                "footer_col_pages_label": {
+                  "type": "string"
+                },
+                "footer_col_organisations_label": {
+                  "type": "string"
+                },
+                "footer_col_contact_label": {
+                  "type": "string"
+                },
+                "copyright_text": {
+                  "type": "string"
+                },
+                "policy_titles": {
+                  "$ref": "#/components/schemas/NavigationPolicyLabelsComponent"
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -9849,6 +9912,29 @@
           }
         }
       },
+      "NavigationNavigationLabelsComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "home": {
+            "type": "string"
+          },
+          "about": {
+            "type": "string"
+          },
+          "board_members": {
+            "type": "string"
+          },
+          "business_organisations": {
+            "type": "string"
+          },
+          "careers": {
+            "type": "string"
+          }
+        }
+      },
       "ContactsEmailComponent": {
         "type": "object",
         "properties": {
@@ -9867,6 +9953,23 @@
             "type": "number"
           },
           "phone_number": {
+            "type": "string"
+          }
+        }
+      },
+      "NavigationPolicyLabelsComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "terms_and_conditions": {
+            "type": "string"
+          },
+          "privacy_policy": {
+            "type": "string"
+          },
+          "cookie_policy": {
             "type": "string"
           }
         }
