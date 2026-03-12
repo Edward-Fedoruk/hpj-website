@@ -8,7 +8,7 @@ export function getNavBarLinks(titles?: NavigationTitles | null) {
     { name: titles?.board_members, url: "/board-members", width: 140 },
     { name: titles?.business_organisations, url: "/units", width: 65 },
     { name: titles?.careers, url: "/careers", width: 60 },
-  ].filter((link) => link.name);
+  ].filter((link): link is { name: string; url: string; width: number } => !!link.name);
 }
 
 export function getFooterLinks(
@@ -25,7 +25,7 @@ export function getFooterLinks(
         { name: titles?.board_members, url: "/board-members" },
         { name: titles?.business_organisations, url: "/units" },
         { name: titles?.careers, url: "/careers" },
-      ].filter((link) => link.name),
+      ].filter((link): link is { name: string; url: string } => !!link.name),
     },
     {
       section: organisationsLabel ?? "Business Organisations",
@@ -42,7 +42,7 @@ export function getFooterBottomLinks(titles?: PolicyTitles | null) {
     { name: titles?.terms_and_conditions, url: "/terms-and-conditions" },
     { name: titles?.privacy_policy, url: "/privacy-policy" },
     { name: titles?.cookie_policy, url: "/cookie-policy" },
-  ].filter((link) => link.name);
+  ].filter((link): link is { name: string; url: string } => !!link.name);
 }
 
 // An object of links for social icons
