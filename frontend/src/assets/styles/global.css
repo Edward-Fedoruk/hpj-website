@@ -76,3 +76,73 @@ html {
     color: white;
   }
 }
+
+.policy-content h1 {
+  font-weight: 900;
+  font-size: 2.25rem;
+  line-height: 150%;
+}
+
+.policy-content h2 {
+  font-weight: 400;
+  font-size: 2.25rem;
+  line-height: 150%;
+}
+
+.policy-content h3 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 2.75rem;
+}
+
+.policy-content p {
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-top: 1.5rem;
+}
+
+.policy-content ul,
+.policy-content ol {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-top: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.policy-content ul {
+  list-style-type: disc;
+}
+
+.policy-content ol {
+  list-style-type: decimal;
+}
+
+.policy-content li {
+  margin-top: 0.5rem;
+}
+
+.policy-content strong,
+.policy-content b {
+  font-weight: 700;
+}
+
+.policy-content a {
+  text-decoration: underline;
+}
+
+.policy-content table {
+  margin-top: 1rem;
+  border-collapse: separate;
+  border-spacing: 0 1rem;
+}
+
+.policy-content th,
+.policy-content td {
+  padding-right: 3.5rem;
+}
+
+.policy-content th {
+  text-align: start;
+  font-weight: 700;
+}

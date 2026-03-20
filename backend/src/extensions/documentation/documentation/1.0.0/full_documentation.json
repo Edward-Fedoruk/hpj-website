@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-03-12T13:16:26.534Z"
+    "x-generation-date": "2026-03-20T18:38:33.373Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -8543,7 +8543,10 @@
               "full_name",
               "logo",
               "default_footer_logo",
-              "emails"
+              "emails",
+              "privacy_policy_text",
+              "cookie_policy_text",
+              "terms_and_conditions_text"
             ],
             "type": "object",
             "properties": {
@@ -8626,6 +8629,15 @@
               "policy_titles": {
                 "$ref": "#/components/schemas/NavigationPolicyLabelsComponent"
               },
+              "privacy_policy_text": {
+                "type": "string"
+              },
+              "cookie_policy_text": {
+                "type": "string"
+              },
+              "terms_and_conditions_text": {
+                "type": "string"
+              },
               "locale": {
                 "type": "string"
               },
@@ -8689,7 +8701,10 @@
           "full_name",
           "logo",
           "default_footer_logo",
-          "emails"
+          "emails",
+          "privacy_policy_text",
+          "cookie_policy_text",
+          "terms_and_conditions_text"
         ],
         "properties": {
           "id": {
@@ -9482,6 +9497,15 @@
           "policy_titles": {
             "$ref": "#/components/schemas/NavigationPolicyLabelsComponent"
           },
+          "privacy_policy_text": {
+            "type": "string"
+          },
+          "cookie_policy_text": {
+            "type": "string"
+          },
+          "terms_and_conditions_text": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -9844,6 +9868,15 @@
                 },
                 "policy_titles": {
                   "$ref": "#/components/schemas/NavigationPolicyLabelsComponent"
+                },
+                "privacy_policy_text": {
+                  "type": "string"
+                },
+                "cookie_policy_text": {
+                  "type": "string"
+                },
+                "terms_and_conditions_text": {
+                  "type": "string"
                 },
                 "createdAt": {
                   "type": "string",

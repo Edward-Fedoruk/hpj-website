@@ -42,4 +42,7 @@ export interface GlobalSettings {
   footer_col_organisations_label?: string | null;
   footer_col_contact_label?: string | null;
   policy_titles?: PolicyTitles | null;
+  privacy_policy_text?: string | null;
+  terms_and_conditions_text?: string | null;
+  cookie_policy_text?: string | null;
 }

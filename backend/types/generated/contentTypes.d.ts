@@ -509,6 +509,14 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
     address_map_url: Schema.Attribute.String;
     contact_btn_label: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Contact Us'>;
+    cookie_policy_text: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     copyright_text: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'Copyright \u00A9 2026 HPJ Holdings LLC'>;
     createdAt: Schema.Attribute.DateTime;
@@ -545,12 +553,28 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
       'navigation.policy-labels',
       false
     >;
+    privacy_policy_text: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     publishedAt: Schema.Attribute.DateTime;
     short_name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'HPJ'>;
     tagline: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<'We lead with experience, driven by professionalism, and guided by a commitment to lasting success.'>;
+    terms_and_conditions_text: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
