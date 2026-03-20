@@ -588,6 +588,9 @@ export class DynamicPageHandler {
             privacy_policy
             cookie_policy
           }
+          privacy_policy_text
+          terms_and_conditions_text
+          cookie_policy_text
         }
       }
     `;
